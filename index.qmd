@@ -1,0 +1,20 @@
+---
+title: "Tutorials"
+author: Brendan Harmon
+date: last-modified
+listing:
+  include: 
+    categories: ["collection"]
+  type: table
+  page-size: 50
+  fields: [date, title, image, categories]
+---
+
+![Tutorials](grass/images/earthworks-01.png)
+
+This is a collection of tutorials
+teaching creative computation for design and spatial science.
+These open education resources are released under the
+{{< fa brands creative-commons >}}
+[Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+

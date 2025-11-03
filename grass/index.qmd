@@ -1,0 +1,11 @@
+---
+title: "Geocomputation with GRASS"
+author: Brendan Harmon
+date: last-modified
+image: images/earthworks-03.png
+categories: [collection]
+listing:
+  type: table
+  page-size: 50
+  fields: [date, title, image, categories]
+---

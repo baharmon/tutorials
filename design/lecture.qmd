@@ -1,0 +1,24 @@
+---
+title: "Computational Design"
+author: Brendan Harmon
+date: last-modified
+license: CC BY-SA
+categories: [lecture]
+description: >
+    A lecture on computational design
+format:
+  revealjs: 
+    theme: /../presentation.scss
+---
+
+# Slide 1
+
+Content
+
+# Slide 2
+
+Content
+
+# Slide 3
+
+Content

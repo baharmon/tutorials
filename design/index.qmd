@@ -1,0 +1,11 @@
+---
+title: "Computational Design"
+author: Brendan Harmon
+date: last-modified
+image: images/random-walk-02.png
+categories: [collection]
+listing:
+  type: table
+  page-size: 50
+  fields: [date, title, image, categories]
+---
