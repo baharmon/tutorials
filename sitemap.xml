@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://baharmon.github.io/tutorials/about.html</loc>
-    <lastmod>2025-10-19T02:25:39.113Z</lastmod>
+    <loc>https://baharmon.github.io/tutorials/index.html</loc>
+    <lastmod>2025-10-29T06:08:49.248Z</lastmod>
   </url>
   <url>
-    <loc>https://baharmon.github.io/tutorials/index.html</loc>
-    <lastmod>2025-10-19T02:25:39.113Z</lastmod>
+    <loc>https://baharmon.github.io/tutorials/design/index.html</loc>
+    <lastmod>2025-10-22T03:10:46.554Z</lastmod>
+  </url>
+  <url>
+    <loc>https://baharmon.github.io/tutorials/design/random-walk-01.html</loc>
+    <lastmod>2025-10-29T05:41:08.538Z</lastmod>
+  </url>
+  <url>
+    <loc>https://baharmon.github.io/tutorials/design/random-walk-03.html</loc>
+    <lastmod>2025-10-28T03:19:46.899Z</lastmod>
+  </url>
+  <url>
+    <loc>https://baharmon.github.io/tutorials/design/random-walk-04.html</loc>
+    <lastmod>2025-11-03T16:29:44.806Z</lastmod>
+  </url>
+  <url>
+    <loc>https://baharmon.github.io/tutorials/design/random-walk-02.html</loc>
+    <lastmod>2025-10-29T06:08:51.259Z</lastmod>
+  </url>
+  <url>
+    <loc>https://baharmon.github.io/tutorials/design/lecture.html</loc>
+    <lastmod>2025-10-22T03:08:57.671Z</lastmod>
+  </url>
+  <url>
+    <loc>https://baharmon.github.io/tutorials/grass/index.html</loc>
+    <lastmod>2025-10-21T04:10:10.578Z</lastmod>
   </url>
 </urlset>

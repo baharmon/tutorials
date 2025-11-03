@@ -1,0 +1,23 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/design/index.html",
+      "/grass/index.html"
+    ]
+  },
+  {
+    "listing": "/design/index.html",
+    "items": [
+      "/design/random-walk-04.html",
+      "/design/lecture.html",
+      "/design/random-walk-01.html",
+      "/design/random-walk-02.html",
+      "/design/random-walk-03.html"
+    ]
+  },
+  {
+    "listing": "/grass/index.html",
+    "items": []
+  }
+]

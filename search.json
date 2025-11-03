@@ -1,16 +1,295 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Tutorials",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "Tutorials\n\n\nThis is a collection of tutorials teaching creative computation for design and spatial science. These open education resources are released under the  Creative Commons Attribution 4.0 International License.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nOct 21, 2025\n\n\nComputational Design\n\n\n\n\n\ncollection\n\n\n\n\n\n\nOct 20, 2025\n\n\nGeocomputation with GRASS\n\n\n\n\n\ncollection\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "design/index.html",
+    "href": "design/index.html",
+    "title": "Computational Design",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nNov 3, 2025\n\n\n3D random walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\nOct 21, 2025\n\n\nComputational Design\n\n\n\n\n\nlecture\n\n\n\n\n\n\nOct 29, 2025\n\n\nRandom walk with Grasshopper\n\n\n\n\n\ntutorial, grasshopper\n\n\n\n\n\n\nOct 29, 2025\n\n\nRandom walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\nOct 27, 2025\n\n\nRandom walk with scripting in Grasshopper\n\n\n\n\n\ntutorial, grasshopper, python\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "Computational Design"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-01.html",
+    "href": "design/random-walk-01.html",
+    "title": "Random walk with Grasshopper",
+    "section": "",
+    "text": "Random walk",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-01.html#introduction",
+    "href": "design/random-walk-01.html#introduction",
+    "title": "Random walk with Grasshopper",
+    "section": "Introduction",
+    "text": "Introduction\nThis tutorial is a guide to simulating random walks with Grasshopper - Rhino’s visual programming environment [1]. A random walk is an algorithm that simulates a walker taking steps in random directions. To easily simulate a 2-dimensional random walk, first generate sets of random vectors representing steps and then take the cumulative sum of these vectors to find the position of the walker at each step. For this 2-dimensional random walk, we will decompose movement into x- and y-vectors representing east-west and north-south movement. For each step our walker will choose to move a pace to either east or west and north or south. To make the walk smoother, we will incorporate an element of unpredictability by allowing our walker to take partial steps.",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-01.html#define-x-component-of-steps",
+    "href": "design/random-walk-01.html#define-x-component-of-steps",
+    "title": "Random walk with Grasshopper",
+    "section": "Define x-component of steps",
+    "text": "Define x-component of steps\nFirst define the x-component of our walker’s movement. We will represent a full pace to the west as -1 and a full pace to the east as 1. Start by generating a list of random floating point numbers between -1 and 1. To do this, place a Random component on the canvas. Plug a Number Slider into the Seed input parameter to set the seed of the pseudorandom number generator. Plug a Number Slider into the Number input parameter to set the number of random values to be generated. Plug a text panel into the Range input parameter and set the text to -1 to 1. Then plug the output list of random numbers into a Mass Addition component. This will calculate the cumulative sum of the random numbers.\n\n\n\nDefine x-component of steps",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-01.html#define-y-component-of-steps",
+    "href": "design/random-walk-01.html#define-y-component-of-steps",
+    "title": "Random walk with Grasshopper",
+    "section": "Define y-component of steps",
+    "text": "Define y-component of steps\nNext define the y-component of our walker’s movement. Place a Random component on the canvas and use the same values for the input Range and Number, but use a different value for the input Seed. A simple way to do this is to reuse the same seed, but add 1 to it. Then use Mass Addition calculate the cumulative sum of the resulting list of random numbers.\n\n\n\nDefine y-component of steps",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-01.html#plot-random-walk",
+    "href": "design/random-walk-01.html#plot-random-walk",
+    "title": "Random walk with Grasshopper",
+    "section": "Plot random walk",
+    "text": "Plot random walk\nThe Mass Addition component returns a result - the total cumulative sum - and a list of partial results - the cumulative sum at each step. These partial results represent the x- or y-components of our walker’s position in space at each step. To plot our walkers position in space, place a Construct Point on the canvas and plug the partial results of the cumulative sums along the x- and y-vectors into its input x- and y-coordinates. Finally visualize the resulting points using a Dot Display component.\n\n\n\nPlot random walk\n\n\n\n\n\nRandom walk",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-03.html",
+    "href": "design/random-walk-03.html",
+    "title": "Random walk with scripting in Grasshopper",
+    "section": "",
+    "text": "Random walk",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with scripting in Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-03.html#introduction",
+    "href": "design/random-walk-03.html#introduction",
+    "title": "Random walk with scripting in Grasshopper",
+    "section": "Introduction",
+    "text": "Introduction\nLearn how to use Python scripting in Grasshopper to efficiently generate a random walk. In this tutorial you will create a custom script component for generating random walks in a visual programming environment. The simple visual program we composed in the tutorial Random walk with Grasshopper was quite slow, so we will write a faster, more efficient implementation in Python using the NumPy array programming library [1, 2].",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with scripting in Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-03.html#script-component",
+    "href": "design/random-walk-03.html#script-component",
+    "title": "Random walk with scripting in Grasshopper",
+    "section": "Script component",
+    "text": "Script component\nPlace a Python 3 script component from the script panel in the math tab on Grasshopper’s canvas. Double click on the center of the script component to open the script editor and start writing your code. To learn more read the Rhino Developer’s Scripting Guides.\n\n\n\nScript component",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with scripting in Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-03.html#python-script",
+    "href": "design/random-walk-03.html#python-script",
+    "title": "Random walk with scripting in Grasshopper",
+    "section": "Python script",
+    "text": "Python script\nIn the script editor write a Python program for simulating random walks. First import NumPy, then instantiate its random number generator, generate arrays of random x- and y-vectors representing the direction of each step, calculate the position of each step as the cumulative sum of the vectors, and convert the arrays into lists. Save your program and close the script editor. Right click on your script component to rename it Random Walk.\n\"\"\"Random Walk\"\"\"\n# requirements: numpy\n\n# Import library\nimport numpy as np\n\n# Instantiate random number generator\nif seed is not None:\n    rng = np.random.default_rng(seed)\nelse:\n    rng = np.random.default_rng()\n\n# Generate random steps\nu = rng.normal(mu, sigma, i)\nv = rng.normal(mu, sigma, i)\n\n# Solve position\nx = np.cumsum(u).tolist()\ny = np.cumsum(v).tolist()",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with scripting in Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-03.html#programmed-script-component",
+    "href": "design/random-walk-03.html#programmed-script-component",
+    "title": "Random walk with scripting in Grasshopper",
+    "section": "Programmed script component",
+    "text": "Programmed script component\nNow that your script is ready, compose a simple visual program using it. First define the input and output parameters for the component. Zoom in on the script component and plus icons for inserting parameters will appear. Use these to insert the input parameters i, mu, sigma, and seed and the output parameters x and y. Add number sliders to your canvas and plug these to the input parameters. Plug the output parameters x and y into a Construct Point component as the input x- and y-coordinates.\n\n\n\nVisual program with random walk script\n\n\n\n\n\nRandom walk",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with scripting in Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-04.html",
+    "href": "design/random-walk-04.html",
+    "title": "3D random walk with NumPy",
+    "section": "",
+    "text": "3D random walk",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-04.html#introduction",
+    "href": "design/random-walk-04.html#introduction",
+    "title": "3D random walk with NumPy",
+    "section": "Introduction",
+    "text": "Introduction\nLearn how to generate a 3-dimensional random walk in Python with NumPy and render it with either PyVista or Open3D.",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-04.html#random-walk-with-numpy",
+    "href": "design/random-walk-04.html#random-walk-with-numpy",
+    "title": "3D random walk with NumPy",
+    "section": "Random walk with NumPy",
+    "text": "Random walk with NumPy\nGenerate a 3-dimensional random walk with Python’s NumPy library for array programming [1, 2].\n# Import libraries\nimport numpy as np\n\n# Set variables\ni = 1000000 # Iterations\nmu = 0.0 # Mean\nsigma = 0.25 # Standard deviation\nscale = 2 # Scale factor\n\n# Instantiate random number generator\nrng = np.random.default_rng()\n\n# Generate random steps\nu = rng.normal(mu, sigma * scale, i)\nv = rng.normal(mu, sigma * scale, i)\nw = rng.normal(mu, sigma / scale, i)\n\n# Solve position\nx = np.cumsum(u)\ny = np.cumsum(v)\nz = np.cumsum(w)\n\n# Stack coordinates\nxyz = np.column_stack((x, y, z))",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-04.html#render-with-pyvista",
+    "href": "design/random-walk-04.html#render-with-pyvista",
+    "title": "3D random walk with NumPy",
+    "section": "Render with PyVista",
+    "text": "Render with PyVista\nRender an interactive 3D visualization of the random walk with the Python library PyVista [3, 5].\n\n# Import libraries\nimport pyvista as pv\n\n# Set plot theme\npv.set_plot_theme(\"document\")\n\n# Plot\npv.plot(\n    xyz,\n    scalars=z,\n    render_points_as_spheres=True,\n    point_size=20,\n    show_scalar_bar=False,\n    eye_dome_lighting=True,\n    ambient=0.6,\n    diffuse=0.8,\n    window_size=(2000, 2000)\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3D random walks rendered with PyVista",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-04.html#render-with-open3d",
+    "href": "design/random-walk-04.html#render-with-open3d",
+    "title": "3D random walk with NumPy",
+    "section": "Render with Open3D",
+    "text": "Render with Open3D\nRender an interactive 3D visualization of the random walk with the Python library Open3D [4, 6].\n# Import libraries\nimport open3d as o3d\nimport matplotlib.cm as cm\nimport matplotlib.colors as colors\n\n# Read point cloud\ncloud = o3d.geometry.PointCloud()\ncloud.points = o3d.utility.Vector3dVector(xyz)\n\n# Assign color gradient\ncolormap = cm.get_cmap(\"viridis\")\nnormalization = colors.Normalize(vmin=z.min(), vmax=z.max())\nnormalization = normalization(z)\ngradient = colormap(normalization)\ngradient = gradient[:, :3]\ncloud.colors = o3d.utility.Vector3dVector(gradient)\n\n# Render points\no3d.visualization.draw(\n    [cloud],\n    point_size=4,\n    width=2000,\n    height=2000,\n    show_skybox=False,\n    raw_mode=True\n    )",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-02.html",
+    "href": "design/random-walk-02.html",
+    "title": "Random walk with NumPy",
+    "section": "",
+    "text": "Random walk",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-02.html#introduction",
+    "href": "design/random-walk-02.html#introduction",
+    "title": "Random walk with NumPy",
+    "section": "Introduction",
+    "text": "Introduction\nLearn how to generate a 2-dimensional random walk using Python’s NumPy library. A random walk is an algorithm that simulates random movement through space. Each step the walker takes is in random direction. Here we implement a random walk by generating sets of random direction vectors representing steps and then calculating the cumulative sum of the vectors to find the position of the walker at each step.",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-02.html#import-libraries",
+    "href": "design/random-walk-02.html#import-libraries",
+    "title": "Random walk with NumPy",
+    "section": "Import libraries",
+    "text": "Import libraries\nFirst import the required libraries NumPy and Seaborn. Numpy is a library for programming multidimensional arrays [1, 2] which we will use to generate the random steps in our walk. Seaborn is a library for statistical data visualization [3, 4] which we will use to plot our random walk.\n\n# Import libraries\nimport numpy as np\nimport seaborn as sns",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-02.html#set-theme",
+    "href": "design/random-walk-02.html#set-theme",
+    "title": "Random walk with NumPy",
+    "section": "Set theme",
+    "text": "Set theme\nSet a theme for plotting with Seaborn using seaborn.set_theme. Try setting the style to darkgrid and the context to paper. See the Seaborn tutorial on aesthetics for a guide to customizing plots.\n\n# Set theme\nsns.set_theme(\n    context=\"paper\", \n    style=\"darkgrid\"\n    )",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-02.html#random-steps",
+    "href": "design/random-walk-02.html#random-steps",
+    "title": "Random walk with NumPy",
+    "section": "Random steps",
+    "text": "Random steps\nGenerate a set of random direction vectors along the x-axis and another set of random direction vectors along the y-axis. These vectors represent the x- and y-direction of each step that the walker will take. First instantiate NumPy’s random number generator numpy.random.default_rng. Then generate an array of x-vectors drawn from a Gaussian (i.e. normal) distribution with numpy.random.Generator.normal. Set the location parameter representing the mean of the distribution to 0. Set the scale parameter representing the standard deviation or spread of the distribution to 0.25. Set the size parameter to the number of steps the walker will take. Now generate an array of y-vectors the same way.\n\n# Set variables\ni = 1000 # Iterations\nmu = 0.0 # Mean\nsigma = 0.25 # Standard deviation\n\n# Instantiate random number generator\nrng = np.random.default_rng()\n\n# Generate random steps\nu = rng.normal(mu, sigma, i)\nv = rng.normal(mu, sigma, i)",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-02.html#solve-position",
+    "href": "design/random-walk-02.html#solve-position",
+    "title": "Random walk with NumPy",
+    "section": "Solve position",
+    "text": "Solve position\nFind the position of each step the walker takes by calculating the cumulative sum of the direction vectors with numpy.cumsum.\n\n# Solve position\nx = np.cumsum(u)\ny = np.cumsum(v)",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-02.html#plot-function",
+    "href": "design/random-walk-02.html#plot-function",
+    "title": "Random walk with NumPy",
+    "section": "Plot function",
+    "text": "Plot function\nUse Seaborn to plot the x- and y-coordinates as a scatter plot with a size and color gradient representing relative time. Create a scatterplot with seaborn.scatterplot. Set x and y to the arrays of x- and y-coordinates. Use numpy.arange to generate an array of time steps. Set the size and hue parameters to this array of time steps. Use the palette parameter to assign a perceptually uniform color gradient such as flare or viridis.\n\n# Plot function\nplot = sns.scatterplot(\n    x=x,\n    y=y,\n    size=np.arange(i),\n    sizes=(25, 100),\n    hue=np.arange(i),\n    palette=\"flare\",\n    legend=False\n    )\n\n\n\n\nRandom walk\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRandom walks",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "grass/index.html",
+    "href": "grass/index.html",
+    "title": "Geocomputation with GRASS",
+    "section": "",
+    "text": "Date\nTitle\n\nCategories\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS"
+    ]
   }
 ]
