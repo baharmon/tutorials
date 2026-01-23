@@ -7,17 +7,6 @@
     "text": "Tutorials\n\n\nThis is a collection of tutorials teaching creative computation for design and spatial science. These open education resources are released under the  Creative Commons Attribution 4.0 International License.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nOct 21, 2025\n\n\nComputational Design\n\n\n\n\n\ncollection\n\n\n\n\n\n\nOct 20, 2025\n\n\nGeocomputation with GRASS\n\n\n\n\n\ncollection\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "design/index.html",
-    "href": "design/index.html",
-    "title": "Computational Design",
-    "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nNov 3, 2025\n\n\n3D random walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\nOct 21, 2025\n\n\nComputational Design\n\n\n\n\n\nlecture\n\n\n\n\n\n\nOct 29, 2025\n\n\nRandom walk with Grasshopper\n\n\n\n\n\ntutorial, grasshopper\n\n\n\n\n\n\nOct 29, 2025\n\n\nRandom walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\nOct 27, 2025\n\n\nRandom walk with scripting in Grasshopper\n\n\n\n\n\ntutorial, grasshopper, python\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Home",
-      "Computational Design"
-    ]
-  },
-  {
     "objectID": "design/random-walk-01.html",
     "href": "design/random-walk-01.html",
     "title": "Random walk with Grasshopper",
@@ -279,6 +268,17 @@
       "Home",
       "Computational Design",
       "Random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/index.html",
+    "href": "design/index.html",
+    "title": "Computational Design",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nNov 3, 2025\n\n\n3D random walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\n \n\n\nComputational Design\n\n\n\n\n\nlecture\n\n\n\n\n\n\nOct 29, 2025\n\n\nRandom walk with Grasshopper\n\n\n\n\n\ntutorial, grasshopper\n\n\n\n\n\n\nNov 4, 2025\n\n\nRandom walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\nJan 22, 2026\n\n\nRandom walk with scripting in Grasshopper\n\n\n\n\n\ntutorial, grasshopper, python\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "Computational Design"
     ]
   },
   {
