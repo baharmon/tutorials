@@ -4,16 +4,23 @@
 $font-family-sans-serif: "IBM Plex Sans", sans-serif !default; // "Lato"
 
 // colors
-$body-color: #111 !default; // #000
+$body-color: #111 !default;
 $link-color: #107895 !default;
 $selection-bg: #111 !default;
+$shadow: #fff !default;
 
 // headings
 $presentation-heading-font: "IBM Plex Sans", sans-serif !default; // "Lato"
 $presentation-heading-color: #333 !default;
+$presentation-heading-text-shadow: -1px -1px 0 $shadow, 1px -1px 0 $shadow, -1px 1px 0 $shadow, 1px 1px 0 $shadow;
+$presentation-h1-text-shadow: -1px -1px 0 $shadow, 1px -1px 0 $shadow, -1px 1px 0 $shadow, 1px 1px 0 $shadow;
 
 /*-- scss:rules --*/
 
 .reveal a {
   line-height: 1.5em;
+}
+
+body {
+  text-shadow:  -1px -1px 0 $shadow, 1px -1px 0 $shadow, -1px 1px 0 $shadow, 1px 1px 0 $shadow;
 }
