@@ -13,7 +13,7 @@ links:
   gh_construct_point: "[Construct Point](https://grasshopperdocs.com/components/grasshoppervector/constructPoint.html)"
 code-links:
   - text: Grasshopper definition
-    href: random-walks.gh
+    href: random-walk-script.gh
     icon: file-code
     target: _blank
 resources: random-walk-script.gh
