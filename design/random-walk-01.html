@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Brendan Harmon">
-<meta name="dcterms.date" content="2025-10-29">
+<meta name="dcterms.date" content="2026-04-26">
 <meta name="description" content="Model a 2D random walk using Grasshopper">
 
 <title>Random walk with Grasshopper – Tutorials</title>
@@ -165,12 +165,6 @@ div.csl-indent {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../grass/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geocomputation with GRASS</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../design/index.html" class="sidebar-item-text sidebar-link">
@@ -208,6 +202,77 @@ div.csl-indent {
   <div class="sidebar-item-container"> 
   <a href="../design/random-walk-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3D random walk with NumPy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../grass/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geocomputation with GRASS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/basic-map-algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basics of map algebra</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/bioswale.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Bioswale</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/conda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GRASS for Conda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/conda-quickstart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting started with GRASS for Conda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/earthworks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/gullies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Gully Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/levees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Modeling Coastal Infrastructure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Procedural Noise</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/synthesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Terrain Synthesis</span></a>
   </div>
 </li>
       </ul>
@@ -260,7 +325,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 29, 2025</p>
+      <p class="date">April 26, 2026</p>
     </div>
   </div>
   
@@ -274,7 +339,7 @@ div.csl-indent {
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/random-walk-01.png" class="img-fluid figure-img"></p>
+<p><img src="images/random-walk-01.webp" class="img-fluid figure-img"></p>
 <figcaption>Random walk</figcaption>
 </figure>
 </div>
@@ -287,7 +352,7 @@ div.csl-indent {
 <p>First define the x-component of our walker’s movement. We will represent a full pace to the west as -1 and a full pace to the east as 1. Start by generating a list of random floating point numbers between -1 and 1. To do this, place a <a href="https://grasshopperdocs.com/components/grasshoppersets/random.html">Random</a> component on the canvas. Plug a <a href="https://grasshopperdocs.com/components/grasshopperparams/numberSlider.html">Number Slider</a> into the <code>Seed</code> input parameter to set the seed of the pseudorandom number generator. Plug a <a href="https://grasshopperdocs.com/components/grasshopperparams/numberSlider.html">Number Slider</a> into the <code>Number</code> input parameter to set the number of random values to be generated. Plug a text panel into the <code>Range</code> input parameter and set the text to <code>-1 to 1</code>. Then plug the output list of random numbers into a <a href="https://grasshopperdocs.com/components/grasshoppermaths/massAddition.html">Mass Addition</a> component. This will calculate the cumulative sum of the random numbers.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="images/random-walk-definition-01.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="images/random-walk-definition-01.webp" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption>Define x-component of steps</figcaption>
 </figure>
 </div>
@@ -297,7 +362,7 @@ div.csl-indent {
 <p>Next define the y-component of our walker’s movement. Place a <a href="https://grasshopperdocs.com/components/grasshoppersets/random.html">Random</a> component on the canvas and use the same values for the input <code>Range</code> and <code>Number</code>, but use a different value for the input <code>Seed</code>. A simple way to do this is to reuse the same seed, but add 1 to it. Then use <a href="https://grasshopperdocs.com/components/grasshoppermaths/massAddition.html">Mass Addition</a> calculate the cumulative sum of the resulting list of random numbers.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="images/random-walk-definition-02.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="images/random-walk-definition-02.webp" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption>Define y-component of steps</figcaption>
 </figure>
 </div>
@@ -307,13 +372,13 @@ div.csl-indent {
 <p>The <a href="https://grasshopperdocs.com/components/grasshoppermaths/massAddition.html">Mass Addition</a> component returns a result - the total cumulative sum - and a list of partial results - the cumulative sum at each step. These partial results represent the x- or y-components of our walker’s position in space at each step. To plot our walkers position in space, place a <a href="https://grasshopperdocs.com/components/grasshoppervector/constructPoint.html">Construct Point</a> on the canvas and plug the partial results of the cumulative sums along the x- and y-vectors into its input x- and y-coordinates. Finally visualize the resulting points using a <a href="https://grasshopperdocs.com/components/grasshopperdisplay/dotDisplay.html">Dot Display</a> component.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="images/random-walk-definition-03.png" class="img-fluid figure-img" style="width:65.0%"></p>
+<p><img src="images/random-walk-definition-03.webp" class="img-fluid figure-img" style="width:65.0%"></p>
 <figcaption>Plot random walk</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/random-walk-04.png" class="img-fluid figure-img"></p>
+<p><img src="images/random-walk-04.webp" class="img-fluid figure-img"></p>
 <figcaption>Random walk</figcaption>
 </figure>
 </div>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Brendan Harmon">
-<meta name="dcterms.date" content="2025-10-20">
+<meta name="dcterms.date" content="2026-04-26">
 
 <title>Geocomputation with GRASS – Tutorials</title>
 <style>
@@ -82,9 +82,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-image','listing-categories',{ data: ['index'] },{ data: ['categories'] }],
+      valueNames: ['listing-date','listing-title','listing-image','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: [],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -204,12 +204,6 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../grass/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Geocomputation with GRASS</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../design/index.html" class="sidebar-item-text sidebar-link">
@@ -251,6 +245,77 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../grass/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Geocomputation with GRASS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/basic-map-algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basics of map algebra</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/bioswale.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Bioswale</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/conda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GRASS for Conda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/conda-quickstart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting started with GRASS for Conda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/earthworks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/gullies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Gully Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/levees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Modeling Coastal Infrastructure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Procedural Noise</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/synthesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Terrain Synthesis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -284,7 +349,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 20, 2025</p>
+      <p class="date">April 26, 2026</p>
     </div>
   </div>
   
@@ -302,21 +367,211 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-table" id="listing-listing">
 <div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-date-sort" data-direction="asc">
+        Date - Oldest
+      </option>
+      <option value="listing-date-sort" data-direction="desc">
+        Date - Newest
+      </option>
+      <option value="listing-title-sort" data-direction="asc">
+        Title
+      </option>
+    </select>
+  </div>
     <div class="input-group input-group-sm quarto-listing-filter">
       <span class="input-group-text"><i class="bi bi-search"></i></span>
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-<table class="quarto-listing-table table caption-top">
+<table class="quarto-listing-table table">
 <thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">Date</th>
-<th data-quarto-table-cell-role="th">Title</th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Categories</th>
+<tr>
+
+<th>
+<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
+</th>
+
+<th>
+<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
+</th>
+
+<th>
+ 
+</th>
+
+<th>
+Categories
+</th>
+
 </tr>
 </thead>
 <tbody class="list">
+
+<tr data-index="0" data-categories="dHV0b3JpYWwlMkNncmFzcyUyQ3B5dGhvbg==" data-listing-date-sort="1773614771000" data-listing-file-modified-sort="1773614771772" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2325" data-listing-title-sort="Basics of map algebra" data-listing-filename-sort="basic-map-algebra.qmd">
+<td>
+<span class="listing-date">Mar 15, 2026</span>
+</td>
+<td>
+<a href="../grass/basic-map-algebra.html" class="title listing-title">Basics of map algebra</a>
+</td>
+<td>
+<span class="listing-image"><img loading="lazy" src="../grass/images/map-algebra-01.webp" style="height: 40px;"></span>
+</td>
+<td>
+<span class="listing-categories">tutorial, grass, python</span>
+</td>
+
+</tr>
+
+<tr data-index="1" data-categories="dHV0b3JpYWwlMkNncmFzcyUyQ3B5dGhvbg==" data-listing-date-sort="1777214684000" data-listing-file-modified-sort="1777214684417" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="154" data-listing-title-sort="Earthworks" data-listing-filename-sort="earthworks.qmd">
+<td>
+<span class="listing-date">Apr 26, 2026</span>
+</td>
+<td>
+<a href="../grass/earthworks.html" class="title listing-title">Earthworks</a>
+</td>
+<td>
+<span class="listing-image"><img loading="lazy" src="../grass/images/earthworks-01.webp" style="height: 40px;"></span>
+</td>
+<td>
+<span class="listing-categories">tutorial, grass, python</span>
+</td>
+
+</tr>
+
+<tr data-index="2" data-categories="dHV0b3JpYWwlMkNncmFzcyUyQ3B5dGhvbg==" data-listing-date-sort="1773612645000" data-listing-file-modified-sort="1773612645121" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="946" data-listing-title-sort="Earthworks: Basics" data-listing-filename-sort="basics.qmd">
+<td>
+<span class="listing-date">Mar 15, 2026</span>
+</td>
+<td>
+<a href="../grass/basics.html" class="title listing-title">Earthworks: Basics</a>
+</td>
+<td>
+<span class="listing-image"><img loading="lazy" src="../grass/images/basics-05.webp" style="height: 40px;"></span>
+</td>
+<td>
+<span class="listing-categories">tutorial, grass, python</span>
+</td>
+
+</tr>
+
+<tr data-index="3" data-categories="dGVycmFpbiUyQ2h5ZHJvbG9neSUyQ3Jhc3RlciUyQ2FkdmFuY2Vk" data-listing-date-sort="1755666000000" data-listing-file-modified-sort="1774928184324" data-listing-date-modified-sort="1777179600000" data-listing-reading-time-sort="10" data-listing-word-count-sort="1862" data-listing-title-sort="Earthworks: Bioswale" data-listing-filename-sort="bioswale.qmd">
+<td>
+<span class="listing-date">Aug 20, 2025</span>
+</td>
+<td>
+<a href="../grass/bioswale.html" class="title listing-title">Earthworks: Bioswale</a>
+</td>
+<td>
+<span class="listing-image"><img loading="lazy" src="../grass/images/bioswale_07.webp" style="height: 40px;"></span>
+</td>
+<td>
+<span class="listing-categories">terrain, hydrology, raster, advanced</span>
+</td>
+
+</tr>
+
+<tr data-index="4" data-categories="dHV0b3JpYWwlMkNncmFzcyUyQ3B5dGhvbg==" data-listing-date-sort="1773614325000" data-listing-file-modified-sort="1773614325737" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="813" data-listing-title-sort="Earthworks: Gully Modeling" data-listing-filename-sort="gullies.qmd">
+<td>
+<span class="listing-date">Mar 15, 2026</span>
+</td>
+<td>
+<a href="../grass/gullies.html" class="title listing-title">Earthworks: Gully Modeling</a>
+</td>
+<td>
+<span class="listing-image"><img loading="lazy" src="../grass/images/gullies-03.webp" style="height: 40px;"></span>
+</td>
+<td>
+<span class="listing-categories">tutorial, grass, python</span>
+</td>
+
+</tr>
+
+<tr data-index="5" data-categories="dHV0b3JpYWwlMkNncmFzcyUyQ3B5dGhvbg==" data-listing-date-sort="1773614829000" data-listing-file-modified-sort="1773614829417" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1501" data-listing-title-sort="Earthworks: Modeling Coastal Infrastructure" data-listing-filename-sort="levees.qmd">
+<td>
+<span class="listing-date">Mar 15, 2026</span>
+</td>
+<td>
+<a href="../grass/levees.html" class="title listing-title">Earthworks: Modeling Coastal Infrastructure</a>
+</td>
+<td>
+<span class="listing-image"><img loading="lazy" src="../grass/images/levees-08.webp" style="height: 40px;"></span>
+</td>
+<td>
+<span class="listing-categories">tutorial, grass, python</span>
+</td>
+
+</tr>
+
+<tr data-index="6" data-categories="dHV0b3JpYWwlMkNncmFzcyUyQ3B5dGhvbg==" data-listing-date-sort="1773614466000" data-listing-file-modified-sort="1773614466608" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="976" data-listing-title-sort="Earthworks: Terrain Synthesis" data-listing-filename-sort="synthesis.qmd">
+<td>
+<span class="listing-date">Mar 15, 2026</span>
+</td>
+<td>
+<a href="../grass/synthesis.html" class="title listing-title">Earthworks: Terrain Synthesis</a>
+</td>
+<td>
+<span class="listing-image"><img loading="lazy" src="../grass/images/synthesis-07.webp" style="height: 40px;"></span>
+</td>
+<td>
+<span class="listing-categories">tutorial, grass, python</span>
+</td>
+
+</tr>
+
+<tr data-index="7" data-categories="dHV0b3JpYWwlMkNncmFzcyUyQ3B5dGhvbg==" data-listing-date-sort="1777212327000" data-listing-file-modified-sort="1777212327765" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="113" data-listing-title-sort="GRASS for Conda" data-listing-filename-sort="conda.qmd">
+<td>
+<span class="listing-date">Apr 26, 2026</span>
+</td>
+<td>
+<a href="../grass/conda.html" class="title listing-title">GRASS for Conda</a>
+</td>
+<td>
+<span class="listing-image"><img loading="lazy" src="../grass/images/basics-05.webp" style="height: 40px;"></span>
+</td>
+<td>
+<span class="listing-categories">tutorial, grass, python</span>
+</td>
+
+</tr>
+
+<tr data-index="8" data-categories="dHV0b3JpYWwlMkNncmFzcyUyQ3B5dGhvbg==" data-listing-date-sort="1773673793000" data-listing-file-modified-sort="1773673793507" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="177" data-listing-title-sort="Getting started with GRASS for Conda" data-listing-filename-sort="conda-quickstart.qmd">
+<td>
+<span class="listing-date">Mar 16, 2026</span>
+</td>
+<td>
+<a href="../grass/conda-quickstart.html" class="title listing-title">Getting started with GRASS for Conda</a>
+</td>
+<td>
+<span class="listing-image"><img loading="lazy" src="../grass/images/basics-05.webp" style="height: 40px;"></span>
+</td>
+<td>
+<span class="listing-categories">tutorial, grass, python</span>
+</td>
+
+</tr>
+
+<tr data-index="9" data-categories="dHV0b3JpYWwlMkNncmFzcw==" data-listing-date-sort="1777244761000" data-listing-file-modified-sort="1777244761812" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2428" data-listing-title-sort="Procedural Noise" data-listing-filename-sort="noise.qmd">
+<td>
+<span class="listing-date">Apr 26, 2026</span>
+</td>
+<td>
+<a href="../grass/noise.html" class="title listing-title">Procedural Noise</a>
+</td>
+<td>
+<span class="listing-image"><img loading="lazy" src="../grass/images/noise-01.webp" style="height: 40px;"></span>
+</td>
+<td>
+<span class="listing-categories">tutorial, grass</span>
+</td>
+
+</tr>
+
 </tbody>
 </table>
 <div class="listing-no-matching d-none">No matching items</div>

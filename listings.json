@@ -18,6 +18,17 @@
   },
   {
     "listing": "/grass/index.html",
-    "items": []
+    "items": [
+      "/grass/basic-map-algebra.html",
+      "/grass/earthworks.html",
+      "/grass/basics.html",
+      "/grass/bioswale.html",
+      "/grass/gullies.html",
+      "/grass/levees.html",
+      "/grass/synthesis.html",
+      "/grass/conda.html",
+      "/grass/conda-quickstart.html",
+      "/grass/noise.html"
+    ]
   }
 ]

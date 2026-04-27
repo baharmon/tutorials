@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Brendan Harmon">
-<meta name="dcterms.date" content="2026-01-22">
+<meta name="dcterms.date" content="2026-04-26">
 <meta name="description" content="Program a 2D random walk using NumPy in Grasshopper">
 
 <title>Random walk with scripting in Grasshopper – Tutorials</title>
@@ -200,12 +200,6 @@ div.csl-indent {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../grass/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geocomputation with GRASS</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../design/index.html" class="sidebar-item-text sidebar-link">
@@ -243,6 +237,77 @@ div.csl-indent {
   <div class="sidebar-item-container"> 
   <a href="../design/random-walk-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3D random walk with NumPy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../grass/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geocomputation with GRASS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/basic-map-algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basics of map algebra</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/bioswale.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Bioswale</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/conda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GRASS for Conda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/conda-quickstart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting started with GRASS for Conda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/earthworks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/gullies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Gully Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/levees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Modeling Coastal Infrastructure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Procedural Noise</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/synthesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthworks: Terrain Synthesis</span></a>
   </div>
 </li>
       </ul>
@@ -296,7 +361,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 22, 2026</p>
+      <p class="date">April 26, 2026</p>
     </div>
   </div>
   
@@ -310,7 +375,7 @@ div.csl-indent {
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/random-walk-03.png" class="img-fluid figure-img"></p>
+<p><img src="images/random-walk-03.webp" class="img-fluid figure-img"></p>
 <figcaption>Random walk</figcaption>
 </figure>
 </div>
@@ -323,7 +388,7 @@ div.csl-indent {
 <p>Place a Python 3 <a href="https://developer.rhino3d.com/guides/scripting/scripting-gh-python/#python-component">script component</a> from the script panel in the math tab on Grasshopper’s canvas. Double click on the center of the script component to open the script editor and start writing your code. To learn more read the <a href="https://developer.rhino3d.com/en/guides/scripting/">Rhino Developer’s Scripting Guides</a>.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="images/random-walk-script-01.png" class="img-fluid figure-img" style="width:10.0%"></p>
+<p><img src="images/random-walk-script-01.webp" class="img-fluid figure-img" style="width:10.0%"></p>
 <figcaption>Script component</figcaption>
 </figure>
 </div>
@@ -356,13 +421,13 @@ div.csl-indent {
 <p>Now that your script is ready, compose a simple visual program using it. First define the input and output parameters for the component. Zoom in on the script component and plus icons for inserting parameters will appear. Use these to insert the input parameters <code>i</code>, <code>mu</code>, <code>sigma</code>, and <code>seed</code> and the output parameters <code>x</code> and <code>y</code>. Add number sliders to your canvas and plug these to the input parameters. Plug the output parameters <code>x</code> and <code>y</code> into a <a href="https://grasshopperdocs.com/components/grasshoppervector/constructPoint.html">Construct Point</a> component as the input x- and y-coordinates.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="images/random-walk-script-02.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="images/random-walk-script-02.webp" class="img-fluid figure-img" style="width:75.0%"></p>
 <figcaption>Visual program with random walk script</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/random-walk-06.png" class="img-fluid figure-img"></p>
+<p><img src="images/random-walk-06.webp" class="img-fluid figure-img"></p>
 <figcaption>Random walk</figcaption>
 </figure>
 </div>
