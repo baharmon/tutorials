@@ -357,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 26, 2026</p>
+      <p class="date-modified">April 29, 2026</p>
     </div>
   </div>
     
@@ -370,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/bioswale_07.webp" class="img-fluid figure-img"></p>
+<p><img src="images/bioswale-07.webp" class="img-fluid figure-img"></p>
 <figcaption>Bioswale</figcaption>
 </figure>
 </div>
@@ -404,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level1">
 <h1>Setup</h1>
 <p>Start a GRASS session in a new project with a Cartesian (XY) coordinate system. Use <a href="https://grass.osgeo.org/grass-stable/manuals/g.region.html">g.region</a> to set the extent and resolution of the computational region. Create a region starting at the origin and extending two hundred units north and eight hundred units east.</p>
-<div id="56ab514e" class="cell" data-execution_count="1">
+<div id="e209d2ea" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -439,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <p>Install <a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html">r.earthworks</a> with <a href="https://grass.osgeo.org/grass-stable/manuals/g.extension.html">g.extension</a>.</p>
-<div id="61c4720b" class="cell" data-execution_count="2">
+<div id="c655f258" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install extension</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.extension"</span>, extension<span class="op">=</span><span class="st">"r.earthworks"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -448,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="initial-terrain" class="level1">
 <h1>Initial Terrain</h1>
 <p>Model synthetic terrain using gradient noise. For a more detailed guide, see the <a href="../noise/noise.qmd">Procedural Noise</a> tutorial. First create a random surface using the raster calculator <a href="https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html">r.mapcalc</a>. Then use a <code>for</code> loop to progressively smooth the random surface using nearest neighbors analysis with <a href="https://grass.osgeo.org/grass-stable/manuals/r.neighbors.html">r.neighbors</a>. Calculate the average neighborhood using a circular moving window. The resulting terrain will be smooth and undulating with many ridges and valleys.</p>
-<div id="31df826e" class="cell" data-execution_count="3">
+<div id="5c25f9c3" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set parameters</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>amplitude <span class="op">=</span> <span class="fl">1000.0</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">3</span></span>
@@ -481,11 +481,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>m.show()</span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Save image</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale_01.webp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale-01.webp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/bioswale_01.webp" class="img-fluid figure-img"></p>
+<p><img src="images/bioswale-01.webp" class="img-fluid figure-img"></p>
 <figcaption>Initial terrain</figcaption>
 </figure>
 </div>
@@ -499,7 +499,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html">r.sim.water</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.relief.html">r.relief</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.colors.html">r.colors</a></p>
-<div id="022a3692" class="cell" data-execution_count="4">
+<div id="5598b37d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute partial derivatives of terrain</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.slope.aspect"</span>, elevation<span class="op">=</span><span class="st">"noise"</span>, dx<span class="op">=</span><span class="st">"dx"</span>, dy<span class="op">=</span><span class="st">"dy"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -530,11 +530,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>m.show()</span>
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Save image</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale_02.webp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale-02.webp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/bioswale_02.webp" class="img-fluid figure-img"></p>
+<p><img src="images/bioswale-02.webp" class="img-fluid figure-img"></p>
 <figcaption>Initial water depth</figcaption>
 </figure>
 </div>
@@ -545,7 +545,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://numpy.org/doc/stable/reference/generated/numpy.sin.html">numpy.sin</a></p>
 <p><a href="https://seaborn.pydata.org/generated/seaborn.scatterplot.html">seaborn.scatterplot</a></p>
 <p><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">matplotlib.pyplot.plot</a></p>
-<div id="d15bd213" class="cell" data-execution_count="5">
+<div id="b5bc6319" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -574,11 +574,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For nicer plotting, use Seaborn. First install it using the package manager pip.</p>
-<div id="7181ebb4" class="cell" data-execution_count="6">
+<div id="a90164e3" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install seaborn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Then…</p>
-<div id="3d0ee00b" class="cell" data-execution_count="7">
+<div id="66065b76" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set theme</span></span>
@@ -602,7 +602,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plot.get_figure()</span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">8</span>, <span class="dv">2</span>)</span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>fig.savefig(</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"images/bioswale_03.webp"</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"images/bioswale-03.webp"</span>,</span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    dpi<span class="op">=</span><span class="dv">150</span>,</span>
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    bbox_inches<span class="op">=</span><span class="st">"tight"</span>,</span>
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    pad_inches<span class="op">=</span><span class="dv">0</span></span>
@@ -610,7 +610,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/bioswale_03.webp" class="img-fluid figure-img"></p>
+<p><img src="images/bioswale-03.webp" class="img-fluid figure-img"></p>
 <figcaption>Sinusoidal wave</figcaption>
 </figure>
 </div>
@@ -618,7 +618,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="bioswale-modeling" class="level1">
 <h1>Bioswale Modeling</h1>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html">r.earthworks</a></p>
-<div id="a706aae9" class="cell" data-execution_count="8">
+<div id="186824c4" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model landforms</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.earthworks"</span>,</span>
@@ -640,18 +640,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>m.show()</span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Save image</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale_04.webp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale-04.webp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/bioswale_04.webp" class="img-fluid figure-img"></p>
+<p><img src="images/bioswale-04.webp" class="img-fluid figure-img"></p>
 <figcaption>Terrain with bioswale</figcaption>
 </figure>
 </div>
 </section>
 <section id="hydrologic-simulation" class="level1">
 <h1>Hydrologic Simulation</h1>
-<div id="33538be8" class="cell" data-execution_count="9">
+<div id="a72282fa" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute partial derivatives of terrain</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.slope.aspect"</span>, elevation<span class="op">=</span><span class="st">"bioswale"</span>, dx<span class="op">=</span><span class="st">"dx"</span>, dy<span class="op">=</span><span class="st">"dy"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -682,11 +682,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>m.show()</span>
 <span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Save image</span></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale_05.webp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale-05.webp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/bioswale_05.webp" class="img-fluid figure-img"></p>
+<p><img src="images/bioswale-05.webp" class="img-fluid figure-img"></p>
 <figcaption>Water depth with bioswale</figcaption>
 </figure>
 </div>
@@ -795,7 +795,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<div id="d7ec0fd9" class="cell" data-execution_count="10">
+<div id="47c92c7a" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define landcover colors</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">11|Open Water</span></span>
@@ -820,7 +820,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="st">95|Emergent Herbaceuous Wetlands</span></span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="7b4450af" class="cell" data-execution_count="11">
+<div id="d5c4ea7e" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define mannings roughness values</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mannings <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">11:11:0.001:0.001</span></span>
@@ -842,7 +842,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="st">100:100:0.40:0.40</span></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="c4409b63" class="cell" data-execution_count="12">
+<div id="e07dcc78" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define runoff rates</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>runoff <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">11:11:1:1</span></span>
@@ -868,7 +868,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.colors.html">r.colors</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.category.html">r.category</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.recode.html">r.recode</a></p>
-<div id="fb799883" class="cell" data-execution_count="13">
+<div id="ea8825f8" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive landcover from channel</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"landcover = if(volume == 0, 71, 95)"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -894,18 +894,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>m.show()</span>
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Save image</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale_06.webp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale-06.webp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/bioswale_06.webp" class="img-fluid figure-img"></p>
+<p><img src="images/bioswale-06.webp" class="img-fluid figure-img"></p>
 <figcaption>Landcover for bioswale</figcaption>
 </figure>
 </div>
 </section>
 <section id="hydrologic-simulation-1" class="level1">
 <h1>Hydrologic Simulation</h1>
-<div id="5a12f76b" class="cell" data-execution_count="14">
+<div id="456e5a73" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate shallow water flow</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.sim.water"</span>,</span>
@@ -934,11 +934,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>m.show()</span>
 <span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Save image</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale_07.webp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale-07.webp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/bioswale_07.webp" class="img-fluid figure-img"></p>
+<p><img src="images/bioswale-07.webp" class="img-fluid figure-img"></p>
 <figcaption>Water depth with planted bioswale</figcaption>
 </figure>
 </div>
@@ -952,7 +952,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/t.rast.colors.html">t.rast.colors</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/g.gui.animation.html">g.gui.animation</a></p>
 <p><a href="https://grass.osgeo.org/grass85/manuals/libpython/grass.jupyter.html#grass.jupyter.TimeSeriesMap">grass.jupyter.TimeSeriesMap</a></p>
-<div id="f10586b9" class="cell" data-execution_count="15">
+<div id="0147f37b" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate shallow water flow as time series</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.sim.water"</span>,</span>
@@ -1477,7 +1477,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> today</span></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [terrain, hydrology, raster, advanced]</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Design and test a bioswale in GRASS.</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> images/bioswale_07.webp</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> images/bioswale-07.webp</span></span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="an">links:</span></span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">  g_gui_vdigit: "[g.gui.vdigit](https://grass.osgeo.org/grass-stable/manuals/g.gui.vdigit.html)"</span></span>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">  g_gui_rdigit: "[g.gui.rdigit](https://grass.osgeo.org/grass-stable/manuals/g.gui.rdigit.html)"</span></span>
@@ -1516,7 +1516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
 <span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="al">![Bioswale](images/bioswale_07.webp)</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="al">![Bioswale](images/bioswale-07.webp)</span></span>
 <span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Add check dams? --&gt;</span></span>
 <span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a></span>
@@ -1671,10 +1671,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-205"><a href="#cb16-205" aria-hidden="true" tabindex="-1"></a>m.show()</span>
 <span id="cb16-206"><a href="#cb16-206" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-207"><a href="#cb16-207" aria-hidden="true" tabindex="-1"></a><span class="co"># Save image</span></span>
-<span id="cb16-208"><a href="#cb16-208" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale_01.webp"</span>)</span>
+<span id="cb16-208"><a href="#cb16-208" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale-01.webp"</span>)</span>
 <span id="cb16-209"><a href="#cb16-209" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-210"><a href="#cb16-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-211"><a href="#cb16-211" aria-hidden="true" tabindex="-1"></a><span class="al">![Initial terrain](images/bioswale_01.webp)</span></span>
+<span id="cb16-211"><a href="#cb16-211" aria-hidden="true" tabindex="-1"></a><span class="al">![Initial terrain](images/bioswale-01.webp)</span></span>
 <span id="cb16-212"><a href="#cb16-212" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-213"><a href="#cb16-213" aria-hidden="true" tabindex="-1"></a><span class="fu"># Initial Hydrologic Simulation</span></span>
 <span id="cb16-214"><a href="#cb16-214" aria-hidden="true" tabindex="-1"></a></span>
@@ -1726,10 +1726,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-262"><a href="#cb16-262" aria-hidden="true" tabindex="-1"></a>m.show()</span>
 <span id="cb16-263"><a href="#cb16-263" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-264"><a href="#cb16-264" aria-hidden="true" tabindex="-1"></a><span class="co"># Save image</span></span>
-<span id="cb16-265"><a href="#cb16-265" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale_02.webp"</span>)</span>
+<span id="cb16-265"><a href="#cb16-265" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale-02.webp"</span>)</span>
 <span id="cb16-266"><a href="#cb16-266" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-267"><a href="#cb16-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-268"><a href="#cb16-268" aria-hidden="true" tabindex="-1"></a><span class="al">![Initial water depth](images/bioswale_02.webp)</span></span>
+<span id="cb16-268"><a href="#cb16-268" aria-hidden="true" tabindex="-1"></a><span class="al">![Initial water depth](images/bioswale-02.webp)</span></span>
 <span id="cb16-269"><a href="#cb16-269" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-270"><a href="#cb16-270" aria-hidden="true" tabindex="-1"></a><span class="fu"># Bioswale Design</span></span>
 <span id="cb16-271"><a href="#cb16-271" aria-hidden="true" tabindex="-1"></a></span>
@@ -1803,14 +1803,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-345"><a href="#cb16-345" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plot.get_figure()</span>
 <span id="cb16-346"><a href="#cb16-346" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">8</span>, <span class="dv">2</span>)</span>
 <span id="cb16-347"><a href="#cb16-347" aria-hidden="true" tabindex="-1"></a>fig.savefig(</span>
-<span id="cb16-348"><a href="#cb16-348" aria-hidden="true" tabindex="-1"></a>    <span class="st">"images/bioswale_03.webp"</span>,</span>
+<span id="cb16-348"><a href="#cb16-348" aria-hidden="true" tabindex="-1"></a>    <span class="st">"images/bioswale-03.webp"</span>,</span>
 <span id="cb16-349"><a href="#cb16-349" aria-hidden="true" tabindex="-1"></a>    dpi<span class="op">=</span><span class="dv">150</span>,</span>
 <span id="cb16-350"><a href="#cb16-350" aria-hidden="true" tabindex="-1"></a>    bbox_inches<span class="op">=</span><span class="st">"tight"</span>,</span>
 <span id="cb16-351"><a href="#cb16-351" aria-hidden="true" tabindex="-1"></a>    pad_inches<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb16-352"><a href="#cb16-352" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb16-353"><a href="#cb16-353" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-354"><a href="#cb16-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-355"><a href="#cb16-355" aria-hidden="true" tabindex="-1"></a><span class="al">![Sinusoidal wave](images/bioswale_03.webp)</span></span>
+<span id="cb16-355"><a href="#cb16-355" aria-hidden="true" tabindex="-1"></a><span class="al">![Sinusoidal wave](images/bioswale-03.webp)</span></span>
 <span id="cb16-356"><a href="#cb16-356" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-357"><a href="#cb16-357" aria-hidden="true" tabindex="-1"></a><span class="fu"># Bioswale Modeling</span></span>
 <span id="cb16-358"><a href="#cb16-358" aria-hidden="true" tabindex="-1"></a></span>
@@ -1838,10 +1838,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-382"><a href="#cb16-382" aria-hidden="true" tabindex="-1"></a>m.show()</span>
 <span id="cb16-383"><a href="#cb16-383" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-384"><a href="#cb16-384" aria-hidden="true" tabindex="-1"></a><span class="co"># Save image</span></span>
-<span id="cb16-385"><a href="#cb16-385" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale_04.webp"</span>)</span>
+<span id="cb16-385"><a href="#cb16-385" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale-04.webp"</span>)</span>
 <span id="cb16-386"><a href="#cb16-386" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-387"><a href="#cb16-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-388"><a href="#cb16-388" aria-hidden="true" tabindex="-1"></a><span class="al">![Terrain with bioswale](images/bioswale_04.webp)</span></span>
+<span id="cb16-388"><a href="#cb16-388" aria-hidden="true" tabindex="-1"></a><span class="al">![Terrain with bioswale](images/bioswale-04.webp)</span></span>
 <span id="cb16-389"><a href="#cb16-389" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-390"><a href="#cb16-390" aria-hidden="true" tabindex="-1"></a><span class="fu"># Hydrologic Simulation</span></span>
 <span id="cb16-391"><a href="#cb16-391" aria-hidden="true" tabindex="-1"></a></span>
@@ -1876,10 +1876,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-422"><a href="#cb16-422" aria-hidden="true" tabindex="-1"></a>m.show()</span>
 <span id="cb16-423"><a href="#cb16-423" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-424"><a href="#cb16-424" aria-hidden="true" tabindex="-1"></a><span class="co"># Save image</span></span>
-<span id="cb16-425"><a href="#cb16-425" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale_05.webp"</span>)</span>
+<span id="cb16-425"><a href="#cb16-425" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale-05.webp"</span>)</span>
 <span id="cb16-426"><a href="#cb16-426" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-427"><a href="#cb16-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-428"><a href="#cb16-428" aria-hidden="true" tabindex="-1"></a><span class="al">![Water depth with bioswale](images/bioswale_05.webp)</span></span>
+<span id="cb16-428"><a href="#cb16-428" aria-hidden="true" tabindex="-1"></a><span class="al">![Water depth with bioswale](images/bioswale-05.webp)</span></span>
 <span id="cb16-429"><a href="#cb16-429" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-430"><a href="#cb16-430" aria-hidden="true" tabindex="-1"></a><span class="fu"># Planting Design</span></span>
 <span id="cb16-431"><a href="#cb16-431" aria-hidden="true" tabindex="-1"></a></span>
@@ -2007,10 +2007,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-561"><a href="#cb16-561" aria-hidden="true" tabindex="-1"></a>m.show()</span>
 <span id="cb16-562"><a href="#cb16-562" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-563"><a href="#cb16-563" aria-hidden="true" tabindex="-1"></a><span class="co"># Save image</span></span>
-<span id="cb16-564"><a href="#cb16-564" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale_06.webp"</span>)</span>
+<span id="cb16-564"><a href="#cb16-564" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale-06.webp"</span>)</span>
 <span id="cb16-565"><a href="#cb16-565" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-566"><a href="#cb16-566" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-567"><a href="#cb16-567" aria-hidden="true" tabindex="-1"></a><span class="al">![Landcover for bioswale](images/bioswale_06.webp)</span></span>
+<span id="cb16-567"><a href="#cb16-567" aria-hidden="true" tabindex="-1"></a><span class="al">![Landcover for bioswale](images/bioswale-06.webp)</span></span>
 <span id="cb16-568"><a href="#cb16-568" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-569"><a href="#cb16-569" aria-hidden="true" tabindex="-1"></a><span class="fu"># Hydrologic Simulation</span></span>
 <span id="cb16-570"><a href="#cb16-570" aria-hidden="true" tabindex="-1"></a></span>
@@ -2043,10 +2043,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-599"><a href="#cb16-599" aria-hidden="true" tabindex="-1"></a>m.show()</span>
 <span id="cb16-600"><a href="#cb16-600" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-601"><a href="#cb16-601" aria-hidden="true" tabindex="-1"></a><span class="co"># Save image</span></span>
-<span id="cb16-602"><a href="#cb16-602" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale_07.webp"</span>)</span>
+<span id="cb16-602"><a href="#cb16-602" aria-hidden="true" tabindex="-1"></a>m.save(<span class="st">"images/bioswale-07.webp"</span>)</span>
 <span id="cb16-603"><a href="#cb16-603" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-604"><a href="#cb16-604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-605"><a href="#cb16-605" aria-hidden="true" tabindex="-1"></a><span class="al">![Water depth with planted bioswale](images/bioswale_07.webp)</span></span>
+<span id="cb16-605"><a href="#cb16-605" aria-hidden="true" tabindex="-1"></a><span class="al">![Water depth with planted bioswale](images/bioswale-07.webp)</span></span>
 <span id="cb16-606"><a href="#cb16-606" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-607"><a href="#cb16-607" aria-hidden="true" tabindex="-1"></a><span class="fu"># Animation</span></span>
 <span id="cb16-608"><a href="#cb16-608" aria-hidden="true" tabindex="-1"></a></span>
