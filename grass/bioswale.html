@@ -357,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 29, 2026</p>
+      <p class="date-modified">May 3, 2026</p>
     </div>
   </div>
     
@@ -398,13 +398,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This tutorial can be run as a <a href="https://grass-tutorials.osgeo.org/content/tutorials/earthworks/bioswale.ipynb">computational notebook</a>. Learn how to work with notebooks in the tutorial <a href="../get_started/fast_track_grass_and_python.qmd">Get started with GRASS &amp; Python in Jupyter Notebooks</a>.</p>
+<p>This tutorial can be run as a computational notebook. Learn how to work with notebooks in the tutorial <a href="https://grass-tutorials.osgeo.org/content/tutorials/get_started/fast_track_grass_and_python.html">Get started with GRASS &amp; Python in Jupyter Notebooks</a>.</p>
 </div>
 </div>
 <section id="setup" class="level1">
 <h1>Setup</h1>
 <p>Start a GRASS session in a new project with a Cartesian (XY) coordinate system. Use <a href="https://grass.osgeo.org/grass-stable/manuals/g.region.html">g.region</a> to set the extent and resolution of the computational region. Create a region starting at the origin and extending two hundred units north and eight hundred units east.</p>
-<div id="e209d2ea" class="cell" data-execution_count="1">
+<div id="dc73a589" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -439,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <p>Install <a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html">r.earthworks</a> with <a href="https://grass.osgeo.org/grass-stable/manuals/g.extension.html">g.extension</a>.</p>
-<div id="c655f258" class="cell" data-execution_count="2">
+<div id="d9bc7291" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install extension</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.extension"</span>, extension<span class="op">=</span><span class="st">"r.earthworks"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -447,8 +447,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="initial-terrain" class="level1">
 <h1>Initial Terrain</h1>
-<p>Model synthetic terrain using gradient noise. For a more detailed guide, see the <a href="../noise/noise.qmd">Procedural Noise</a> tutorial. First create a random surface using the raster calculator <a href="https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html">r.mapcalc</a>. Then use a <code>for</code> loop to progressively smooth the random surface using nearest neighbors analysis with <a href="https://grass.osgeo.org/grass-stable/manuals/r.neighbors.html">r.neighbors</a>. Calculate the average neighborhood using a circular moving window. The resulting terrain will be smooth and undulating with many ridges and valleys.</p>
-<div id="5c25f9c3" class="cell" data-execution_count="3">
+<p>Model synthetic terrain using gradient noise. For a more detailed guide, see the <a href="../grass/noise.html">Procedural Noise</a> tutorial. First create a random surface using the raster calculator <a href="https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html">r.mapcalc</a>. Then use a <code>for</code> loop to progressively smooth the random surface using nearest neighbors analysis with <a href="https://grass.osgeo.org/grass-stable/manuals/r.neighbors.html">r.neighbors</a>. Calculate the average neighborhood using a circular moving window. The resulting terrain will be smooth and undulating with many ridges and valleys.</p>
+<div id="9812f9e8" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set parameters</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>amplitude <span class="op">=</span> <span class="fl">1000.0</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">3</span></span>
@@ -499,7 +499,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html">r.sim.water</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.relief.html">r.relief</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.colors.html">r.colors</a></p>
-<div id="5598b37d" class="cell" data-execution_count="4">
+<div id="39cf66d9" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute partial derivatives of terrain</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.slope.aspect"</span>, elevation<span class="op">=</span><span class="st">"noise"</span>, dx<span class="op">=</span><span class="st">"dx"</span>, dy<span class="op">=</span><span class="st">"dy"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -545,7 +545,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://numpy.org/doc/stable/reference/generated/numpy.sin.html">numpy.sin</a></p>
 <p><a href="https://seaborn.pydata.org/generated/seaborn.scatterplot.html">seaborn.scatterplot</a></p>
 <p><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">matplotlib.pyplot.plot</a></p>
-<div id="b5bc6319" class="cell" data-execution_count="5">
+<div id="5a1c6294" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -574,11 +574,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For nicer plotting, use Seaborn. First install it using the package manager pip.</p>
-<div id="a90164e3" class="cell" data-execution_count="6">
+<div id="185831c3" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install seaborn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Then…</p>
-<div id="66065b76" class="cell" data-execution_count="7">
+<div id="c9d2dfe8" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set theme</span></span>
@@ -618,7 +618,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="bioswale-modeling" class="level1">
 <h1>Bioswale Modeling</h1>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html">r.earthworks</a></p>
-<div id="186824c4" class="cell" data-execution_count="8">
+<div id="6b044613" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model landforms</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.earthworks"</span>,</span>
@@ -651,7 +651,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="hydrologic-simulation" class="level1">
 <h1>Hydrologic Simulation</h1>
-<div id="a72282fa" class="cell" data-execution_count="9">
+<div id="bcdf5c23" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute partial derivatives of terrain</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.slope.aspect"</span>, elevation<span class="op">=</span><span class="st">"bioswale"</span>, dx<span class="op">=</span><span class="st">"dx"</span>, dy<span class="op">=</span><span class="st">"dy"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -795,7 +795,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<div id="47c92c7a" class="cell" data-execution_count="10">
+<div id="9000550c" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define landcover colors</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">11|Open Water</span></span>
@@ -820,7 +820,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="st">95|Emergent Herbaceuous Wetlands</span></span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="d5c4ea7e" class="cell" data-execution_count="11">
+<div id="257ecfa1" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define mannings roughness values</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mannings <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">11:11:0.001:0.001</span></span>
@@ -842,7 +842,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="st">100:100:0.40:0.40</span></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="e07dcc78" class="cell" data-execution_count="12">
+<div id="e35c1aba" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define runoff rates</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>runoff <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">11:11:1:1</span></span>
@@ -868,7 +868,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.colors.html">r.colors</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.category.html">r.category</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.recode.html">r.recode</a></p>
-<div id="ea8825f8" class="cell" data-execution_count="13">
+<div id="0f7ec889" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive landcover from channel</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"landcover = if(volume == 0, 71, 95)"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -905,7 +905,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="hydrologic-simulation-1" class="level1">
 <h1>Hydrologic Simulation</h1>
-<div id="456e5a73" class="cell" data-execution_count="14">
+<div id="62d1c736" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate shallow water flow</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.sim.water"</span>,</span>
@@ -952,7 +952,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/t.rast.colors.html">t.rast.colors</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/g.gui.animation.html">g.gui.animation</a></p>
 <p><a href="https://grass.osgeo.org/grass85/manuals/libpython/grass.jupyter.html#grass.jupyter.TimeSeriesMap">grass.jupyter.TimeSeriesMap</a></p>
-<div id="0147f37b" class="cell" data-execution_count="15">
+<div id="a344f841" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate shallow water flow as time series</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.sim.water"</span>,</span>
@@ -1479,95 +1479,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Design and test a bioswale in GRASS.</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> images/bioswale-07.webp</span></span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="an">links:</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">  g_gui_vdigit: "[g.gui.vdigit](https://grass.osgeo.org/grass-stable/manuals/g.gui.vdigit.html)"</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">  g_gui_rdigit: "[g.gui.rdigit](https://grass.osgeo.org/grass-stable/manuals/g.gui.rdigit.html)"</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">  g_extension: "[g.extension](https://grass.osgeo.org/grass-stable/manuals/g.extension.html)"</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">  r_earthworks: "[r.earthworks](https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html)"</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">  g_region: "[g.region](https://grass.osgeo.org/grass-stable/manuals/g.region.html)"</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">  r_mapcalc: "[r.mapcalc](https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html)"</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">  r_sim_water: "[r.sim.water](https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html)"</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">  r_neighbors: "[r.neighbors](https://grass.osgeo.org/grass-stable/manuals/r.neighbors.html)"</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">  r_category: "[r.category](https://grass.osgeo.org/grass-stable/manuals/r.category.html)"</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co">  r_recode: "[r.recode](https://grass.osgeo.org/grass-stable/manuals/r.recode.html)"</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">  r_slope_aspect: "[r.slope.aspect](https://grass.osgeo.org/grass-stable/manuals/r.slope.aspect.html)"</span></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">  r_colors: "[r.colors](https://grass.osgeo.org/grass-stable/manuals/r.colors.html)"</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co">  r_relief: "[r.relief](https://grass.osgeo.org/grass-stable/manuals/r.relief.html)"</span></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">  t_create: "[t.create](https://grass.osgeo.org/grass-stable/manuals/t.create.html)"</span></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co">  t_register: "[t.register](https://grass.osgeo.org/grass-stable/manuals/t.register.html)"</span></span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co">  t_rast_colors: "[t.rast.colors](https://grass.osgeo.org/grass-stable/manuals/t.rast.colors.html)"</span></span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="co">  g_gui_animation: "[g.gui.animation](https://grass.osgeo.org/grass-stable/manuals/g.gui.animation.html)"</span></span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="co">  gs_list_strings: "[script.core.list_strings](https://grass.osgeo.org/grass85/manuals/libpython/script.html#script.core.list_strings)"</span></span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co">  gj_TimeSeriesMap: "[grass.jupyter.TimeSeriesMap](https://grass.osgeo.org/grass85/manuals/libpython/grass.jupyter.html#grass.jupyter.TimeSeriesMap)"</span></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="co">  np_linspace: "[numpy.linspace](https://numpy.org/doc/stable/reference/generated/numpy.linspace.html)"</span></span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co">  np_sin: "[numpy.sin](https://numpy.org/doc/stable/reference/generated/numpy.sin.html)"</span></span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="co">  np_column_stack: "[numpy.column_stack](https://numpy.org/doc/stable/reference/generated/numpy.column_stack.html)"</span></span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="co">  sns_scatterplot: "[seaborn.scatterplot](https://seaborn.pydata.org/generated/seaborn.scatterplot.html)"</span></span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co">  plt_plot: "[matplotlib.pyplot.plot](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)"</span></span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="co">  ipynb: default</span></span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> jupyter</span></span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: false</span></span>
-<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
-<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="al">![Bioswale](images/bioswale-07.webp)</span></span>
-<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Add check dams? --&gt;</span></span>
-<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>Learn how to design, model, and simulate hydrologic systems </span>
-<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>such as bioswales or restored streams. </span>
-<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>This tutorial covers the design of swales </span>
-<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>using {{&lt; meta links.r_earthworks &gt;}} </span>
-<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>and the simulation of shallow overland flows of water</span>
-<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>using {{&lt; meta links.r_sim_water &gt;}}. </span>
-<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>Bioswales are shallow, vegetated channels</span>
-<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>for conveying, filtering, and infiltrating stormwater. </span>
-<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>They are designed to move stormwater slowly enough through a site</span>
-<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>for retention, filtration, sedimentation, and infiltration, </span>
-<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>yet quickly enough to prevent localized flooding.</span>
-<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>By retaining and infiltrating stormwater,</span>
-<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>bioswales reduce the peak flow of runoff during storm events,</span>
-<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>reducing the risk of flash flooding. </span>
-<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>In this tutorial, </span>
-<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>we will use an iterative cycle of modeling and simulation </span>
-<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>to design a landscape with a bioswale</span>
-<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a>that stores stormwater on site</span>
-<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a>and conveys the overflow offsite. </span>
-<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>While this tutorial uses Python </span>
-<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a>to procedurally design a bioswale using a trigonometric function,</span>
-<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a>the process demonstrated here can easily be adapted </span>
-<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a>for the GRASS graphical user interface (GUI) </span>
-<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a>or command line interface (CLI)</span>
-<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a>when working with real world sites.</span>
-<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a>The centerline of the channel can be drawn in the GUI using</span>
-<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>the raster digitizer {{&lt; meta links.g_gui_rdigit &gt;}}</span>
-<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a>or vector digitizer {{&lt; meta links.g_gui_vdigit &gt;}}.</span>
-<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>Alternatively if the channel is drawn in a computer-aided design program,</span>
-<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a>then it can be imported into GRASS as a 2D or 3D vector map. </span>
-<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>Our process will be to:</span>
-<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model the initial terrain</span>
-<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Simulate shallow overland water flow over the terrain</span>
-<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Design the bioswale</span>
-<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model the bioswale</span>
-<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Simulate shallow water flow with the bioswale</span>
-<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Design planting for the bioswale</span>
-<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Simulate shallow water flow with the planted bioswale</span>
-<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Animate the shallow water flow simulation</span>
-<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="Computational notebook"}</span>
-<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a>This tutorial can be run as a </span>
-<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">computational notebook</span><span class="co">](https://grass-tutorials.osgeo.org/content/tutorials/earthworks/bioswale.ipynb)</span>.</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">  notebooks: "[Get started with GRASS &amp; Python in Jupyter Notebooks](https://grass-tutorials.osgeo.org/content/tutorials/get_started/fast_track_grass_and_python.html)"</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">  g_gui_vdigit: "[g.gui.vdigit](https://grass.osgeo.org/grass-stable/manuals/g.gui.vdigit.html)"</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">  g_gui_rdigit: "[g.gui.rdigit](https://grass.osgeo.org/grass-stable/manuals/g.gui.rdigit.html)"</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">  g_extension: "[g.extension](https://grass.osgeo.org/grass-stable/manuals/g.extension.html)"</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">  r_earthworks: "[r.earthworks](https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html)"</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">  g_region: "[g.region](https://grass.osgeo.org/grass-stable/manuals/g.region.html)"</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">  r_mapcalc: "[r.mapcalc](https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html)"</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">  r_sim_water: "[r.sim.water](https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html)"</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">  r_neighbors: "[r.neighbors](https://grass.osgeo.org/grass-stable/manuals/r.neighbors.html)"</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co">  r_category: "[r.category](https://grass.osgeo.org/grass-stable/manuals/r.category.html)"</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">  r_recode: "[r.recode](https://grass.osgeo.org/grass-stable/manuals/r.recode.html)"</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">  r_slope_aspect: "[r.slope.aspect](https://grass.osgeo.org/grass-stable/manuals/r.slope.aspect.html)"</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co">  r_colors: "[r.colors](https://grass.osgeo.org/grass-stable/manuals/r.colors.html)"</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">  r_relief: "[r.relief](https://grass.osgeo.org/grass-stable/manuals/r.relief.html)"</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co">  t_create: "[t.create](https://grass.osgeo.org/grass-stable/manuals/t.create.html)"</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co">  t_register: "[t.register](https://grass.osgeo.org/grass-stable/manuals/t.register.html)"</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="co">  t_rast_colors: "[t.rast.colors](https://grass.osgeo.org/grass-stable/manuals/t.rast.colors.html)"</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="co">  g_gui_animation: "[g.gui.animation](https://grass.osgeo.org/grass-stable/manuals/g.gui.animation.html)"</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co">  gs_list_strings: "[script.core.list_strings](https://grass.osgeo.org/grass85/manuals/libpython/script.html#script.core.list_strings)"</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="co">  gj_TimeSeriesMap: "[grass.jupyter.TimeSeriesMap](https://grass.osgeo.org/grass85/manuals/libpython/grass.jupyter.html#grass.jupyter.TimeSeriesMap)"</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co">  np_linspace: "[numpy.linspace](https://numpy.org/doc/stable/reference/generated/numpy.linspace.html)"</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="co">  np_sin: "[numpy.sin](https://numpy.org/doc/stable/reference/generated/numpy.sin.html)"</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="co">  np_column_stack: "[numpy.column_stack](https://numpy.org/doc/stable/reference/generated/numpy.column_stack.html)"</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co">  sns_scatterplot: "[seaborn.scatterplot](https://seaborn.pydata.org/generated/seaborn.scatterplot.html)"</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="co">  plt_plot: "[matplotlib.pyplot.plot](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)"</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="co">  ipynb: default</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> jupyter</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: false</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a><span class="al">![Bioswale](images/bioswale-07.webp)</span></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Add check dams? --&gt;</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>Learn how to design, model, and simulate hydrologic systems </span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>such as bioswales or restored streams. </span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>This tutorial covers the design of swales </span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>using {{&lt; meta links.r_earthworks &gt;}} </span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>and the simulation of shallow overland flows of water</span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>using {{&lt; meta links.r_sim_water &gt;}}. </span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>Bioswales are shallow, vegetated channels</span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>for conveying, filtering, and infiltrating stormwater. </span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>They are designed to move stormwater slowly enough through a site</span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>for retention, filtration, sedimentation, and infiltration, </span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>yet quickly enough to prevent localized flooding.</span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>By retaining and infiltrating stormwater,</span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>bioswales reduce the peak flow of runoff during storm events,</span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>reducing the risk of flash flooding. </span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>In this tutorial, </span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>we will use an iterative cycle of modeling and simulation </span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a>to design a landscape with a bioswale</span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a>that stores stormwater on site</span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a>and conveys the overflow offsite. </span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a>While this tutorial uses Python </span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a>to procedurally design a bioswale using a trigonometric function,</span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a>the process demonstrated here can easily be adapted </span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a>for the GRASS graphical user interface (GUI) </span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a>or command line interface (CLI)</span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a>when working with real world sites.</span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>The centerline of the channel can be drawn in the GUI using</span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a>the raster digitizer {{&lt; meta links.g_gui_rdigit &gt;}}</span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>or vector digitizer {{&lt; meta links.g_gui_vdigit &gt;}}.</span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a>Alternatively if the channel is drawn in a computer-aided design program,</span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a>then it can be imported into GRASS as a 2D or 3D vector map. </span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a>Our process will be to:</span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model the initial terrain</span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Simulate shallow overland water flow over the terrain</span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Design the bioswale</span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model the bioswale</span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Simulate shallow water flow with the bioswale</span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Design planting for the bioswale</span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Simulate shallow water flow with the planted bioswale</span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Animate the shallow water flow simulation</span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="Computational notebook"}</span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a>This tutorial can be run as a computational notebook.</span>
 <span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a>Learn how to work with notebooks in the tutorial</span>
-<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Get started with GRASS &amp; Python in Jupyter Notebooks</span><span class="co">](../get_started/fast_track_grass_and_python.qmd)</span>.</span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.notebooks &gt;}}.</span>
 <span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a><span class="fu"># Setup</span></span>
@@ -1625,7 +1625,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-157"><a href="#cb16-157" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-158"><a href="#cb16-158" aria-hidden="true" tabindex="-1"></a>Model synthetic terrain using gradient noise. </span>
 <span id="cb16-159"><a href="#cb16-159" aria-hidden="true" tabindex="-1"></a>For a more detailed guide,</span>
-<span id="cb16-160"><a href="#cb16-160" aria-hidden="true" tabindex="-1"></a>see the <span class="co">[</span><span class="ot">Procedural Noise</span><span class="co">](../noise/noise.qmd)</span> tutorial.</span>
+<span id="cb16-160"><a href="#cb16-160" aria-hidden="true" tabindex="-1"></a>see the <span class="co">[</span><span class="ot">Procedural Noise</span><span class="co">](noise.qmd)</span> tutorial.</span>
 <span id="cb16-161"><a href="#cb16-161" aria-hidden="true" tabindex="-1"></a>First create a random surface</span>
 <span id="cb16-162"><a href="#cb16-162" aria-hidden="true" tabindex="-1"></a>using the raster calculator</span>
 <span id="cb16-163"><a href="#cb16-163" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}.</span>

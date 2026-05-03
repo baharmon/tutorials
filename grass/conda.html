@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Brendan Harmon">
-<meta name="dcterms.date" content="2026-04-26">
+<meta name="dcterms.date" content="2026-05-03">
 <meta name="description" content="Learn how to use GRASS for Conda.">
 
 <title>GRASS for Conda – Tutorials</title>
@@ -309,6 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#integrated-development-environment" id="toc-integrated-development-environment" class="nav-link" data-scroll-target="#integrated-development-environment">Integrated development environment</a>
   <ul class="collapse">
   <li><a href="#spyder" id="toc-spyder" class="nav-link" data-scroll-target="#spyder">Spyder</a></li>
+  <li><a href="#visual-studio" id="toc-visual-studio" class="nav-link" data-scroll-target="#visual-studio">Visual Studio</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="conda.ipynb" download="conda.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="grass-conda.py" target="_blank"><i class="bi bi-file-code"></i>Python script</a></li></ul></div></nav>
@@ -345,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 26, 2026</p>
+      <p class="date">May 3, 2026</p>
     </div>
   </div>
   
@@ -384,12 +385,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="environment">Environment</h2>
 <ul>
 <li>Creating and installing a Conda environment for GRASS &amp; Jupyter</li>
-<li>Saving your environment</li>
+<li>Saving your environment
+<ul>
+<li>YML</li>
+</ul></li>
 </ul>
 </section>
 <section id="computational-notebook" class="level2">
 <h2 class="anchored" data-anchor-id="computational-notebook">Computational notebook</h2>
-<p>Use GRASS Tools</p>
 <ul>
 <li>Launch Jupyter Lab</li>
 <li>Start GRASS session</li>
@@ -401,11 +404,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="integrated-development-environment" class="level2">
 <h2 class="anchored" data-anchor-id="integrated-development-environment">Integrated development environment</h2>
-<section id="spyder" class="level3">
-<h3 class="anchored" data-anchor-id="spyder">Spyder</h3>
-<p>Set interpreter path in Spyder IDE:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/Users/baharmon/miniconda3/envs/grass/bin/python</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
+<li>Jupyter in Spyder
+<ul>
+<li>spyder-notebook</li>
+</ul></li>
 <li>Setting the Python interpreter to your environment
 <ul>
 <li>Spyder</li>
@@ -414,6 +417,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Generate raster with GRASS</li>
 <li>Plot raster with Rasterio</li>
 </ul>
+<section id="spyder" class="level3">
+<h3 class="anchored" data-anchor-id="spyder">Spyder</h3>
+<p>Set interpreter path in Spyder IDE:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/Users/username/miniconda3/envs/grass/bin/python</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="visual-studio" class="level3">
+<h3 class="anchored" data-anchor-id="visual-studio">Visual Studio</h3>
+<p>…</p>
 
 
 <!-- -->
@@ -926,32 +937,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Creating and installing a Conda environment for GRASS &amp; Jupyter</span>
 <span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Saving your environment</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Computational notebook</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>Use GRASS Tools</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Launch Jupyter Lab</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Start GRASS session</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Generate raster with GRASS</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Plot with GRASS Jupyter</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Export raster to Numpy array</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Plot distribution with Matplotlib</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="fu">## Integrated development environment</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="fu">### Spyder</span></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>Set interpreter path in Spyder IDE:</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="ex">/Users/baharmon/miniconda3/envs/grass/bin/python</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>YML</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Computational notebook</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Launch Jupyter Lab</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Start GRASS session</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Generate raster with GRASS</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Plot with GRASS Jupyter</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Export raster to Numpy array</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Plot distribution with Matplotlib</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Integrated development environment</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Jupyter in Spyder</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>spyder-notebook</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Setting the Python interpreter to your environment</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Spyder</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Visual Studio Code</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Generate raster with GRASS</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Plot raster with Rasterio</span>
 <span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Setting the Python interpreter to your environment</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Spyder</span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Visual Studio Code</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Generate raster with GRASS</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Plot raster with Rasterio</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="fu">### Spyder</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>Set interpreter path in Spyder IDE:</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="ex">/Users/username/miniconda3/envs/grass/bin/python</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="fu">### Visual Studio</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

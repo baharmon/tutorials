@@ -430,7 +430,7 @@ window.Quarto = {
 <pre class="{bash}"><code>grass --tmp-project XY</code></pre>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="a1c6360d" class="cell" data-execution_count="1">
+<div id="71f5545f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -473,7 +473,7 @@ window.Quarto = {
 <pre class="{bash}"><code>g.extension extension=r.earthworks</code></pre>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div id="10f64e1f" class="cell" data-execution_count="2">
+<div id="5d7a64d2" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install extension</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.extension"</span>, extension<span class="op">=</span><span class="st">"r.earthworks"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -492,7 +492,7 @@ window.Quarto = {
 r.mapcalc expression="elevation = 0"</code></pre>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div id="be8e8370" class="cell" data-execution_count="3">
+<div id="101c6961" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.region"</span>, n<span class="op">=</span><span class="dv">200</span>, e<span class="op">=</span><span class="dv">800</span>, s<span class="op">=</span><span class="dv">0</span>, w<span class="op">=</span><span class="dv">0</span>, res<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -520,7 +520,7 @@ r.mapcalc expression="elevation = 0"</code></pre>
 <pre class="{bash}"><code>r.earthworks elevation=elevation earthworks=peak operation=fill function=linear linear=0.5 coordinates=400,100 z=25 flat=25</code></pre>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div id="ee775bc5" class="cell" data-execution_count="4">
+<div id="08031379" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model earthworks</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.earthworks"</span>,</span>
@@ -560,7 +560,7 @@ r.mapcalc expression="elevation = 0"</code></pre>
 <pre class="{bash}"><code>r.earthworks elevation=elevation earthworks=pit operation=cut function=linear linear=0.5 coordinates=400,100 z=-25 flat=25</code></pre>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div id="48ad52c7" class="cell" data-execution_count="5">
+<div id="0d458a96" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model earthworks</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.earthworks"</span>,</span>
@@ -600,7 +600,7 @@ r.mapcalc expression="elevation = 0"</code></pre>
 <pre class="{bash}"><code>r.earthworks elevation=elevation earthworks=pit_and_peak operation=cutfill function=linear linear=0.5 coordinates=350,100,450,100 z=-25,25 flat=25</code></pre>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<div id="c81fe05e" class="cell" data-execution_count="6">
+<div id="98df2c0c" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model earthworks</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.earthworks"</span>,</span>
@@ -644,7 +644,7 @@ r.random input=surface npoints=50 raster=random seed=7
 r.earthworks elevation=elevation earthworks=earthworks operation=fill raster=random function=linear linear=0.25 flat=25</code></pre>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
-<div id="f0588437" class="cell" data-execution_count="7">
+<div id="2214e1c6" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random surface</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.surf.random"</span>, out<span class="op">=</span><span class="st">"surface"</span>, <span class="bu">min</span><span class="op">=</span><span class="dv">0</span>, <span class="bu">max</span><span class="op">=</span><span class="dv">25</span>, seed<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -695,7 +695,7 @@ r.earthworks elevation=elevation earthworks=earthworks operation=fill raster=ran
 <pre class="{bash}"><code>r.contour input=earthworks output=contours step=2</code></pre>
 </div>
 <div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
-<div id="4efd400d" class="cell" data-execution_count="8">
+<div id="c010303b" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive contours</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.contour"</span>, <span class="bu">input</span><span class="op">=</span><span class="st">"earthworks"</span>, output<span class="op">=</span><span class="st">"contours"</span>, step<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
