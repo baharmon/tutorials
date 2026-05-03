@@ -7,16 +7,6 @@
     ]
   },
   {
-    "listing": "/design/index.html",
-    "items": [
-      "/design/random-walk-04.html",
-      "/design/computational-design.html",
-      "/design/random-walk-01.html",
-      "/design/random-walk-02.html",
-      "/design/random-walk-03.html"
-    ]
-  },
-  {
     "listing": "/grass/index.html",
     "items": [
       "/grass/basic-map-algebra.html",
@@ -26,9 +16,18 @@
       "/grass/gullies.html",
       "/grass/levees.html",
       "/grass/synthesis.html",
-      "/grass/conda.html",
       "/grass/conda-quickstart.html",
       "/grass/noise.html"
+    ]
+  },
+  {
+    "listing": "/design/index.html",
+    "items": [
+      "/design/random-walk-04.html",
+      "/design/computational-design.html",
+      "/design/random-walk-01.html",
+      "/design/random-walk-02.html",
+      "/design/random-walk-03.html"
     ]
   }
 ]

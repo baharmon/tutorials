@@ -91,387 +91,121 @@
     ]
   },
   {
-    "objectID": "grass/conda.html",
-    "href": "grass/conda.html",
-    "title": "GRASS for Conda",
+    "objectID": "grass/bioswale.html",
+    "href": "grass/bioswale.html",
+    "title": "Earthworks: Bioswale",
     "section": "",
-    "text": "Random walk",
+    "text": "Bioswale\nLearn how to design, model, and simulate hydrologic systems such as bioswales or restored streams. This tutorial covers the design of swales using r.earthworks and the simulation of shallow overland flows of water using r.sim.water. Bioswales are shallow, vegetated channels for conveying, filtering, and infiltrating stormwater. They are designed to move stormwater slowly enough through a site for retention, filtration, sedimentation, and infiltration, yet quickly enough to prevent localized flooding. By retaining and infiltrating stormwater, bioswales reduce the peak flow of runoff during storm events, reducing the risk of flash flooding. In this tutorial, we will use an iterative cycle of modeling and simulation to design a landscape with a bioswale that stores stormwater on site and conveys the overflow offsite.\nWhile this tutorial uses Python to procedurally design a bioswale using a trigonometric function, the process demonstrated here can easily be adapted for the GRASS graphical user interface (GUI) or command line interface (CLI) when working with real world sites. The centerline of the channel can be drawn in the GUI using the raster digitizer g.gui.rdigit or vector digitizer g.gui.vdigit. Alternatively if the channel is drawn in a computer-aided design program, then it can be imported into GRASS as a 2D or 3D vector map.\nOur process will be to:",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "GRASS for Conda"
+      "Earthworks: Bioswale"
     ]
   },
   {
-    "objectID": "grass/conda.html#overview",
-    "href": "grass/conda.html#overview",
-    "title": "GRASS for Conda",
-    "section": "Overview",
-    "text": "Overview\nDescribe GRASS for Conda. What is it? Why should you use it? How do you use it?\n\nPython scientific ecosystem\nAn brief introduction to Conda\nBasics of package management\nInstallation and distributions",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "GRASS for Conda"
-    ]
-  },
-  {
-    "objectID": "grass/conda.html#installation",
-    "href": "grass/conda.html#installation",
-    "title": "GRASS for Conda",
+    "objectID": "grass/bioswale.html#installation",
+    "href": "grass/bioswale.html#installation",
+    "title": "Earthworks: Bioswale",
     "section": "Installation",
-    "text": "Installation\n\nMiniconda\nMiniforge",
+    "text": "Installation\nInstall r.earthworks with g.extension.\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "GRASS for Conda"
+      "Earthworks: Bioswale"
     ]
   },
   {
-    "objectID": "grass/conda.html#environment",
-    "href": "grass/conda.html#environment",
-    "title": "GRASS for Conda",
-    "section": "Environment",
-    "text": "Environment\n\nCreating and installing a Conda environment for GRASS & Jupyter\nSaving your environment\n\nYML",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "GRASS for Conda"
-    ]
-  },
-  {
-    "objectID": "grass/conda.html#computational-notebook",
-    "href": "grass/conda.html#computational-notebook",
-    "title": "GRASS for Conda",
-    "section": "Computational notebook",
-    "text": "Computational notebook\n\nLaunch Jupyter Lab\nStart GRASS session\nGenerate raster with GRASS\nPlot with GRASS Jupyter\nExport raster to Numpy array\nPlot distribution with Matplotlib",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "GRASS for Conda"
-    ]
-  },
-  {
-    "objectID": "grass/conda.html#integrated-development-environment",
-    "href": "grass/conda.html#integrated-development-environment",
-    "title": "GRASS for Conda",
-    "section": "Integrated development environment",
-    "text": "Integrated development environment\n\nJupyter in Spyder\n\nspyder-notebook\n\nSetting the Python interpreter to your environment\n\nSpyder\nVisual Studio Code\n\nGenerate raster with GRASS\nPlot raster with Rasterio\n\n\nSpyder\nSet interpreter path in Spyder IDE:\n/Users/username/miniconda3/envs/grass/bin/python\n\n\nVisual Studio\n…",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "GRASS for Conda"
-    ]
-  },
-  {
-    "objectID": "grass/conda-quickstart.html",
-    "href": "grass/conda-quickstart.html",
-    "title": "Getting started with GRASS for Conda",
+    "objectID": "grass/index.html",
+    "href": "grass/index.html",
+    "title": "Geocomputation with GRASS",
     "section": "",
-    "text": "Natural Earth\nThis is a very short introduction to the GRASS Python package distributed via Conda. With the GRASS Python package, you can call GRASS tools in Python scripts or Jupyter notebooks. This means that you can easily integrate GRASS into data science workflows using the Python scientific ecosystem. This brief tutorial covers:",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nMar 15, 2026\n\n\nBasics of map algebra\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nApr 26, 2026\n\n\nEarthworks\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMar 15, 2026\n\n\nEarthworks: Basics\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nAug 20, 2025\n\n\nEarthworks: Bioswale\n\n\n\n\n\nterrain, hydrology, raster, advanced\n\n\n\n\n\n\nMar 15, 2026\n\n\nEarthworks: Gully Modeling\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMar 15, 2026\n\n\nEarthworks: Modeling Coastal Infrastructure\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMar 15, 2026\n\n\nEarthworks: Terrain Synthesis\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 3, 2026\n\n\nGetting started with GRASS for Conda\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nApr 29, 2026\n\n\nProcedural Noise\n\n\n\n\n\ntutorial, grass\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
-      "Geocomputation with GRASS",
-      "Getting started with GRASS for Conda"
+      "Geocomputation with GRASS"
     ]
   },
   {
-    "objectID": "grass/conda-quickstart.html#manager",
-    "href": "grass/conda-quickstart.html#manager",
-    "title": "Getting started with GRASS for Conda",
-    "section": "Manager",
-    "text": "Manager\nConda is an open source package and environment manager. Many open source projects use Conda to publish their software as Python packages. With Conda, you can easily install collections of these packages in isolated environments to avoid conflicting software dependencies. The GRASS Python package is distributed via conda-forge, a community smithy and repository [1]. Install Miniforge, a minimal distribution of Conda that uses conda-forge as its default channel [2].\n\n\n\n\n\n\nNoteUnix\n\n\n\nOn Unix-like platforms - including  Linux,  MacOS, and  Windows Subsystem for Linux -\ndownload the installation shell script and then run it in a terminal:\nbash Miniforge3-$(uname)-$(uname -m).sh\n\n\n\n\n\n\n\n\nNoteWindows\n\n\n\nFor  Windows, download and run the binary installer. See here for more detailed instructions.",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Getting started with GRASS for Conda"
-    ]
-  },
-  {
-    "objectID": "grass/conda-quickstart.html#environment",
-    "href": "grass/conda-quickstart.html#environment",
-    "title": "Getting started with GRASS for Conda",
-    "section": "Environment",
-    "text": "Environment\nNow that Conda is installed, let’s use it to create an environment for GRASS. We will install the GRASS and Jupyter Lab Python packages and all of their dependencies into this environment. In a terminal, run conda create to create a GRASS environment named grass. Then use conda install to install the GRASS package. Next, run conda activate to start the environment.\nconda create --name grass\nconda install grass jupyterlab\nconda activate grass\nYou can do this with just one line of code:\nconda create -n grass grass jupyterlab && conda activate grass",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Getting started with GRASS for Conda"
-    ]
-  },
-  {
-    "objectID": "grass/conda-quickstart.html#notebook",
-    "href": "grass/conda-quickstart.html#notebook",
-    "title": "Getting started with GRASS for Conda",
-    "section": "Notebook",
-    "text": "Notebook\nLet’s try the GRASS Python package in a Jupyter notebook. We will using scripting to display maps from a sample dataset. We will download the dataset, start a GRASS session in the dataset, and then display raster and vector maps from the dataset. Let’s begin by launching Jupyter Lab from the terminal. This will open an new Jupyter notebook in a web browser window.\njupyter lab\n\nStart GRASS\nTo start a GRASS session, we need to define a project and its coordinate reference system. For this demonstration, we will use the Natural Earth Dataset for GRASS [3]. This dataset is a GRASS project with a collection of global raster and vector data in the World Geodetic System 1984. Download and unarchive the dataset. Then start a GRASS session using the dataset as a project. Read more about projects in GRASS here. Since the dataset is approximately 120MB, it may take a couple of minutes to download. As a test that GRASS started correctly, run g.proj with flag g to print the current projection.\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\nimport requests\nfrom zipfile import ZipFile\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Set GRASS database\ngisdbase = Path.home() / \"grassdata\"\n\n# Download dataset\nurl = \"https://zenodo.org/records/13370131/files/natural_earth_dataset.zip?download=1\"\nfilepath = gisdbase / \"natural_earth_dataset.zip\"\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\nfilepath.write_bytes(request.content)\n\n# Unarchive dataset\nwith ZipFile(filepath, 'r') as archive:\n    archive.extractall(gisdbase)\n\n# Delete archive\nos.remove(filepath)\n\n# Start GRASS in project\nsession = gj.init(gisdbase / \"natural_earth_dataset\")\n\n# Print projection information\ngs.run_command(\"g.proj\", flags=\"g\")\n\n\n\nDisplay raster map\nThe Natural Earth raster is a global basemap with land cover and shaded relief rendered with a natural color scheme. Display the Natural Earth raster map with d.rast.\n\n# Display natural earth raster\nm = gj.Map(width=800)\nm.d_rast(map=\"natural_earth\")\nm.show()\n\n\n\n\nNatural Earth\n\n\n\n\nDisplay vector map\nNow display a vector map of global rivers. First apply a thematic color gradient to the rivers based on their stream order with v.colors. Then display the map with d.vect, scaling the line width by stream order.\n\n# Display rivers\nm = gj.Map(width=800)\ngs.run_command(\"v.colors\", map=\"rivers\", use=\"attr\", column=\"scalerank\", color=\"water\")\nm.d_vect(map=\"rivers\", width_column=\"strokeweig\", width_scale=2)\nm.show()\n\n\n\n\nRivers",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Getting started with GRASS for Conda"
-    ]
-  },
-  {
-    "objectID": "grass/basic-map-algebra.html",
-    "href": "grass/basic-map-algebra.html",
-    "title": "Basics of map algebra",
+    "objectID": "grass/synthesis.html",
+    "href": "grass/synthesis.html",
+    "title": "Earthworks: Terrain Synthesis",
     "section": "",
-    "text": "Terrain modeled with map algebra",
+    "text": "Volumetric change during terrain synthesis\nLearn how to synthesize terrain with r.earthworks. In terrain synthesis, landforms from one terrain are applied to another, creating a hybrid landscape. This technique is used in computer graphics to model landscapes that are challenging to create with procedural noise and erosion simulations (Zhou et al. 2007, Tasse et al. 2012, Gain et al. 2015). Landforms that are hard to model, for example, can be sampled from real terrain and grafted onto synthetic terrain. In this tutorial, we will use fractal terrain for simplicity’s sake. Our process will be to:",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Basics of map algebra"
+      "Earthworks: Terrain Synthesis"
     ]
   },
   {
-    "objectID": "grass/basic-map-algebra.html#raster-calculator",
-    "href": "grass/basic-map-algebra.html#raster-calculator",
-    "title": "Basics of map algebra",
-    "section": "Raster Calculator",
-    "text": "Raster Calculator\nThe raster map calculator r.mapcalc uses map algebra expressions to transform rasters. The left side of the expression is the output raster map, while the right side is the input syntax including rasters, operators, functions, and variables. The raster map calculator can be run from the graphical user interface (GUI), from the command line, or with Python.\n\nGUICommand linePython\n\n\n\n\n\nr.mapcalc\n\n\n\n\nr.mapcalc expression=\"output = input\"\n\n\n\ngs.mapcalc(\"output = input\")\n\n\n\n\nThe raster calculator can be used for the simplest of tasks such as copying rasters, creating constant rasters, scaling rasters, patching rasters together, or adding rasters together. It can also be used for more sophisticated tasks such as normalizing rasters, processing imagery, calculating vegetation indices, implementing mathematical models, and generating synthetic data. In this tutorial, we will use map algebra to generate terrain with mountains, valleys, weathering, forest, plateaus, and rivers. We will use the following operators, functions, and internal variables:\n\n\n\nTable 2: Map algebra operators, functions, and variables in this tutorial\n\n\n\n\n\n\n\nOperator\nSyntax\n\n\n\n\nAddition\n+\n\n\nDivision\n\\\n\n\nGreater than\n&gt;\n\n\nLess than\n&lt;\n\n\n\n\n\n\n\n\nFunction\nSyntax\n\n\n\n\nAbsolute value\nabs(x)\n\n\nRandom\nrand(a,b)\n\n\nIf\nif(x)\n\n\nIf then else\nif(x,a,b)\n\n\n\n\n\n\n\n\nVariable\nSyntax\n\n\n\n\nNull\nnull()",
+    "objectID": "grass/synthesis.html#project",
+    "href": "grass/synthesis.html#project",
+    "title": "Earthworks: Terrain Synthesis",
+    "section": "Project",
+    "text": "Project\nStart a GRASS session in a new project with a Cartesian (XY) coordinate system.\n\nCommand linePython\n\n\ngrass --tmp-project XY\n\n\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Create a temporary folder\nimport tempfile\ntemporary = tempfile.TemporaryDirectory()\n\n# Create a project in the temporary directory\ngs.create_project(path=temporary.name, name=\"xy\")\n\n# Start GRASS in this project\nsession = gj.init(Path(temporary.name, \"xy\"))",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Basics of map algebra"
+      "Earthworks: Terrain Synthesis"
     ]
   },
   {
-    "objectID": "grass/basic-map-algebra.html#operations",
-    "href": "grass/basic-map-algebra.html#operations",
-    "title": "Basics of map algebra",
-    "section": "Operations",
-    "text": "Operations\nNext let’s try arithmetic with map algebra. Since our fractal mountains are too high, rescale them with the raster map calculator r.mapcalc. Write the expression elevation = fractal / 10 to create a new elevation raster equal to the fractal surface divided by ten. This is a local map algebra operation using simple arithmetic. Print the rescaled elevation range with r.info.\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = fractal / 10\"\nr.colors map=elevation color=elevation\nr.info -r map=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = fractal / 10\")\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n# Print range\ninfo = gs.read_command(\"r.info\", map=\"elevation\", flags=\"r\")\nprint(info)\n\n\n\n\n\n\n\nMountains",
+    "objectID": "grass/synthesis.html#installation",
+    "href": "grass/synthesis.html#installation",
+    "title": "Earthworks: Terrain Synthesis",
+    "section": "Installation",
+    "text": "Installation\nInstall r.earthworks with g.extension.\n\nCommand linePython\n\n\ng.extension extension=r.earthworks\n\n\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Basics of map algebra"
+      "Earthworks: Terrain Synthesis"
     ]
   },
   {
-    "objectID": "grass/basic-map-algebra.html#functions",
-    "href": "grass/basic-map-algebra.html#functions",
-    "title": "Basics of map algebra",
-    "section": "Functions",
-    "text": "Functions\nMap algebra has arithmetic functions as well as operators. Let’s take the absolute value of our terrain to model river valleys winding through our fractal mountains. In the raster map calculator r.mapcalc, write the expression elevation = abs(elevation) to create a new elevation raster equal to absolute value of the fractal surface. Because our fractal terrain has values both below and above mean sea level, i.e. zero, taking its absolute value will raise the low-lying valleys into mountains. The elevation gradient close to zero will become river valleys at the feet of the mountains. Use r.colors to assign a color gradient to the elevation raster, ensuring that the gradient fits rescaled elevation range of the raster.\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = abs(elevation)\" --overwrite\nr.colors map=elevation color=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = abs(elevation)\", overwrite=True)\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nValleys",
+    "objectID": "grass/synthesis.html#region",
+    "href": "grass/synthesis.html#region",
+    "title": "Earthworks: Terrain Synthesis",
+    "section": "Region",
+    "text": "Region\nUse g.region to set the extent and resolution of the computational region. Create a region starting at the origin and extending two hundred units north and eight hundred units east. Set the resolution to ten.\n\nCommand linePython\n\n\ng.region n=200 e=800 s=0 w=0 res=1\n\n\n\n# Set region\ngs.run_command(\"g.region\", n=200, e=800, s=0, w=0, res=10)",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Basics of map algebra"
+      "Earthworks: Terrain Synthesis"
     ]
   },
   {
-    "objectID": "grass/basic-map-algebra.html#if-statements",
-    "href": "grass/basic-map-algebra.html#if-statements",
-    "title": "Basics of map algebra",
-    "section": "If statements",
-    "text": "If statements\nLet’s use logic in map algebra to transform the mountain peaks into plateaus. First use the raster map calculator r.mapcalc with an if statement to find all cells with an elevation above thirty. Write the expression plateaus = if(elevation &gt; 30). Simple if statements with the form if(x) - where x is an equality or inequality statement - return a raster with ones where the statement is true and zeros where it is false. So this expression will return a new raster with ones where the plateaus will be and zeros elsewhere. This is a zonal map algebra operation using logic to isolate a zone of cells.\n\n\n\nIf statement diagram\n\n\n\nCommand linePython\n\n\nr.mapcalc expression=\"plateaus = if(elevation &gt; 30)\"\n\n\n\n# Map algebra\ngs.mapcalc(\"plateaus = if(elevation &gt; 30)\")\n\n# Visualize\nm.d_rast(map=\"plateaus\")\nm.show()\n\n\n\n\n\n\n\nZones",
+    "objectID": "grass/synthesis.html#terrain",
+    "href": "grass/synthesis.html#terrain",
+    "title": "Earthworks: Terrain Synthesis",
+    "section": "Terrain",
+    "text": "Terrain\nGenerate a fractal terrain with r.surf.fractal. For reproducible results, set the seed to one. Then use the raster calculator r.mapcalc to take the absolute value of the fractal and divide by a vertical scale factor. Taking the absolute value of the fractal terrain will raise cells with negative elevation values, turning low points into high points and transforming slopes near zero into valleys.\n\nCommand linePython\n\n\nr.surf.fractal output=fractal dimension=2.25 seed=1\nr.mapcalc expression=\"fractal = abs(fractal) / 10\"\n\n\n\n# Generate fractal surface\ngs.run_command(\n    \"r.surf.fractal\",\n    output=\"fractal\",\n    dimension=2.25,\n    seed=1\n    )\ngs.mapcalc(\"fractal = abs(fractal) / 10\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"fractal\")\nm.d_legend(raster=\"fractal\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nFractal terrain",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Basics of map algebra"
+      "Earthworks: Terrain Synthesis"
     ]
   },
   {
-    "objectID": "grass/basic-map-algebra.html#if-then-else-statements",
-    "href": "grass/basic-map-algebra.html#if-then-else-statements",
-    "title": "Basics of map algebra",
-    "section": "If then else statements",
-    "text": "If then else statements\nNow use the raster map calculator r.mapcalc to model the plateaus using an if then else statement. In map algebra, the syntax for these logical statements is if(x, a, b) where if the relational statement x is true, then do a, else do b. Write the expression elevation = if(elevation &gt; 30, 30, elevation). All cells with elevation values greater than 30 will be assigned a value of 30, while all other cells will keep their original values. This will flatten all of the mountain peaks above the threshold of 30, forming plateaus.\n\n\n\nIf then else statement diagram\n\n\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = if(elevation &gt; 30, 30, elevation)\" --overwrite\nr.colors map=elevation color=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = if(elevation &gt; 30, 30, elevation)\", overwrite=True)\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nPlateaus",
+    "objectID": "grass/synthesis.html#texture",
+    "href": "grass/synthesis.html#texture",
+    "title": "Earthworks: Terrain Synthesis",
+    "section": "Texture",
+    "text": "Texture\nRepeat this process to generate a fractal texture that will be grafted onto the original terrain. Set a different seed for r.surf.fractal to generate a new fractal raster. If you wish to work with real rather than synthetic elevation data, simply substitute these fractal rasters with digital elevation models for real landscapes.\n\nCommand linePython\n\n\nr.surf.fractal output=texture dimension=2.25 seed=3\nr.mapcalc expression=\"texture = abs(texture) / 10\"\n\n\n\n# Generate fractal surface\ngs.run_command(\n    \"r.surf.fractal\",\n    output=\"texture\",\n    dimension=2.25,\n    seed=3\n    )\ngs.mapcalc(\"texture = abs(texture) / 10\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"texture\")\nm.d_legend(raster=\"texture\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nFractal texture",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Basics of map algebra"
+      "Earthworks: Terrain Synthesis"
     ]
   },
   {
-    "objectID": "grass/basic-map-algebra.html#complex-expressions",
-    "href": "grass/basic-map-algebra.html#complex-expressions",
-    "title": "Basics of map algebra",
-    "section": "Complex expressions",
-    "text": "Complex expressions\nUse map algebra to model a river that fills the valleys. With the raster map calculator r.mapcalc write the expression river = if(elevation &lt; 6, 6 - elevation, null()) to simulate the depth of the river. This is a more complicated map algebra expression that combines logic with an if then else statement, arithmetical operations between rasters, and the internal variable null(). If cells in the elevation raster have values less than six, then they will be assigned the difference between six and the elevation raster, else they will be assigned null values. Then use r.colors to assign the water color gradient to the river raster. The null cells will be transparent, so the river depth raster can be layered over the elevation raster.\n\n\n\nComplex expression diagram\n\n\n\nCommand linePython\n\n\nr.mapcalc expression=\"rivers = if(elevation &lt; 6, 6 - elevation, null())\"\nr.colors map=rivers color=water\n\n\n\n# Map algebra\ngs.mapcalc(\"rivers = if(elevation &lt; 6, 6 - elevation, null())\")\ngs.run_command(\"r.colors\", map=\"rivers\", color=\"water\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_rast(map=\"rivers\")\nm.d_legend(raster=\"rivers\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nRivers",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Basics of map algebra"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-01.html",
-    "href": "design/random-walk-01.html",
-    "title": "Random walk with Grasshopper",
+    "objectID": "design/index.html",
+    "href": "design/index.html",
+    "title": "Computational Design",
     "section": "",
-    "text": "Random walk",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nApr 26, 2026\n\n\n3D random walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\n \n\n\nComputational Design\n\n\n\n\n\nlecture\n\n\n\n\n\n\nApr 26, 2026\n\n\nRandom walk with Grasshopper\n\n\n\n\n\ntutorial, grasshopper\n\n\n\n\n\n\nApr 26, 2026\n\n\nRandom walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\nApr 26, 2026\n\n\nRandom walk with scripting in Grasshopper\n\n\n\n\n\ntutorial, grasshopper, python\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
-      "Computational Design",
-      "Random walk with Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-01.html#introduction",
-    "href": "design/random-walk-01.html#introduction",
-    "title": "Random walk with Grasshopper",
-    "section": "Introduction",
-    "text": "Introduction\nThis tutorial is a guide to simulating random walks with Grasshopper - Rhino’s visual programming environment [1]. A random walk is an algorithm that simulates a walker taking steps in random directions. To easily simulate a 2-dimensional random walk, first generate sets of random vectors representing steps and then take the cumulative sum of these vectors to find the position of the walker at each step. For this 2-dimensional random walk, we will decompose movement into x- and y-vectors representing east-west and north-south movement. For each step our walker will choose to move a pace to either east or west and north or south. To make the walk smoother, we will incorporate an element of unpredictability by allowing our walker to take partial steps.",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "Random walk with Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-01.html#define-x-component-of-steps",
-    "href": "design/random-walk-01.html#define-x-component-of-steps",
-    "title": "Random walk with Grasshopper",
-    "section": "Define x-component of steps",
-    "text": "Define x-component of steps\nFirst define the x-component of our walker’s movement. We will represent a full pace to the west as -1 and a full pace to the east as 1. Start by generating a list of random floating point numbers between -1 and 1. To do this, place a Random component on the canvas. Plug a Number Slider into the Seed input parameter to set the seed of the pseudorandom number generator. Plug a Number Slider into the Number input parameter to set the number of random values to be generated. Plug a text panel into the Range input parameter and set the text to -1 to 1. Then plug the output list of random numbers into a Mass Addition component. This will calculate the cumulative sum of the random numbers.\n\n\n\nDefine x-component of steps",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "Random walk with Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-01.html#define-y-component-of-steps",
-    "href": "design/random-walk-01.html#define-y-component-of-steps",
-    "title": "Random walk with Grasshopper",
-    "section": "Define y-component of steps",
-    "text": "Define y-component of steps\nNext define the y-component of our walker’s movement. Place a Random component on the canvas and use the same values for the input Range and Number, but use a different value for the input Seed. A simple way to do this is to reuse the same seed, but add 1 to it. Then use Mass Addition calculate the cumulative sum of the resulting list of random numbers.\n\n\n\nDefine y-component of steps",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "Random walk with Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-01.html#plot-random-walk",
-    "href": "design/random-walk-01.html#plot-random-walk",
-    "title": "Random walk with Grasshopper",
-    "section": "Plot random walk",
-    "text": "Plot random walk\nThe Mass Addition component returns a result - the total cumulative sum - and a list of partial results - the cumulative sum at each step. These partial results represent the x- or y-components of our walker’s position in space at each step. To plot our walkers position in space, place a Construct Point on the canvas and plug the partial results of the cumulative sums along the x- and y-vectors into its input x- and y-coordinates. Finally visualize the resulting points using a Dot Display component.\n\n\n\nPlot random walk\n\n\n\n\n\nRandom walk",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "Random walk with Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-03.html",
-    "href": "design/random-walk-03.html",
-    "title": "Random walk with scripting in Grasshopper",
-    "section": "",
-    "text": "Random walk",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "Random walk with scripting in Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-03.html#introduction",
-    "href": "design/random-walk-03.html#introduction",
-    "title": "Random walk with scripting in Grasshopper",
-    "section": "Introduction",
-    "text": "Introduction\nLearn how to use Python scripting in Grasshopper to efficiently generate a random walk. In this tutorial you will create a custom script component for generating random walks in a visual programming environment. The simple visual program we composed in the tutorial Random walk with Grasshopper was quite slow, so we will write a faster, more efficient implementation in Python using the NumPy array programming library [1, 2].",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "Random walk with scripting in Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-03.html#script-component",
-    "href": "design/random-walk-03.html#script-component",
-    "title": "Random walk with scripting in Grasshopper",
-    "section": "Script component",
-    "text": "Script component\nPlace a Python 3 script component from the script panel in the math tab on Grasshopper’s canvas. Double click on the center of the script component to open the script editor and start writing your code. To learn more read the Rhino Developer’s Scripting Guides.\n\n\n\nScript component",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "Random walk with scripting in Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-03.html#python-script",
-    "href": "design/random-walk-03.html#python-script",
-    "title": "Random walk with scripting in Grasshopper",
-    "section": "Python script",
-    "text": "Python script\nIn the script editor write a Python program for simulating random walks. First import NumPy, then instantiate its random number generator, generate arrays of random x- and y-vectors representing the direction of each step, calculate the position of each step as the cumulative sum of the vectors, and convert the arrays into lists. Save your program and close the script editor. Right click on your script component to rename it Random Walk.\n\"\"\"Random Walk\"\"\"\n# requirements: numpy\n\n# Import library\nimport numpy as np\n\n# Instantiate random number generator\nif seed is not None:\n    rng = np.random.default_rng(seed)\nelse:\n    rng = np.random.default_rng()\n\n# Generate random steps\nu = rng.normal(mu, sigma, i)\nv = rng.normal(mu, sigma, i)\n\n# Solve position\nx = np.cumsum(u).tolist()\ny = np.cumsum(v).tolist()",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "Random walk with scripting in Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-03.html#programmed-script-component",
-    "href": "design/random-walk-03.html#programmed-script-component",
-    "title": "Random walk with scripting in Grasshopper",
-    "section": "Programmed script component",
-    "text": "Programmed script component\nNow that your script is ready, compose a simple visual program using it. First define the input and output parameters for the component. Zoom in on the script component and plus icons for inserting parameters will appear. Use these to insert the input parameters i, mu, sigma, and seed and the output parameters x and y. Add number sliders to your canvas and plug these to the input parameters. Plug the output parameters x and y into a Construct Point component as the input x- and y-coordinates.\n\n\n\nVisual program with random walk script\n\n\n\n\n\nRandom walk",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "Random walk with scripting in Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-04.html",
-    "href": "design/random-walk-04.html",
-    "title": "3D random walk with NumPy",
-    "section": "",
-    "text": "3D random walk",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "3D random walk with NumPy"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-04.html#introduction",
-    "href": "design/random-walk-04.html#introduction",
-    "title": "3D random walk with NumPy",
-    "section": "Introduction",
-    "text": "Introduction\nLearn how to generate a 3-dimensional random walk in Python with NumPy and render it with either PyVista or Open3D.",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "3D random walk with NumPy"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-04.html#random-walk-with-numpy",
-    "href": "design/random-walk-04.html#random-walk-with-numpy",
-    "title": "3D random walk with NumPy",
-    "section": "Random walk with NumPy",
-    "text": "Random walk with NumPy\nGenerate a 3-dimensional random walk with Python’s NumPy library for array programming [1, 2].\n# Import libraries\nimport numpy as np\n\n# Set variables\ni = 1000000 # Iterations\nmu = 0.0 # Mean\nsigma = 0.25 # Standard deviation\nscale = 2 # Scale factor\n\n# Instantiate random number generator\nrng = np.random.default_rng()\n\n# Generate random steps\nu = rng.normal(mu, sigma * scale, i)\nv = rng.normal(mu, sigma * scale, i)\nw = rng.normal(mu, sigma / scale, i)\n\n# Solve position\nx = np.cumsum(u)\ny = np.cumsum(v)\nz = np.cumsum(w)\n\n# Stack coordinates\nxyz = np.column_stack((x, y, z))",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "3D random walk with NumPy"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-04.html#render-with-pyvista",
-    "href": "design/random-walk-04.html#render-with-pyvista",
-    "title": "3D random walk with NumPy",
-    "section": "Render with PyVista",
-    "text": "Render with PyVista\nRender an interactive 3D visualization of the random walk with the Python library PyVista [3, 5].\n\n# Import libraries\nimport pyvista as pv\n\n# Set plot theme\npv.set_plot_theme(\"document\")\n\n# Plot\npv.plot(\n    xyz,\n    scalars=z,\n    render_points_as_spheres=True,\n    point_size=20,\n    show_scalar_bar=False,\n    eye_dome_lighting=True,\n    ambient=0.6,\n    diffuse=0.8,\n    window_size=(2000, 2000)\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3D random walks rendered with PyVista",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "3D random walk with NumPy"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-04.html#render-with-open3d",
-    "href": "design/random-walk-04.html#render-with-open3d",
-    "title": "3D random walk with NumPy",
-    "section": "Render with Open3D",
-    "text": "Render with Open3D\nRender an interactive 3D visualization of the random walk with the Python library Open3D [4, 6].\n# Import libraries\nimport open3d as o3d\nimport matplotlib.cm as cm\nimport matplotlib.colors as colors\n\n# Read point cloud\ncloud = o3d.geometry.PointCloud()\ncloud.points = o3d.utility.Vector3dVector(xyz)\n\n# Assign color gradient\ncolormap = cm.get_cmap(\"viridis\")\nnormalization = colors.Normalize(vmin=z.min(), vmax=z.max())\nnormalization = normalization(z)\ngradient = colormap(normalization)\ngradient = gradient[:, :3]\ncloud.colors = o3d.utility.Vector3dVector(gradient)\n\n# Render points\no3d.visualization.draw(\n    [cloud],\n    point_size=4,\n    width=2000,\n    height=2000,\n    show_skybox=False,\n    raw_mode=True\n    )",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "3D random walk with NumPy"
+      "Computational Design"
     ]
   },
   {
@@ -559,121 +293,315 @@
     ]
   },
   {
-    "objectID": "design/index.html",
-    "href": "design/index.html",
-    "title": "Computational Design",
+    "objectID": "design/random-walk-04.html",
+    "href": "design/random-walk-04.html",
+    "title": "3D random walk with NumPy",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nApr 26, 2026\n\n\n3D random walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\n \n\n\nComputational Design\n\n\n\n\n\nlecture\n\n\n\n\n\n\nApr 26, 2026\n\n\nRandom walk with Grasshopper\n\n\n\n\n\ntutorial, grasshopper\n\n\n\n\n\n\nApr 26, 2026\n\n\nRandom walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\nApr 26, 2026\n\n\nRandom walk with scripting in Grasshopper\n\n\n\n\n\ntutorial, grasshopper, python\n\n\n\n\n\n\nNo matching items",
+    "text": "3D random walk",
     "crumbs": [
       "Home",
-      "Computational Design"
+      "Computational Design",
+      "3D random walk with NumPy"
     ]
   },
   {
-    "objectID": "grass/synthesis.html",
-    "href": "grass/synthesis.html",
-    "title": "Earthworks: Terrain Synthesis",
+    "objectID": "design/random-walk-04.html#introduction",
+    "href": "design/random-walk-04.html#introduction",
+    "title": "3D random walk with NumPy",
+    "section": "Introduction",
+    "text": "Introduction\nLearn how to generate a 3-dimensional random walk in Python with NumPy and render it with either PyVista or Open3D.",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-04.html#random-walk-with-numpy",
+    "href": "design/random-walk-04.html#random-walk-with-numpy",
+    "title": "3D random walk with NumPy",
+    "section": "Random walk with NumPy",
+    "text": "Random walk with NumPy\nGenerate a 3-dimensional random walk with Python’s NumPy library for array programming [1, 2].\n# Import libraries\nimport numpy as np\n\n# Set variables\ni = 1000000 # Iterations\nmu = 0.0 # Mean\nsigma = 0.25 # Standard deviation\nscale = 2 # Scale factor\n\n# Instantiate random number generator\nrng = np.random.default_rng()\n\n# Generate random steps\nu = rng.normal(mu, sigma * scale, i)\nv = rng.normal(mu, sigma * scale, i)\nw = rng.normal(mu, sigma / scale, i)\n\n# Solve position\nx = np.cumsum(u)\ny = np.cumsum(v)\nz = np.cumsum(w)\n\n# Stack coordinates\nxyz = np.column_stack((x, y, z))",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-04.html#render-with-pyvista",
+    "href": "design/random-walk-04.html#render-with-pyvista",
+    "title": "3D random walk with NumPy",
+    "section": "Render with PyVista",
+    "text": "Render with PyVista\nRender an interactive 3D visualization of the random walk with the Python library PyVista [3, 5].\n\n# Import libraries\nimport pyvista as pv\n\n# Set plot theme\npv.set_plot_theme(\"document\")\n\n# Plot\npv.plot(\n    xyz,\n    scalars=z,\n    render_points_as_spheres=True,\n    point_size=20,\n    show_scalar_bar=False,\n    eye_dome_lighting=True,\n    ambient=0.6,\n    diffuse=0.8,\n    window_size=(2000, 2000)\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3D random walks rendered with PyVista",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-04.html#render-with-open3d",
+    "href": "design/random-walk-04.html#render-with-open3d",
+    "title": "3D random walk with NumPy",
+    "section": "Render with Open3D",
+    "text": "Render with Open3D\nRender an interactive 3D visualization of the random walk with the Python library Open3D [4, 6].\n# Import libraries\nimport open3d as o3d\nimport matplotlib.cm as cm\nimport matplotlib.colors as colors\n\n# Read point cloud\ncloud = o3d.geometry.PointCloud()\ncloud.points = o3d.utility.Vector3dVector(xyz)\n\n# Assign color gradient\ncolormap = cm.get_cmap(\"viridis\")\nnormalization = colors.Normalize(vmin=z.min(), vmax=z.max())\nnormalization = normalization(z)\ngradient = colormap(normalization)\ngradient = gradient[:, :3]\ncloud.colors = o3d.utility.Vector3dVector(gradient)\n\n# Render points\no3d.visualization.draw(\n    [cloud],\n    point_size=4,\n    width=2000,\n    height=2000,\n    show_skybox=False,\n    raw_mode=True\n    )",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-03.html",
+    "href": "design/random-walk-03.html",
+    "title": "Random walk with scripting in Grasshopper",
     "section": "",
-    "text": "Volumetric change during terrain synthesis\nLearn how to synthesize terrain with r.earthworks. In terrain synthesis, landforms from one terrain are applied to another, creating a hybrid landscape. This technique is used in computer graphics to model landscapes that are challenging to create with procedural noise and erosion simulations (Zhou et al. 2007, Tasse et al. 2012, Gain et al. 2015). Landforms that are hard to model, for example, can be sampled from real terrain and grafted onto synthetic terrain. In this tutorial, we will use fractal terrain for simplicity’s sake. Our process will be to:",
+    "text": "Random walk",
     "crumbs": [
       "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Terrain Synthesis"
+      "Computational Design",
+      "Random walk with scripting in Grasshopper"
     ]
   },
   {
-    "objectID": "grass/synthesis.html#project",
-    "href": "grass/synthesis.html#project",
-    "title": "Earthworks: Terrain Synthesis",
-    "section": "Project",
-    "text": "Project\nStart a GRASS session in a new project with a Cartesian (XY) coordinate system.\n\nCommand linePython\n\n\ngrass --tmp-project XY\n\n\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Create a temporary folder\nimport tempfile\ntemporary = tempfile.TemporaryDirectory()\n\n# Create a project in the temporary directory\ngs.create_project(path=temporary.name, name=\"xy\")\n\n# Start GRASS in this project\nsession = gj.init(Path(temporary.name, \"xy\"))",
+    "objectID": "design/random-walk-03.html#introduction",
+    "href": "design/random-walk-03.html#introduction",
+    "title": "Random walk with scripting in Grasshopper",
+    "section": "Introduction",
+    "text": "Introduction\nLearn how to use Python scripting in Grasshopper to efficiently generate a random walk. In this tutorial you will create a custom script component for generating random walks in a visual programming environment. The simple visual program we composed in the tutorial Random walk with Grasshopper was quite slow, so we will write a faster, more efficient implementation in Python using the NumPy array programming library [1, 2].",
     "crumbs": [
       "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Terrain Synthesis"
+      "Computational Design",
+      "Random walk with scripting in Grasshopper"
     ]
   },
   {
-    "objectID": "grass/synthesis.html#installation",
-    "href": "grass/synthesis.html#installation",
-    "title": "Earthworks: Terrain Synthesis",
-    "section": "Installation",
-    "text": "Installation\nInstall r.earthworks with g.extension.\n\nCommand linePython\n\n\ng.extension extension=r.earthworks\n\n\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
+    "objectID": "design/random-walk-03.html#script-component",
+    "href": "design/random-walk-03.html#script-component",
+    "title": "Random walk with scripting in Grasshopper",
+    "section": "Script component",
+    "text": "Script component\nPlace a Python 3 script component from the script panel in the math tab on Grasshopper’s canvas. Double click on the center of the script component to open the script editor and start writing your code. To learn more read the Rhino Developer’s Scripting Guides.\n\n\n\nScript component",
     "crumbs": [
       "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Terrain Synthesis"
+      "Computational Design",
+      "Random walk with scripting in Grasshopper"
     ]
   },
   {
-    "objectID": "grass/synthesis.html#region",
-    "href": "grass/synthesis.html#region",
-    "title": "Earthworks: Terrain Synthesis",
-    "section": "Region",
-    "text": "Region\nUse g.region to set the extent and resolution of the computational region. Create a region starting at the origin and extending two hundred units north and eight hundred units east. Set the resolution to ten.\n\nCommand linePython\n\n\ng.region n=200 e=800 s=0 w=0 res=1\n\n\n\n# Set region\ngs.run_command(\"g.region\", n=200, e=800, s=0, w=0, res=10)",
+    "objectID": "design/random-walk-03.html#python-script",
+    "href": "design/random-walk-03.html#python-script",
+    "title": "Random walk with scripting in Grasshopper",
+    "section": "Python script",
+    "text": "Python script\nIn the script editor write a Python program for simulating random walks. First import NumPy, then instantiate its random number generator, generate arrays of random x- and y-vectors representing the direction of each step, calculate the position of each step as the cumulative sum of the vectors, and convert the arrays into lists. Save your program and close the script editor. Right click on your script component to rename it Random Walk.\n\"\"\"Random Walk\"\"\"\n# requirements: numpy\n\n# Import library\nimport numpy as np\n\n# Instantiate random number generator\nif seed is not None:\n    rng = np.random.default_rng(seed)\nelse:\n    rng = np.random.default_rng()\n\n# Generate random steps\nu = rng.normal(mu, sigma, i)\nv = rng.normal(mu, sigma, i)\n\n# Solve position\nx = np.cumsum(u).tolist()\ny = np.cumsum(v).tolist()",
     "crumbs": [
       "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Terrain Synthesis"
+      "Computational Design",
+      "Random walk with scripting in Grasshopper"
     ]
   },
   {
-    "objectID": "grass/synthesis.html#terrain",
-    "href": "grass/synthesis.html#terrain",
-    "title": "Earthworks: Terrain Synthesis",
-    "section": "Terrain",
-    "text": "Terrain\nGenerate a fractal terrain with r.surf.fractal. For reproducible results, set the seed to one. Then use the raster calculator r.mapcalc to take the absolute value of the fractal and divide by a vertical scale factor. Taking the absolute value of the fractal terrain will raise cells with negative elevation values, turning low points into high points and transforming slopes near zero into valleys.\n\nCommand linePython\n\n\nr.surf.fractal output=fractal dimension=2.25 seed=1\nr.mapcalc expression=\"fractal = abs(fractal) / 10\"\n\n\n\n# Generate fractal surface\ngs.run_command(\n    \"r.surf.fractal\",\n    output=\"fractal\",\n    dimension=2.25,\n    seed=1\n    )\ngs.mapcalc(\"fractal = abs(fractal) / 10\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"fractal\")\nm.d_legend(raster=\"fractal\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nFractal terrain",
+    "objectID": "design/random-walk-03.html#programmed-script-component",
+    "href": "design/random-walk-03.html#programmed-script-component",
+    "title": "Random walk with scripting in Grasshopper",
+    "section": "Programmed script component",
+    "text": "Programmed script component\nNow that your script is ready, compose a simple visual program using it. First define the input and output parameters for the component. Zoom in on the script component and plus icons for inserting parameters will appear. Use these to insert the input parameters i, mu, sigma, and seed and the output parameters x and y. Add number sliders to your canvas and plug these to the input parameters. Plug the output parameters x and y into a Construct Point component as the input x- and y-coordinates.\n\n\n\nVisual program with random walk script\n\n\n\n\n\nRandom walk",
     "crumbs": [
       "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Terrain Synthesis"
+      "Computational Design",
+      "Random walk with scripting in Grasshopper"
     ]
   },
   {
-    "objectID": "grass/synthesis.html#texture",
-    "href": "grass/synthesis.html#texture",
-    "title": "Earthworks: Terrain Synthesis",
-    "section": "Texture",
-    "text": "Texture\nRepeat this process to generate a fractal texture that will be grafted onto the original terrain. Set a different seed for r.surf.fractal to generate a new fractal raster. If you wish to work with real rather than synthetic elevation data, simply substitute these fractal rasters with digital elevation models for real landscapes.\n\nCommand linePython\n\n\nr.surf.fractal output=texture dimension=2.25 seed=3\nr.mapcalc expression=\"texture = abs(texture) / 10\"\n\n\n\n# Generate fractal surface\ngs.run_command(\n    \"r.surf.fractal\",\n    output=\"texture\",\n    dimension=2.25,\n    seed=3\n    )\ngs.mapcalc(\"texture = abs(texture) / 10\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"texture\")\nm.d_legend(raster=\"texture\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nFractal texture",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Terrain Synthesis"
-    ]
-  },
-  {
-    "objectID": "grass/index.html",
-    "href": "grass/index.html",
-    "title": "Geocomputation with GRASS",
+    "objectID": "design/random-walk-01.html",
+    "href": "design/random-walk-01.html",
+    "title": "Random walk with Grasshopper",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nMar 15, 2026\n\n\nBasics of map algebra\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nApr 26, 2026\n\n\nEarthworks\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMar 15, 2026\n\n\nEarthworks: Basics\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nAug 20, 2025\n\n\nEarthworks: Bioswale\n\n\n\n\n\nterrain, hydrology, raster, advanced\n\n\n\n\n\n\nMar 15, 2026\n\n\nEarthworks: Gully Modeling\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMar 15, 2026\n\n\nEarthworks: Modeling Coastal Infrastructure\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMar 15, 2026\n\n\nEarthworks: Terrain Synthesis\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 3, 2026\n\n\nGRASS for Conda\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 3, 2026\n\n\nGetting started with GRASS for Conda\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nApr 29, 2026\n\n\nProcedural Noise\n\n\n\n\n\ntutorial, grass\n\n\n\n\n\n\nNo matching items",
+    "text": "Random walk",
     "crumbs": [
       "Home",
-      "Geocomputation with GRASS"
+      "Computational Design",
+      "Random walk with Grasshopper"
     ]
   },
   {
-    "objectID": "grass/bioswale.html",
-    "href": "grass/bioswale.html",
-    "title": "Earthworks: Bioswale",
+    "objectID": "design/random-walk-01.html#introduction",
+    "href": "design/random-walk-01.html#introduction",
+    "title": "Random walk with Grasshopper",
+    "section": "Introduction",
+    "text": "Introduction\nThis tutorial is a guide to simulating random walks with Grasshopper - Rhino’s visual programming environment [1]. A random walk is an algorithm that simulates a walker taking steps in random directions. To easily simulate a 2-dimensional random walk, first generate sets of random vectors representing steps and then take the cumulative sum of these vectors to find the position of the walker at each step. For this 2-dimensional random walk, we will decompose movement into x- and y-vectors representing east-west and north-south movement. For each step our walker will choose to move a pace to either east or west and north or south. To make the walk smoother, we will incorporate an element of unpredictability by allowing our walker to take partial steps.",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-01.html#define-x-component-of-steps",
+    "href": "design/random-walk-01.html#define-x-component-of-steps",
+    "title": "Random walk with Grasshopper",
+    "section": "Define x-component of steps",
+    "text": "Define x-component of steps\nFirst define the x-component of our walker’s movement. We will represent a full pace to the west as -1 and a full pace to the east as 1. Start by generating a list of random floating point numbers between -1 and 1. To do this, place a Random component on the canvas. Plug a Number Slider into the Seed input parameter to set the seed of the pseudorandom number generator. Plug a Number Slider into the Number input parameter to set the number of random values to be generated. Plug a text panel into the Range input parameter and set the text to -1 to 1. Then plug the output list of random numbers into a Mass Addition component. This will calculate the cumulative sum of the random numbers.\n\n\n\nDefine x-component of steps",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-01.html#define-y-component-of-steps",
+    "href": "design/random-walk-01.html#define-y-component-of-steps",
+    "title": "Random walk with Grasshopper",
+    "section": "Define y-component of steps",
+    "text": "Define y-component of steps\nNext define the y-component of our walker’s movement. Place a Random component on the canvas and use the same values for the input Range and Number, but use a different value for the input Seed. A simple way to do this is to reuse the same seed, but add 1 to it. Then use Mass Addition calculate the cumulative sum of the resulting list of random numbers.\n\n\n\nDefine y-component of steps",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-01.html#plot-random-walk",
+    "href": "design/random-walk-01.html#plot-random-walk",
+    "title": "Random walk with Grasshopper",
+    "section": "Plot random walk",
+    "text": "Plot random walk\nThe Mass Addition component returns a result - the total cumulative sum - and a list of partial results - the cumulative sum at each step. These partial results represent the x- or y-components of our walker’s position in space at each step. To plot our walkers position in space, place a Construct Point on the canvas and plug the partial results of the cumulative sums along the x- and y-vectors into its input x- and y-coordinates. Finally visualize the resulting points using a Dot Display component.\n\n\n\nPlot random walk\n\n\n\n\n\nRandom walk",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with Grasshopper"
+    ]
+  },
+  {
+    "objectID": "grass/basic-map-algebra.html",
+    "href": "grass/basic-map-algebra.html",
+    "title": "Basics of map algebra",
     "section": "",
-    "text": "Bioswale\nLearn how to design, model, and simulate hydrologic systems such as bioswales or restored streams. This tutorial covers the design of swales using r.earthworks and the simulation of shallow overland flows of water using r.sim.water. Bioswales are shallow, vegetated channels for conveying, filtering, and infiltrating stormwater. They are designed to move stormwater slowly enough through a site for retention, filtration, sedimentation, and infiltration, yet quickly enough to prevent localized flooding. By retaining and infiltrating stormwater, bioswales reduce the peak flow of runoff during storm events, reducing the risk of flash flooding. In this tutorial, we will use an iterative cycle of modeling and simulation to design a landscape with a bioswale that stores stormwater on site and conveys the overflow offsite.\nWhile this tutorial uses Python to procedurally design a bioswale using a trigonometric function, the process demonstrated here can easily be adapted for the GRASS graphical user interface (GUI) or command line interface (CLI) when working with real world sites. The centerline of the channel can be drawn in the GUI using the raster digitizer g.gui.rdigit or vector digitizer g.gui.vdigit. Alternatively if the channel is drawn in a computer-aided design program, then it can be imported into GRASS as a 2D or 3D vector map.\nOur process will be to:",
+    "text": "Terrain modeled with map algebra",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Bioswale"
+      "Basics of map algebra"
     ]
   },
   {
-    "objectID": "grass/bioswale.html#installation",
-    "href": "grass/bioswale.html#installation",
-    "title": "Earthworks: Bioswale",
-    "section": "Installation",
-    "text": "Installation\nInstall r.earthworks with g.extension.\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
+    "objectID": "grass/basic-map-algebra.html#raster-calculator",
+    "href": "grass/basic-map-algebra.html#raster-calculator",
+    "title": "Basics of map algebra",
+    "section": "Raster Calculator",
+    "text": "Raster Calculator\nThe raster map calculator r.mapcalc uses map algebra expressions to transform rasters. The left side of the expression is the output raster map, while the right side is the input syntax including rasters, operators, functions, and variables. The raster map calculator can be run from the graphical user interface (GUI), from the command line, or with Python.\n\nGUICommand linePython\n\n\n\n\n\nr.mapcalc\n\n\n\n\nr.mapcalc expression=\"output = input\"\n\n\n\ngs.mapcalc(\"output = input\")\n\n\n\n\nThe raster calculator can be used for the simplest of tasks such as copying rasters, creating constant rasters, scaling rasters, patching rasters together, or adding rasters together. It can also be used for more sophisticated tasks such as normalizing rasters, processing imagery, calculating vegetation indices, implementing mathematical models, and generating synthetic data. In this tutorial, we will use map algebra to generate terrain with mountains, valleys, weathering, forest, plateaus, and rivers. We will use the following operators, functions, and internal variables:\n\n\n\nTable 2: Map algebra operators, functions, and variables in this tutorial\n\n\n\n\n\n\n\nOperator\nSyntax\n\n\n\n\nAddition\n+\n\n\nDivision\n\\\n\n\nGreater than\n&gt;\n\n\nLess than\n&lt;\n\n\n\n\n\n\n\n\nFunction\nSyntax\n\n\n\n\nAbsolute value\nabs(x)\n\n\nRandom\nrand(a,b)\n\n\nIf\nif(x)\n\n\nIf then else\nif(x,a,b)\n\n\n\n\n\n\n\n\nVariable\nSyntax\n\n\n\n\nNull\nnull()",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Bioswale"
+      "Basics of map algebra"
+    ]
+  },
+  {
+    "objectID": "grass/basic-map-algebra.html#operations",
+    "href": "grass/basic-map-algebra.html#operations",
+    "title": "Basics of map algebra",
+    "section": "Operations",
+    "text": "Operations\nNext let’s try arithmetic with map algebra. Since our fractal mountains are too high, rescale them with the raster map calculator r.mapcalc. Write the expression elevation = fractal / 10 to create a new elevation raster equal to the fractal surface divided by ten. This is a local map algebra operation using simple arithmetic. Print the rescaled elevation range with r.info.\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = fractal / 10\"\nr.colors map=elevation color=elevation\nr.info -r map=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = fractal / 10\")\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n# Print range\ninfo = gs.read_command(\"r.info\", map=\"elevation\", flags=\"r\")\nprint(info)\n\n\n\n\n\n\n\nMountains",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Basics of map algebra"
+    ]
+  },
+  {
+    "objectID": "grass/basic-map-algebra.html#functions",
+    "href": "grass/basic-map-algebra.html#functions",
+    "title": "Basics of map algebra",
+    "section": "Functions",
+    "text": "Functions\nMap algebra has arithmetic functions as well as operators. Let’s take the absolute value of our terrain to model river valleys winding through our fractal mountains. In the raster map calculator r.mapcalc, write the expression elevation = abs(elevation) to create a new elevation raster equal to absolute value of the fractal surface. Because our fractal terrain has values both below and above mean sea level, i.e. zero, taking its absolute value will raise the low-lying valleys into mountains. The elevation gradient close to zero will become river valleys at the feet of the mountains. Use r.colors to assign a color gradient to the elevation raster, ensuring that the gradient fits rescaled elevation range of the raster.\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = abs(elevation)\" --overwrite\nr.colors map=elevation color=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = abs(elevation)\", overwrite=True)\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nValleys",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Basics of map algebra"
+    ]
+  },
+  {
+    "objectID": "grass/basic-map-algebra.html#if-statements",
+    "href": "grass/basic-map-algebra.html#if-statements",
+    "title": "Basics of map algebra",
+    "section": "If statements",
+    "text": "If statements\nLet’s use logic in map algebra to transform the mountain peaks into plateaus. First use the raster map calculator r.mapcalc with an if statement to find all cells with an elevation above thirty. Write the expression plateaus = if(elevation &gt; 30). Simple if statements with the form if(x) - where x is an equality or inequality statement - return a raster with ones where the statement is true and zeros where it is false. So this expression will return a new raster with ones where the plateaus will be and zeros elsewhere. This is a zonal map algebra operation using logic to isolate a zone of cells.\n\n\n\nIf statement diagram\n\n\n\nCommand linePython\n\n\nr.mapcalc expression=\"plateaus = if(elevation &gt; 30)\"\n\n\n\n# Map algebra\ngs.mapcalc(\"plateaus = if(elevation &gt; 30)\")\n\n# Visualize\nm.d_rast(map=\"plateaus\")\nm.show()\n\n\n\n\n\n\n\nZones",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Basics of map algebra"
+    ]
+  },
+  {
+    "objectID": "grass/basic-map-algebra.html#if-then-else-statements",
+    "href": "grass/basic-map-algebra.html#if-then-else-statements",
+    "title": "Basics of map algebra",
+    "section": "If then else statements",
+    "text": "If then else statements\nNow use the raster map calculator r.mapcalc to model the plateaus using an if then else statement. In map algebra, the syntax for these logical statements is if(x, a, b) where if the relational statement x is true, then do a, else do b. Write the expression elevation = if(elevation &gt; 30, 30, elevation). All cells with elevation values greater than 30 will be assigned a value of 30, while all other cells will keep their original values. This will flatten all of the mountain peaks above the threshold of 30, forming plateaus.\n\n\n\nIf then else statement diagram\n\n\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = if(elevation &gt; 30, 30, elevation)\" --overwrite\nr.colors map=elevation color=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = if(elevation &gt; 30, 30, elevation)\", overwrite=True)\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nPlateaus",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Basics of map algebra"
+    ]
+  },
+  {
+    "objectID": "grass/basic-map-algebra.html#complex-expressions",
+    "href": "grass/basic-map-algebra.html#complex-expressions",
+    "title": "Basics of map algebra",
+    "section": "Complex expressions",
+    "text": "Complex expressions\nUse map algebra to model a river that fills the valleys. With the raster map calculator r.mapcalc write the expression river = if(elevation &lt; 6, 6 - elevation, null()) to simulate the depth of the river. This is a more complicated map algebra expression that combines logic with an if then else statement, arithmetical operations between rasters, and the internal variable null(). If cells in the elevation raster have values less than six, then they will be assigned the difference between six and the elevation raster, else they will be assigned null values. Then use r.colors to assign the water color gradient to the river raster. The null cells will be transparent, so the river depth raster can be layered over the elevation raster.\n\n\n\nComplex expression diagram\n\n\n\nCommand linePython\n\n\nr.mapcalc expression=\"rivers = if(elevation &lt; 6, 6 - elevation, null())\"\nr.colors map=rivers color=water\n\n\n\n# Map algebra\ngs.mapcalc(\"rivers = if(elevation &lt; 6, 6 - elevation, null())\")\ngs.run_command(\"r.colors\", map=\"rivers\", color=\"water\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_rast(map=\"rivers\")\nm.d_legend(raster=\"rivers\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nRivers",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Basics of map algebra"
+    ]
+  },
+  {
+    "objectID": "grass/conda-quickstart.html",
+    "href": "grass/conda-quickstart.html",
+    "title": "Getting started with GRASS for Conda",
+    "section": "",
+    "text": "Natural Earth\nThis is a very short introduction to the GRASS Python package distributed via Conda. With the GRASS Python package, you can call GRASS tools in Python scripts or Jupyter notebooks. This means that you can easily integrate GRASS into data science workflows using the Python scientific ecosystem. This brief tutorial covers:",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Getting started with GRASS for Conda"
+    ]
+  },
+  {
+    "objectID": "grass/conda-quickstart.html#manager",
+    "href": "grass/conda-quickstart.html#manager",
+    "title": "Getting started with GRASS for Conda",
+    "section": "Manager",
+    "text": "Manager\nConda is an open source package and environment manager. Many open source projects use Conda to publish their software as Python packages. With Conda, you can easily install collections of these packages in isolated environments to avoid conflicting software dependencies. The GRASS Python package is distributed via conda-forge, a community smithy and repository [1]. Install Miniforge, a minimal distribution of Conda that uses conda-forge as its default channel [2].\n\n\n\n\n\n\nNoteUnix\n\n\n\nOn Unix-like platforms - including  Linux,  MacOS, and  Windows Subsystem for Linux -\ndownload the installation shell script and then run it in a terminal:\nbash Miniforge3-$(uname)-$(uname -m).sh\n\n\n\n\n\n\n\n\nNoteWindows\n\n\n\nFor  Windows, download and run the binary installer. See here for more detailed instructions.",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Getting started with GRASS for Conda"
+    ]
+  },
+  {
+    "objectID": "grass/conda-quickstart.html#environment",
+    "href": "grass/conda-quickstart.html#environment",
+    "title": "Getting started with GRASS for Conda",
+    "section": "Environment",
+    "text": "Environment\nNow that Conda is installed, let’s use it to create an environment for GRASS. We will install the GRASS and Jupyter Lab Python packages and all of their dependencies into this environment. In a terminal, run conda create to create a GRASS environment named grass. Then use conda install to install the GRASS package. Next, run conda activate to start the environment.\nconda create --name grass\nconda install grass jupyterlab\nconda activate grass\nYou can do this with just one line of code:\nconda create -n grass grass jupyterlab && conda activate grass",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Getting started with GRASS for Conda"
+    ]
+  },
+  {
+    "objectID": "grass/conda-quickstart.html#notebook",
+    "href": "grass/conda-quickstart.html#notebook",
+    "title": "Getting started with GRASS for Conda",
+    "section": "Notebook",
+    "text": "Notebook\nLet’s try the GRASS Python package in a Jupyter notebook. We will using scripting to display maps from a sample dataset. We will download the dataset, start a GRASS session in the dataset, and then display raster and vector maps from the dataset. Let’s begin by launching Jupyter Lab from the terminal. This will open an new Jupyter notebook in a web browser window.\njupyter lab\n\nStart GRASS\nTo start a GRASS session, we need to define a project and its coordinate reference system. For this demonstration, we will use the Natural Earth Dataset for GRASS [3]. This dataset is a GRASS project with a collection of global raster and vector data in the World Geodetic System 1984. Download and unarchive the dataset. Then start a GRASS session using the dataset as a project. Read more about projects in GRASS here. Since the dataset is approximately 120MB, it may take a couple of minutes to download. As a test that GRASS started correctly, run g.proj with flag g to print the current projection.\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\nimport requests\nfrom zipfile import ZipFile\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Set GRASS database\ngisdbase = Path.home() / \"grassdata\"\n\n# Download dataset\nurl = \"https://zenodo.org/records/13370131/files/natural_earth_dataset.zip?download=1\"\nfilepath = gisdbase / \"natural_earth_dataset.zip\"\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\nfilepath.write_bytes(request.content)\n\n# Unarchive dataset\nwith ZipFile(filepath, 'r') as archive:\n    archive.extractall(gisdbase)\n\n# Delete archive\nos.remove(filepath)\n\n# Start GRASS in project\nsession = gj.init(gisdbase / \"natural_earth_dataset\")\n\n# Print projection information\ngs.run_command(\"g.proj\", flags=\"g\")\n\n\n\nDisplay raster map\nThe Natural Earth raster is a global basemap with land cover and shaded relief rendered with a natural color scheme. Display the Natural Earth raster map with d.rast.\n\n# Display natural earth raster\nm = gj.Map(width=800)\nm.d_rast(map=\"natural_earth\")\nm.show()\n\n\n\n\nNatural Earth\n\n\n\n\nDisplay vector map\nNow display a vector map of global rivers. First apply a thematic color gradient to the rivers based on their stream order with v.colors. Then display the map with d.vect, scaling the line width by stream order.\n\n# Display rivers\nm = gj.Map(width=800)\ngs.run_command(\"v.colors\", map=\"rivers\", use=\"attr\", column=\"scalerank\", color=\"water\")\nm.d_vect(map=\"rivers\", width_column=\"strokeweig\", width_scale=2)\nm.show()\n\n\n\n\nRivers",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Getting started with GRASS for Conda"
     ]
   },
   {
