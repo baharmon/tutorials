@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Brendan Harmon">
-<meta name="dcterms.date" content="2026-03-15">
+<meta name="dcterms.date" content="2026-05-24">
 <meta name="description" content="Learn the basics of map algebra in GRASS including arithmetic, functions, and logic. Use map algebra to model a landscape.">
 
 <title>Basics of map algebra – Tutorials</title>
@@ -351,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 15, 2026</p>
+      <p class="date">May 24, 2026</p>
     </div>
   </div>
   
@@ -447,7 +447,7 @@ Table&nbsp;1: Types of map algebra operations
 <pre class="{bash}"><code>r.mapcalc expression="output = input"</code></pre>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div id="84df0f17" class="cell" data-execution_count="1">
+<div id="abb12cde" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"output = input"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
@@ -549,7 +549,7 @@ Table&nbsp;2: Map algebra operators, functions, and variables in this tutorial
 <pre class="{bash}"><code>g.region n=200 e=800 s=0 w=0 res=1</code></pre>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div id="30a441b4" class="cell" data-execution_count="2">
+<div id="55a1d0d6" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -595,7 +595,7 @@ Table&nbsp;2: Map algebra operators, functions, and variables in this tutorial
 <pre class="{bash}"><code>r.mapcalc expression="elevation = 0"</code></pre>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div id="eb0ff649" class="cell" data-execution_count="3">
+<div id="726b2dea" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = 0"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -625,7 +625,7 @@ Table&nbsp;2: Map algebra operators, functions, and variables in this tutorial
 r.info -r map=fractal</code></pre>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div id="243f653b" class="cell" data-execution_count="4">
+<div id="45b2c81d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate fractal surface</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.surf.fractal"</span>, output<span class="op">=</span><span class="st">"fractal"</span>, dimension<span class="op">=</span><span class="fl">2.25</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -662,7 +662,7 @@ r.colors map=elevation color=elevation
 r.info -r map=elevation</code></pre>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div id="1b3db6de" class="cell" data-execution_count="5">
+<div id="f2b10a1e" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = fractal / 10"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, color<span class="op">=</span><span class="st">"elevation"</span>)</span>
@@ -688,7 +688,7 @@ r.info -r map=elevation</code></pre>
 </section>
 <section id="functions" class="level2">
 <h2 class="anchored" data-anchor-id="functions">Functions</h2>
-<p>Map algebra has arithmetic functions as well as operators. Let’s take the absolute value of our terrain to model river valleys winding through our fractal mountains. In the raster map calculator <a href="https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html">r.mapcalc</a>, write the expression <code>elevation = abs(elevation)</code> to create a new elevation raster equal to absolute value of the fractal surface. Because our fractal terrain has values both below and above mean sea level, i.e.&nbsp;zero, taking its absolute value will raise the low-lying valleys into mountains. The elevation gradient close to zero will become river valleys at the feet of the mountains. Use <a href="https://grass.osgeo.org/grass-stable/manuals/r.colors.html">r.colors</a> to assign a color gradient to the elevation raster, ensuring that the gradient fits rescaled elevation range of the raster.</p>
+<p>Map algebra has arithmetic functions as well as operators. Let’s take the absolute value of our terrain to model river valleys winding through our fractal mountains. In the raster map calculator <a href="https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html">r.mapcalc</a>, write the expression <code>elevation = abs(elevation)</code> to create a new elevation raster equal to absolute value of the fractal surface. Because our fractal terrain has values both below and above mean sea level, i.e.&nbsp;zero, taking its absolute value will raise the low-lying valleys into mountains. The elevation gradient close to zero will become river valleys at the feet of the mountains. Use <a href="https://grass.osgeo.org/grass-stable/manuals/r.colors.html">r.colors</a> to assign a color gradient to the elevation raster, ensuring that the gradient fits the rescaled elevation range of the raster.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Command line</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
@@ -697,7 +697,7 @@ r.info -r map=elevation</code></pre>
 r.colors map=elevation color=elevation</code></pre>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<div id="2097cd67" class="cell" data-execution_count="6">
+<div id="b292e434" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = abs(elevation)"</span>, overwrite<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, color<span class="op">=</span><span class="st">"elevation"</span>)</span>
@@ -728,7 +728,7 @@ r.colors map=elevation color=elevation</code></pre>
 <pre class="{bash}"><code>r.neighbors -c input=elevation output=weathering size=9</code></pre>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
-<div id="564327ee" class="cell" data-execution_count="7">
+<div id="75f2b3d4" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nearest neighbors</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"r.neighbors"</span>,</span>
@@ -765,7 +765,7 @@ r.colors map=elevation color=elevation</code></pre>
 <pre class="{bash}"><code>r.mapcalc expression="random = rand(0.0, 10.0)" seed=0</code></pre>
 </div>
 <div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
-<div id="57c701bd" class="cell" data-execution_count="8">
+<div id="7390bb67" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random surface</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"random = rand(0.0, 10.0)"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -791,7 +791,7 @@ r.colors map=elevation color=elevation</code></pre>
 <pre class="{bash}"><code>r.mapcalc expression="forest = elevation + random"</code></pre>
 </div>
 <div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
-<div id="01e7aac9" class="cell" data-execution_count="9">
+<div id="733ab398" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"forest = elevation + random"</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -890,7 +890,7 @@ Table&nbsp;3: Logical operators
 <pre class="{bash}"><code>r.mapcalc expression="plateaus = if(elevation &gt; 30)"</code></pre>
 </div>
 <div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
-<div id="a1b87307" class="cell" data-execution_count="10">
+<div id="516a3d94" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"plateaus = if(elevation &gt; 30)"</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -925,7 +925,7 @@ Table&nbsp;3: Logical operators
 r.colors map=elevation color=elevation</code></pre>
 </div>
 <div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
-<div id="f19de015" class="cell" data-execution_count="11">
+<div id="bb8d530c" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = if(elevation &gt; 30, 30, elevation)"</span>, overwrite<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, color<span class="op">=</span><span class="st">"elevation"</span>)</span>
@@ -962,7 +962,7 @@ r.colors map=elevation color=elevation</code></pre>
 r.colors map=rivers color=water</code></pre>
 </div>
 <div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
-<div id="c9b89874" class="cell" data-execution_count="12">
+<div id="0ae75fcd" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"rivers = if(elevation &lt; 6, 6 - elevation, null())"</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"rivers"</span>, color<span class="op">=</span><span class="st">"water"</span>)</span>
@@ -1453,602 +1453,601 @@ r.colors map=rivers color=water</code></pre>
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co">  Use map algebra to model a landscape.</span></span>
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> images/map-algebra-01.webp</span></span>
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> grass.bib</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> ../acm.csl</span></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="an">links:</span></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">  g_region: "[g.region](https://grass.osgeo.org/grass-stable/manuals/g.region.html)"</span></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">  r_mapcalc: "[r.mapcalc](https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html)"</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">  r_mapcalc_simple: "[r.mapcalc.simple](https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.simple.html)"</span></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co">  r_series: "[r.series](https://grass.osgeo.org/grass-stable/manuals/r.series.html)"</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co">  r_neighbors: "[r.neighbors](https://grass.osgeo.org/grass-stable/manuals/r.neighbors.html)"</span></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co">  r_mfilter: "[r.mfilter](https://grass.osgeo.org/grass-stable/manuals/r.mfilter.html)"</span></span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="co">  r_clump: "[r.clump](https://grass.osgeo.org/grass-stable/manuals/r.clump.html)"</span></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co">  r_univar: "[r.univar](https://grass.osgeo.org/grass-stable/manuals/r.univar.html)"</span></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="co">  r_statistics: "[r.statistics](https://grass.osgeo.org/grass-stable/manuals/r.statistics.html)"</span></span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="co">  r_stats: "[r.stats](https://grass.osgeo.org/grass-stable/manuals/r.stats.html)"</span></span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="co">  r_stats_zonal: "[r.stats.zonal](https://grass.osgeo.org/grass-stable/manuals/r.stats.zonal.html)"</span></span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="co">  r_info: "[r.info](https://grass.osgeo.org/grass-stable/manuals/r.info.html)"</span></span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="co">  r_report: "[r.report](https://grass.osgeo.org/grass-stable/manuals/r.report.html)"</span></span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="co">  r_colors: "[r.colors](https://grass.osgeo.org/grass-stable/manuals/r.colors.html)"</span></span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="co">  r_surf_fractal: "[r.surf.fractal](https://grass.osgeo.org/grass-stable/manuals/r.surf.fractal.html)"</span></span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="an">code-links:</span></span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="co">  - text: Jupyter notebook</span></span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="co">    href: basic-map-algebra.ipynb</span></span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a><span class="co">    icon: file-code</span></span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="co">    target: _blank</span></span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="an">resources:</span><span class="co"> basic-map-algebra.ipynb</span></span>
-<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> jupyter</span></span>
-<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: false</span></span>
-<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
-<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a><span class="al">![Terrain modeled with map algebra](images/map-algebra-01.webp)</span></span>
-<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="Computational notebook"}</span>
-<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a>This tutorial can be run as a computational notebook.</span>
-<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a>Learn how to work with notebooks with the tutorial</span>
-<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Get started with GRASS &amp; Python in Jupyter Notebooks</span><span class="co">](https://grass-tutorials.osgeo.org/content/tutorials/get_started/fast_track_grass_and_python.html)</span>.</span>
-<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-56"><a href="#cb25-56" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
-<span id="cb25-57"><a href="#cb25-57" aria-hidden="true" tabindex="-1"></a>This tutorial is a gentle introduction </span>
-<span id="cb25-58"><a href="#cb25-58" aria-hidden="true" tabindex="-1"></a>to the basics of map algebra in GRASS. </span>
-<span id="cb25-59"><a href="#cb25-59" aria-hidden="true" tabindex="-1"></a>You will begin to learn how to think procedurally </span>
-<span id="cb25-60"><a href="#cb25-60" aria-hidden="true" tabindex="-1"></a>about space using math, logic, and flow control. </span>
-<span id="cb25-61"><a href="#cb25-61" aria-hidden="true" tabindex="-1"></a>Map algebra is an algebraic approach</span>
-<span id="cb25-62"><a href="#cb25-62" aria-hidden="true" tabindex="-1"></a>to modeling fields of data such as rasters.</span>
-<span id="cb25-63"><a href="#cb25-63" aria-hidden="true" tabindex="-1"></a>It can be used to create, summarize, transform, </span>
-<span id="cb25-64"><a href="#cb25-64" aria-hidden="true" tabindex="-1"></a>or combine multiple rasters. </span>
-<span id="cb25-65"><a href="#cb25-65" aria-hidden="true" tabindex="-1"></a>Algebraic operations on raster maps can be classified </span>
-<span id="cb25-66"><a href="#cb25-66" aria-hidden="true" tabindex="-1"></a>as local, focal, zonal, or global.</span>
-<span id="cb25-67"><a href="#cb25-67" aria-hidden="true" tabindex="-1"></a>Local operations act on each raster cell in isolation.</span>
-<span id="cb25-68"><a href="#cb25-68" aria-hidden="true" tabindex="-1"></a>Focal operations act on a neighborhood around each cell.</span>
-<span id="cb25-69"><a href="#cb25-69" aria-hidden="true" tabindex="-1"></a>Zonal operations act on groups of cells. </span>
-<span id="cb25-70"><a href="#cb25-70" aria-hidden="true" tabindex="-1"></a>Global operations act on all cells in the raster.</span>
-<span id="cb25-71"><a href="#cb25-71" aria-hidden="true" tabindex="-1"></a>While there are many tools for map algebra in GRASS, </span>
-<span id="cb25-72"><a href="#cb25-72" aria-hidden="true" tabindex="-1"></a>this tutorial focuses on local algebraic operations </span>
-<span id="cb25-73"><a href="#cb25-73" aria-hidden="true" tabindex="-1"></a>using the raster map calculator</span>
-<span id="cb25-74"><a href="#cb25-74" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}. </span>
-<span id="cb25-75"><a href="#cb25-75" aria-hidden="true" tabindex="-1"></a>It also briefly introduces focal operations with</span>
-<span id="cb25-76"><a href="#cb25-76" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_neighbors &gt;}},</span>
-<span id="cb25-77"><a href="#cb25-77" aria-hidden="true" tabindex="-1"></a>zonal operations using conditional statements with</span>
-<span id="cb25-78"><a href="#cb25-78" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}},</span>
-<span id="cb25-79"><a href="#cb25-79" aria-hidden="true" tabindex="-1"></a>and global operations with</span>
-<span id="cb25-80"><a href="#cb25-80" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_info &gt;}}. </span>
-<span id="cb25-81"><a href="#cb25-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-82"><a href="#cb25-82" aria-hidden="true" tabindex="-1"></a>::: {#tbl-panel layout-ncol=1}</span>
-<span id="cb25-83"><a href="#cb25-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Types  <span class="pp">|</span> Scope                          <span class="pp">|</span> Tools                                                                                                                              <span class="pp">|</span></span>
-<span id="cb25-84"><a href="#cb25-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------|</span></span>
-<span id="cb25-85"><a href="#cb25-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Local  <span class="pp">|</span> Each cell individually         <span class="pp">|</span> {{&lt; meta links.r_mapcalc &gt;}}, {{&lt; meta links.r_mapcalc_simple &gt;}}, {{&lt; meta links.r_series &gt;}}, etc...                             <span class="pp">|</span></span>
-<span id="cb25-86"><a href="#cb25-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Focal  <span class="pp">|</span> Each cell and its neighborhood <span class="pp">|</span> {{&lt; meta links.r_mapcalc &gt;}}, {{&lt; meta links.r_neighbors &gt;}}, {{&lt; meta links.r_mfilter &gt;}}, etc...                                 <span class="pp">|</span></span>
-<span id="cb25-87"><a href="#cb25-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Zonal  <span class="pp">|</span> Groups of cells                <span class="pp">|</span> {{&lt; meta links.r_mapcalc &gt;}}, {{&lt; meta links.r_clump &gt;}}, {{&lt; meta links.r_univar &gt;}}, {{&lt; meta links.r_stats_zonal &gt;}}, etc... <span class="pp">|</span></span>
-<span id="cb25-88"><a href="#cb25-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Global <span class="pp">|</span> All cells                      <span class="pp">|</span> {{&lt; meta links.r_info &gt;}}, {{&lt; meta links.r_univar &gt;}}, {{&lt; meta links.r_stats &gt;}}, {{&lt; meta links.r_report &gt;}}, etc...            <span class="pp">|</span></span>
-<span id="cb25-89"><a href="#cb25-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-90"><a href="#cb25-90" aria-hidden="true" tabindex="-1"></a>Types of map algebra operations</span>
-<span id="cb25-91"><a href="#cb25-91" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-92"><a href="#cb25-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-93"><a href="#cb25-93" aria-hidden="true" tabindex="-1"></a><span class="fu">## Raster Calculator</span></span>
-<span id="cb25-94"><a href="#cb25-94" aria-hidden="true" tabindex="-1"></a>The raster map calculator</span>
-<span id="cb25-95"><a href="#cb25-95" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
-<span id="cb25-96"><a href="#cb25-96" aria-hidden="true" tabindex="-1"></a>uses map algebra expressions to transform rasters. </span>
-<span id="cb25-97"><a href="#cb25-97" aria-hidden="true" tabindex="-1"></a>The left side of the expression is the output raster map,</span>
-<span id="cb25-98"><a href="#cb25-98" aria-hidden="true" tabindex="-1"></a>while the right side is the input syntax including</span>
-<span id="cb25-99"><a href="#cb25-99" aria-hidden="true" tabindex="-1"></a>rasters, operators, functions, and variables.</span>
-<span id="cb25-100"><a href="#cb25-100" aria-hidden="true" tabindex="-1"></a>The raster map calculator can be run</span>
-<span id="cb25-101"><a href="#cb25-101" aria-hidden="true" tabindex="-1"></a>from the graphical user interface (GUI),</span>
-<span id="cb25-102"><a href="#cb25-102" aria-hidden="true" tabindex="-1"></a>from the command line, or with Python.</span>
-<span id="cb25-103"><a href="#cb25-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-104"><a href="#cb25-104" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb25-105"><a href="#cb25-105" aria-hidden="true" tabindex="-1"></a><span class="fu">## GUI</span></span>
-<span id="cb25-106"><a href="#cb25-106" aria-hidden="true" tabindex="-1"></a><span class="al">![r.mapcalc](images/map-algebra-02.webp)</span></span>
-<span id="cb25-107"><a href="#cb25-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-108"><a href="#cb25-108" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb25-111"><a href="#cb25-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb25-112"><a href="#cb25-112" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"output = input"</span></span>
-<span id="cb25-113"><a href="#cb25-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-114"><a href="#cb25-114" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb25-117"><a href="#cb25-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb25-118"><a href="#cb25-118" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"output = input"</span>)</span>
-<span id="cb25-119"><a href="#cb25-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-120"><a href="#cb25-120" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-121"><a href="#cb25-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-122"><a href="#cb25-122" aria-hidden="true" tabindex="-1"></a>The raster calculator can be used for the simplest of tasks such as </span>
-<span id="cb25-123"><a href="#cb25-123" aria-hidden="true" tabindex="-1"></a>copying rasters, creating constant rasters, scaling rasters,</span>
-<span id="cb25-124"><a href="#cb25-124" aria-hidden="true" tabindex="-1"></a>patching rasters together, or adding rasters together.</span>
-<span id="cb25-125"><a href="#cb25-125" aria-hidden="true" tabindex="-1"></a>It can also be used for more sophisticated tasks such as </span>
-<span id="cb25-126"><a href="#cb25-126" aria-hidden="true" tabindex="-1"></a>normalizing rasters,</span>
-<span id="cb25-127"><a href="#cb25-127" aria-hidden="true" tabindex="-1"></a>processing imagery,</span>
-<span id="cb25-128"><a href="#cb25-128" aria-hidden="true" tabindex="-1"></a>calculating vegetation indices,</span>
-<span id="cb25-129"><a href="#cb25-129" aria-hidden="true" tabindex="-1"></a>implementing mathematical models,</span>
-<span id="cb25-130"><a href="#cb25-130" aria-hidden="true" tabindex="-1"></a>and generating synthetic data. </span>
-<span id="cb25-131"><a href="#cb25-131" aria-hidden="true" tabindex="-1"></a>In this tutorial, we will use map algebra to generate terrain</span>
-<span id="cb25-132"><a href="#cb25-132" aria-hidden="true" tabindex="-1"></a>with mountains, valleys, weathering, forest, plateaus, and rivers. </span>
-<span id="cb25-133"><a href="#cb25-133" aria-hidden="true" tabindex="-1"></a>We will use the following operators, functions, and internal variables:</span>
-<span id="cb25-134"><a href="#cb25-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-135"><a href="#cb25-135" aria-hidden="true" tabindex="-1"></a>::: {#tbl-panel layout-ncol=3}</span>
-<span id="cb25-136"><a href="#cb25-136" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Operator     <span class="pp">|</span> Syntax <span class="pp">|</span></span>
-<span id="cb25-137"><a href="#cb25-137" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------|--------|</span></span>
-<span id="cb25-138"><a href="#cb25-138" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Addition     <span class="pp">|</span> <span class="in">`+`</span>    <span class="pp">|</span></span>
-<span id="cb25-139"><a href="#cb25-139" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Division     <span class="pp">|</span> <span class="in">`\`</span>    <span class="pp">|</span></span>
-<span id="cb25-140"><a href="#cb25-140" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Greater than <span class="pp">|</span> <span class="in">`&gt;`</span>    <span class="pp">|</span></span>
-<span id="cb25-141"><a href="#cb25-141" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Less than    <span class="pp">|</span> <span class="in">`&lt;`</span>    <span class="pp">|</span></span>
-<span id="cb25-142"><a href="#cb25-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-143"><a href="#cb25-143" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Function       <span class="pp">|</span> Syntax      <span class="pp">|</span></span>
-<span id="cb25-144"><a href="#cb25-144" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------|-------------|</span></span>
-<span id="cb25-145"><a href="#cb25-145" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Absolute value <span class="pp">|</span> <span class="in">`abs(x)`</span>    <span class="pp">|</span></span>
-<span id="cb25-146"><a href="#cb25-146" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Random         <span class="pp">|</span> <span class="in">`rand(a,b)`</span> <span class="pp">|</span></span>
-<span id="cb25-147"><a href="#cb25-147" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> If             <span class="pp">|</span> <span class="in">`if(x)`</span>     <span class="pp">|</span></span>
-<span id="cb25-148"><a href="#cb25-148" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> If then else   <span class="pp">|</span> <span class="in">`if(x,a,b)`</span> <span class="pp">|</span></span>
-<span id="cb25-149"><a href="#cb25-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-150"><a href="#cb25-150" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Variable <span class="pp">|</span> Syntax   <span class="pp">|</span></span>
-<span id="cb25-151"><a href="#cb25-151" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|----------|</span></span>
-<span id="cb25-152"><a href="#cb25-152" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Null     <span class="pp">|</span> <span class="in">`null()`</span> <span class="pp">|</span></span>
-<span id="cb25-153"><a href="#cb25-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-154"><a href="#cb25-154" aria-hidden="true" tabindex="-1"></a>Map algebra operators, functions, and variables in this tutorial</span>
-<span id="cb25-155"><a href="#cb25-155" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-156"><a href="#cb25-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-157"><a href="#cb25-157" aria-hidden="true" tabindex="-1"></a><span class="fu"># Setup</span></span>
-<span id="cb25-158"><a href="#cb25-158" aria-hidden="true" tabindex="-1"></a>Start a GRASS session in a new project with a Cartesian (XY) coordinate system.</span>
-<span id="cb25-159"><a href="#cb25-159" aria-hidden="true" tabindex="-1"></a>Use {{&lt; meta links.g_region &gt;}}</span>
-<span id="cb25-160"><a href="#cb25-160" aria-hidden="true" tabindex="-1"></a>to set the extent and resolution of the computational region.</span>
-<span id="cb25-161"><a href="#cb25-161" aria-hidden="true" tabindex="-1"></a>Since we are working in a Cartesian coordinate system,</span>
-<span id="cb25-162"><a href="#cb25-162" aria-hidden="true" tabindex="-1"></a>we can simply create a region starting at the origin</span>
-<span id="cb25-163"><a href="#cb25-163" aria-hidden="true" tabindex="-1"></a>and extending two hundred units north and eight hundred units east.  </span>
-<span id="cb25-164"><a href="#cb25-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-165"><a href="#cb25-165" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb25-166"><a href="#cb25-166" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb25-169"><a href="#cb25-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb25-170"><a href="#cb25-170" aria-hidden="true" tabindex="-1"></a><span class="ex">g.region</span> n=200 e=800 s=0 w=0 res=1</span>
-<span id="cb25-171"><a href="#cb25-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-172"><a href="#cb25-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb25-175"><a href="#cb25-175" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb25-176"><a href="#cb25-176" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
-<span id="cb25-177"><a href="#cb25-177" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb25-178"><a href="#cb25-178" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb25-179"><a href="#cb25-179" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
-<span id="cb25-180"><a href="#cb25-180" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb25-181"><a href="#cb25-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-182"><a href="#cb25-182" aria-hidden="true" tabindex="-1"></a><span class="co"># Find GRASS Python packages</span></span>
-<span id="cb25-183"><a href="#cb25-183" aria-hidden="true" tabindex="-1"></a>sys.path.append(</span>
-<span id="cb25-184"><a href="#cb25-184" aria-hidden="true" tabindex="-1"></a>  subprocess.check_output(</span>
-<span id="cb25-185"><a href="#cb25-185" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"grass"</span>, <span class="st">"--config"</span>, <span class="st">"python_path"</span>],</span>
-<span id="cb25-186"><a href="#cb25-186" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="va">True</span></span>
-<span id="cb25-187"><a href="#cb25-187" aria-hidden="true" tabindex="-1"></a>    ).strip()</span>
-<span id="cb25-188"><a href="#cb25-188" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb25-189"><a href="#cb25-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-190"><a href="#cb25-190" aria-hidden="true" tabindex="-1"></a><span class="co"># Import GRASS packages</span></span>
-<span id="cb25-191"><a href="#cb25-191" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> grass.script <span class="im">as</span> gs</span>
-<span id="cb25-192"><a href="#cb25-192" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> grass.jupyter <span class="im">as</span> gj</span>
-<span id="cb25-193"><a href="#cb25-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-194"><a href="#cb25-194" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a temporary folder</span></span>
-<span id="cb25-195"><a href="#cb25-195" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tempfile</span>
-<span id="cb25-196"><a href="#cb25-196" aria-hidden="true" tabindex="-1"></a>temporary <span class="op">=</span> tempfile.TemporaryDirectory()</span>
-<span id="cb25-197"><a href="#cb25-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-198"><a href="#cb25-198" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a project in the temporary directory</span></span>
-<span id="cb25-199"><a href="#cb25-199" aria-hidden="true" tabindex="-1"></a>gs.create_project(path<span class="op">=</span>temporary.name, name<span class="op">=</span><span class="st">"xy"</span>)</span>
-<span id="cb25-200"><a href="#cb25-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-201"><a href="#cb25-201" aria-hidden="true" tabindex="-1"></a><span class="co"># Start GRASS in this project</span></span>
-<span id="cb25-202"><a href="#cb25-202" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> gj.init(Path(temporary.name, <span class="st">"xy"</span>))</span>
-<span id="cb25-203"><a href="#cb25-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-204"><a href="#cb25-204" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
-<span id="cb25-205"><a href="#cb25-205" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.region"</span>, n<span class="op">=</span><span class="dv">200</span>, e<span class="op">=</span><span class="dv">800</span>, s<span class="op">=</span><span class="dv">0</span>, w<span class="op">=</span><span class="dv">0</span>, res<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb25-206"><a href="#cb25-206" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-207"><a href="#cb25-207" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-208"><a href="#cb25-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-209"><a href="#cb25-209" aria-hidden="true" tabindex="-1"></a><span class="fu"># Constants</span></span>
-<span id="cb25-210"><a href="#cb25-210" aria-hidden="true" tabindex="-1"></a>We will be modeling a landscape, </span>
-<span id="cb25-211"><a href="#cb25-211" aria-hidden="true" tabindex="-1"></a>so let's start with the simplest of landforms - </span>
-<span id="cb25-212"><a href="#cb25-212" aria-hidden="true" tabindex="-1"></a>a flat plain.</span>
-<span id="cb25-213"><a href="#cb25-213" aria-hidden="true" tabindex="-1"></a>We can represent a flat plain with a constant raster</span>
-<span id="cb25-214"><a href="#cb25-214" aria-hidden="true" tabindex="-1"></a>that has the same elevation value for every cell.</span>
-<span id="cb25-215"><a href="#cb25-215" aria-hidden="true" tabindex="-1"></a>It is very easy to create constant rasters like this with map algebra. </span>
-<span id="cb25-216"><a href="#cb25-216" aria-hidden="true" tabindex="-1"></a>We will use the raster map calculator</span>
-<span id="cb25-217"><a href="#cb25-217" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
-<span id="cb25-218"><a href="#cb25-218" aria-hidden="true" tabindex="-1"></a>to create a new raster with a constant value of zero,</span>
-<span id="cb25-219"><a href="#cb25-219" aria-hidden="true" tabindex="-1"></a>representing flat terrain at mean sea level. </span>
-<span id="cb25-220"><a href="#cb25-220" aria-hidden="true" tabindex="-1"></a>In the raster map calculator,</span>
-<span id="cb25-221"><a href="#cb25-221" aria-hidden="true" tabindex="-1"></a>simply write the expression <span class="in">`elevation=0`</span></span>
-<span id="cb25-222"><a href="#cb25-222" aria-hidden="true" tabindex="-1"></a>to create a new elevation raster</span>
-<span id="cb25-223"><a href="#cb25-223" aria-hidden="true" tabindex="-1"></a>set to a constant height of zero.</span>
-<span id="cb25-224"><a href="#cb25-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-225"><a href="#cb25-225" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb25-226"><a href="#cb25-226" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb25-229"><a href="#cb25-229" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb25-230"><a href="#cb25-230" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"elevation = 0"</span></span>
-<span id="cb25-231"><a href="#cb25-231" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-232"><a href="#cb25-232" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb25-235"><a href="#cb25-235" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb25-236"><a href="#cb25-236" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
-<span id="cb25-237"><a href="#cb25-237" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = 0"</span>)</span>
-<span id="cb25-238"><a href="#cb25-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-239"><a href="#cb25-239" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb25-240"><a href="#cb25-240" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
-<span id="cb25-241"><a href="#cb25-241" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>)</span>
-<span id="cb25-242"><a href="#cb25-242" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb25-243"><a href="#cb25-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-244"><a href="#cb25-244" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-245"><a href="#cb25-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-246"><a href="#cb25-246" aria-hidden="true" tabindex="-1"></a><span class="al">![Plains](images/map-algebra-03.webp)</span></span>
-<span id="cb25-247"><a href="#cb25-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-248"><a href="#cb25-248" aria-hidden="true" tabindex="-1"></a><span class="fu"># Fractals</span></span>
-<span id="cb25-249"><a href="#cb25-249" aria-hidden="true" tabindex="-1"></a>Now let's model more interesting mountainous terrain</span>
-<span id="cb25-250"><a href="#cb25-250" aria-hidden="true" tabindex="-1"></a>as a base for the rest of the tutorial. </span>
-<span id="cb25-251"><a href="#cb25-251" aria-hidden="true" tabindex="-1"></a>Use {{&lt; meta links.r_surf_fractal &gt;}}</span>
-<span id="cb25-252"><a href="#cb25-252" aria-hidden="true" tabindex="-1"></a>to generate a fractal surface that simulates mountainous terrain.</span>
-<span id="cb25-253"><a href="#cb25-253" aria-hidden="true" tabindex="-1"></a>If you want reproducible results, set a seed. </span>
-<span id="cb25-254"><a href="#cb25-254" aria-hidden="true" tabindex="-1"></a>Find the height of the mountains by printing the elevation range with </span>
-<span id="cb25-255"><a href="#cb25-255" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_info &gt;}}.</span>
-<span id="cb25-256"><a href="#cb25-256" aria-hidden="true" tabindex="-1"></a>This report is an example of a global map algebra operation </span>
-<span id="cb25-257"><a href="#cb25-257" aria-hidden="true" tabindex="-1"></a>that acts on the entire raster.</span>
-<span id="cb25-258"><a href="#cb25-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-259"><a href="#cb25-259" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb25-260"><a href="#cb25-260" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb25-263"><a href="#cb25-263" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb25-264"><a href="#cb25-264" aria-hidden="true" tabindex="-1"></a><span class="ex">r.surf.fractal</span> output=fractal dimension=2.25</span>
-<span id="cb25-265"><a href="#cb25-265" aria-hidden="true" tabindex="-1"></a><span class="ex">r.info</span> <span class="at">-r</span> map=fractal</span>
-<span id="cb25-266"><a href="#cb25-266" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-267"><a href="#cb25-267" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb25-270"><a href="#cb25-270" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb25-271"><a href="#cb25-271" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate fractal surface</span></span>
-<span id="cb25-272"><a href="#cb25-272" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.surf.fractal"</span>, output<span class="op">=</span><span class="st">"fractal"</span>, dimension<span class="op">=</span><span class="fl">2.25</span>)</span>
-<span id="cb25-273"><a href="#cb25-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-274"><a href="#cb25-274" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb25-275"><a href="#cb25-275" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"fractal"</span>)</span>
-<span id="cb25-276"><a href="#cb25-276" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"fractal"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb25-277"><a href="#cb25-277" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb25-278"><a href="#cb25-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-279"><a href="#cb25-279" aria-hidden="true" tabindex="-1"></a><span class="co"># Print range</span></span>
-<span id="cb25-280"><a href="#cb25-280" aria-hidden="true" tabindex="-1"></a>info <span class="op">=</span> gs.read_command(<span class="st">"r.info"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"fractal"</span>, flags<span class="op">=</span><span class="st">"r"</span>)</span>
-<span id="cb25-281"><a href="#cb25-281" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(info)</span>
-<span id="cb25-282"><a href="#cb25-282" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-283"><a href="#cb25-283" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-284"><a href="#cb25-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-285"><a href="#cb25-285" aria-hidden="true" tabindex="-1"></a><span class="al">![Fractal](images/map-algebra-04.webp)</span></span>
-<span id="cb25-286"><a href="#cb25-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-287"><a href="#cb25-287" aria-hidden="true" tabindex="-1"></a><span class="fu"># Arithmetic</span></span>
-<span id="cb25-288"><a href="#cb25-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-289"><a href="#cb25-289" aria-hidden="true" tabindex="-1"></a><span class="fu">## Operations</span></span>
-<span id="cb25-290"><a href="#cb25-290" aria-hidden="true" tabindex="-1"></a>Next let's try arithmetic with map algebra.</span>
-<span id="cb25-291"><a href="#cb25-291" aria-hidden="true" tabindex="-1"></a>Since our fractal mountains are too high, </span>
-<span id="cb25-292"><a href="#cb25-292" aria-hidden="true" tabindex="-1"></a>rescale them with the raster map calculator</span>
-<span id="cb25-293"><a href="#cb25-293" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}.</span>
-<span id="cb25-294"><a href="#cb25-294" aria-hidden="true" tabindex="-1"></a>Write the expression <span class="in">`elevation = fractal / 10`</span></span>
-<span id="cb25-295"><a href="#cb25-295" aria-hidden="true" tabindex="-1"></a>to create a new elevation raster</span>
-<span id="cb25-296"><a href="#cb25-296" aria-hidden="true" tabindex="-1"></a>equal to the fractal surface divided by ten. </span>
-<span id="cb25-297"><a href="#cb25-297" aria-hidden="true" tabindex="-1"></a>This is a local map algebra operation using simple arithmetic.</span>
-<span id="cb25-298"><a href="#cb25-298" aria-hidden="true" tabindex="-1"></a>Print the rescaled elevation range with </span>
-<span id="cb25-299"><a href="#cb25-299" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_info &gt;}}.</span>
-<span id="cb25-300"><a href="#cb25-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-301"><a href="#cb25-301" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb25-302"><a href="#cb25-302" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb25-305"><a href="#cb25-305" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb25-306"><a href="#cb25-306" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"elevation = fractal / 10"</span></span>
-<span id="cb25-307"><a href="#cb25-307" aria-hidden="true" tabindex="-1"></a><span class="ex">r.colors</span> map=elevation color=elevation</span>
-<span id="cb25-308"><a href="#cb25-308" aria-hidden="true" tabindex="-1"></a><span class="ex">r.info</span> <span class="at">-r</span> map=elevation</span>
-<span id="cb25-309"><a href="#cb25-309" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-310"><a href="#cb25-310" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb25-313"><a href="#cb25-313" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb25-314"><a href="#cb25-314" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
-<span id="cb25-315"><a href="#cb25-315" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = fractal / 10"</span>)</span>
-<span id="cb25-316"><a href="#cb25-316" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, color<span class="op">=</span><span class="st">"elevation"</span>)</span>
-<span id="cb25-317"><a href="#cb25-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-318"><a href="#cb25-318" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb25-319"><a href="#cb25-319" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>)</span>
-<span id="cb25-320"><a href="#cb25-320" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"elevation"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb25-321"><a href="#cb25-321" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb25-322"><a href="#cb25-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-323"><a href="#cb25-323" aria-hidden="true" tabindex="-1"></a><span class="co"># Print range</span></span>
-<span id="cb25-324"><a href="#cb25-324" aria-hidden="true" tabindex="-1"></a>info <span class="op">=</span> gs.read_command(<span class="st">"r.info"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, flags<span class="op">=</span><span class="st">"r"</span>)</span>
-<span id="cb25-325"><a href="#cb25-325" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(info)</span>
-<span id="cb25-326"><a href="#cb25-326" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-327"><a href="#cb25-327" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-328"><a href="#cb25-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-329"><a href="#cb25-329" aria-hidden="true" tabindex="-1"></a><span class="al">![Mountains](images/map-algebra-05.webp)</span></span>
-<span id="cb25-330"><a href="#cb25-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-331"><a href="#cb25-331" aria-hidden="true" tabindex="-1"></a><span class="fu">## Functions</span></span>
-<span id="cb25-332"><a href="#cb25-332" aria-hidden="true" tabindex="-1"></a>Map algebra has arithmetic functions as well as operators.</span>
-<span id="cb25-333"><a href="#cb25-333" aria-hidden="true" tabindex="-1"></a>Let's take the absolute value of our terrain </span>
-<span id="cb25-334"><a href="#cb25-334" aria-hidden="true" tabindex="-1"></a>to model river valleys winding through our fractal mountains. </span>
-<span id="cb25-335"><a href="#cb25-335" aria-hidden="true" tabindex="-1"></a>In the raster map calculator</span>
-<span id="cb25-336"><a href="#cb25-336" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}},</span>
-<span id="cb25-337"><a href="#cb25-337" aria-hidden="true" tabindex="-1"></a>write the expression <span class="in">`elevation = abs(elevation)`</span></span>
-<span id="cb25-338"><a href="#cb25-338" aria-hidden="true" tabindex="-1"></a>to create a new elevation raster</span>
-<span id="cb25-339"><a href="#cb25-339" aria-hidden="true" tabindex="-1"></a>equal to absolute value of the fractal surface.</span>
-<span id="cb25-340"><a href="#cb25-340" aria-hidden="true" tabindex="-1"></a>Because our fractal terrain has values</span>
-<span id="cb25-341"><a href="#cb25-341" aria-hidden="true" tabindex="-1"></a>both below and above mean sea level, i.e. zero, </span>
-<span id="cb25-342"><a href="#cb25-342" aria-hidden="true" tabindex="-1"></a>taking its absolute value </span>
-<span id="cb25-343"><a href="#cb25-343" aria-hidden="true" tabindex="-1"></a>will raise the low-lying valleys into mountains. </span>
-<span id="cb25-344"><a href="#cb25-344" aria-hidden="true" tabindex="-1"></a>The elevation gradient close to zero will become river valleys</span>
-<span id="cb25-345"><a href="#cb25-345" aria-hidden="true" tabindex="-1"></a>at the feet of the mountains. </span>
-<span id="cb25-346"><a href="#cb25-346" aria-hidden="true" tabindex="-1"></a>Use {{&lt; meta links.r_colors &gt;}}</span>
-<span id="cb25-347"><a href="#cb25-347" aria-hidden="true" tabindex="-1"></a>to assign a color gradient to the elevation raster,</span>
-<span id="cb25-348"><a href="#cb25-348" aria-hidden="true" tabindex="-1"></a>ensuring that the gradient fits rescaled elevation range of the raster.</span>
-<span id="cb25-349"><a href="#cb25-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-350"><a href="#cb25-350" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb25-351"><a href="#cb25-351" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb25-354"><a href="#cb25-354" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb25-355"><a href="#cb25-355" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"elevation = abs(elevation)"</span> <span class="at">--overwrite</span></span>
-<span id="cb25-356"><a href="#cb25-356" aria-hidden="true" tabindex="-1"></a><span class="ex">r.colors</span> map=elevation color=elevation</span>
-<span id="cb25-357"><a href="#cb25-357" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-358"><a href="#cb25-358" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb25-361"><a href="#cb25-361" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb25-362"><a href="#cb25-362" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
-<span id="cb25-363"><a href="#cb25-363" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = abs(elevation)"</span>, overwrite<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb25-364"><a href="#cb25-364" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, color<span class="op">=</span><span class="st">"elevation"</span>)</span>
-<span id="cb25-365"><a href="#cb25-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-366"><a href="#cb25-366" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb25-367"><a href="#cb25-367" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>)</span>
-<span id="cb25-368"><a href="#cb25-368" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"elevation"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb25-369"><a href="#cb25-369" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb25-370"><a href="#cb25-370" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-371"><a href="#cb25-371" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-372"><a href="#cb25-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-373"><a href="#cb25-373" aria-hidden="true" tabindex="-1"></a><span class="al">![Valleys](images/map-algebra-06.webp)</span></span>
-<span id="cb25-374"><a href="#cb25-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-375"><a href="#cb25-375" aria-hidden="true" tabindex="-1"></a><span class="fu"># Neighborhoods</span></span>
-<span id="cb25-376"><a href="#cb25-376" aria-hidden="true" tabindex="-1"></a>Let's try a focal map algebra operation that acts on a neighborhood of cells.</span>
-<span id="cb25-377"><a href="#cb25-377" aria-hidden="true" tabindex="-1"></a>The easiest way to do this is with nearest neighbors analysis with </span>
-<span id="cb25-378"><a href="#cb25-378" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_neighbors &gt;}},</span>
-<span id="cb25-379"><a href="#cb25-379" aria-hidden="true" tabindex="-1"></a>but it can also be done by </span>
-<span id="cb25-380"><a href="#cb25-380" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">defining a moving window</span><span class="co">](https://grasswiki.osgeo.org/wiki/GRASS_Python_Scripting_Library#r.mapcalc_example:_defining_a_moving_window)</span></span>
-<span id="cb25-381"><a href="#cb25-381" aria-hidden="true" tabindex="-1"></a>for r.mapcalc. </span>
-<span id="cb25-382"><a href="#cb25-382" aria-hidden="true" tabindex="-1"></a>Use</span>
-<span id="cb25-383"><a href="#cb25-383" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_neighbors &gt;}}</span>
-<span id="cb25-384"><a href="#cb25-384" aria-hidden="true" tabindex="-1"></a>to smooth the elevation raster, </span>
-<span id="cb25-385"><a href="#cb25-385" aria-hidden="true" tabindex="-1"></a>simulating the weathering of old mountains. </span>
-<span id="cb25-386"><a href="#cb25-386" aria-hidden="true" tabindex="-1"></a>Set the input raster to our <span class="in">`elevation`</span> raster, </span>
-<span id="cb25-387"><a href="#cb25-387" aria-hidden="true" tabindex="-1"></a>the output raster to a new <span class="in">`weathering`</span> raster,</span>
-<span id="cb25-388"><a href="#cb25-388" aria-hidden="true" tabindex="-1"></a>the neighborhood size to <span class="in">`9`</span>,</span>
-<span id="cb25-389"><a href="#cb25-389" aria-hidden="true" tabindex="-1"></a>the method to <span class="in">`average`</span>,</span>
-<span id="cb25-390"><a href="#cb25-390" aria-hidden="true" tabindex="-1"></a>and flag <span class="in">`c`</span> for a circular neighborhood.</span>
-<span id="cb25-391"><a href="#cb25-391" aria-hidden="true" tabindex="-1"></a>This will create a circular moving window nine pixels wide</span>
-<span id="cb25-392"><a href="#cb25-392" aria-hidden="true" tabindex="-1"></a>that moves from cell to cell across the raster.</span>
-<span id="cb25-393"><a href="#cb25-393" aria-hidden="true" tabindex="-1"></a>The moving window will calculate the average value</span>
-<span id="cb25-394"><a href="#cb25-394" aria-hidden="true" tabindex="-1"></a>of the neighborhood of cells around each cell,</span>
-<span id="cb25-395"><a href="#cb25-395" aria-hidden="true" tabindex="-1"></a>smoothing the raster. </span>
-<span id="cb25-396"><a href="#cb25-396" aria-hidden="true" tabindex="-1"></a>The size of the moving window,</span>
-<span id="cb25-397"><a href="#cb25-397" aria-hidden="true" tabindex="-1"></a>which must be an odd integer value of three or greater,</span>
-<span id="cb25-398"><a href="#cb25-398" aria-hidden="true" tabindex="-1"></a>determines the degree of smoothing. </span>
-<span id="cb25-399"><a href="#cb25-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-400"><a href="#cb25-400" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb25-401"><a href="#cb25-401" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb25-404"><a href="#cb25-404" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb25-405"><a href="#cb25-405" aria-hidden="true" tabindex="-1"></a><span class="ex">r.neighbors</span> <span class="at">-c</span> input=elevation output=weathering size=9</span>
-<span id="cb25-406"><a href="#cb25-406" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-407"><a href="#cb25-407" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb25-410"><a href="#cb25-410" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb25-411"><a href="#cb25-411" aria-hidden="true" tabindex="-1"></a><span class="co"># Nearest neighbors</span></span>
-<span id="cb25-412"><a href="#cb25-412" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
-<span id="cb25-413"><a href="#cb25-413" aria-hidden="true" tabindex="-1"></a>  <span class="st">"r.neighbors"</span>,</span>
-<span id="cb25-414"><a href="#cb25-414" aria-hidden="true" tabindex="-1"></a>  <span class="bu">input</span><span class="op">=</span><span class="st">"elevation"</span>,</span>
-<span id="cb25-415"><a href="#cb25-415" aria-hidden="true" tabindex="-1"></a>  output<span class="op">=</span><span class="st">"weathering"</span>,</span>
-<span id="cb25-416"><a href="#cb25-416" aria-hidden="true" tabindex="-1"></a>  size<span class="op">=</span><span class="dv">9</span>,</span>
-<span id="cb25-417"><a href="#cb25-417" aria-hidden="true" tabindex="-1"></a>  method<span class="op">=</span><span class="st">"average"</span>,</span>
-<span id="cb25-418"><a href="#cb25-418" aria-hidden="true" tabindex="-1"></a>  flags<span class="op">=</span><span class="st">"c"</span>,</span>
-<span id="cb25-419"><a href="#cb25-419" aria-hidden="true" tabindex="-1"></a>  overwrite<span class="op">=</span><span class="va">True</span></span>
-<span id="cb25-420"><a href="#cb25-420" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb25-421"><a href="#cb25-421" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-422"><a href="#cb25-422" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb25-423"><a href="#cb25-423" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"weathering"</span>)</span>
-<span id="cb25-424"><a href="#cb25-424" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"weathering"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb25-425"><a href="#cb25-425" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb25-426"><a href="#cb25-426" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-427"><a href="#cb25-427" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-428"><a href="#cb25-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-429"><a href="#cb25-429" aria-hidden="true" tabindex="-1"></a><span class="al">![Weathering](images/map-algebra-07.webp)</span></span>
-<span id="cb25-430"><a href="#cb25-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-431"><a href="#cb25-431" aria-hidden="true" tabindex="-1"></a><span class="fu"># Randomness</span></span>
-<span id="cb25-432"><a href="#cb25-432" aria-hidden="true" tabindex="-1"></a>We can use map algebra to inject randomness in our raster data. </span>
-<span id="cb25-433"><a href="#cb25-433" aria-hidden="true" tabindex="-1"></a>Use the raster map calculator</span>
-<span id="cb25-434"><a href="#cb25-434" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
-<span id="cb25-435"><a href="#cb25-435" aria-hidden="true" tabindex="-1"></a>to generate a random surface,</span>
-<span id="cb25-436"><a href="#cb25-436" aria-hidden="true" tabindex="-1"></a>simulating the height of the forest canopy.</span>
-<span id="cb25-437"><a href="#cb25-437" aria-hidden="true" tabindex="-1"></a>Write the expression <span class="in">`random = rand(0.0, 10.0)`</span></span>
-<span id="cb25-438"><a href="#cb25-438" aria-hidden="true" tabindex="-1"></a>to create a new random raster</span>
-<span id="cb25-439"><a href="#cb25-439" aria-hidden="true" tabindex="-1"></a>with random floating point values between zero and ten</span>
-<span id="cb25-440"><a href="#cb25-440" aria-hidden="true" tabindex="-1"></a>assigned to each cell. </span>
-<span id="cb25-441"><a href="#cb25-441" aria-hidden="true" tabindex="-1"></a>For easily reproducible results,</span>
-<span id="cb25-442"><a href="#cb25-442" aria-hidden="true" tabindex="-1"></a>set a fixed seed for the pseudo-random number generator. </span>
-<span id="cb25-443"><a href="#cb25-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-444"><a href="#cb25-444" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb25-445"><a href="#cb25-445" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb25-448"><a href="#cb25-448" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb25-449"><a href="#cb25-449" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"random = rand(0.0, 10.0)"</span> seed=0</span>
-<span id="cb25-450"><a href="#cb25-450" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-451"><a href="#cb25-451" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb25-454"><a href="#cb25-454" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb25-455"><a href="#cb25-455" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random surface</span></span>
-<span id="cb25-456"><a href="#cb25-456" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"random = rand(0.0, 10.0)"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb25-457"><a href="#cb25-457" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-458"><a href="#cb25-458" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb25-459"><a href="#cb25-459" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"random"</span>)</span>
-<span id="cb25-460"><a href="#cb25-460" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"random"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb25-461"><a href="#cb25-461" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb25-462"><a href="#cb25-462" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-463"><a href="#cb25-463" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-464"><a href="#cb25-464" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-465"><a href="#cb25-465" aria-hidden="true" tabindex="-1"></a><span class="al">![Randomness](images/map-algebra-08.webp)</span></span>
-<span id="cb25-466"><a href="#cb25-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-467"><a href="#cb25-467" aria-hidden="true" tabindex="-1"></a>Use the raster map calculator</span>
-<span id="cb25-468"><a href="#cb25-468" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
-<span id="cb25-469"><a href="#cb25-469" aria-hidden="true" tabindex="-1"></a>to add the height of the forest canopy to the elevation gradient,</span>
-<span id="cb25-470"><a href="#cb25-470" aria-hidden="true" tabindex="-1"></a>simulating the forested terrain. </span>
-<span id="cb25-471"><a href="#cb25-471" aria-hidden="true" tabindex="-1"></a>Write the expression <span class="in">`forest = elevation + random`</span></span>
-<span id="cb25-472"><a href="#cb25-472" aria-hidden="true" tabindex="-1"></a>to create a new raster equal to </span>
-<span id="cb25-473"><a href="#cb25-473" aria-hidden="true" tabindex="-1"></a>the sum of the elevation raster</span>
-<span id="cb25-474"><a href="#cb25-474" aria-hidden="true" tabindex="-1"></a>and the random surface.</span>
-<span id="cb25-475"><a href="#cb25-475" aria-hidden="true" tabindex="-1"></a>This is a local map algebra operation</span>
-<span id="cb25-476"><a href="#cb25-476" aria-hidden="true" tabindex="-1"></a>using basic arithmetic </span>
-<span id="cb25-477"><a href="#cb25-477" aria-hidden="true" tabindex="-1"></a>between two rasters.</span>
-<span id="cb25-478"><a href="#cb25-478" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-479"><a href="#cb25-479" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb25-480"><a href="#cb25-480" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb25-483"><a href="#cb25-483" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb25-484"><a href="#cb25-484" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"forest = elevation + random"</span></span>
-<span id="cb25-485"><a href="#cb25-485" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-486"><a href="#cb25-486" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb25-489"><a href="#cb25-489" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb25-490"><a href="#cb25-490" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
-<span id="cb25-491"><a href="#cb25-491" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"forest = elevation + random"</span>)</span>
-<span id="cb25-492"><a href="#cb25-492" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-493"><a href="#cb25-493" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb25-494"><a href="#cb25-494" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"forest"</span>)</span>
-<span id="cb25-495"><a href="#cb25-495" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"forest"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb25-496"><a href="#cb25-496" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb25-497"><a href="#cb25-497" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-498"><a href="#cb25-498" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-499"><a href="#cb25-499" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-500"><a href="#cb25-500" aria-hidden="true" tabindex="-1"></a><span class="al">![Forests](images/map-algebra-09.webp)</span></span>
-<span id="cb25-501"><a href="#cb25-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-502"><a href="#cb25-502" aria-hidden="true" tabindex="-1"></a><span class="fu"># Logic</span></span>
-<span id="cb25-503"><a href="#cb25-503" aria-hidden="true" tabindex="-1"></a>We can use logical statements in map algebra</span>
-<span id="cb25-504"><a href="#cb25-504" aria-hidden="true" tabindex="-1"></a>that test whether given conditions are true or false.</span>
-<span id="cb25-505"><a href="#cb25-505" aria-hidden="true" tabindex="-1"></a>In the raster map calculator, </span>
-<span id="cb25-506"><a href="#cb25-506" aria-hidden="true" tabindex="-1"></a>we can use the function <span class="in">`if(x,a,b)`</span></span>
-<span id="cb25-507"><a href="#cb25-507" aria-hidden="true" tabindex="-1"></a>to evaluate **if** cells meet condition <span class="in">`x`</span>,</span>
-<span id="cb25-508"><a href="#cb25-508" aria-hidden="true" tabindex="-1"></a>**then** do `a`, **else** do <span class="in">`b`</span>. </span>
-<span id="cb25-509"><a href="#cb25-509" aria-hidden="true" tabindex="-1"></a>In this tutorial,</span>
-<span id="cb25-510"><a href="#cb25-510" aria-hidden="true" tabindex="-1"></a>we will use <span class="in">`if then else`</span> statements</span>
-<span id="cb25-511"><a href="#cb25-511" aria-hidden="true" tabindex="-1"></a>to model plateaus and rivers. </span>
-<span id="cb25-512"><a href="#cb25-512" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-513"><a href="#cb25-513" aria-hidden="true" tabindex="-1"></a><span class="al">![Logic in map algebra](images/map-algebra-01.svg)</span></span>
-<span id="cb25-514"><a href="#cb25-514" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-515"><a href="#cb25-515" aria-hidden="true" tabindex="-1"></a>::: {#tbl-panel layout-ncol=1}</span>
-<span id="cb25-516"><a href="#cb25-516" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Logical Operator      <span class="pp">|</span> Syntax <span class="pp">|</span></span>
-<span id="cb25-517"><a href="#cb25-517" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------------------|--------|</span></span>
-<span id="cb25-518"><a href="#cb25-518" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Greater than          <span class="pp">|</span> <span class="in">`&gt;`</span>    <span class="pp">|</span></span>
-<span id="cb25-519"><a href="#cb25-519" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Less than             <span class="pp">|</span> <span class="in">`&lt;`</span>    <span class="pp">|</span></span>
-<span id="cb25-520"><a href="#cb25-520" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Greater than or equal <span class="pp">|</span> <span class="in">`&gt;=`</span>   <span class="pp">|</span></span>
-<span id="cb25-521"><a href="#cb25-521" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Less than or equal    <span class="pp">|</span> <span class="in">`&lt;=`</span>   <span class="pp">|</span></span>
-<span id="cb25-522"><a href="#cb25-522" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Equal                 <span class="pp">|</span> <span class="in">`=`</span>    <span class="pp">|</span></span>
-<span id="cb25-523"><a href="#cb25-523" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Not equal             <span class="pp">|</span> <span class="in">`!=`</span>   <span class="pp">|</span></span>
-<span id="cb25-524"><a href="#cb25-524" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Logical and           <span class="pp">|</span> <span class="in">`&amp;&amp;`</span>   <span class="pp">|</span></span>
-<span id="cb25-525"><a href="#cb25-525" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Logical or            <span class="pp">|</span> <span class="in">`||`</span>   <span class="pp">|</span></span>
-<span id="cb25-526"><a href="#cb25-526" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-527"><a href="#cb25-527" aria-hidden="true" tabindex="-1"></a>Logical operators</span>
-<span id="cb25-528"><a href="#cb25-528" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-529"><a href="#cb25-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-530"><a href="#cb25-530" aria-hidden="true" tabindex="-1"></a><span class="fu">## If statements</span></span>
-<span id="cb25-531"><a href="#cb25-531" aria-hidden="true" tabindex="-1"></a>Let's use logic in map algebra to transform the mountain peaks into plateaus.</span>
-<span id="cb25-532"><a href="#cb25-532" aria-hidden="true" tabindex="-1"></a>First use the raster map calculator</span>
-<span id="cb25-533"><a href="#cb25-533" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
-<span id="cb25-534"><a href="#cb25-534" aria-hidden="true" tabindex="-1"></a>with an <span class="in">`if`</span> statement to find all cells with an elevation above thirty. </span>
-<span id="cb25-535"><a href="#cb25-535" aria-hidden="true" tabindex="-1"></a>Write the expression <span class="in">`plateaus = if(elevation &gt; 30)`</span>.</span>
-<span id="cb25-536"><a href="#cb25-536" aria-hidden="true" tabindex="-1"></a>Simple if statements with the form <span class="in">`if(x)`</span></span>
-<span id="cb25-537"><a href="#cb25-537" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>where <span class="in">`x`</span> is an equality or inequality statement -</span>
-<span id="cb25-538"><a href="#cb25-538" aria-hidden="true" tabindex="-1"></a>return a raster with ones where the statement is true</span>
-<span id="cb25-539"><a href="#cb25-539" aria-hidden="true" tabindex="-1"></a>and zeros where it is false.</span>
-<span id="cb25-540"><a href="#cb25-540" aria-hidden="true" tabindex="-1"></a>So this expression will return a new raster </span>
-<span id="cb25-541"><a href="#cb25-541" aria-hidden="true" tabindex="-1"></a>with ones where the plateaus will be</span>
-<span id="cb25-542"><a href="#cb25-542" aria-hidden="true" tabindex="-1"></a>and zeros elsewhere. </span>
-<span id="cb25-543"><a href="#cb25-543" aria-hidden="true" tabindex="-1"></a>This is a zonal map algebra operation</span>
-<span id="cb25-544"><a href="#cb25-544" aria-hidden="true" tabindex="-1"></a>using logic to isolate a zone of cells.</span>
-<span id="cb25-545"><a href="#cb25-545" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-546"><a href="#cb25-546" aria-hidden="true" tabindex="-1"></a><span class="al">![If statement diagram](images/map-algebra-02.svg)</span></span>
-<span id="cb25-547"><a href="#cb25-547" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-548"><a href="#cb25-548" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb25-549"><a href="#cb25-549" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb25-552"><a href="#cb25-552" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb25-553"><a href="#cb25-553" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"plateaus = if(elevation &gt; 30)"</span></span>
-<span id="cb25-554"><a href="#cb25-554" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-555"><a href="#cb25-555" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb25-558"><a href="#cb25-558" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb25-559"><a href="#cb25-559" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
-<span id="cb25-560"><a href="#cb25-560" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"plateaus = if(elevation &gt; 30)"</span>)</span>
-<span id="cb25-561"><a href="#cb25-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-562"><a href="#cb25-562" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb25-563"><a href="#cb25-563" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"plateaus"</span>)</span>
-<span id="cb25-564"><a href="#cb25-564" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb25-565"><a href="#cb25-565" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-566"><a href="#cb25-566" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-567"><a href="#cb25-567" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-568"><a href="#cb25-568" aria-hidden="true" tabindex="-1"></a><span class="al">![Zones](images/map-algebra-10.webp)</span></span>
-<span id="cb25-569"><a href="#cb25-569" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-570"><a href="#cb25-570" aria-hidden="true" tabindex="-1"></a><span class="fu">## If then else statements</span></span>
-<span id="cb25-571"><a href="#cb25-571" aria-hidden="true" tabindex="-1"></a>Now use the raster map calculator</span>
-<span id="cb25-572"><a href="#cb25-572" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
-<span id="cb25-573"><a href="#cb25-573" aria-hidden="true" tabindex="-1"></a>to model the plateaus using an <span class="in">`if then else`</span> statement. </span>
-<span id="cb25-574"><a href="#cb25-574" aria-hidden="true" tabindex="-1"></a>In map algebra, the syntax for these logical statements is <span class="in">`if(x, a, b)`</span> </span>
-<span id="cb25-575"><a href="#cb25-575" aria-hidden="true" tabindex="-1"></a>where if the relational statement <span class="in">`x`</span> is true, then do <span class="in">`a`</span>, else do <span class="in">`b`</span>.</span>
-<span id="cb25-576"><a href="#cb25-576" aria-hidden="true" tabindex="-1"></a>Write the expression <span class="in">`elevation = if(elevation &gt; 30, 30, elevation)`</span>.</span>
-<span id="cb25-577"><a href="#cb25-577" aria-hidden="true" tabindex="-1"></a>All cells with elevation values greater than 30</span>
-<span id="cb25-578"><a href="#cb25-578" aria-hidden="true" tabindex="-1"></a>will be assigned a value of 30, </span>
-<span id="cb25-579"><a href="#cb25-579" aria-hidden="true" tabindex="-1"></a>while all other cells will keep their original values.</span>
-<span id="cb25-580"><a href="#cb25-580" aria-hidden="true" tabindex="-1"></a>This will flatten all of the mountain peaks above the threshold of 30,</span>
-<span id="cb25-581"><a href="#cb25-581" aria-hidden="true" tabindex="-1"></a>forming plateaus. </span>
-<span id="cb25-582"><a href="#cb25-582" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-583"><a href="#cb25-583" aria-hidden="true" tabindex="-1"></a><span class="al">![If then else statement diagram](images/map-algebra-03.svg)</span></span>
-<span id="cb25-584"><a href="#cb25-584" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-585"><a href="#cb25-585" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb25-586"><a href="#cb25-586" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb25-589"><a href="#cb25-589" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb25-590"><a href="#cb25-590" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"elevation = if(elevation &gt; 30, 30, elevation)"</span> <span class="at">--overwrite</span></span>
-<span id="cb25-591"><a href="#cb25-591" aria-hidden="true" tabindex="-1"></a><span class="ex">r.colors</span> map=elevation color=elevation</span>
-<span id="cb25-592"><a href="#cb25-592" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-593"><a href="#cb25-593" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb25-596"><a href="#cb25-596" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb25-597"><a href="#cb25-597" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
-<span id="cb25-598"><a href="#cb25-598" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = if(elevation &gt; 30, 30, elevation)"</span>, overwrite<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb25-599"><a href="#cb25-599" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, color<span class="op">=</span><span class="st">"elevation"</span>)</span>
-<span id="cb25-600"><a href="#cb25-600" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-601"><a href="#cb25-601" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb25-602"><a href="#cb25-602" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>)</span>
-<span id="cb25-603"><a href="#cb25-603" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"elevation"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb25-604"><a href="#cb25-604" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb25-605"><a href="#cb25-605" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-606"><a href="#cb25-606" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-607"><a href="#cb25-607" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-608"><a href="#cb25-608" aria-hidden="true" tabindex="-1"></a><span class="al">![Plateaus](images/map-algebra-11.webp)</span></span>
-<span id="cb25-609"><a href="#cb25-609" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-610"><a href="#cb25-610" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complex expressions</span></span>
-<span id="cb25-611"><a href="#cb25-611" aria-hidden="true" tabindex="-1"></a>Use map algebra to model a river that fills the valleys.</span>
-<span id="cb25-612"><a href="#cb25-612" aria-hidden="true" tabindex="-1"></a>With the raster map calculator</span>
-<span id="cb25-613"><a href="#cb25-613" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
-<span id="cb25-614"><a href="#cb25-614" aria-hidden="true" tabindex="-1"></a>write the expression <span class="in">`river = if(elevation &lt; 6, 6 - elevation, null())`</span></span>
-<span id="cb25-615"><a href="#cb25-615" aria-hidden="true" tabindex="-1"></a>to simulate the depth of the river. </span>
-<span id="cb25-616"><a href="#cb25-616" aria-hidden="true" tabindex="-1"></a>This is a more complicated map algebra expression</span>
-<span id="cb25-617"><a href="#cb25-617" aria-hidden="true" tabindex="-1"></a>that combines logic with an <span class="in">`if then else`</span> statement,</span>
-<span id="cb25-618"><a href="#cb25-618" aria-hidden="true" tabindex="-1"></a>arithmetical operations between rasters,</span>
-<span id="cb25-619"><a href="#cb25-619" aria-hidden="true" tabindex="-1"></a>and the internal variable <span class="in">`null()`</span>.</span>
-<span id="cb25-620"><a href="#cb25-620" aria-hidden="true" tabindex="-1"></a>If cells in the elevation raster </span>
-<span id="cb25-621"><a href="#cb25-621" aria-hidden="true" tabindex="-1"></a>have values less than six,</span>
-<span id="cb25-622"><a href="#cb25-622" aria-hidden="true" tabindex="-1"></a>then they will be assigned the difference</span>
-<span id="cb25-623"><a href="#cb25-623" aria-hidden="true" tabindex="-1"></a>between six and the elevation raster, </span>
-<span id="cb25-624"><a href="#cb25-624" aria-hidden="true" tabindex="-1"></a>else they will be assigned null values. </span>
-<span id="cb25-625"><a href="#cb25-625" aria-hidden="true" tabindex="-1"></a>Then use {{&lt; meta links.r_colors &gt;}}</span>
-<span id="cb25-626"><a href="#cb25-626" aria-hidden="true" tabindex="-1"></a>to assign the <span class="in">`water`</span> color gradient to the river raster.</span>
-<span id="cb25-627"><a href="#cb25-627" aria-hidden="true" tabindex="-1"></a>The null cells will be transparent, </span>
-<span id="cb25-628"><a href="#cb25-628" aria-hidden="true" tabindex="-1"></a>so the river depth raster can be layered over the elevation raster.</span>
-<span id="cb25-629"><a href="#cb25-629" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-630"><a href="#cb25-630" aria-hidden="true" tabindex="-1"></a><span class="al">![Complex expression diagram](images/map-algebra-04.svg)</span></span>
-<span id="cb25-631"><a href="#cb25-631" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-632"><a href="#cb25-632" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb25-633"><a href="#cb25-633" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb25-636"><a href="#cb25-636" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb25-637"><a href="#cb25-637" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"rivers = if(elevation &lt; 6, 6 - elevation, null())"</span></span>
-<span id="cb25-638"><a href="#cb25-638" aria-hidden="true" tabindex="-1"></a><span class="ex">r.colors</span> map=rivers color=water</span>
-<span id="cb25-639"><a href="#cb25-639" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-640"><a href="#cb25-640" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb25-643"><a href="#cb25-643" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb25-644"><a href="#cb25-644" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
-<span id="cb25-645"><a href="#cb25-645" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"rivers = if(elevation &lt; 6, 6 - elevation, null())"</span>)</span>
-<span id="cb25-646"><a href="#cb25-646" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"rivers"</span>, color<span class="op">=</span><span class="st">"water"</span>)</span>
-<span id="cb25-647"><a href="#cb25-647" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-648"><a href="#cb25-648" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb25-649"><a href="#cb25-649" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>)</span>
-<span id="cb25-650"><a href="#cb25-650" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"rivers"</span>)</span>
-<span id="cb25-651"><a href="#cb25-651" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"rivers"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb25-652"><a href="#cb25-652" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb25-653"><a href="#cb25-653" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb25-654"><a href="#cb25-654" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb25-655"><a href="#cb25-655" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-656"><a href="#cb25-656" aria-hidden="true" tabindex="-1"></a><span class="al">![Rivers](images/map-algebra-12.webp)</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="an">links:</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co">  g_region: "[g.region](https://grass.osgeo.org/grass-stable/manuals/g.region.html)"</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">  r_mapcalc: "[r.mapcalc](https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html)"</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">  r_mapcalc_simple: "[r.mapcalc.simple](https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.simple.html)"</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">  r_series: "[r.series](https://grass.osgeo.org/grass-stable/manuals/r.series.html)"</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co">  r_neighbors: "[r.neighbors](https://grass.osgeo.org/grass-stable/manuals/r.neighbors.html)"</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co">  r_mfilter: "[r.mfilter](https://grass.osgeo.org/grass-stable/manuals/r.mfilter.html)"</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co">  r_clump: "[r.clump](https://grass.osgeo.org/grass-stable/manuals/r.clump.html)"</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="co">  r_univar: "[r.univar](https://grass.osgeo.org/grass-stable/manuals/r.univar.html)"</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co">  r_statistics: "[r.statistics](https://grass.osgeo.org/grass-stable/manuals/r.statistics.html)"</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="co">  r_stats: "[r.stats](https://grass.osgeo.org/grass-stable/manuals/r.stats.html)"</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="co">  r_stats_zonal: "[r.stats.zonal](https://grass.osgeo.org/grass-stable/manuals/r.stats.zonal.html)"</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="co">  r_info: "[r.info](https://grass.osgeo.org/grass-stable/manuals/r.info.html)"</span></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="co">  r_report: "[r.report](https://grass.osgeo.org/grass-stable/manuals/r.report.html)"</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="co">  r_colors: "[r.colors](https://grass.osgeo.org/grass-stable/manuals/r.colors.html)"</span></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="co">  r_surf_fractal: "[r.surf.fractal](https://grass.osgeo.org/grass-stable/manuals/r.surf.fractal.html)"</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="an">code-links:</span></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="co">  - text: Jupyter notebook</span></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="co">    href: basic-map-algebra.ipynb</span></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="co">    icon: file-code</span></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a><span class="co">    target: _blank</span></span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="an">resources:</span><span class="co"> basic-map-algebra.ipynb</span></span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> jupyter</span></span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: false</span></span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a><span class="al">![Terrain modeled with map algebra](images/map-algebra-01.webp)</span></span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="Computational notebook"}</span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>This tutorial can be run as a computational notebook.</span>
+<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a>Learn how to work with notebooks with the tutorial</span>
+<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Get started with GRASS &amp; Python in Jupyter Notebooks</span><span class="co">](https://grass-tutorials.osgeo.org/content/tutorials/get_started/fast_track_grass_and_python.html)</span>.</span>
+<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb25-56"><a href="#cb25-56" aria-hidden="true" tabindex="-1"></a>This tutorial is a gentle introduction </span>
+<span id="cb25-57"><a href="#cb25-57" aria-hidden="true" tabindex="-1"></a>to the basics of map algebra in GRASS. </span>
+<span id="cb25-58"><a href="#cb25-58" aria-hidden="true" tabindex="-1"></a>You will begin to learn how to think procedurally </span>
+<span id="cb25-59"><a href="#cb25-59" aria-hidden="true" tabindex="-1"></a>about space using math, logic, and flow control. </span>
+<span id="cb25-60"><a href="#cb25-60" aria-hidden="true" tabindex="-1"></a>Map algebra is an algebraic approach</span>
+<span id="cb25-61"><a href="#cb25-61" aria-hidden="true" tabindex="-1"></a>to modeling fields of data such as rasters.</span>
+<span id="cb25-62"><a href="#cb25-62" aria-hidden="true" tabindex="-1"></a>It can be used to create, summarize, transform, </span>
+<span id="cb25-63"><a href="#cb25-63" aria-hidden="true" tabindex="-1"></a>or combine multiple rasters. </span>
+<span id="cb25-64"><a href="#cb25-64" aria-hidden="true" tabindex="-1"></a>Algebraic operations on raster maps can be classified </span>
+<span id="cb25-65"><a href="#cb25-65" aria-hidden="true" tabindex="-1"></a>as local, focal, zonal, or global.</span>
+<span id="cb25-66"><a href="#cb25-66" aria-hidden="true" tabindex="-1"></a>Local operations act on each raster cell in isolation.</span>
+<span id="cb25-67"><a href="#cb25-67" aria-hidden="true" tabindex="-1"></a>Focal operations act on a neighborhood around each cell.</span>
+<span id="cb25-68"><a href="#cb25-68" aria-hidden="true" tabindex="-1"></a>Zonal operations act on groups of cells. </span>
+<span id="cb25-69"><a href="#cb25-69" aria-hidden="true" tabindex="-1"></a>Global operations act on all cells in the raster.</span>
+<span id="cb25-70"><a href="#cb25-70" aria-hidden="true" tabindex="-1"></a>While there are many tools for map algebra in GRASS, </span>
+<span id="cb25-71"><a href="#cb25-71" aria-hidden="true" tabindex="-1"></a>this tutorial focuses on local algebraic operations </span>
+<span id="cb25-72"><a href="#cb25-72" aria-hidden="true" tabindex="-1"></a>using the raster map calculator</span>
+<span id="cb25-73"><a href="#cb25-73" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}. </span>
+<span id="cb25-74"><a href="#cb25-74" aria-hidden="true" tabindex="-1"></a>It also briefly introduces focal operations with</span>
+<span id="cb25-75"><a href="#cb25-75" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_neighbors &gt;}},</span>
+<span id="cb25-76"><a href="#cb25-76" aria-hidden="true" tabindex="-1"></a>zonal operations using conditional statements with</span>
+<span id="cb25-77"><a href="#cb25-77" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}},</span>
+<span id="cb25-78"><a href="#cb25-78" aria-hidden="true" tabindex="-1"></a>and global operations with</span>
+<span id="cb25-79"><a href="#cb25-79" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_info &gt;}}. </span>
+<span id="cb25-80"><a href="#cb25-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-81"><a href="#cb25-81" aria-hidden="true" tabindex="-1"></a>::: {#tbl-panel layout-ncol=1}</span>
+<span id="cb25-82"><a href="#cb25-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Types  <span class="pp">|</span> Scope                          <span class="pp">|</span> Tools                                                                                                                              <span class="pp">|</span></span>
+<span id="cb25-83"><a href="#cb25-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------|</span></span>
+<span id="cb25-84"><a href="#cb25-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Local  <span class="pp">|</span> Each cell individually         <span class="pp">|</span> {{&lt; meta links.r_mapcalc &gt;}}, {{&lt; meta links.r_mapcalc_simple &gt;}}, {{&lt; meta links.r_series &gt;}}, etc...                             <span class="pp">|</span></span>
+<span id="cb25-85"><a href="#cb25-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Focal  <span class="pp">|</span> Each cell and its neighborhood <span class="pp">|</span> {{&lt; meta links.r_mapcalc &gt;}}, {{&lt; meta links.r_neighbors &gt;}}, {{&lt; meta links.r_mfilter &gt;}}, etc...                                 <span class="pp">|</span></span>
+<span id="cb25-86"><a href="#cb25-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Zonal  <span class="pp">|</span> Groups of cells                <span class="pp">|</span> {{&lt; meta links.r_mapcalc &gt;}}, {{&lt; meta links.r_clump &gt;}}, {{&lt; meta links.r_univar &gt;}}, {{&lt; meta links.r_stats_zonal &gt;}}, etc... <span class="pp">|</span></span>
+<span id="cb25-87"><a href="#cb25-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Global <span class="pp">|</span> All cells                      <span class="pp">|</span> {{&lt; meta links.r_info &gt;}}, {{&lt; meta links.r_univar &gt;}}, {{&lt; meta links.r_stats &gt;}}, {{&lt; meta links.r_report &gt;}}, etc...            <span class="pp">|</span></span>
+<span id="cb25-88"><a href="#cb25-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-89"><a href="#cb25-89" aria-hidden="true" tabindex="-1"></a>Types of map algebra operations</span>
+<span id="cb25-90"><a href="#cb25-90" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-91"><a href="#cb25-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-92"><a href="#cb25-92" aria-hidden="true" tabindex="-1"></a><span class="fu">## Raster Calculator</span></span>
+<span id="cb25-93"><a href="#cb25-93" aria-hidden="true" tabindex="-1"></a>The raster map calculator</span>
+<span id="cb25-94"><a href="#cb25-94" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
+<span id="cb25-95"><a href="#cb25-95" aria-hidden="true" tabindex="-1"></a>uses map algebra expressions to transform rasters. </span>
+<span id="cb25-96"><a href="#cb25-96" aria-hidden="true" tabindex="-1"></a>The left side of the expression is the output raster map,</span>
+<span id="cb25-97"><a href="#cb25-97" aria-hidden="true" tabindex="-1"></a>while the right side is the input syntax including</span>
+<span id="cb25-98"><a href="#cb25-98" aria-hidden="true" tabindex="-1"></a>rasters, operators, functions, and variables.</span>
+<span id="cb25-99"><a href="#cb25-99" aria-hidden="true" tabindex="-1"></a>The raster map calculator can be run</span>
+<span id="cb25-100"><a href="#cb25-100" aria-hidden="true" tabindex="-1"></a>from the graphical user interface (GUI),</span>
+<span id="cb25-101"><a href="#cb25-101" aria-hidden="true" tabindex="-1"></a>from the command line, or with Python.</span>
+<span id="cb25-102"><a href="#cb25-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-103"><a href="#cb25-103" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb25-104"><a href="#cb25-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## GUI</span></span>
+<span id="cb25-105"><a href="#cb25-105" aria-hidden="true" tabindex="-1"></a><span class="al">![r.mapcalc](images/map-algebra-02.webp)</span></span>
+<span id="cb25-106"><a href="#cb25-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-107"><a href="#cb25-107" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb25-110"><a href="#cb25-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb25-111"><a href="#cb25-111" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"output = input"</span></span>
+<span id="cb25-112"><a href="#cb25-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-113"><a href="#cb25-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb25-116"><a href="#cb25-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb25-117"><a href="#cb25-117" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"output = input"</span>)</span>
+<span id="cb25-118"><a href="#cb25-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-119"><a href="#cb25-119" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-120"><a href="#cb25-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-121"><a href="#cb25-121" aria-hidden="true" tabindex="-1"></a>The raster calculator can be used for the simplest of tasks such as </span>
+<span id="cb25-122"><a href="#cb25-122" aria-hidden="true" tabindex="-1"></a>copying rasters, creating constant rasters, scaling rasters,</span>
+<span id="cb25-123"><a href="#cb25-123" aria-hidden="true" tabindex="-1"></a>patching rasters together, or adding rasters together.</span>
+<span id="cb25-124"><a href="#cb25-124" aria-hidden="true" tabindex="-1"></a>It can also be used for more sophisticated tasks such as </span>
+<span id="cb25-125"><a href="#cb25-125" aria-hidden="true" tabindex="-1"></a>normalizing rasters,</span>
+<span id="cb25-126"><a href="#cb25-126" aria-hidden="true" tabindex="-1"></a>processing imagery,</span>
+<span id="cb25-127"><a href="#cb25-127" aria-hidden="true" tabindex="-1"></a>calculating vegetation indices,</span>
+<span id="cb25-128"><a href="#cb25-128" aria-hidden="true" tabindex="-1"></a>implementing mathematical models,</span>
+<span id="cb25-129"><a href="#cb25-129" aria-hidden="true" tabindex="-1"></a>and generating synthetic data. </span>
+<span id="cb25-130"><a href="#cb25-130" aria-hidden="true" tabindex="-1"></a>In this tutorial, we will use map algebra to generate terrain</span>
+<span id="cb25-131"><a href="#cb25-131" aria-hidden="true" tabindex="-1"></a>with mountains, valleys, weathering, forest, plateaus, and rivers. </span>
+<span id="cb25-132"><a href="#cb25-132" aria-hidden="true" tabindex="-1"></a>We will use the following operators, functions, and internal variables:</span>
+<span id="cb25-133"><a href="#cb25-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-134"><a href="#cb25-134" aria-hidden="true" tabindex="-1"></a>::: {#tbl-panel layout-ncol=3}</span>
+<span id="cb25-135"><a href="#cb25-135" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Operator     <span class="pp">|</span> Syntax <span class="pp">|</span></span>
+<span id="cb25-136"><a href="#cb25-136" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------|--------|</span></span>
+<span id="cb25-137"><a href="#cb25-137" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Addition     <span class="pp">|</span> <span class="in">`+`</span>    <span class="pp">|</span></span>
+<span id="cb25-138"><a href="#cb25-138" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Division     <span class="pp">|</span> <span class="in">`\`</span>    <span class="pp">|</span></span>
+<span id="cb25-139"><a href="#cb25-139" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Greater than <span class="pp">|</span> <span class="in">`&gt;`</span>    <span class="pp">|</span></span>
+<span id="cb25-140"><a href="#cb25-140" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Less than    <span class="pp">|</span> <span class="in">`&lt;`</span>    <span class="pp">|</span></span>
+<span id="cb25-141"><a href="#cb25-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-142"><a href="#cb25-142" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Function       <span class="pp">|</span> Syntax      <span class="pp">|</span></span>
+<span id="cb25-143"><a href="#cb25-143" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------|-------------|</span></span>
+<span id="cb25-144"><a href="#cb25-144" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Absolute value <span class="pp">|</span> <span class="in">`abs(x)`</span>    <span class="pp">|</span></span>
+<span id="cb25-145"><a href="#cb25-145" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Random         <span class="pp">|</span> <span class="in">`rand(a,b)`</span> <span class="pp">|</span></span>
+<span id="cb25-146"><a href="#cb25-146" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> If             <span class="pp">|</span> <span class="in">`if(x)`</span>     <span class="pp">|</span></span>
+<span id="cb25-147"><a href="#cb25-147" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> If then else   <span class="pp">|</span> <span class="in">`if(x,a,b)`</span> <span class="pp">|</span></span>
+<span id="cb25-148"><a href="#cb25-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-149"><a href="#cb25-149" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Variable <span class="pp">|</span> Syntax   <span class="pp">|</span></span>
+<span id="cb25-150"><a href="#cb25-150" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|----------|</span></span>
+<span id="cb25-151"><a href="#cb25-151" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Null     <span class="pp">|</span> <span class="in">`null()`</span> <span class="pp">|</span></span>
+<span id="cb25-152"><a href="#cb25-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-153"><a href="#cb25-153" aria-hidden="true" tabindex="-1"></a>Map algebra operators, functions, and variables in this tutorial</span>
+<span id="cb25-154"><a href="#cb25-154" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-155"><a href="#cb25-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-156"><a href="#cb25-156" aria-hidden="true" tabindex="-1"></a><span class="fu"># Setup</span></span>
+<span id="cb25-157"><a href="#cb25-157" aria-hidden="true" tabindex="-1"></a>Start a GRASS session in a new project with a Cartesian (XY) coordinate system.</span>
+<span id="cb25-158"><a href="#cb25-158" aria-hidden="true" tabindex="-1"></a>Use {{&lt; meta links.g_region &gt;}}</span>
+<span id="cb25-159"><a href="#cb25-159" aria-hidden="true" tabindex="-1"></a>to set the extent and resolution of the computational region.</span>
+<span id="cb25-160"><a href="#cb25-160" aria-hidden="true" tabindex="-1"></a>Since we are working in a Cartesian coordinate system,</span>
+<span id="cb25-161"><a href="#cb25-161" aria-hidden="true" tabindex="-1"></a>we can simply create a region starting at the origin</span>
+<span id="cb25-162"><a href="#cb25-162" aria-hidden="true" tabindex="-1"></a>and extending two hundred units north and eight hundred units east.  </span>
+<span id="cb25-163"><a href="#cb25-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-164"><a href="#cb25-164" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb25-165"><a href="#cb25-165" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb25-168"><a href="#cb25-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb25-169"><a href="#cb25-169" aria-hidden="true" tabindex="-1"></a><span class="ex">g.region</span> n=200 e=800 s=0 w=0 res=1</span>
+<span id="cb25-170"><a href="#cb25-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-171"><a href="#cb25-171" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb25-174"><a href="#cb25-174" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb25-175"><a href="#cb25-175" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
+<span id="cb25-176"><a href="#cb25-176" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb25-177"><a href="#cb25-177" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb25-178"><a href="#cb25-178" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb25-179"><a href="#cb25-179" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb25-180"><a href="#cb25-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-181"><a href="#cb25-181" aria-hidden="true" tabindex="-1"></a><span class="co"># Find GRASS Python packages</span></span>
+<span id="cb25-182"><a href="#cb25-182" aria-hidden="true" tabindex="-1"></a>sys.path.append(</span>
+<span id="cb25-183"><a href="#cb25-183" aria-hidden="true" tabindex="-1"></a>  subprocess.check_output(</span>
+<span id="cb25-184"><a href="#cb25-184" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"grass"</span>, <span class="st">"--config"</span>, <span class="st">"python_path"</span>],</span>
+<span id="cb25-185"><a href="#cb25-185" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="va">True</span></span>
+<span id="cb25-186"><a href="#cb25-186" aria-hidden="true" tabindex="-1"></a>    ).strip()</span>
+<span id="cb25-187"><a href="#cb25-187" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-188"><a href="#cb25-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-189"><a href="#cb25-189" aria-hidden="true" tabindex="-1"></a><span class="co"># Import GRASS packages</span></span>
+<span id="cb25-190"><a href="#cb25-190" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> grass.script <span class="im">as</span> gs</span>
+<span id="cb25-191"><a href="#cb25-191" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> grass.jupyter <span class="im">as</span> gj</span>
+<span id="cb25-192"><a href="#cb25-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-193"><a href="#cb25-193" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a temporary folder</span></span>
+<span id="cb25-194"><a href="#cb25-194" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tempfile</span>
+<span id="cb25-195"><a href="#cb25-195" aria-hidden="true" tabindex="-1"></a>temporary <span class="op">=</span> tempfile.TemporaryDirectory()</span>
+<span id="cb25-196"><a href="#cb25-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-197"><a href="#cb25-197" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a project in the temporary directory</span></span>
+<span id="cb25-198"><a href="#cb25-198" aria-hidden="true" tabindex="-1"></a>gs.create_project(path<span class="op">=</span>temporary.name, name<span class="op">=</span><span class="st">"xy"</span>)</span>
+<span id="cb25-199"><a href="#cb25-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-200"><a href="#cb25-200" aria-hidden="true" tabindex="-1"></a><span class="co"># Start GRASS in this project</span></span>
+<span id="cb25-201"><a href="#cb25-201" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> gj.init(Path(temporary.name, <span class="st">"xy"</span>))</span>
+<span id="cb25-202"><a href="#cb25-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-203"><a href="#cb25-203" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
+<span id="cb25-204"><a href="#cb25-204" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.region"</span>, n<span class="op">=</span><span class="dv">200</span>, e<span class="op">=</span><span class="dv">800</span>, s<span class="op">=</span><span class="dv">0</span>, w<span class="op">=</span><span class="dv">0</span>, res<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb25-205"><a href="#cb25-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-206"><a href="#cb25-206" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-207"><a href="#cb25-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-208"><a href="#cb25-208" aria-hidden="true" tabindex="-1"></a><span class="fu"># Constants</span></span>
+<span id="cb25-209"><a href="#cb25-209" aria-hidden="true" tabindex="-1"></a>We will be modeling a landscape, </span>
+<span id="cb25-210"><a href="#cb25-210" aria-hidden="true" tabindex="-1"></a>so let's start with the simplest of landforms - </span>
+<span id="cb25-211"><a href="#cb25-211" aria-hidden="true" tabindex="-1"></a>a flat plain.</span>
+<span id="cb25-212"><a href="#cb25-212" aria-hidden="true" tabindex="-1"></a>We can represent a flat plain with a constant raster</span>
+<span id="cb25-213"><a href="#cb25-213" aria-hidden="true" tabindex="-1"></a>that has the same elevation value for every cell.</span>
+<span id="cb25-214"><a href="#cb25-214" aria-hidden="true" tabindex="-1"></a>It is very easy to create constant rasters like this with map algebra. </span>
+<span id="cb25-215"><a href="#cb25-215" aria-hidden="true" tabindex="-1"></a>We will use the raster map calculator</span>
+<span id="cb25-216"><a href="#cb25-216" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
+<span id="cb25-217"><a href="#cb25-217" aria-hidden="true" tabindex="-1"></a>to create a new raster with a constant value of zero,</span>
+<span id="cb25-218"><a href="#cb25-218" aria-hidden="true" tabindex="-1"></a>representing flat terrain at mean sea level. </span>
+<span id="cb25-219"><a href="#cb25-219" aria-hidden="true" tabindex="-1"></a>In the raster map calculator,</span>
+<span id="cb25-220"><a href="#cb25-220" aria-hidden="true" tabindex="-1"></a>simply write the expression <span class="in">`elevation=0`</span></span>
+<span id="cb25-221"><a href="#cb25-221" aria-hidden="true" tabindex="-1"></a>to create a new elevation raster</span>
+<span id="cb25-222"><a href="#cb25-222" aria-hidden="true" tabindex="-1"></a>set to a constant height of zero.</span>
+<span id="cb25-223"><a href="#cb25-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-224"><a href="#cb25-224" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb25-225"><a href="#cb25-225" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb25-228"><a href="#cb25-228" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb25-229"><a href="#cb25-229" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"elevation = 0"</span></span>
+<span id="cb25-230"><a href="#cb25-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-231"><a href="#cb25-231" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb25-234"><a href="#cb25-234" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb25-235"><a href="#cb25-235" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
+<span id="cb25-236"><a href="#cb25-236" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = 0"</span>)</span>
+<span id="cb25-237"><a href="#cb25-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-238"><a href="#cb25-238" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb25-239"><a href="#cb25-239" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb25-240"><a href="#cb25-240" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>)</span>
+<span id="cb25-241"><a href="#cb25-241" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb25-242"><a href="#cb25-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-243"><a href="#cb25-243" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-244"><a href="#cb25-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-245"><a href="#cb25-245" aria-hidden="true" tabindex="-1"></a><span class="al">![Plains](images/map-algebra-03.webp)</span></span>
+<span id="cb25-246"><a href="#cb25-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-247"><a href="#cb25-247" aria-hidden="true" tabindex="-1"></a><span class="fu"># Fractals</span></span>
+<span id="cb25-248"><a href="#cb25-248" aria-hidden="true" tabindex="-1"></a>Now let's model more interesting mountainous terrain</span>
+<span id="cb25-249"><a href="#cb25-249" aria-hidden="true" tabindex="-1"></a>as a base for the rest of the tutorial. </span>
+<span id="cb25-250"><a href="#cb25-250" aria-hidden="true" tabindex="-1"></a>Use {{&lt; meta links.r_surf_fractal &gt;}}</span>
+<span id="cb25-251"><a href="#cb25-251" aria-hidden="true" tabindex="-1"></a>to generate a fractal surface that simulates mountainous terrain.</span>
+<span id="cb25-252"><a href="#cb25-252" aria-hidden="true" tabindex="-1"></a>If you want reproducible results, set a seed. </span>
+<span id="cb25-253"><a href="#cb25-253" aria-hidden="true" tabindex="-1"></a>Find the height of the mountains by printing the elevation range with </span>
+<span id="cb25-254"><a href="#cb25-254" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_info &gt;}}.</span>
+<span id="cb25-255"><a href="#cb25-255" aria-hidden="true" tabindex="-1"></a>This report is an example of a global map algebra operation </span>
+<span id="cb25-256"><a href="#cb25-256" aria-hidden="true" tabindex="-1"></a>that acts on the entire raster.</span>
+<span id="cb25-257"><a href="#cb25-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-258"><a href="#cb25-258" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb25-259"><a href="#cb25-259" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb25-262"><a href="#cb25-262" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb25-263"><a href="#cb25-263" aria-hidden="true" tabindex="-1"></a><span class="ex">r.surf.fractal</span> output=fractal dimension=2.25</span>
+<span id="cb25-264"><a href="#cb25-264" aria-hidden="true" tabindex="-1"></a><span class="ex">r.info</span> <span class="at">-r</span> map=fractal</span>
+<span id="cb25-265"><a href="#cb25-265" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-266"><a href="#cb25-266" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb25-269"><a href="#cb25-269" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb25-270"><a href="#cb25-270" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate fractal surface</span></span>
+<span id="cb25-271"><a href="#cb25-271" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.surf.fractal"</span>, output<span class="op">=</span><span class="st">"fractal"</span>, dimension<span class="op">=</span><span class="fl">2.25</span>)</span>
+<span id="cb25-272"><a href="#cb25-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-273"><a href="#cb25-273" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb25-274"><a href="#cb25-274" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"fractal"</span>)</span>
+<span id="cb25-275"><a href="#cb25-275" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"fractal"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb25-276"><a href="#cb25-276" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb25-277"><a href="#cb25-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-278"><a href="#cb25-278" aria-hidden="true" tabindex="-1"></a><span class="co"># Print range</span></span>
+<span id="cb25-279"><a href="#cb25-279" aria-hidden="true" tabindex="-1"></a>info <span class="op">=</span> gs.read_command(<span class="st">"r.info"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"fractal"</span>, flags<span class="op">=</span><span class="st">"r"</span>)</span>
+<span id="cb25-280"><a href="#cb25-280" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(info)</span>
+<span id="cb25-281"><a href="#cb25-281" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-282"><a href="#cb25-282" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-283"><a href="#cb25-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-284"><a href="#cb25-284" aria-hidden="true" tabindex="-1"></a><span class="al">![Fractal](images/map-algebra-04.webp)</span></span>
+<span id="cb25-285"><a href="#cb25-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-286"><a href="#cb25-286" aria-hidden="true" tabindex="-1"></a><span class="fu"># Arithmetic</span></span>
+<span id="cb25-287"><a href="#cb25-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-288"><a href="#cb25-288" aria-hidden="true" tabindex="-1"></a><span class="fu">## Operations</span></span>
+<span id="cb25-289"><a href="#cb25-289" aria-hidden="true" tabindex="-1"></a>Next let's try arithmetic with map algebra.</span>
+<span id="cb25-290"><a href="#cb25-290" aria-hidden="true" tabindex="-1"></a>Since our fractal mountains are too high, </span>
+<span id="cb25-291"><a href="#cb25-291" aria-hidden="true" tabindex="-1"></a>rescale them with the raster map calculator</span>
+<span id="cb25-292"><a href="#cb25-292" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}.</span>
+<span id="cb25-293"><a href="#cb25-293" aria-hidden="true" tabindex="-1"></a>Write the expression <span class="in">`elevation = fractal / 10`</span></span>
+<span id="cb25-294"><a href="#cb25-294" aria-hidden="true" tabindex="-1"></a>to create a new elevation raster</span>
+<span id="cb25-295"><a href="#cb25-295" aria-hidden="true" tabindex="-1"></a>equal to the fractal surface divided by ten. </span>
+<span id="cb25-296"><a href="#cb25-296" aria-hidden="true" tabindex="-1"></a>This is a local map algebra operation using simple arithmetic.</span>
+<span id="cb25-297"><a href="#cb25-297" aria-hidden="true" tabindex="-1"></a>Print the rescaled elevation range with </span>
+<span id="cb25-298"><a href="#cb25-298" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_info &gt;}}.</span>
+<span id="cb25-299"><a href="#cb25-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-300"><a href="#cb25-300" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb25-301"><a href="#cb25-301" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb25-304"><a href="#cb25-304" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb25-305"><a href="#cb25-305" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"elevation = fractal / 10"</span></span>
+<span id="cb25-306"><a href="#cb25-306" aria-hidden="true" tabindex="-1"></a><span class="ex">r.colors</span> map=elevation color=elevation</span>
+<span id="cb25-307"><a href="#cb25-307" aria-hidden="true" tabindex="-1"></a><span class="ex">r.info</span> <span class="at">-r</span> map=elevation</span>
+<span id="cb25-308"><a href="#cb25-308" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-309"><a href="#cb25-309" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb25-312"><a href="#cb25-312" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb25-313"><a href="#cb25-313" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
+<span id="cb25-314"><a href="#cb25-314" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = fractal / 10"</span>)</span>
+<span id="cb25-315"><a href="#cb25-315" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, color<span class="op">=</span><span class="st">"elevation"</span>)</span>
+<span id="cb25-316"><a href="#cb25-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-317"><a href="#cb25-317" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb25-318"><a href="#cb25-318" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>)</span>
+<span id="cb25-319"><a href="#cb25-319" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"elevation"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb25-320"><a href="#cb25-320" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb25-321"><a href="#cb25-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-322"><a href="#cb25-322" aria-hidden="true" tabindex="-1"></a><span class="co"># Print range</span></span>
+<span id="cb25-323"><a href="#cb25-323" aria-hidden="true" tabindex="-1"></a>info <span class="op">=</span> gs.read_command(<span class="st">"r.info"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, flags<span class="op">=</span><span class="st">"r"</span>)</span>
+<span id="cb25-324"><a href="#cb25-324" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(info)</span>
+<span id="cb25-325"><a href="#cb25-325" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-326"><a href="#cb25-326" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-327"><a href="#cb25-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-328"><a href="#cb25-328" aria-hidden="true" tabindex="-1"></a><span class="al">![Mountains](images/map-algebra-05.webp)</span></span>
+<span id="cb25-329"><a href="#cb25-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-330"><a href="#cb25-330" aria-hidden="true" tabindex="-1"></a><span class="fu">## Functions</span></span>
+<span id="cb25-331"><a href="#cb25-331" aria-hidden="true" tabindex="-1"></a>Map algebra has arithmetic functions as well as operators.</span>
+<span id="cb25-332"><a href="#cb25-332" aria-hidden="true" tabindex="-1"></a>Let's take the absolute value of our terrain </span>
+<span id="cb25-333"><a href="#cb25-333" aria-hidden="true" tabindex="-1"></a>to model river valleys winding through our fractal mountains. </span>
+<span id="cb25-334"><a href="#cb25-334" aria-hidden="true" tabindex="-1"></a>In the raster map calculator</span>
+<span id="cb25-335"><a href="#cb25-335" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}},</span>
+<span id="cb25-336"><a href="#cb25-336" aria-hidden="true" tabindex="-1"></a>write the expression <span class="in">`elevation = abs(elevation)`</span></span>
+<span id="cb25-337"><a href="#cb25-337" aria-hidden="true" tabindex="-1"></a>to create a new elevation raster</span>
+<span id="cb25-338"><a href="#cb25-338" aria-hidden="true" tabindex="-1"></a>equal to absolute value of the fractal surface.</span>
+<span id="cb25-339"><a href="#cb25-339" aria-hidden="true" tabindex="-1"></a>Because our fractal terrain has values</span>
+<span id="cb25-340"><a href="#cb25-340" aria-hidden="true" tabindex="-1"></a>both below and above mean sea level, i.e. zero, </span>
+<span id="cb25-341"><a href="#cb25-341" aria-hidden="true" tabindex="-1"></a>taking its absolute value </span>
+<span id="cb25-342"><a href="#cb25-342" aria-hidden="true" tabindex="-1"></a>will raise the low-lying valleys into mountains. </span>
+<span id="cb25-343"><a href="#cb25-343" aria-hidden="true" tabindex="-1"></a>The elevation gradient close to zero will become river valleys</span>
+<span id="cb25-344"><a href="#cb25-344" aria-hidden="true" tabindex="-1"></a>at the feet of the mountains. </span>
+<span id="cb25-345"><a href="#cb25-345" aria-hidden="true" tabindex="-1"></a>Use {{&lt; meta links.r_colors &gt;}}</span>
+<span id="cb25-346"><a href="#cb25-346" aria-hidden="true" tabindex="-1"></a>to assign a color gradient to the elevation raster,</span>
+<span id="cb25-347"><a href="#cb25-347" aria-hidden="true" tabindex="-1"></a>ensuring that the gradient fits the rescaled elevation range of the raster.</span>
+<span id="cb25-348"><a href="#cb25-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-349"><a href="#cb25-349" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb25-350"><a href="#cb25-350" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb25-353"><a href="#cb25-353" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb25-354"><a href="#cb25-354" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"elevation = abs(elevation)"</span> <span class="at">--overwrite</span></span>
+<span id="cb25-355"><a href="#cb25-355" aria-hidden="true" tabindex="-1"></a><span class="ex">r.colors</span> map=elevation color=elevation</span>
+<span id="cb25-356"><a href="#cb25-356" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-357"><a href="#cb25-357" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb25-360"><a href="#cb25-360" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb25-361"><a href="#cb25-361" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
+<span id="cb25-362"><a href="#cb25-362" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = abs(elevation)"</span>, overwrite<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-363"><a href="#cb25-363" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, color<span class="op">=</span><span class="st">"elevation"</span>)</span>
+<span id="cb25-364"><a href="#cb25-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-365"><a href="#cb25-365" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb25-366"><a href="#cb25-366" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>)</span>
+<span id="cb25-367"><a href="#cb25-367" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"elevation"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb25-368"><a href="#cb25-368" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb25-369"><a href="#cb25-369" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-370"><a href="#cb25-370" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-371"><a href="#cb25-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-372"><a href="#cb25-372" aria-hidden="true" tabindex="-1"></a><span class="al">![Valleys](images/map-algebra-06.webp)</span></span>
+<span id="cb25-373"><a href="#cb25-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-374"><a href="#cb25-374" aria-hidden="true" tabindex="-1"></a><span class="fu"># Neighborhoods</span></span>
+<span id="cb25-375"><a href="#cb25-375" aria-hidden="true" tabindex="-1"></a>Let's try a focal map algebra operation that acts on a neighborhood of cells.</span>
+<span id="cb25-376"><a href="#cb25-376" aria-hidden="true" tabindex="-1"></a>The easiest way to do this is with nearest neighbors analysis with </span>
+<span id="cb25-377"><a href="#cb25-377" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_neighbors &gt;}},</span>
+<span id="cb25-378"><a href="#cb25-378" aria-hidden="true" tabindex="-1"></a>but it can also be done by </span>
+<span id="cb25-379"><a href="#cb25-379" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">defining a moving window</span><span class="co">](https://grasswiki.osgeo.org/wiki/GRASS_Python_Scripting_Library#r.mapcalc_example:_defining_a_moving_window)</span></span>
+<span id="cb25-380"><a href="#cb25-380" aria-hidden="true" tabindex="-1"></a>for r.mapcalc. </span>
+<span id="cb25-381"><a href="#cb25-381" aria-hidden="true" tabindex="-1"></a>Use</span>
+<span id="cb25-382"><a href="#cb25-382" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_neighbors &gt;}}</span>
+<span id="cb25-383"><a href="#cb25-383" aria-hidden="true" tabindex="-1"></a>to smooth the elevation raster, </span>
+<span id="cb25-384"><a href="#cb25-384" aria-hidden="true" tabindex="-1"></a>simulating the weathering of old mountains. </span>
+<span id="cb25-385"><a href="#cb25-385" aria-hidden="true" tabindex="-1"></a>Set the input raster to our <span class="in">`elevation`</span> raster, </span>
+<span id="cb25-386"><a href="#cb25-386" aria-hidden="true" tabindex="-1"></a>the output raster to a new <span class="in">`weathering`</span> raster,</span>
+<span id="cb25-387"><a href="#cb25-387" aria-hidden="true" tabindex="-1"></a>the neighborhood size to <span class="in">`9`</span>,</span>
+<span id="cb25-388"><a href="#cb25-388" aria-hidden="true" tabindex="-1"></a>the method to <span class="in">`average`</span>,</span>
+<span id="cb25-389"><a href="#cb25-389" aria-hidden="true" tabindex="-1"></a>and flag <span class="in">`c`</span> for a circular neighborhood.</span>
+<span id="cb25-390"><a href="#cb25-390" aria-hidden="true" tabindex="-1"></a>This will create a circular moving window nine pixels wide</span>
+<span id="cb25-391"><a href="#cb25-391" aria-hidden="true" tabindex="-1"></a>that moves from cell to cell across the raster.</span>
+<span id="cb25-392"><a href="#cb25-392" aria-hidden="true" tabindex="-1"></a>The moving window will calculate the average value</span>
+<span id="cb25-393"><a href="#cb25-393" aria-hidden="true" tabindex="-1"></a>of the neighborhood of cells around each cell,</span>
+<span id="cb25-394"><a href="#cb25-394" aria-hidden="true" tabindex="-1"></a>smoothing the raster. </span>
+<span id="cb25-395"><a href="#cb25-395" aria-hidden="true" tabindex="-1"></a>The size of the moving window,</span>
+<span id="cb25-396"><a href="#cb25-396" aria-hidden="true" tabindex="-1"></a>which must be an odd integer value of three or greater,</span>
+<span id="cb25-397"><a href="#cb25-397" aria-hidden="true" tabindex="-1"></a>determines the degree of smoothing. </span>
+<span id="cb25-398"><a href="#cb25-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-399"><a href="#cb25-399" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb25-400"><a href="#cb25-400" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb25-403"><a href="#cb25-403" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb25-404"><a href="#cb25-404" aria-hidden="true" tabindex="-1"></a><span class="ex">r.neighbors</span> <span class="at">-c</span> input=elevation output=weathering size=9</span>
+<span id="cb25-405"><a href="#cb25-405" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-406"><a href="#cb25-406" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb25-409"><a href="#cb25-409" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb25-410"><a href="#cb25-410" aria-hidden="true" tabindex="-1"></a><span class="co"># Nearest neighbors</span></span>
+<span id="cb25-411"><a href="#cb25-411" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
+<span id="cb25-412"><a href="#cb25-412" aria-hidden="true" tabindex="-1"></a>  <span class="st">"r.neighbors"</span>,</span>
+<span id="cb25-413"><a href="#cb25-413" aria-hidden="true" tabindex="-1"></a>  <span class="bu">input</span><span class="op">=</span><span class="st">"elevation"</span>,</span>
+<span id="cb25-414"><a href="#cb25-414" aria-hidden="true" tabindex="-1"></a>  output<span class="op">=</span><span class="st">"weathering"</span>,</span>
+<span id="cb25-415"><a href="#cb25-415" aria-hidden="true" tabindex="-1"></a>  size<span class="op">=</span><span class="dv">9</span>,</span>
+<span id="cb25-416"><a href="#cb25-416" aria-hidden="true" tabindex="-1"></a>  method<span class="op">=</span><span class="st">"average"</span>,</span>
+<span id="cb25-417"><a href="#cb25-417" aria-hidden="true" tabindex="-1"></a>  flags<span class="op">=</span><span class="st">"c"</span>,</span>
+<span id="cb25-418"><a href="#cb25-418" aria-hidden="true" tabindex="-1"></a>  overwrite<span class="op">=</span><span class="va">True</span></span>
+<span id="cb25-419"><a href="#cb25-419" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-420"><a href="#cb25-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-421"><a href="#cb25-421" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb25-422"><a href="#cb25-422" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"weathering"</span>)</span>
+<span id="cb25-423"><a href="#cb25-423" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"weathering"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb25-424"><a href="#cb25-424" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb25-425"><a href="#cb25-425" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-426"><a href="#cb25-426" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-427"><a href="#cb25-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-428"><a href="#cb25-428" aria-hidden="true" tabindex="-1"></a><span class="al">![Weathering](images/map-algebra-07.webp)</span></span>
+<span id="cb25-429"><a href="#cb25-429" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-430"><a href="#cb25-430" aria-hidden="true" tabindex="-1"></a><span class="fu"># Randomness</span></span>
+<span id="cb25-431"><a href="#cb25-431" aria-hidden="true" tabindex="-1"></a>We can use map algebra to inject randomness in our raster data. </span>
+<span id="cb25-432"><a href="#cb25-432" aria-hidden="true" tabindex="-1"></a>Use the raster map calculator</span>
+<span id="cb25-433"><a href="#cb25-433" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
+<span id="cb25-434"><a href="#cb25-434" aria-hidden="true" tabindex="-1"></a>to generate a random surface,</span>
+<span id="cb25-435"><a href="#cb25-435" aria-hidden="true" tabindex="-1"></a>simulating the height of the forest canopy.</span>
+<span id="cb25-436"><a href="#cb25-436" aria-hidden="true" tabindex="-1"></a>Write the expression <span class="in">`random = rand(0.0, 10.0)`</span></span>
+<span id="cb25-437"><a href="#cb25-437" aria-hidden="true" tabindex="-1"></a>to create a new random raster</span>
+<span id="cb25-438"><a href="#cb25-438" aria-hidden="true" tabindex="-1"></a>with random floating point values between zero and ten</span>
+<span id="cb25-439"><a href="#cb25-439" aria-hidden="true" tabindex="-1"></a>assigned to each cell. </span>
+<span id="cb25-440"><a href="#cb25-440" aria-hidden="true" tabindex="-1"></a>For easily reproducible results,</span>
+<span id="cb25-441"><a href="#cb25-441" aria-hidden="true" tabindex="-1"></a>set a fixed seed for the pseudo-random number generator. </span>
+<span id="cb25-442"><a href="#cb25-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-443"><a href="#cb25-443" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb25-444"><a href="#cb25-444" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb25-447"><a href="#cb25-447" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb25-448"><a href="#cb25-448" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"random = rand(0.0, 10.0)"</span> seed=0</span>
+<span id="cb25-449"><a href="#cb25-449" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-450"><a href="#cb25-450" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb25-453"><a href="#cb25-453" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb25-454"><a href="#cb25-454" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random surface</span></span>
+<span id="cb25-455"><a href="#cb25-455" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"random = rand(0.0, 10.0)"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb25-456"><a href="#cb25-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-457"><a href="#cb25-457" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb25-458"><a href="#cb25-458" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"random"</span>)</span>
+<span id="cb25-459"><a href="#cb25-459" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"random"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb25-460"><a href="#cb25-460" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb25-461"><a href="#cb25-461" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-462"><a href="#cb25-462" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-463"><a href="#cb25-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-464"><a href="#cb25-464" aria-hidden="true" tabindex="-1"></a><span class="al">![Randomness](images/map-algebra-08.webp)</span></span>
+<span id="cb25-465"><a href="#cb25-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-466"><a href="#cb25-466" aria-hidden="true" tabindex="-1"></a>Use the raster map calculator</span>
+<span id="cb25-467"><a href="#cb25-467" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
+<span id="cb25-468"><a href="#cb25-468" aria-hidden="true" tabindex="-1"></a>to add the height of the forest canopy to the elevation gradient,</span>
+<span id="cb25-469"><a href="#cb25-469" aria-hidden="true" tabindex="-1"></a>simulating the forested terrain. </span>
+<span id="cb25-470"><a href="#cb25-470" aria-hidden="true" tabindex="-1"></a>Write the expression <span class="in">`forest = elevation + random`</span></span>
+<span id="cb25-471"><a href="#cb25-471" aria-hidden="true" tabindex="-1"></a>to create a new raster equal to </span>
+<span id="cb25-472"><a href="#cb25-472" aria-hidden="true" tabindex="-1"></a>the sum of the elevation raster</span>
+<span id="cb25-473"><a href="#cb25-473" aria-hidden="true" tabindex="-1"></a>and the random surface.</span>
+<span id="cb25-474"><a href="#cb25-474" aria-hidden="true" tabindex="-1"></a>This is a local map algebra operation</span>
+<span id="cb25-475"><a href="#cb25-475" aria-hidden="true" tabindex="-1"></a>using basic arithmetic </span>
+<span id="cb25-476"><a href="#cb25-476" aria-hidden="true" tabindex="-1"></a>between two rasters.</span>
+<span id="cb25-477"><a href="#cb25-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-478"><a href="#cb25-478" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb25-479"><a href="#cb25-479" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb25-482"><a href="#cb25-482" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb25-483"><a href="#cb25-483" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"forest = elevation + random"</span></span>
+<span id="cb25-484"><a href="#cb25-484" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-485"><a href="#cb25-485" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb25-488"><a href="#cb25-488" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb25-489"><a href="#cb25-489" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
+<span id="cb25-490"><a href="#cb25-490" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"forest = elevation + random"</span>)</span>
+<span id="cb25-491"><a href="#cb25-491" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-492"><a href="#cb25-492" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb25-493"><a href="#cb25-493" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"forest"</span>)</span>
+<span id="cb25-494"><a href="#cb25-494" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"forest"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb25-495"><a href="#cb25-495" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb25-496"><a href="#cb25-496" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-497"><a href="#cb25-497" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-498"><a href="#cb25-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-499"><a href="#cb25-499" aria-hidden="true" tabindex="-1"></a><span class="al">![Forests](images/map-algebra-09.webp)</span></span>
+<span id="cb25-500"><a href="#cb25-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-501"><a href="#cb25-501" aria-hidden="true" tabindex="-1"></a><span class="fu"># Logic</span></span>
+<span id="cb25-502"><a href="#cb25-502" aria-hidden="true" tabindex="-1"></a>We can use logical statements in map algebra</span>
+<span id="cb25-503"><a href="#cb25-503" aria-hidden="true" tabindex="-1"></a>that test whether given conditions are true or false.</span>
+<span id="cb25-504"><a href="#cb25-504" aria-hidden="true" tabindex="-1"></a>In the raster map calculator, </span>
+<span id="cb25-505"><a href="#cb25-505" aria-hidden="true" tabindex="-1"></a>we can use the function <span class="in">`if(x,a,b)`</span></span>
+<span id="cb25-506"><a href="#cb25-506" aria-hidden="true" tabindex="-1"></a>to evaluate **if** cells meet condition <span class="in">`x`</span>,</span>
+<span id="cb25-507"><a href="#cb25-507" aria-hidden="true" tabindex="-1"></a>**then** do `a`, **else** do <span class="in">`b`</span>. </span>
+<span id="cb25-508"><a href="#cb25-508" aria-hidden="true" tabindex="-1"></a>In this tutorial,</span>
+<span id="cb25-509"><a href="#cb25-509" aria-hidden="true" tabindex="-1"></a>we will use <span class="in">`if then else`</span> statements</span>
+<span id="cb25-510"><a href="#cb25-510" aria-hidden="true" tabindex="-1"></a>to model plateaus and rivers. </span>
+<span id="cb25-511"><a href="#cb25-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-512"><a href="#cb25-512" aria-hidden="true" tabindex="-1"></a><span class="al">![Logic in map algebra](images/map-algebra-01.svg)</span></span>
+<span id="cb25-513"><a href="#cb25-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-514"><a href="#cb25-514" aria-hidden="true" tabindex="-1"></a>::: {#tbl-panel layout-ncol=1}</span>
+<span id="cb25-515"><a href="#cb25-515" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Logical Operator      <span class="pp">|</span> Syntax <span class="pp">|</span></span>
+<span id="cb25-516"><a href="#cb25-516" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------------------|--------|</span></span>
+<span id="cb25-517"><a href="#cb25-517" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Greater than          <span class="pp">|</span> <span class="in">`&gt;`</span>    <span class="pp">|</span></span>
+<span id="cb25-518"><a href="#cb25-518" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Less than             <span class="pp">|</span> <span class="in">`&lt;`</span>    <span class="pp">|</span></span>
+<span id="cb25-519"><a href="#cb25-519" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Greater than or equal <span class="pp">|</span> <span class="in">`&gt;=`</span>   <span class="pp">|</span></span>
+<span id="cb25-520"><a href="#cb25-520" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Less than or equal    <span class="pp">|</span> <span class="in">`&lt;=`</span>   <span class="pp">|</span></span>
+<span id="cb25-521"><a href="#cb25-521" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Equal                 <span class="pp">|</span> <span class="in">`=`</span>    <span class="pp">|</span></span>
+<span id="cb25-522"><a href="#cb25-522" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Not equal             <span class="pp">|</span> <span class="in">`!=`</span>   <span class="pp">|</span></span>
+<span id="cb25-523"><a href="#cb25-523" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Logical and           <span class="pp">|</span> <span class="in">`&amp;&amp;`</span>   <span class="pp">|</span></span>
+<span id="cb25-524"><a href="#cb25-524" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Logical or            <span class="pp">|</span> <span class="in">`||`</span>   <span class="pp">|</span></span>
+<span id="cb25-525"><a href="#cb25-525" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-526"><a href="#cb25-526" aria-hidden="true" tabindex="-1"></a>Logical operators</span>
+<span id="cb25-527"><a href="#cb25-527" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-528"><a href="#cb25-528" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-529"><a href="#cb25-529" aria-hidden="true" tabindex="-1"></a><span class="fu">## If statements</span></span>
+<span id="cb25-530"><a href="#cb25-530" aria-hidden="true" tabindex="-1"></a>Let's use logic in map algebra to transform the mountain peaks into plateaus.</span>
+<span id="cb25-531"><a href="#cb25-531" aria-hidden="true" tabindex="-1"></a>First use the raster map calculator</span>
+<span id="cb25-532"><a href="#cb25-532" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
+<span id="cb25-533"><a href="#cb25-533" aria-hidden="true" tabindex="-1"></a>with an <span class="in">`if`</span> statement to find all cells with an elevation above thirty. </span>
+<span id="cb25-534"><a href="#cb25-534" aria-hidden="true" tabindex="-1"></a>Write the expression <span class="in">`plateaus = if(elevation &gt; 30)`</span>.</span>
+<span id="cb25-535"><a href="#cb25-535" aria-hidden="true" tabindex="-1"></a>Simple if statements with the form <span class="in">`if(x)`</span></span>
+<span id="cb25-536"><a href="#cb25-536" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>where <span class="in">`x`</span> is an equality or inequality statement -</span>
+<span id="cb25-537"><a href="#cb25-537" aria-hidden="true" tabindex="-1"></a>return a raster with ones where the statement is true</span>
+<span id="cb25-538"><a href="#cb25-538" aria-hidden="true" tabindex="-1"></a>and zeros where it is false.</span>
+<span id="cb25-539"><a href="#cb25-539" aria-hidden="true" tabindex="-1"></a>So this expression will return a new raster </span>
+<span id="cb25-540"><a href="#cb25-540" aria-hidden="true" tabindex="-1"></a>with ones where the plateaus will be</span>
+<span id="cb25-541"><a href="#cb25-541" aria-hidden="true" tabindex="-1"></a>and zeros elsewhere. </span>
+<span id="cb25-542"><a href="#cb25-542" aria-hidden="true" tabindex="-1"></a>This is a zonal map algebra operation</span>
+<span id="cb25-543"><a href="#cb25-543" aria-hidden="true" tabindex="-1"></a>using logic to isolate a zone of cells.</span>
+<span id="cb25-544"><a href="#cb25-544" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-545"><a href="#cb25-545" aria-hidden="true" tabindex="-1"></a><span class="al">![If statement diagram](images/map-algebra-02.svg)</span></span>
+<span id="cb25-546"><a href="#cb25-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-547"><a href="#cb25-547" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb25-548"><a href="#cb25-548" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb25-551"><a href="#cb25-551" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb25-552"><a href="#cb25-552" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"plateaus = if(elevation &gt; 30)"</span></span>
+<span id="cb25-553"><a href="#cb25-553" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-554"><a href="#cb25-554" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb25-557"><a href="#cb25-557" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb25-558"><a href="#cb25-558" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
+<span id="cb25-559"><a href="#cb25-559" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"plateaus = if(elevation &gt; 30)"</span>)</span>
+<span id="cb25-560"><a href="#cb25-560" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-561"><a href="#cb25-561" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb25-562"><a href="#cb25-562" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"plateaus"</span>)</span>
+<span id="cb25-563"><a href="#cb25-563" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb25-564"><a href="#cb25-564" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-565"><a href="#cb25-565" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-566"><a href="#cb25-566" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-567"><a href="#cb25-567" aria-hidden="true" tabindex="-1"></a><span class="al">![Zones](images/map-algebra-10.webp)</span></span>
+<span id="cb25-568"><a href="#cb25-568" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-569"><a href="#cb25-569" aria-hidden="true" tabindex="-1"></a><span class="fu">## If then else statements</span></span>
+<span id="cb25-570"><a href="#cb25-570" aria-hidden="true" tabindex="-1"></a>Now use the raster map calculator</span>
+<span id="cb25-571"><a href="#cb25-571" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
+<span id="cb25-572"><a href="#cb25-572" aria-hidden="true" tabindex="-1"></a>to model the plateaus using an <span class="in">`if then else`</span> statement. </span>
+<span id="cb25-573"><a href="#cb25-573" aria-hidden="true" tabindex="-1"></a>In map algebra, the syntax for these logical statements is <span class="in">`if(x, a, b)`</span> </span>
+<span id="cb25-574"><a href="#cb25-574" aria-hidden="true" tabindex="-1"></a>where if the relational statement <span class="in">`x`</span> is true, then do <span class="in">`a`</span>, else do <span class="in">`b`</span>.</span>
+<span id="cb25-575"><a href="#cb25-575" aria-hidden="true" tabindex="-1"></a>Write the expression <span class="in">`elevation = if(elevation &gt; 30, 30, elevation)`</span>.</span>
+<span id="cb25-576"><a href="#cb25-576" aria-hidden="true" tabindex="-1"></a>All cells with elevation values greater than 30</span>
+<span id="cb25-577"><a href="#cb25-577" aria-hidden="true" tabindex="-1"></a>will be assigned a value of 30, </span>
+<span id="cb25-578"><a href="#cb25-578" aria-hidden="true" tabindex="-1"></a>while all other cells will keep their original values.</span>
+<span id="cb25-579"><a href="#cb25-579" aria-hidden="true" tabindex="-1"></a>This will flatten all of the mountain peaks above the threshold of 30,</span>
+<span id="cb25-580"><a href="#cb25-580" aria-hidden="true" tabindex="-1"></a>forming plateaus. </span>
+<span id="cb25-581"><a href="#cb25-581" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-582"><a href="#cb25-582" aria-hidden="true" tabindex="-1"></a><span class="al">![If then else statement diagram](images/map-algebra-03.svg)</span></span>
+<span id="cb25-583"><a href="#cb25-583" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-584"><a href="#cb25-584" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb25-585"><a href="#cb25-585" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb25-588"><a href="#cb25-588" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb25-589"><a href="#cb25-589" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"elevation = if(elevation &gt; 30, 30, elevation)"</span> <span class="at">--overwrite</span></span>
+<span id="cb25-590"><a href="#cb25-590" aria-hidden="true" tabindex="-1"></a><span class="ex">r.colors</span> map=elevation color=elevation</span>
+<span id="cb25-591"><a href="#cb25-591" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-592"><a href="#cb25-592" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb25-595"><a href="#cb25-595" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb25-596"><a href="#cb25-596" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
+<span id="cb25-597"><a href="#cb25-597" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = if(elevation &gt; 30, 30, elevation)"</span>, overwrite<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-598"><a href="#cb25-598" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, color<span class="op">=</span><span class="st">"elevation"</span>)</span>
+<span id="cb25-599"><a href="#cb25-599" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-600"><a href="#cb25-600" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb25-601"><a href="#cb25-601" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>)</span>
+<span id="cb25-602"><a href="#cb25-602" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"elevation"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb25-603"><a href="#cb25-603" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb25-604"><a href="#cb25-604" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-605"><a href="#cb25-605" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-606"><a href="#cb25-606" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-607"><a href="#cb25-607" aria-hidden="true" tabindex="-1"></a><span class="al">![Plateaus](images/map-algebra-11.webp)</span></span>
+<span id="cb25-608"><a href="#cb25-608" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-609"><a href="#cb25-609" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complex expressions</span></span>
+<span id="cb25-610"><a href="#cb25-610" aria-hidden="true" tabindex="-1"></a>Use map algebra to model a river that fills the valleys.</span>
+<span id="cb25-611"><a href="#cb25-611" aria-hidden="true" tabindex="-1"></a>With the raster map calculator</span>
+<span id="cb25-612"><a href="#cb25-612" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_mapcalc &gt;}}</span>
+<span id="cb25-613"><a href="#cb25-613" aria-hidden="true" tabindex="-1"></a>write the expression <span class="in">`river = if(elevation &lt; 6, 6 - elevation, null())`</span></span>
+<span id="cb25-614"><a href="#cb25-614" aria-hidden="true" tabindex="-1"></a>to simulate the depth of the river. </span>
+<span id="cb25-615"><a href="#cb25-615" aria-hidden="true" tabindex="-1"></a>This is a more complicated map algebra expression</span>
+<span id="cb25-616"><a href="#cb25-616" aria-hidden="true" tabindex="-1"></a>that combines logic with an <span class="in">`if then else`</span> statement,</span>
+<span id="cb25-617"><a href="#cb25-617" aria-hidden="true" tabindex="-1"></a>arithmetical operations between rasters,</span>
+<span id="cb25-618"><a href="#cb25-618" aria-hidden="true" tabindex="-1"></a>and the internal variable <span class="in">`null()`</span>.</span>
+<span id="cb25-619"><a href="#cb25-619" aria-hidden="true" tabindex="-1"></a>If cells in the elevation raster </span>
+<span id="cb25-620"><a href="#cb25-620" aria-hidden="true" tabindex="-1"></a>have values less than six,</span>
+<span id="cb25-621"><a href="#cb25-621" aria-hidden="true" tabindex="-1"></a>then they will be assigned the difference</span>
+<span id="cb25-622"><a href="#cb25-622" aria-hidden="true" tabindex="-1"></a>between six and the elevation raster, </span>
+<span id="cb25-623"><a href="#cb25-623" aria-hidden="true" tabindex="-1"></a>else they will be assigned null values. </span>
+<span id="cb25-624"><a href="#cb25-624" aria-hidden="true" tabindex="-1"></a>Then use {{&lt; meta links.r_colors &gt;}}</span>
+<span id="cb25-625"><a href="#cb25-625" aria-hidden="true" tabindex="-1"></a>to assign the <span class="in">`water`</span> color gradient to the river raster.</span>
+<span id="cb25-626"><a href="#cb25-626" aria-hidden="true" tabindex="-1"></a>The null cells will be transparent, </span>
+<span id="cb25-627"><a href="#cb25-627" aria-hidden="true" tabindex="-1"></a>so the river depth raster can be layered over the elevation raster.</span>
+<span id="cb25-628"><a href="#cb25-628" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-629"><a href="#cb25-629" aria-hidden="true" tabindex="-1"></a><span class="al">![Complex expression diagram](images/map-algebra-04.svg)</span></span>
+<span id="cb25-630"><a href="#cb25-630" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-631"><a href="#cb25-631" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb25-632"><a href="#cb25-632" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb25-635"><a href="#cb25-635" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb25-636"><a href="#cb25-636" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"rivers = if(elevation &lt; 6, 6 - elevation, null())"</span></span>
+<span id="cb25-637"><a href="#cb25-637" aria-hidden="true" tabindex="-1"></a><span class="ex">r.colors</span> map=rivers color=water</span>
+<span id="cb25-638"><a href="#cb25-638" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-639"><a href="#cb25-639" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb25-642"><a href="#cb25-642" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb25-643"><a href="#cb25-643" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
+<span id="cb25-644"><a href="#cb25-644" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"rivers = if(elevation &lt; 6, 6 - elevation, null())"</span>)</span>
+<span id="cb25-645"><a href="#cb25-645" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"rivers"</span>, color<span class="op">=</span><span class="st">"water"</span>)</span>
+<span id="cb25-646"><a href="#cb25-646" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-647"><a href="#cb25-647" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb25-648"><a href="#cb25-648" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>)</span>
+<span id="cb25-649"><a href="#cb25-649" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"rivers"</span>)</span>
+<span id="cb25-650"><a href="#cb25-650" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"rivers"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb25-651"><a href="#cb25-651" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb25-652"><a href="#cb25-652" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-653"><a href="#cb25-653" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb25-654"><a href="#cb25-654" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-655"><a href="#cb25-655" aria-hidden="true" tabindex="-1"></a><span class="al">![Rivers](images/map-algebra-12.webp)</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Brendan Harmon">
-<meta name="dcterms.date" content="2026-03-15">
+<meta name="dcterms.date" content="2026-05-24">
 <meta name="description" content="Model gullies using relative cut operations with r.earthworks.">
 
 <title>Earthworks: Gully Modeling – Tutorials</title>
@@ -58,7 +58,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -369,7 +389,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 15, 2026</p>
+      <p class="date">May 24, 2026</p>
     </div>
   </div>
   
@@ -387,7 +407,7 @@ window.Quarto = {
 <figcaption>Gullies</figcaption>
 </figure>
 </div>
-<p>Learn the how to model gullies using relative cut operations with <a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html">r.earthworks</a>. This tutorial introduces more features of <a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html">r.earthworks</a> including vector line input, relative operations, exponential functions, and volumetric change calculations. While absolute operations calculate cut and fill based on a vertical datum of zero and can be used to model features at a given elevation, relative operations calculate cut and fill relative to the existing topography and can be used to model features that follow the existing terrain.</p>
+<p>Learn the how to model gullies using relative cut operations with <a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html">r.earthworks</a><span class="citation" data-cites="Harmon:2026">[<a href="#ref-Harmon:2026" role="doc-biblioref">2</a>]</span>. This tutorial introduces more features of <a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html">r.earthworks</a> including vector line input, relative operations, exponential functions, and volumetric change calculations. While absolute operations calculate cut and fill based on a vertical datum of zero and can be used to model features at a given elevation, relative operations calculate cut and fill relative to the existing topography and can be used to model features that follow the existing terrain.</p>
 <p>Use a relative earthworking operation with an exponential function to carve deep gullies into a landscape. In this tutorial all of the data will be created procedurally including the terrain and the streams. Start by generating fractal terrain. Then model flow accumulation through the fractal terrain and extract its stream network. Finally use the vector map of streams as input for a relative cut operation to transform valleys into deep gullies. This tutorial covers:</p>
 <ul>
 <li>Terrain generation</li>
@@ -395,7 +415,7 @@ window.Quarto = {
 <li>Stream extraction</li>
 <li>Relative earthworks</li>
 </ul>
-<p>For a simulation based approach to modeling gullies, try the landscape evolution model <a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.sim.terrain.html">r.sim.terrain</a> instead.</p>
+<p>For a simulation based approach to modeling gullies, try the landscape evolution model <a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.sim.terrain.html">r.sim.terrain</a> <span class="citation" data-cites="Harmon:2019">[<a href="#ref-Harmon:2019" role="doc-biblioref">1</a>]</span> instead.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Computational notebook">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -421,7 +441,7 @@ window.Quarto = {
 <pre class="{bash}"><code>grass --tmp-project XY</code></pre>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="152541d6" class="cell" data-execution_count="1">
+<div id="37cb41ee" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -465,7 +485,7 @@ window.Quarto = {
 g.extension extension=r.stream.order</code></pre>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div id="56ca57be" class="cell" data-execution_count="2">
+<div id="8dffea86" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install extension</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.extension"</span>, extension<span class="op">=</span><span class="st">"r.earthworks"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.extension"</span>, extension<span class="op">=</span><span class="st">"r.stream.order"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -484,7 +504,7 @@ g.extension extension=r.stream.order</code></pre>
 <pre class="{bash}"><code>g.region n=200 e=800 s=0 w=0 res=1</code></pre>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div id="367aef59" class="cell" data-execution_count="3">
+<div id="59ac65bb" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.region"</span>, n<span class="op">=</span><span class="dv">200</span>, e<span class="op">=</span><span class="dv">800</span>, s<span class="op">=</span><span class="dv">0</span>, w<span class="op">=</span><span class="dv">0</span>, res<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -505,7 +525,7 @@ r.mapcalc expression="fractal = fractal / 10" --overwrite
 r.stream.extract elevation=fractal accumulation=accumulation threshold=1000 stream_vector=streams</code></pre>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div id="8354095f" class="cell" data-execution_count="4">
+<div id="7b26c6f5" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate fractal surface</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.surf.fractal"</span>,</span>
@@ -543,7 +563,7 @@ r.stream.order elevation=fractal accumulation=accumulation stream_rast=streams s
 r.mapcalc expression="gullies = strahler * -5"</code></pre>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div id="7317c027" class="cell" data-execution_count="5">
+<div id="f7cdc2ce" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute flow accumulation</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.watershed"</span>,</span>
@@ -603,7 +623,7 @@ r.mapcalc expression="gullies = strahler * -5"</code></pre>
 r.colors map=volume color=inferno</code></pre>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<div id="071fc6b3" class="cell" data-execution_count="6">
+<div id="82137ac2" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model gullies</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.earthworks"</span>,</span>
@@ -649,9 +669,17 @@ r.colors map=volume color=inferno</code></pre>
 
 <!-- -->
 
+
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></div></div></section></div></main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-Harmon:2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">Brendan Harmon, Helena Mitasova, Anna Petrasova, and Vaclav Petras. 2019. <span class="nocase">r.sim.terrain 1.0:</span> A landscape evolution model with dynamic hydrology. <em>Geoscientific Model Development</em> 12, 7 (2019), 2837–2854. <a href="https://doi.org/10.5194/gmd-12-2837-2019">https://doi.org/10.5194/gmd-12-2837-2019</a></div>
+</div>
+<div id="ref-Harmon:2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Brendan Harmon, Anna Petrasova, and Vaclav Petras. 2026. <span class="nocase">r.earthworks:</span> A <span>GRASS</span> tool for terrain modeling. <em>Journal of Open Source Software</em> 11, 118 (2026), 9270. <a href="https://doi.org/10.21105/joss.09270">https://doi.org/10.21105/joss.09270</a></div>
+</div>
+</div></section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1112,356 +1140,355 @@ r.colors map=volume color=inferno</code></pre>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Model gullies using relative cut operations with r.earthworks.</span></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> images/gullies-03.webp</span></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> grass.bib</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> ../acm.csl</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="an">links:</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">  r_earthworks: "[r.earthworks](https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html)"</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">  r_sim_terrain: "[r.sim.terrain](https://grass.osgeo.org/grass-stable/manuals/addons/r.sim.terrain.html)"</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">  g_extension: "[g.extension](https://grass.osgeo.org/grass-stable/manuals/g.extension.html)"</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">  g_region: "[g.region](https://grass.osgeo.org/grass-stable/manuals/g.region.html)"</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">  r_surf_fractal: "[r.surf.fractal](https://grass.osgeo.org/grass-stable/manuals/r.surf.fractal.html)"</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">  r_mapcalc: "[r.mapcalc](https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html)"</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">  r_watershed: "[r.watershed](https://grass.osgeo.org/grass-stable/manuals/r.watershed.html)"</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">  r_stream_extract: "[r.stream.extract](https://grass.osgeo.org/grass-stable/manuals/r.stream.extract.html)"</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">  r_stream_order: "[r.stream.order](https://grass.osgeo.org/grass-stable/manuals/addons/r.stream.order.html)"</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="an">code-links:</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">  - text: Jupyter notebook</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">    href: gullies.ipynb</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">    icon: file-code</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">    target: _blank</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="an">resources:</span><span class="co"> gullies.ipynb</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> jupyter</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: false</span></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="al">![Gullies](images/gullies-03.webp)</span></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>Learn the how to model gullies</span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>using relative cut operations with </span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_earthworks &gt;}}.</span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>This tutorial introduces </span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>more features of {{&lt; meta links.r_earthworks &gt;}}</span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>including vector line input,</span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>relative operations, exponential functions,</span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>and volumetric change calculations.</span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>While absolute operations calculate cut and fill</span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>based on a vertical datum of zero</span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>and can be used to model features at a given elevation, </span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>relative operations calculate cut and fill</span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>relative to the existing topography</span>
-<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>and can be used to model features </span>
-<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>that follow the existing terrain.</span>
-<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>Use a relative earthworking operation </span>
-<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>with an exponential function to </span>
-<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>carve deep gullies into a landscape. </span>
-<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>In this tutorial </span>
-<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>all of the data will be created procedurally</span>
-<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>including the terrain and the streams.</span>
-<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>Start by generating fractal terrain. </span>
-<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>Then model flow accumulation </span>
-<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>through the fractal terrain</span>
-<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>and extract its stream network. </span>
-<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>Finally use the vector map of streams </span>
-<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>as input for a relative cut operation</span>
-<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>to transform valleys into deep gullies.</span>
-<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>This tutorial covers:</span>
-<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Terrain generation</span>
-<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Flow accumulation</span>
-<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Stream extraction</span>
-<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Relative earthworks</span>
-<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>For a simulation based approach to modeling gullies,</span>
-<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a>try the landscape evolution model </span>
-<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_sim_terrain &gt;}} instead. </span>
-<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="Computational notebook"}</span>
-<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a>This tutorial can be run as a computational notebook.</span>
-<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a>Learn how to work with notebooks in the tutorial</span>
-<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Get started with GRASS &amp; Python in Jupyter Notebooks</span><span class="co">](https://grass-tutorials.osgeo.org/content/tutorials/get_started/fast_track_grass_and_python.html)</span>.</span>
-<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a><span class="fu"># Setup</span></span>
-<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project</span></span>
-<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a>Start a GRASS session in a new project</span>
-<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a>with a Cartesian (XY) coordinate system.</span>
-<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb13-95"><a href="#cb13-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb13-97"><a href="#cb13-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a><span class="ex">grass</span> <span class="at">--tmp-project</span> XY</span>
-<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-103"><a href="#cb13-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-104"><a href="#cb13-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb13-105"><a href="#cb13-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-108"><a href="#cb13-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb13-109"><a href="#cb13-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
-<span id="cb13-110"><a href="#cb13-110" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb13-111"><a href="#cb13-111" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb13-112"><a href="#cb13-112" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
-<span id="cb13-113"><a href="#cb13-113" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb13-114"><a href="#cb13-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-115"><a href="#cb13-115" aria-hidden="true" tabindex="-1"></a><span class="co"># Find GRASS Python packages</span></span>
-<span id="cb13-116"><a href="#cb13-116" aria-hidden="true" tabindex="-1"></a>sys.path.append(</span>
-<span id="cb13-117"><a href="#cb13-117" aria-hidden="true" tabindex="-1"></a>  subprocess.check_output(</span>
-<span id="cb13-118"><a href="#cb13-118" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"grass"</span>, <span class="st">"--config"</span>, <span class="st">"python_path"</span>],</span>
-<span id="cb13-119"><a href="#cb13-119" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="va">True</span></span>
-<span id="cb13-120"><a href="#cb13-120" aria-hidden="true" tabindex="-1"></a>    ).strip()</span>
-<span id="cb13-121"><a href="#cb13-121" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-122"><a href="#cb13-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-123"><a href="#cb13-123" aria-hidden="true" tabindex="-1"></a><span class="co"># Import GRASS packages</span></span>
-<span id="cb13-124"><a href="#cb13-124" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> grass.script <span class="im">as</span> gs</span>
-<span id="cb13-125"><a href="#cb13-125" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> grass.jupyter <span class="im">as</span> gj</span>
-<span id="cb13-126"><a href="#cb13-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-127"><a href="#cb13-127" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a temporary folder</span></span>
-<span id="cb13-128"><a href="#cb13-128" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tempfile</span>
-<span id="cb13-129"><a href="#cb13-129" aria-hidden="true" tabindex="-1"></a>temporary <span class="op">=</span> tempfile.TemporaryDirectory()</span>
-<span id="cb13-130"><a href="#cb13-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-131"><a href="#cb13-131" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a project in the temporary directory</span></span>
-<span id="cb13-132"><a href="#cb13-132" aria-hidden="true" tabindex="-1"></a>gs.create_project(path<span class="op">=</span>temporary.name, name<span class="op">=</span><span class="st">"xy"</span>)</span>
-<span id="cb13-133"><a href="#cb13-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-134"><a href="#cb13-134" aria-hidden="true" tabindex="-1"></a><span class="co"># Start GRASS in this project</span></span>
-<span id="cb13-135"><a href="#cb13-135" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> gj.init(Path(temporary.name, <span class="st">"xy"</span>))</span>
-<span id="cb13-136"><a href="#cb13-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-137"><a href="#cb13-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-138"><a href="#cb13-138" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-139"><a href="#cb13-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-140"><a href="#cb13-140" aria-hidden="true" tabindex="-1"></a><span class="fu">## Installation</span></span>
-<span id="cb13-141"><a href="#cb13-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-142"><a href="#cb13-142" aria-hidden="true" tabindex="-1"></a>Install {{&lt; meta links.r_earthworks &gt;}} and {{&lt; meta links.r_stream_order &gt;}} with</span>
-<span id="cb13-143"><a href="#cb13-143" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.g_extension &gt;}}. </span>
-<span id="cb13-144"><a href="#cb13-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-145"><a href="#cb13-145" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb13-146"><a href="#cb13-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-147"><a href="#cb13-147" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb13-148"><a href="#cb13-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-151"><a href="#cb13-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb13-152"><a href="#cb13-152" aria-hidden="true" tabindex="-1"></a><span class="ex">g.extension</span> extension=r.earthworks</span>
-<span id="cb13-153"><a href="#cb13-153" aria-hidden="true" tabindex="-1"></a><span class="ex">g.extension</span> extension=r.stream.order</span>
-<span id="cb13-154"><a href="#cb13-154" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-155"><a href="#cb13-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-156"><a href="#cb13-156" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb13-157"><a href="#cb13-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-160"><a href="#cb13-160" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb13-161"><a href="#cb13-161" aria-hidden="true" tabindex="-1"></a><span class="co"># Install extension</span></span>
-<span id="cb13-162"><a href="#cb13-162" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.extension"</span>, extension<span class="op">=</span><span class="st">"r.earthworks"</span>)</span>
-<span id="cb13-163"><a href="#cb13-163" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.extension"</span>, extension<span class="op">=</span><span class="st">"r.stream.order"</span>)</span>
-<span id="cb13-164"><a href="#cb13-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-165"><a href="#cb13-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-166"><a href="#cb13-166" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-167"><a href="#cb13-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-168"><a href="#cb13-168" aria-hidden="true" tabindex="-1"></a><span class="fu">## Region</span></span>
-<span id="cb13-169"><a href="#cb13-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-170"><a href="#cb13-170" aria-hidden="true" tabindex="-1"></a>Use {{&lt; meta links.g_region &gt;}}</span>
-<span id="cb13-171"><a href="#cb13-171" aria-hidden="true" tabindex="-1"></a>to set the extent and resolution of the computational region.</span>
-<span id="cb13-172"><a href="#cb13-172" aria-hidden="true" tabindex="-1"></a>Create a region starting at the origin</span>
-<span id="cb13-173"><a href="#cb13-173" aria-hidden="true" tabindex="-1"></a>and extending two hundred units north and eight hundred units east.</span>
-<span id="cb13-174"><a href="#cb13-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-175"><a href="#cb13-175" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb13-176"><a href="#cb13-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-177"><a href="#cb13-177" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb13-178"><a href="#cb13-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-181"><a href="#cb13-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb13-182"><a href="#cb13-182" aria-hidden="true" tabindex="-1"></a><span class="ex">g.region</span> n=200 e=800 s=0 w=0 res=1</span>
-<span id="cb13-183"><a href="#cb13-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-184"><a href="#cb13-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-185"><a href="#cb13-185" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb13-186"><a href="#cb13-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-189"><a href="#cb13-189" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb13-190"><a href="#cb13-190" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
-<span id="cb13-191"><a href="#cb13-191" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.region"</span>, n<span class="op">=</span><span class="dv">200</span>, e<span class="op">=</span><span class="dv">800</span>, s<span class="op">=</span><span class="dv">0</span>, w<span class="op">=</span><span class="dv">0</span>, res<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb13-192"><a href="#cb13-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-193"><a href="#cb13-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-194"><a href="#cb13-194" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-195"><a href="#cb13-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-196"><a href="#cb13-196" aria-hidden="true" tabindex="-1"></a><span class="fu"># Fractal Terrain</span></span>
-<span id="cb13-197"><a href="#cb13-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-198"><a href="#cb13-198" aria-hidden="true" tabindex="-1"></a>Generate a fractal terrain with {{&lt; meta links.r_surf_fractal &gt;}}.</span>
-<span id="cb13-199"><a href="#cb13-199" aria-hidden="true" tabindex="-1"></a>Running this tool without setting a seed </span>
-<span id="cb13-200"><a href="#cb13-200" aria-hidden="true" tabindex="-1"></a>will generate random results each run. </span>
-<span id="cb13-201"><a href="#cb13-201" aria-hidden="true" tabindex="-1"></a>For reproducible results set a seed. </span>
-<span id="cb13-202"><a href="#cb13-202" aria-hidden="true" tabindex="-1"></a>Then use the raster calculator {{&lt; meta links.r_mapcalc &gt;}}</span>
-<span id="cb13-203"><a href="#cb13-203" aria-hidden="true" tabindex="-1"></a>to scale it vertically so that the mountains are not too high.</span>
-<span id="cb13-204"><a href="#cb13-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-205"><a href="#cb13-205" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb13-206"><a href="#cb13-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-207"><a href="#cb13-207" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb13-208"><a href="#cb13-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-211"><a href="#cb13-211" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb13-212"><a href="#cb13-212" aria-hidden="true" tabindex="-1"></a><span class="ex">r.surf.fractal</span> output=fractal seed=1</span>
-<span id="cb13-213"><a href="#cb13-213" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"fractal = fractal / 10"</span> <span class="at">--overwrite</span></span>
-<span id="cb13-214"><a href="#cb13-214" aria-hidden="true" tabindex="-1"></a><span class="ex">r.stream.extract</span> elevation=fractal accumulation=accumulation threshold=1000 stream_vector=streams</span>
-<span id="cb13-215"><a href="#cb13-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-216"><a href="#cb13-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-217"><a href="#cb13-217" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb13-218"><a href="#cb13-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-221"><a href="#cb13-221" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb13-222"><a href="#cb13-222" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate fractal surface</span></span>
-<span id="cb13-223"><a href="#cb13-223" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
-<span id="cb13-224"><a href="#cb13-224" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.surf.fractal"</span>,</span>
-<span id="cb13-225"><a href="#cb13-225" aria-hidden="true" tabindex="-1"></a>    output<span class="op">=</span><span class="st">"fractal"</span>,</span>
-<span id="cb13-226"><a href="#cb13-226" aria-hidden="true" tabindex="-1"></a>    seed<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb13-227"><a href="#cb13-227" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb13-228"><a href="#cb13-228" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"fractal = fractal / 10"</span>)</span>
-<span id="cb13-229"><a href="#cb13-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-230"><a href="#cb13-230" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb13-231"><a href="#cb13-231" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
-<span id="cb13-232"><a href="#cb13-232" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"fractal"</span>)</span>
-<span id="cb13-233"><a href="#cb13-233" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"fractal"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb13-234"><a href="#cb13-234" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb13-235"><a href="#cb13-235" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-236"><a href="#cb13-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-237"><a href="#cb13-237" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-238"><a href="#cb13-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-239"><a href="#cb13-239" aria-hidden="true" tabindex="-1"></a><span class="al">![Fractal terrain](images/gullies-01.webp)</span></span>
-<span id="cb13-240"><a href="#cb13-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-241"><a href="#cb13-241" aria-hidden="true" tabindex="-1"></a><span class="fu"># Stream Network</span></span>
-<span id="cb13-242"><a href="#cb13-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-243"><a href="#cb13-243" aria-hidden="true" tabindex="-1"></a>Model a stream network for the fractal landscape.</span>
-<span id="cb13-244"><a href="#cb13-244" aria-hidden="true" tabindex="-1"></a>First use {{&lt; meta links.r_watershed &gt;}}</span>
-<span id="cb13-245"><a href="#cb13-245" aria-hidden="true" tabindex="-1"></a>to compute flow accumulation through the landscape.</span>
-<span id="cb13-246"><a href="#cb13-246" aria-hidden="true" tabindex="-1"></a>Then use {{&lt; meta links.r_stream_extract &gt;}}</span>
-<span id="cb13-247"><a href="#cb13-247" aria-hidden="true" tabindex="-1"></a>to extract a vector stream network. </span>
-<span id="cb13-248"><a href="#cb13-248" aria-hidden="true" tabindex="-1"></a>Try different <span class="in">`threshold`</span> values to experiment</span>
-<span id="cb13-249"><a href="#cb13-249" aria-hidden="true" tabindex="-1"></a>with the minimum flow accumulation required for streams. </span>
-<span id="cb13-250"><a href="#cb13-250" aria-hidden="true" tabindex="-1"></a>Calculate the hierarchy of the stream network</span>
-<span id="cb13-251"><a href="#cb13-251" aria-hidden="true" tabindex="-1"></a>with {{&lt; meta links.r_stream_order &gt;}}.</span>
-<span id="cb13-252"><a href="#cb13-252" aria-hidden="true" tabindex="-1"></a>Use map algebra with {{&lt; meta links.r_mapcalc &gt;}}</span>
-<span id="cb13-253"><a href="#cb13-253" aria-hidden="true" tabindex="-1"></a>to estimate the depth of gullies by scaling</span>
-<span id="cb13-254"><a href="#cb13-254" aria-hidden="true" tabindex="-1"></a>the resulting Strahler stream order raster map.</span>
-<span id="cb13-255"><a href="#cb13-255" aria-hidden="true" tabindex="-1"></a>Use a negative scaling factor.</span>
-<span id="cb13-256"><a href="#cb13-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-257"><a href="#cb13-257" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb13-258"><a href="#cb13-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-259"><a href="#cb13-259" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb13-260"><a href="#cb13-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-263"><a href="#cb13-263" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb13-264"><a href="#cb13-264" aria-hidden="true" tabindex="-1"></a><span class="ex">r.watershed</span> elevation=fractal accumulation=accumulation <span class="at">-b</span></span>
-<span id="cb13-265"><a href="#cb13-265" aria-hidden="true" tabindex="-1"></a><span class="ex">r.stream.extract</span> elevation=fractal accumulation=accumulation threshold=1000 stream_vector=streams stream_raster=streams direction=direction</span>
-<span id="cb13-266"><a href="#cb13-266" aria-hidden="true" tabindex="-1"></a><span class="ex">r.stream.order</span> elevation=fractal accumulation=accumulation stream_rast=streams stream_vect=streams direction=direction strahler=strahler <span class="at">--overwrite</span></span>
-<span id="cb13-267"><a href="#cb13-267" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"gullies = strahler * -5"</span></span>
-<span id="cb13-268"><a href="#cb13-268" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-269"><a href="#cb13-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-270"><a href="#cb13-270" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb13-271"><a href="#cb13-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-274"><a href="#cb13-274" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb13-275"><a href="#cb13-275" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute flow accumulation</span></span>
-<span id="cb13-276"><a href="#cb13-276" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
-<span id="cb13-277"><a href="#cb13-277" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.watershed"</span>,</span>
-<span id="cb13-278"><a href="#cb13-278" aria-hidden="true" tabindex="-1"></a>    elevation<span class="op">=</span><span class="st">"fractal"</span>,</span>
-<span id="cb13-279"><a href="#cb13-279" aria-hidden="true" tabindex="-1"></a>    accumulation<span class="op">=</span><span class="st">"accumulation"</span>,</span>
-<span id="cb13-280"><a href="#cb13-280" aria-hidden="true" tabindex="-1"></a>    flags<span class="op">=</span><span class="st">'b'</span></span>
-<span id="cb13-281"><a href="#cb13-281" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb13-282"><a href="#cb13-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-283"><a href="#cb13-283" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract stream network</span></span>
-<span id="cb13-284"><a href="#cb13-284" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.stream.extract"</span>,</span>
-<span id="cb13-285"><a href="#cb13-285" aria-hidden="true" tabindex="-1"></a>    elevation<span class="op">=</span><span class="st">"fractal"</span>,</span>
-<span id="cb13-286"><a href="#cb13-286" aria-hidden="true" tabindex="-1"></a>    accumulation<span class="op">=</span><span class="st">"accumulation"</span>,</span>
-<span id="cb13-287"><a href="#cb13-287" aria-hidden="true" tabindex="-1"></a>    threshold<span class="op">=</span><span class="dv">1000</span>,</span>
-<span id="cb13-288"><a href="#cb13-288" aria-hidden="true" tabindex="-1"></a>    stream_vector<span class="op">=</span><span class="st">"streams"</span>,</span>
-<span id="cb13-289"><a href="#cb13-289" aria-hidden="true" tabindex="-1"></a>    stream_raster<span class="op">=</span><span class="st">"streams"</span>,</span>
-<span id="cb13-290"><a href="#cb13-290" aria-hidden="true" tabindex="-1"></a>    direction<span class="op">=</span><span class="st">"direction"</span></span>
-<span id="cb13-291"><a href="#cb13-291" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb13-292"><a href="#cb13-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-293"><a href="#cb13-293" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate stream order</span></span>
-<span id="cb13-294"><a href="#cb13-294" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.stream.order"</span>,</span>
-<span id="cb13-295"><a href="#cb13-295" aria-hidden="true" tabindex="-1"></a>    elevation<span class="op">=</span><span class="st">"fractal"</span>,</span>
-<span id="cb13-296"><a href="#cb13-296" aria-hidden="true" tabindex="-1"></a>    accumulation<span class="op">=</span><span class="st">"accumulation"</span>,</span>
-<span id="cb13-297"><a href="#cb13-297" aria-hidden="true" tabindex="-1"></a>    stream_rast<span class="op">=</span><span class="st">"streams"</span>,</span>
-<span id="cb13-298"><a href="#cb13-298" aria-hidden="true" tabindex="-1"></a>    stream_vect<span class="op">=</span><span class="st">"streams"</span>,</span>
-<span id="cb13-299"><a href="#cb13-299" aria-hidden="true" tabindex="-1"></a>    direction<span class="op">=</span><span class="st">"direction"</span>,</span>
-<span id="cb13-300"><a href="#cb13-300" aria-hidden="true" tabindex="-1"></a>    strahler<span class="op">=</span><span class="st">"strahler"</span></span>
-<span id="cb13-301"><a href="#cb13-301" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb13-302"><a href="#cb13-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-303"><a href="#cb13-303" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale raster</span></span>
-<span id="cb13-304"><a href="#cb13-304" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"gullies = strahler * -5"</span>)</span>
-<span id="cb13-305"><a href="#cb13-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-306"><a href="#cb13-306" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb13-307"><a href="#cb13-307" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
-<span id="cb13-308"><a href="#cb13-308" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"fractal"</span>)</span>
-<span id="cb13-309"><a href="#cb13-309" aria-hidden="true" tabindex="-1"></a>m.d_vect(<span class="bu">map</span><span class="op">=</span><span class="st">"streams"</span>, <span class="bu">type</span><span class="op">=</span><span class="st">"line"</span>, color<span class="op">=</span><span class="st">"white"</span>, width_column<span class="op">=</span><span class="st">"strahler"</span>)</span>
-<span id="cb13-310"><a href="#cb13-310" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"fractal"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb13-311"><a href="#cb13-311" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb13-312"><a href="#cb13-312" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-313"><a href="#cb13-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-314"><a href="#cb13-314" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-315"><a href="#cb13-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-316"><a href="#cb13-316" aria-hidden="true" tabindex="-1"></a><span class="al">![Stream network](images/gullies-02.webp)</span></span>
-<span id="cb13-317"><a href="#cb13-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-318"><a href="#cb13-318" aria-hidden="true" tabindex="-1"></a><span class="fu"># Relative Cut Operation</span></span>
-<span id="cb13-319"><a href="#cb13-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-320"><a href="#cb13-320" aria-hidden="true" tabindex="-1"></a>Use {{&lt; meta links.r_earthworks &gt;}}</span>
-<span id="cb13-321"><a href="#cb13-321" aria-hidden="true" tabindex="-1"></a>to cut deep gullies into the stream channels.</span>
-<span id="cb13-322"><a href="#cb13-322" aria-hidden="true" tabindex="-1"></a>Use the  exponential growth and decay function </span>
-<span id="cb13-323"><a href="#cb13-323" aria-hidden="true" tabindex="-1"></a>$z = z_0 e^{-\lambda \sqrt{\Delta x^2 + \Delta y^2}}$</span>
-<span id="cb13-324"><a href="#cb13-324" aria-hidden="true" tabindex="-1"></a>to model the steep slopes of the gullies. </span>
-<span id="cb13-325"><a href="#cb13-325" aria-hidden="true" tabindex="-1"></a>Set <span class="in">`mode`</span> to relative, </span>
-<span id="cb13-326"><a href="#cb13-326" aria-hidden="true" tabindex="-1"></a><span class="in">`operation`</span> to cut,</span>
-<span id="cb13-327"><a href="#cb13-327" aria-hidden="true" tabindex="-1"></a><span class="in">`function`</span> to exponential,</span>
-<span id="cb13-328"><a href="#cb13-328" aria-hidden="true" tabindex="-1"></a><span class="in">`raster`</span> to the raster map of gullies,</span>
-<span id="cb13-329"><a href="#cb13-329" aria-hidden="true" tabindex="-1"></a>and <span class="in">`exponential`</span> $\lambda$ to a value such as 0.1.</span>
-<span id="cb13-330"><a href="#cb13-330" aria-hidden="true" tabindex="-1"></a>Save an output <span class="in">`volume`</span> raster</span>
-<span id="cb13-331"><a href="#cb13-331" aria-hidden="true" tabindex="-1"></a>to visualize volumetric change.</span>
-<span id="cb13-332"><a href="#cb13-332" aria-hidden="true" tabindex="-1"></a>This may take a minute to run.</span>
-<span id="cb13-333"><a href="#cb13-333" aria-hidden="true" tabindex="-1"></a>For faster results, try setting a lower resolution</span>
-<span id="cb13-334"><a href="#cb13-334" aria-hidden="true" tabindex="-1"></a>with {{&lt; meta links.g_region &gt;}}. </span>
-<span id="cb13-335"><a href="#cb13-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-336"><a href="#cb13-336" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
-<span id="cb13-337"><a href="#cb13-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-338"><a href="#cb13-338" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
-<span id="cb13-339"><a href="#cb13-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-342"><a href="#cb13-342" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb13-343"><a href="#cb13-343" aria-hidden="true" tabindex="-1"></a><span class="ex">r.earthworks</span> elevation=fractal earthworks=gullies volume=volume mode=relative operation=cut function=exponential raster=gullies exponential=0.1 <span class="at">--overwrite</span></span>
-<span id="cb13-344"><a href="#cb13-344" aria-hidden="true" tabindex="-1"></a><span class="ex">r.colors</span> map=volume color=inferno</span>
-<span id="cb13-345"><a href="#cb13-345" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-346"><a href="#cb13-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-347"><a href="#cb13-347" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
-<span id="cb13-348"><a href="#cb13-348" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-351"><a href="#cb13-351" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb13-352"><a href="#cb13-352" aria-hidden="true" tabindex="-1"></a><span class="co"># Model gullies</span></span>
-<span id="cb13-353"><a href="#cb13-353" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
-<span id="cb13-354"><a href="#cb13-354" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.earthworks"</span>,</span>
-<span id="cb13-355"><a href="#cb13-355" aria-hidden="true" tabindex="-1"></a>    elevation<span class="op">=</span><span class="st">"fractal"</span>,</span>
-<span id="cb13-356"><a href="#cb13-356" aria-hidden="true" tabindex="-1"></a>    earthworks<span class="op">=</span><span class="st">"gullies"</span>,</span>
-<span id="cb13-357"><a href="#cb13-357" aria-hidden="true" tabindex="-1"></a>    volume<span class="op">=</span><span class="st">"volume"</span>,</span>
-<span id="cb13-358"><a href="#cb13-358" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">"relative"</span>,</span>
-<span id="cb13-359"><a href="#cb13-359" aria-hidden="true" tabindex="-1"></a>    operation<span class="op">=</span><span class="st">"cut"</span>,</span>
-<span id="cb13-360"><a href="#cb13-360" aria-hidden="true" tabindex="-1"></a>    function<span class="op">=</span><span class="st">"exponential"</span>,</span>
-<span id="cb13-361"><a href="#cb13-361" aria-hidden="true" tabindex="-1"></a>    raster<span class="op">=</span><span class="st">"gullies"</span>,</span>
-<span id="cb13-362"><a href="#cb13-362" aria-hidden="true" tabindex="-1"></a>    exponential<span class="op">=</span><span class="fl">0.1</span></span>
-<span id="cb13-363"><a href="#cb13-363" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb13-364"><a href="#cb13-364" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"volume"</span>, color<span class="op">=</span><span class="st">"inferno"</span>)</span>
-<span id="cb13-365"><a href="#cb13-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-366"><a href="#cb13-366" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb13-367"><a href="#cb13-367" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
-<span id="cb13-368"><a href="#cb13-368" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"gullies"</span>)</span>
-<span id="cb13-369"><a href="#cb13-369" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"gullies"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb13-370"><a href="#cb13-370" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb13-371"><a href="#cb13-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-372"><a href="#cb13-372" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize volume</span></span>
-<span id="cb13-373"><a href="#cb13-373" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
-<span id="cb13-374"><a href="#cb13-374" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"volume"</span>)</span>
-<span id="cb13-375"><a href="#cb13-375" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"volume"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb13-376"><a href="#cb13-376" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb13-377"><a href="#cb13-377" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-378"><a href="#cb13-378" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-379"><a href="#cb13-379" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-380"><a href="#cb13-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-381"><a href="#cb13-381" aria-hidden="true" tabindex="-1"></a><span class="al">![Gullies](images/gullies-03.webp)</span></span>
-<span id="cb13-382"><a href="#cb13-382" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-383"><a href="#cb13-383" aria-hidden="true" tabindex="-1"></a><span class="al">![Volumetric change](images/gullies-04.webp)</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="an">links:</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">  r_earthworks: "[r.earthworks](https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html)"</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">  r_sim_terrain: "[r.sim.terrain](https://grass.osgeo.org/grass-stable/manuals/addons/r.sim.terrain.html)"</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">  g_extension: "[g.extension](https://grass.osgeo.org/grass-stable/manuals/g.extension.html)"</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">  g_region: "[g.region](https://grass.osgeo.org/grass-stable/manuals/g.region.html)"</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">  r_surf_fractal: "[r.surf.fractal](https://grass.osgeo.org/grass-stable/manuals/r.surf.fractal.html)"</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">  r_mapcalc: "[r.mapcalc](https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html)"</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">  r_watershed: "[r.watershed](https://grass.osgeo.org/grass-stable/manuals/r.watershed.html)"</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">  r_stream_extract: "[r.stream.extract](https://grass.osgeo.org/grass-stable/manuals/r.stream.extract.html)"</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">  r_stream_order: "[r.stream.order](https://grass.osgeo.org/grass-stable/manuals/addons/r.stream.order.html)"</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="an">code-links:</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">  - text: Jupyter notebook</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">    href: gullies.ipynb</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">    icon: file-code</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">    target: _blank</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="an">resources:</span><span class="co"> gullies.ipynb</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> jupyter</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: false</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="al">![Gullies](images/gullies-03.webp)</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>Learn the how to model gullies</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>using relative cut operations with </span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_earthworks &gt;}}<span class="co">[</span><span class="ot">@Harmon:2026</span><span class="co">]</span>.</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>This tutorial introduces </span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>more features of {{&lt; meta links.r_earthworks &gt;}}</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>including vector line input,</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>relative operations, exponential functions,</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>and volumetric change calculations.</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>While absolute operations calculate cut and fill</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>based on a vertical datum of zero</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>and can be used to model features at a given elevation, </span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>relative operations calculate cut and fill</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>relative to the existing topography</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>and can be used to model features </span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>that follow the existing terrain.</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>Use a relative earthworking operation </span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>with an exponential function to </span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>carve deep gullies into a landscape. </span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>In this tutorial </span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>all of the data will be created procedurally</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>including the terrain and the streams.</span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>Start by generating fractal terrain. </span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>Then model flow accumulation </span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>through the fractal terrain</span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>and extract its stream network. </span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>Finally use the vector map of streams </span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>as input for a relative cut operation</span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>to transform valleys into deep gullies.</span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>This tutorial covers:</span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Terrain generation</span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Flow accumulation</span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Stream extraction</span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Relative earthworks</span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a>For a simulation based approach to modeling gullies,</span>
+<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>try the landscape evolution model </span>
+<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_sim_terrain &gt;}} <span class="co">[</span><span class="ot">@Harmon:2019</span><span class="co">]</span> instead. </span>
+<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="Computational notebook"}</span>
+<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a>This tutorial can be run as a computational notebook.</span>
+<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a>Learn how to work with notebooks in the tutorial</span>
+<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Get started with GRASS &amp; Python in Jupyter Notebooks</span><span class="co">](https://grass-tutorials.osgeo.org/content/tutorials/get_started/fast_track_grass_and_python.html)</span>.</span>
+<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a><span class="fu"># Setup</span></span>
+<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project</span></span>
+<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a>Start a GRASS session in a new project</span>
+<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a>with a Cartesian (XY) coordinate system.</span>
+<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-95"><a href="#cb13-95" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-99"><a href="#cb13-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a><span class="ex">grass</span> <span class="at">--tmp-project</span> XY</span>
+<span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-103"><a href="#cb13-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb13-104"><a href="#cb13-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-107"><a href="#cb13-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb13-108"><a href="#cb13-108" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
+<span id="cb13-109"><a href="#cb13-109" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb13-110"><a href="#cb13-110" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb13-111"><a href="#cb13-111" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb13-112"><a href="#cb13-112" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb13-113"><a href="#cb13-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-114"><a href="#cb13-114" aria-hidden="true" tabindex="-1"></a><span class="co"># Find GRASS Python packages</span></span>
+<span id="cb13-115"><a href="#cb13-115" aria-hidden="true" tabindex="-1"></a>sys.path.append(</span>
+<span id="cb13-116"><a href="#cb13-116" aria-hidden="true" tabindex="-1"></a>  subprocess.check_output(</span>
+<span id="cb13-117"><a href="#cb13-117" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"grass"</span>, <span class="st">"--config"</span>, <span class="st">"python_path"</span>],</span>
+<span id="cb13-118"><a href="#cb13-118" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="va">True</span></span>
+<span id="cb13-119"><a href="#cb13-119" aria-hidden="true" tabindex="-1"></a>    ).strip()</span>
+<span id="cb13-120"><a href="#cb13-120" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-121"><a href="#cb13-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-122"><a href="#cb13-122" aria-hidden="true" tabindex="-1"></a><span class="co"># Import GRASS packages</span></span>
+<span id="cb13-123"><a href="#cb13-123" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> grass.script <span class="im">as</span> gs</span>
+<span id="cb13-124"><a href="#cb13-124" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> grass.jupyter <span class="im">as</span> gj</span>
+<span id="cb13-125"><a href="#cb13-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-126"><a href="#cb13-126" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a temporary folder</span></span>
+<span id="cb13-127"><a href="#cb13-127" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tempfile</span>
+<span id="cb13-128"><a href="#cb13-128" aria-hidden="true" tabindex="-1"></a>temporary <span class="op">=</span> tempfile.TemporaryDirectory()</span>
+<span id="cb13-129"><a href="#cb13-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-130"><a href="#cb13-130" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a project in the temporary directory</span></span>
+<span id="cb13-131"><a href="#cb13-131" aria-hidden="true" tabindex="-1"></a>gs.create_project(path<span class="op">=</span>temporary.name, name<span class="op">=</span><span class="st">"xy"</span>)</span>
+<span id="cb13-132"><a href="#cb13-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-133"><a href="#cb13-133" aria-hidden="true" tabindex="-1"></a><span class="co"># Start GRASS in this project</span></span>
+<span id="cb13-134"><a href="#cb13-134" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> gj.init(Path(temporary.name, <span class="st">"xy"</span>))</span>
+<span id="cb13-135"><a href="#cb13-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-136"><a href="#cb13-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-137"><a href="#cb13-137" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-138"><a href="#cb13-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-139"><a href="#cb13-139" aria-hidden="true" tabindex="-1"></a><span class="fu">## Installation</span></span>
+<span id="cb13-140"><a href="#cb13-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-141"><a href="#cb13-141" aria-hidden="true" tabindex="-1"></a>Install {{&lt; meta links.r_earthworks &gt;}} and {{&lt; meta links.r_stream_order &gt;}} with</span>
+<span id="cb13-142"><a href="#cb13-142" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.g_extension &gt;}}. </span>
+<span id="cb13-143"><a href="#cb13-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-144"><a href="#cb13-144" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb13-145"><a href="#cb13-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-146"><a href="#cb13-146" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb13-147"><a href="#cb13-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-150"><a href="#cb13-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb13-151"><a href="#cb13-151" aria-hidden="true" tabindex="-1"></a><span class="ex">g.extension</span> extension=r.earthworks</span>
+<span id="cb13-152"><a href="#cb13-152" aria-hidden="true" tabindex="-1"></a><span class="ex">g.extension</span> extension=r.stream.order</span>
+<span id="cb13-153"><a href="#cb13-153" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-154"><a href="#cb13-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-155"><a href="#cb13-155" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb13-156"><a href="#cb13-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-159"><a href="#cb13-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb13-160"><a href="#cb13-160" aria-hidden="true" tabindex="-1"></a><span class="co"># Install extension</span></span>
+<span id="cb13-161"><a href="#cb13-161" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.extension"</span>, extension<span class="op">=</span><span class="st">"r.earthworks"</span>)</span>
+<span id="cb13-162"><a href="#cb13-162" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.extension"</span>, extension<span class="op">=</span><span class="st">"r.stream.order"</span>)</span>
+<span id="cb13-163"><a href="#cb13-163" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-164"><a href="#cb13-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-165"><a href="#cb13-165" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-166"><a href="#cb13-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-167"><a href="#cb13-167" aria-hidden="true" tabindex="-1"></a><span class="fu">## Region</span></span>
+<span id="cb13-168"><a href="#cb13-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-169"><a href="#cb13-169" aria-hidden="true" tabindex="-1"></a>Use {{&lt; meta links.g_region &gt;}}</span>
+<span id="cb13-170"><a href="#cb13-170" aria-hidden="true" tabindex="-1"></a>to set the extent and resolution of the computational region.</span>
+<span id="cb13-171"><a href="#cb13-171" aria-hidden="true" tabindex="-1"></a>Create a region starting at the origin</span>
+<span id="cb13-172"><a href="#cb13-172" aria-hidden="true" tabindex="-1"></a>and extending two hundred units north and eight hundred units east.</span>
+<span id="cb13-173"><a href="#cb13-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-174"><a href="#cb13-174" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb13-175"><a href="#cb13-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-176"><a href="#cb13-176" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb13-177"><a href="#cb13-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-180"><a href="#cb13-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb13-181"><a href="#cb13-181" aria-hidden="true" tabindex="-1"></a><span class="ex">g.region</span> n=200 e=800 s=0 w=0 res=1</span>
+<span id="cb13-182"><a href="#cb13-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-183"><a href="#cb13-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-184"><a href="#cb13-184" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb13-185"><a href="#cb13-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-188"><a href="#cb13-188" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb13-189"><a href="#cb13-189" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
+<span id="cb13-190"><a href="#cb13-190" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.region"</span>, n<span class="op">=</span><span class="dv">200</span>, e<span class="op">=</span><span class="dv">800</span>, s<span class="op">=</span><span class="dv">0</span>, w<span class="op">=</span><span class="dv">0</span>, res<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-191"><a href="#cb13-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-192"><a href="#cb13-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-193"><a href="#cb13-193" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-194"><a href="#cb13-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-195"><a href="#cb13-195" aria-hidden="true" tabindex="-1"></a><span class="fu"># Fractal Terrain</span></span>
+<span id="cb13-196"><a href="#cb13-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-197"><a href="#cb13-197" aria-hidden="true" tabindex="-1"></a>Generate a fractal terrain with {{&lt; meta links.r_surf_fractal &gt;}}.</span>
+<span id="cb13-198"><a href="#cb13-198" aria-hidden="true" tabindex="-1"></a>Running this tool without setting a seed </span>
+<span id="cb13-199"><a href="#cb13-199" aria-hidden="true" tabindex="-1"></a>will generate random results each run. </span>
+<span id="cb13-200"><a href="#cb13-200" aria-hidden="true" tabindex="-1"></a>For reproducible results set a seed. </span>
+<span id="cb13-201"><a href="#cb13-201" aria-hidden="true" tabindex="-1"></a>Then use the raster calculator {{&lt; meta links.r_mapcalc &gt;}}</span>
+<span id="cb13-202"><a href="#cb13-202" aria-hidden="true" tabindex="-1"></a>to scale it vertically so that the mountains are not too high.</span>
+<span id="cb13-203"><a href="#cb13-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-204"><a href="#cb13-204" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb13-205"><a href="#cb13-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-206"><a href="#cb13-206" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb13-207"><a href="#cb13-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-210"><a href="#cb13-210" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb13-211"><a href="#cb13-211" aria-hidden="true" tabindex="-1"></a><span class="ex">r.surf.fractal</span> output=fractal seed=1</span>
+<span id="cb13-212"><a href="#cb13-212" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"fractal = fractal / 10"</span> <span class="at">--overwrite</span></span>
+<span id="cb13-213"><a href="#cb13-213" aria-hidden="true" tabindex="-1"></a><span class="ex">r.stream.extract</span> elevation=fractal accumulation=accumulation threshold=1000 stream_vector=streams</span>
+<span id="cb13-214"><a href="#cb13-214" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-215"><a href="#cb13-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-216"><a href="#cb13-216" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb13-217"><a href="#cb13-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-220"><a href="#cb13-220" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb13-221"><a href="#cb13-221" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate fractal surface</span></span>
+<span id="cb13-222"><a href="#cb13-222" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
+<span id="cb13-223"><a href="#cb13-223" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.surf.fractal"</span>,</span>
+<span id="cb13-224"><a href="#cb13-224" aria-hidden="true" tabindex="-1"></a>    output<span class="op">=</span><span class="st">"fractal"</span>,</span>
+<span id="cb13-225"><a href="#cb13-225" aria-hidden="true" tabindex="-1"></a>    seed<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb13-226"><a href="#cb13-226" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-227"><a href="#cb13-227" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"fractal = fractal / 10"</span>)</span>
+<span id="cb13-228"><a href="#cb13-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-229"><a href="#cb13-229" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb13-230"><a href="#cb13-230" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb13-231"><a href="#cb13-231" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"fractal"</span>)</span>
+<span id="cb13-232"><a href="#cb13-232" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"fractal"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb13-233"><a href="#cb13-233" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb13-234"><a href="#cb13-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-235"><a href="#cb13-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-236"><a href="#cb13-236" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-237"><a href="#cb13-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-238"><a href="#cb13-238" aria-hidden="true" tabindex="-1"></a><span class="al">![Fractal terrain](images/gullies-01.webp)</span></span>
+<span id="cb13-239"><a href="#cb13-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-240"><a href="#cb13-240" aria-hidden="true" tabindex="-1"></a><span class="fu"># Stream Network</span></span>
+<span id="cb13-241"><a href="#cb13-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-242"><a href="#cb13-242" aria-hidden="true" tabindex="-1"></a>Model a stream network for the fractal landscape.</span>
+<span id="cb13-243"><a href="#cb13-243" aria-hidden="true" tabindex="-1"></a>First use {{&lt; meta links.r_watershed &gt;}}</span>
+<span id="cb13-244"><a href="#cb13-244" aria-hidden="true" tabindex="-1"></a>to compute flow accumulation through the landscape.</span>
+<span id="cb13-245"><a href="#cb13-245" aria-hidden="true" tabindex="-1"></a>Then use {{&lt; meta links.r_stream_extract &gt;}}</span>
+<span id="cb13-246"><a href="#cb13-246" aria-hidden="true" tabindex="-1"></a>to extract a vector stream network. </span>
+<span id="cb13-247"><a href="#cb13-247" aria-hidden="true" tabindex="-1"></a>Try different <span class="in">`threshold`</span> values to experiment</span>
+<span id="cb13-248"><a href="#cb13-248" aria-hidden="true" tabindex="-1"></a>with the minimum flow accumulation required for streams. </span>
+<span id="cb13-249"><a href="#cb13-249" aria-hidden="true" tabindex="-1"></a>Calculate the hierarchy of the stream network</span>
+<span id="cb13-250"><a href="#cb13-250" aria-hidden="true" tabindex="-1"></a>with {{&lt; meta links.r_stream_order &gt;}}.</span>
+<span id="cb13-251"><a href="#cb13-251" aria-hidden="true" tabindex="-1"></a>Use map algebra with {{&lt; meta links.r_mapcalc &gt;}}</span>
+<span id="cb13-252"><a href="#cb13-252" aria-hidden="true" tabindex="-1"></a>to estimate the depth of gullies by scaling</span>
+<span id="cb13-253"><a href="#cb13-253" aria-hidden="true" tabindex="-1"></a>the resulting Strahler stream order raster map.</span>
+<span id="cb13-254"><a href="#cb13-254" aria-hidden="true" tabindex="-1"></a>Use a negative scaling factor.</span>
+<span id="cb13-255"><a href="#cb13-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-256"><a href="#cb13-256" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb13-257"><a href="#cb13-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-258"><a href="#cb13-258" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb13-259"><a href="#cb13-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-262"><a href="#cb13-262" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb13-263"><a href="#cb13-263" aria-hidden="true" tabindex="-1"></a><span class="ex">r.watershed</span> elevation=fractal accumulation=accumulation <span class="at">-b</span></span>
+<span id="cb13-264"><a href="#cb13-264" aria-hidden="true" tabindex="-1"></a><span class="ex">r.stream.extract</span> elevation=fractal accumulation=accumulation threshold=1000 stream_vector=streams stream_raster=streams direction=direction</span>
+<span id="cb13-265"><a href="#cb13-265" aria-hidden="true" tabindex="-1"></a><span class="ex">r.stream.order</span> elevation=fractal accumulation=accumulation stream_rast=streams stream_vect=streams direction=direction strahler=strahler <span class="at">--overwrite</span></span>
+<span id="cb13-266"><a href="#cb13-266" aria-hidden="true" tabindex="-1"></a><span class="ex">r.mapcalc</span> expression=<span class="st">"gullies = strahler * -5"</span></span>
+<span id="cb13-267"><a href="#cb13-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-268"><a href="#cb13-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-269"><a href="#cb13-269" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb13-270"><a href="#cb13-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-273"><a href="#cb13-273" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb13-274"><a href="#cb13-274" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute flow accumulation</span></span>
+<span id="cb13-275"><a href="#cb13-275" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
+<span id="cb13-276"><a href="#cb13-276" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.watershed"</span>,</span>
+<span id="cb13-277"><a href="#cb13-277" aria-hidden="true" tabindex="-1"></a>    elevation<span class="op">=</span><span class="st">"fractal"</span>,</span>
+<span id="cb13-278"><a href="#cb13-278" aria-hidden="true" tabindex="-1"></a>    accumulation<span class="op">=</span><span class="st">"accumulation"</span>,</span>
+<span id="cb13-279"><a href="#cb13-279" aria-hidden="true" tabindex="-1"></a>    flags<span class="op">=</span><span class="st">'b'</span></span>
+<span id="cb13-280"><a href="#cb13-280" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-281"><a href="#cb13-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-282"><a href="#cb13-282" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract stream network</span></span>
+<span id="cb13-283"><a href="#cb13-283" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.stream.extract"</span>,</span>
+<span id="cb13-284"><a href="#cb13-284" aria-hidden="true" tabindex="-1"></a>    elevation<span class="op">=</span><span class="st">"fractal"</span>,</span>
+<span id="cb13-285"><a href="#cb13-285" aria-hidden="true" tabindex="-1"></a>    accumulation<span class="op">=</span><span class="st">"accumulation"</span>,</span>
+<span id="cb13-286"><a href="#cb13-286" aria-hidden="true" tabindex="-1"></a>    threshold<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb13-287"><a href="#cb13-287" aria-hidden="true" tabindex="-1"></a>    stream_vector<span class="op">=</span><span class="st">"streams"</span>,</span>
+<span id="cb13-288"><a href="#cb13-288" aria-hidden="true" tabindex="-1"></a>    stream_raster<span class="op">=</span><span class="st">"streams"</span>,</span>
+<span id="cb13-289"><a href="#cb13-289" aria-hidden="true" tabindex="-1"></a>    direction<span class="op">=</span><span class="st">"direction"</span></span>
+<span id="cb13-290"><a href="#cb13-290" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-291"><a href="#cb13-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-292"><a href="#cb13-292" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate stream order</span></span>
+<span id="cb13-293"><a href="#cb13-293" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.stream.order"</span>,</span>
+<span id="cb13-294"><a href="#cb13-294" aria-hidden="true" tabindex="-1"></a>    elevation<span class="op">=</span><span class="st">"fractal"</span>,</span>
+<span id="cb13-295"><a href="#cb13-295" aria-hidden="true" tabindex="-1"></a>    accumulation<span class="op">=</span><span class="st">"accumulation"</span>,</span>
+<span id="cb13-296"><a href="#cb13-296" aria-hidden="true" tabindex="-1"></a>    stream_rast<span class="op">=</span><span class="st">"streams"</span>,</span>
+<span id="cb13-297"><a href="#cb13-297" aria-hidden="true" tabindex="-1"></a>    stream_vect<span class="op">=</span><span class="st">"streams"</span>,</span>
+<span id="cb13-298"><a href="#cb13-298" aria-hidden="true" tabindex="-1"></a>    direction<span class="op">=</span><span class="st">"direction"</span>,</span>
+<span id="cb13-299"><a href="#cb13-299" aria-hidden="true" tabindex="-1"></a>    strahler<span class="op">=</span><span class="st">"strahler"</span></span>
+<span id="cb13-300"><a href="#cb13-300" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-301"><a href="#cb13-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-302"><a href="#cb13-302" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale raster</span></span>
+<span id="cb13-303"><a href="#cb13-303" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"gullies = strahler * -5"</span>)</span>
+<span id="cb13-304"><a href="#cb13-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-305"><a href="#cb13-305" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb13-306"><a href="#cb13-306" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb13-307"><a href="#cb13-307" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"fractal"</span>)</span>
+<span id="cb13-308"><a href="#cb13-308" aria-hidden="true" tabindex="-1"></a>m.d_vect(<span class="bu">map</span><span class="op">=</span><span class="st">"streams"</span>, <span class="bu">type</span><span class="op">=</span><span class="st">"line"</span>, color<span class="op">=</span><span class="st">"white"</span>, width_column<span class="op">=</span><span class="st">"strahler"</span>)</span>
+<span id="cb13-309"><a href="#cb13-309" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"fractal"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb13-310"><a href="#cb13-310" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb13-311"><a href="#cb13-311" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-312"><a href="#cb13-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-313"><a href="#cb13-313" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-314"><a href="#cb13-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-315"><a href="#cb13-315" aria-hidden="true" tabindex="-1"></a><span class="al">![Stream network](images/gullies-02.webp)</span></span>
+<span id="cb13-316"><a href="#cb13-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-317"><a href="#cb13-317" aria-hidden="true" tabindex="-1"></a><span class="fu"># Relative Cut Operation</span></span>
+<span id="cb13-318"><a href="#cb13-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-319"><a href="#cb13-319" aria-hidden="true" tabindex="-1"></a>Use {{&lt; meta links.r_earthworks &gt;}}</span>
+<span id="cb13-320"><a href="#cb13-320" aria-hidden="true" tabindex="-1"></a>to cut deep gullies into the stream channels.</span>
+<span id="cb13-321"><a href="#cb13-321" aria-hidden="true" tabindex="-1"></a>Use the  exponential growth and decay function </span>
+<span id="cb13-322"><a href="#cb13-322" aria-hidden="true" tabindex="-1"></a>$z = z_0 e^{-\lambda \sqrt{\Delta x^2 + \Delta y^2}}$</span>
+<span id="cb13-323"><a href="#cb13-323" aria-hidden="true" tabindex="-1"></a>to model the steep slopes of the gullies. </span>
+<span id="cb13-324"><a href="#cb13-324" aria-hidden="true" tabindex="-1"></a>Set <span class="in">`mode`</span> to relative, </span>
+<span id="cb13-325"><a href="#cb13-325" aria-hidden="true" tabindex="-1"></a><span class="in">`operation`</span> to cut,</span>
+<span id="cb13-326"><a href="#cb13-326" aria-hidden="true" tabindex="-1"></a><span class="in">`function`</span> to exponential,</span>
+<span id="cb13-327"><a href="#cb13-327" aria-hidden="true" tabindex="-1"></a><span class="in">`raster`</span> to the raster map of gullies,</span>
+<span id="cb13-328"><a href="#cb13-328" aria-hidden="true" tabindex="-1"></a>and <span class="in">`exponential`</span> $\lambda$ to a value such as 0.1.</span>
+<span id="cb13-329"><a href="#cb13-329" aria-hidden="true" tabindex="-1"></a>Save an output <span class="in">`volume`</span> raster</span>
+<span id="cb13-330"><a href="#cb13-330" aria-hidden="true" tabindex="-1"></a>to visualize volumetric change.</span>
+<span id="cb13-331"><a href="#cb13-331" aria-hidden="true" tabindex="-1"></a>This may take a minute to run.</span>
+<span id="cb13-332"><a href="#cb13-332" aria-hidden="true" tabindex="-1"></a>For faster results, try setting a lower resolution</span>
+<span id="cb13-333"><a href="#cb13-333" aria-hidden="true" tabindex="-1"></a>with {{&lt; meta links.g_region &gt;}}. </span>
+<span id="cb13-334"><a href="#cb13-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-335"><a href="#cb13-335" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group="language"}</span>
+<span id="cb13-336"><a href="#cb13-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-337"><a href="#cb13-337" aria-hidden="true" tabindex="-1"></a><span class="fu">## Command line</span></span>
+<span id="cb13-338"><a href="#cb13-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-341"><a href="#cb13-341" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb13-342"><a href="#cb13-342" aria-hidden="true" tabindex="-1"></a><span class="ex">r.earthworks</span> elevation=fractal earthworks=gullies volume=volume mode=relative operation=cut function=exponential raster=gullies exponential=0.1 <span class="at">--overwrite</span></span>
+<span id="cb13-343"><a href="#cb13-343" aria-hidden="true" tabindex="-1"></a><span class="ex">r.colors</span> map=volume color=inferno</span>
+<span id="cb13-344"><a href="#cb13-344" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-345"><a href="#cb13-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-346"><a href="#cb13-346" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python</span></span>
+<span id="cb13-347"><a href="#cb13-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-350"><a href="#cb13-350" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb13-351"><a href="#cb13-351" aria-hidden="true" tabindex="-1"></a><span class="co"># Model gullies</span></span>
+<span id="cb13-352"><a href="#cb13-352" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
+<span id="cb13-353"><a href="#cb13-353" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.earthworks"</span>,</span>
+<span id="cb13-354"><a href="#cb13-354" aria-hidden="true" tabindex="-1"></a>    elevation<span class="op">=</span><span class="st">"fractal"</span>,</span>
+<span id="cb13-355"><a href="#cb13-355" aria-hidden="true" tabindex="-1"></a>    earthworks<span class="op">=</span><span class="st">"gullies"</span>,</span>
+<span id="cb13-356"><a href="#cb13-356" aria-hidden="true" tabindex="-1"></a>    volume<span class="op">=</span><span class="st">"volume"</span>,</span>
+<span id="cb13-357"><a href="#cb13-357" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">"relative"</span>,</span>
+<span id="cb13-358"><a href="#cb13-358" aria-hidden="true" tabindex="-1"></a>    operation<span class="op">=</span><span class="st">"cut"</span>,</span>
+<span id="cb13-359"><a href="#cb13-359" aria-hidden="true" tabindex="-1"></a>    function<span class="op">=</span><span class="st">"exponential"</span>,</span>
+<span id="cb13-360"><a href="#cb13-360" aria-hidden="true" tabindex="-1"></a>    raster<span class="op">=</span><span class="st">"gullies"</span>,</span>
+<span id="cb13-361"><a href="#cb13-361" aria-hidden="true" tabindex="-1"></a>    exponential<span class="op">=</span><span class="fl">0.1</span></span>
+<span id="cb13-362"><a href="#cb13-362" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-363"><a href="#cb13-363" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"volume"</span>, color<span class="op">=</span><span class="st">"inferno"</span>)</span>
+<span id="cb13-364"><a href="#cb13-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-365"><a href="#cb13-365" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb13-366"><a href="#cb13-366" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb13-367"><a href="#cb13-367" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"gullies"</span>)</span>
+<span id="cb13-368"><a href="#cb13-368" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"gullies"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb13-369"><a href="#cb13-369" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb13-370"><a href="#cb13-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-371"><a href="#cb13-371" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize volume</span></span>
+<span id="cb13-372"><a href="#cb13-372" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb13-373"><a href="#cb13-373" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"volume"</span>)</span>
+<span id="cb13-374"><a href="#cb13-374" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"volume"</span>, at<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb13-375"><a href="#cb13-375" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb13-376"><a href="#cb13-376" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-377"><a href="#cb13-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-378"><a href="#cb13-378" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-379"><a href="#cb13-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-380"><a href="#cb13-380" aria-hidden="true" tabindex="-1"></a><span class="al">![Gullies](images/gullies-03.webp)</span></span>
+<span id="cb13-381"><a href="#cb13-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-382"><a href="#cb13-382" aria-hidden="true" tabindex="-1"></a><span class="al">![Volumetric change](images/gullies-04.webp)</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

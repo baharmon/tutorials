@@ -11,7 +11,7 @@
     "href": "grass/earthworks.html",
     "title": "Earthworks",
     "section": "",
-    "text": "Random fill operation with r.earthworks\nLearn how model terrain with r.earthworks. With this tool you can generate new terrain or modify existing terrain using cut and fill operations inspired by earthworking. The first tutorial on the basics of terrain modeling introduces key concepts such as cut and fill operations. The subsequent tutorials introduce more advanced concepts such as relative operations and growth and decay functions. These tutorials demonstrate how to generate terrain, model natural landforms, and model anthropogenic landforms - i.e. earthworks - such as roads, dams, and levees. Read our paper to learn more.",
+    "text": "Random fill operation with r.earthworks\nLearn how model terrain with r.earthworks. With this tool you can generate new terrain or modify existing terrain using cut and fill operations inspired by earthworking. The first tutorial on the basics of terrain modeling introduces key concepts such as cut and fill operations. The subsequent tutorials introduce more advanced concepts such as relative operations and growth and decay functions. These tutorials demonstrate how to generate terrain, model natural landforms, and model anthropogenic landforms - i.e. earthworks - such as roads, dams, and levees. Read our paper to learn more [1].",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -47,7 +47,7 @@
     "href": "grass/gullies.html",
     "title": "Earthworks: Gully Modeling",
     "section": "",
-    "text": "Gullies\nLearn the how to model gullies using relative cut operations with r.earthworks. This tutorial introduces more features of r.earthworks including vector line input, relative operations, exponential functions, and volumetric change calculations. While absolute operations calculate cut and fill based on a vertical datum of zero and can be used to model features at a given elevation, relative operations calculate cut and fill relative to the existing topography and can be used to model features that follow the existing terrain.\nUse a relative earthworking operation with an exponential function to carve deep gullies into a landscape. In this tutorial all of the data will be created procedurally including the terrain and the streams. Start by generating fractal terrain. Then model flow accumulation through the fractal terrain and extract its stream network. Finally use the vector map of streams as input for a relative cut operation to transform valleys into deep gullies. This tutorial covers:\nFor a simulation based approach to modeling gullies, try the landscape evolution model r.sim.terrain instead.",
+    "text": "Gullies\nLearn the how to model gullies using relative cut operations with r.earthworks[2]. This tutorial introduces more features of r.earthworks including vector line input, relative operations, exponential functions, and volumetric change calculations. While absolute operations calculate cut and fill based on a vertical datum of zero and can be used to model features at a given elevation, relative operations calculate cut and fill relative to the existing topography and can be used to model features that follow the existing terrain.\nUse a relative earthworking operation with an exponential function to carve deep gullies into a landscape. In this tutorial all of the data will be created procedurally including the terrain and the streams. Start by generating fractal terrain. Then model flow accumulation through the fractal terrain and extract its stream network. Finally use the vector map of streams as input for a relative cut operation to transform valleys into deep gullies. This tutorial covers:\nFor a simulation based approach to modeling gullies, try the landscape evolution model r.sim.terrain [1] instead.",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -95,7 +95,7 @@
     "href": "grass/bioswale.html",
     "title": "Earthworks: Bioswale",
     "section": "",
-    "text": "Bioswale\nLearn how to design, model, and simulate hydrologic systems such as bioswales or restored streams. This tutorial covers the design of swales using r.earthworks and the simulation of shallow overland flows of water using r.sim.water. Bioswales are shallow, vegetated channels for conveying, filtering, and infiltrating stormwater. They are designed to move stormwater slowly enough through a site for retention, filtration, sedimentation, and infiltration, yet quickly enough to prevent localized flooding. By retaining and infiltrating stormwater, bioswales reduce the peak flow of runoff during storm events, reducing the risk of flash flooding. In this tutorial, we will use an iterative cycle of modeling and simulation to design a landscape with a bioswale that stores stormwater on site and conveys the overflow offsite.\nWhile this tutorial uses Python to procedurally design a bioswale using a trigonometric function, the process demonstrated here can easily be adapted for the GRASS graphical user interface (GUI) or command line interface (CLI) when working with real world sites. The centerline of the channel can be drawn in the GUI using the raster digitizer g.gui.rdigit or vector digitizer g.gui.vdigit. Alternatively if the channel is drawn in a computer-aided design program, then it can be imported into GRASS as a 2D or 3D vector map.\nOur process will be to:",
+    "text": "Bioswale\nLearn how to design, model, and simulate hydrologic systems such as bioswales or restored streams. This tutorial covers the design of swales using r.earthworks [1] and the simulation of shallow overland flows of water using r.sim.water. Bioswales are shallow, vegetated channels for conveying, filtering, and infiltrating stormwater. They are designed to move stormwater slowly enough through a site for retention, filtration, sedimentation, and infiltration, yet quickly enough to prevent localized flooding. By retaining and infiltrating stormwater, bioswales reduce the peak flow of runoff during storm events, reducing the risk of flash flooding. In this tutorial, we will use an iterative cycle of modeling and simulation to design a landscape with a bioswale that stores stormwater on site and conveys the overflow offsite.\nWhile this tutorial uses Python to procedurally design a bioswale using a trigonometric function, the process demonstrated here can easily be adapted for the GRASS graphical user interface (GUI) or command line interface (CLI) when working with real world sites. The centerline of the channel can be drawn in the GUI using the raster digitizer g.gui.rdigit or vector digitizer g.gui.vdigit. Alternatively if the channel is drawn in a computer-aided design program, then it can be imported into GRASS as a 2D or 3D vector map.\nOur process will be to:",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -119,7 +119,7 @@
     "href": "grass/index.html",
     "title": "Geocomputation with GRASS",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nMar 15, 2026\n\n\nBasics of map algebra\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nApr 26, 2026\n\n\nEarthworks\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMar 15, 2026\n\n\nEarthworks: Basics\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nAug 20, 2025\n\n\nEarthworks: Bioswale\n\n\n\n\n\nterrain, hydrology, raster, advanced\n\n\n\n\n\n\nMar 15, 2026\n\n\nEarthworks: Gully Modeling\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMar 15, 2026\n\n\nEarthworks: Modeling Coastal Infrastructure\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMar 15, 2026\n\n\nEarthworks: Terrain Synthesis\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 4, 2026\n\n\nGetting started with GRASS for Conda\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nApr 29, 2026\n\n\nProcedural Noise\n\n\n\n\n\ntutorial, grass\n\n\n\n\n\n\nNo matching items",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nMay 24, 2026\n\n\nBasics of map algebra\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Basics\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nAug 20, 2025\n\n\nEarthworks: Bioswale\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Gully Modeling\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Modeling Coastal Infrastructure\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Terrain Synthesis\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nGetting started with GRASS for Conda\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nProcedural Noise\n\n\n\n\n\ntutorial, grass\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS"
@@ -130,7 +130,7 @@
     "href": "grass/synthesis.html",
     "title": "Earthworks: Terrain Synthesis",
     "section": "",
-    "text": "Volumetric change during terrain synthesis\nLearn how to synthesize terrain with r.earthworks. In terrain synthesis, landforms from one terrain are applied to another, creating a hybrid landscape. This technique is used in computer graphics to model landscapes that are challenging to create with procedural noise and erosion simulations (Zhou et al. 2007, Tasse et al. 2012, Gain et al. 2015). Landforms that are hard to model, for example, can be sampled from real terrain and grafted onto synthetic terrain. In this tutorial, we will use fractal terrain for simplicity’s sake. Our process will be to:",
+    "text": "Volumetric change during terrain synthesis\nLearn how to synthesize terrain with r.earthworks [2]. In terrain synthesis, landforms from one terrain are applied to another, creating a hybrid landscape. This technique is used in computer graphics to model landscapes that are challenging to create with procedural noise and erosion simulations [1, 3, 4]. Landforms that are hard to model, for example, can be sampled from real terrain and grafted onto synthetic terrain. In this tutorial, we will use fractal terrain for simplicity’s sake. Our process will be to:",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -198,14 +198,63 @@
     ]
   },
   {
-    "objectID": "design/index.html",
-    "href": "design/index.html",
-    "title": "Computational Design",
+    "objectID": "design/random-walk-01.html",
+    "href": "design/random-walk-01.html",
+    "title": "Random walk with Grasshopper",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nApr 26, 2026\n\n\n3D random walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\n \n\n\nComputational Design\n\n\n\n\n\nlecture\n\n\n\n\n\n\nApr 26, 2026\n\n\nRandom walk with Grasshopper\n\n\n\n\n\ntutorial, grasshopper\n\n\n\n\n\n\nApr 26, 2026\n\n\nRandom walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\nApr 26, 2026\n\n\nRandom walk with scripting in Grasshopper\n\n\n\n\n\ntutorial, grasshopper, python\n\n\n\n\n\n\nNo matching items",
+    "text": "Random walk",
     "crumbs": [
       "Home",
-      "Computational Design"
+      "Computational Design",
+      "Random walk with Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-01.html#introduction",
+    "href": "design/random-walk-01.html#introduction",
+    "title": "Random walk with Grasshopper",
+    "section": "Introduction",
+    "text": "Introduction\nThis tutorial is a guide to simulating random walks with Grasshopper - Rhino’s visual programming environment [1]. A random walk is an algorithm that simulates a walker taking steps in random directions. To easily simulate a 2-dimensional random walk, first generate sets of random vectors representing steps and then take the cumulative sum of these vectors to find the position of the walker at each step. For this 2-dimensional random walk, we will decompose movement into x- and y-vectors representing east-west and north-south movement. For each step our walker will choose to move a pace to either east or west and north or south. To make the walk smoother, we will incorporate an element of unpredictability by allowing our walker to take partial steps.",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-01.html#define-x-component-of-steps",
+    "href": "design/random-walk-01.html#define-x-component-of-steps",
+    "title": "Random walk with Grasshopper",
+    "section": "Define x-component of steps",
+    "text": "Define x-component of steps\nFirst define the x-component of our walker’s movement. We will represent a full pace to the west as -1 and a full pace to the east as 1. Start by generating a list of random floating point numbers between -1 and 1. To do this, place a Random component on the canvas. Plug a Number Slider into the Seed input parameter to set the seed of the pseudorandom number generator. Plug a Number Slider into the Number input parameter to set the number of random values to be generated. Plug a text panel into the Range input parameter and set the text to -1 to 1. Then plug the output list of random numbers into a Mass Addition component. This will calculate the cumulative sum of the random numbers.\n\n\n\nDefine x-component of steps",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-01.html#define-y-component-of-steps",
+    "href": "design/random-walk-01.html#define-y-component-of-steps",
+    "title": "Random walk with Grasshopper",
+    "section": "Define y-component of steps",
+    "text": "Define y-component of steps\nNext define the y-component of our walker’s movement. Place a Random component on the canvas and use the same values for the input Range and Number, but use a different value for the input Seed. A simple way to do this is to reuse the same seed, but add 1 to it. Then use Mass Addition calculate the cumulative sum of the resulting list of random numbers.\n\n\n\nDefine y-component of steps",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-01.html#plot-random-walk",
+    "href": "design/random-walk-01.html#plot-random-walk",
+    "title": "Random walk with Grasshopper",
+    "section": "Plot random walk",
+    "text": "Plot random walk\nThe Mass Addition component returns a result - the total cumulative sum - and a list of partial results - the cumulative sum at each step. These partial results represent the x- or y-components of our walker’s position in space at each step. To plot our walkers position in space, place a Construct Point on the canvas and plug the partial results of the cumulative sums along the x- and y-vectors into its input x- and y-coordinates. Finally visualize the resulting points using a Dot Display component.\n\n\n\nPlot random walk\n\n\n\n\n\nRandom walk",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "Random walk with Grasshopper"
     ]
   },
   {
@@ -413,63 +462,14 @@
     ]
   },
   {
-    "objectID": "design/random-walk-01.html",
-    "href": "design/random-walk-01.html",
-    "title": "Random walk with Grasshopper",
+    "objectID": "design/index.html",
+    "href": "design/index.html",
+    "title": "Computational Design",
     "section": "",
-    "text": "Random walk",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nMay 24, 2026\n\n\n3D random walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\n \n\n\nComputational Design\n\n\n\n\n\nlecture\n\n\n\n\n\n\nMay 24, 2026\n\n\nRandom walk with Grasshopper\n\n\n\n\n\ntutorial, grasshopper\n\n\n\n\n\n\nMay 24, 2026\n\n\nRandom walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nRandom walk with scripting in Grasshopper\n\n\n\n\n\ntutorial, grasshopper, python\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
-      "Computational Design",
-      "Random walk with Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-01.html#introduction",
-    "href": "design/random-walk-01.html#introduction",
-    "title": "Random walk with Grasshopper",
-    "section": "Introduction",
-    "text": "Introduction\nThis tutorial is a guide to simulating random walks with Grasshopper - Rhino’s visual programming environment [1]. A random walk is an algorithm that simulates a walker taking steps in random directions. To easily simulate a 2-dimensional random walk, first generate sets of random vectors representing steps and then take the cumulative sum of these vectors to find the position of the walker at each step. For this 2-dimensional random walk, we will decompose movement into x- and y-vectors representing east-west and north-south movement. For each step our walker will choose to move a pace to either east or west and north or south. To make the walk smoother, we will incorporate an element of unpredictability by allowing our walker to take partial steps.",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "Random walk with Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-01.html#define-x-component-of-steps",
-    "href": "design/random-walk-01.html#define-x-component-of-steps",
-    "title": "Random walk with Grasshopper",
-    "section": "Define x-component of steps",
-    "text": "Define x-component of steps\nFirst define the x-component of our walker’s movement. We will represent a full pace to the west as -1 and a full pace to the east as 1. Start by generating a list of random floating point numbers between -1 and 1. To do this, place a Random component on the canvas. Plug a Number Slider into the Seed input parameter to set the seed of the pseudorandom number generator. Plug a Number Slider into the Number input parameter to set the number of random values to be generated. Plug a text panel into the Range input parameter and set the text to -1 to 1. Then plug the output list of random numbers into a Mass Addition component. This will calculate the cumulative sum of the random numbers.\n\n\n\nDefine x-component of steps",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "Random walk with Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-01.html#define-y-component-of-steps",
-    "href": "design/random-walk-01.html#define-y-component-of-steps",
-    "title": "Random walk with Grasshopper",
-    "section": "Define y-component of steps",
-    "text": "Define y-component of steps\nNext define the y-component of our walker’s movement. Place a Random component on the canvas and use the same values for the input Range and Number, but use a different value for the input Seed. A simple way to do this is to reuse the same seed, but add 1 to it. Then use Mass Addition calculate the cumulative sum of the resulting list of random numbers.\n\n\n\nDefine y-component of steps",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "Random walk with Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-01.html#plot-random-walk",
-    "href": "design/random-walk-01.html#plot-random-walk",
-    "title": "Random walk with Grasshopper",
-    "section": "Plot random walk",
-    "text": "Plot random walk\nThe Mass Addition component returns a result - the total cumulative sum - and a list of partial results - the cumulative sum at each step. These partial results represent the x- or y-components of our walker’s position in space at each step. To plot our walkers position in space, place a Construct Point on the canvas and plug the partial results of the cumulative sums along the x- and y-vectors into its input x- and y-coordinates. Finally visualize the resulting points using a Dot Display component.\n\n\n\nPlot random walk\n\n\n\n\n\nRandom walk",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "Random walk with Grasshopper"
+      "Computational Design"
     ]
   },
   {
@@ -513,7 +513,7 @@
     "href": "grass/basic-map-algebra.html#functions",
     "title": "Basics of map algebra",
     "section": "Functions",
-    "text": "Functions\nMap algebra has arithmetic functions as well as operators. Let’s take the absolute value of our terrain to model river valleys winding through our fractal mountains. In the raster map calculator r.mapcalc, write the expression elevation = abs(elevation) to create a new elevation raster equal to absolute value of the fractal surface. Because our fractal terrain has values both below and above mean sea level, i.e. zero, taking its absolute value will raise the low-lying valleys into mountains. The elevation gradient close to zero will become river valleys at the feet of the mountains. Use r.colors to assign a color gradient to the elevation raster, ensuring that the gradient fits rescaled elevation range of the raster.\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = abs(elevation)\" --overwrite\nr.colors map=elevation color=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = abs(elevation)\", overwrite=True)\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nValleys",
+    "text": "Functions\nMap algebra has arithmetic functions as well as operators. Let’s take the absolute value of our terrain to model river valleys winding through our fractal mountains. In the raster map calculator r.mapcalc, write the expression elevation = abs(elevation) to create a new elevation raster equal to absolute value of the fractal surface. Because our fractal terrain has values both below and above mean sea level, i.e. zero, taking its absolute value will raise the low-lying valleys into mountains. The elevation gradient close to zero will become river valleys at the feet of the mountains. Use r.colors to assign a color gradient to the elevation raster, ensuring that the gradient fits the rescaled elevation range of the raster.\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = abs(elevation)\" --overwrite\nr.colors map=elevation color=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = abs(elevation)\", overwrite=True)\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nValleys",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -597,7 +597,7 @@
     "href": "grass/conda-quickstart.html#notebook",
     "title": "Getting started with GRASS for Conda",
     "section": "Notebook",
-    "text": "Notebook\nLet’s try the GRASS Python package in a Jupyter notebook. We will using scripting to display maps from a sample dataset. We will download the dataset, start a GRASS session in the dataset, and then display raster and vector maps from the dataset. Let’s begin by launching Jupyter Lab from the terminal. This will open an new Jupyter notebook in a web browser window.\njupyter lab\n\nStart GRASS\nTo start a GRASS session, we need to define a project and its coordinate reference system. For this demonstration, we will use the Natural Earth Dataset for GRASS [3]. This dataset is a GRASS project with a collection of global raster and vector data in the World Geodetic System 1984. In your Jupyter notebook, use Python to download and unarchive the dataset. Then start a GRASS session using the dataset as a project. Read more about projects in GRASS here. Since the dataset is approximately 120MB, it may take a couple of minutes to download. As a test that GRASS started correctly, run g.proj with flag g to print the current projection.\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\nimport requests\nfrom zipfile import ZipFile\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Set GRASS database\ngisdbase = Path.home() / \"grassdata\"\n\n# Download dataset\nurl = \"https://zenodo.org/records/13370131/files/natural_earth_dataset.zip?download=1\"\nfilepath = gisdbase / \"natural_earth_dataset.zip\"\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\nfilepath.write_bytes(request.content)\n\n# Unarchive dataset\nwith ZipFile(filepath, 'r') as archive:\n    archive.extractall(gisdbase)\n\n# Delete archive\nos.remove(filepath)\n\n# Start GRASS in project\nsession = gj.init(gisdbase / \"natural_earth_dataset\")\n\n# Print projection information\ngs.run_command(\"g.proj\", flags=\"g\")\n\n\n\nDisplay raster map\nThe Natural Earth raster is a global basemap with land cover and shaded relief rendered with a natural color scheme. Display the Natural Earth raster map with d.rast.\n\n# Display natural earth raster\nm = gj.Map(width=800)\nm.d_rast(map=\"natural_earth\")\nm.show()\n\n\n\n\nNatural Earth\n\n\n\n\nDisplay vector map\nNow display a vector map of global rivers. First apply a thematic color gradient to the rivers based on their stream order with v.colors. Then display the map with d.vect, scaling the line width by stream order.\n\n# Display rivers\nm = gj.Map(width=800)\ngs.run_command(\"v.colors\", map=\"rivers\", use=\"attr\", column=\"scalerank\", color=\"water\")\nm.d_vect(map=\"rivers\", width_column=\"strokeweig\", width_scale=2)\nm.show()\n\n\n\n\nRivers",
+    "text": "Notebook\nLet’s try the GRASS Python package in a Jupyter notebook. We will using scripting to display maps from a sample dataset. We will download the dataset, start a GRASS session in the dataset, and then display raster and vector maps from the dataset. Let’s begin by launching Jupyter Lab from the terminal. This will open an new Jupyter notebook in a web browser window.\njupyter lab\n\nStart GRASS\nTo start a GRASS session, we need to define a project and its coordinate reference system. For this demonstration, we will use the Natural Earth Dataset for GRASS [3]. This dataset is a GRASS project with a collection of global raster and vector data in the World Geodetic System 1984. In your Jupyter notebook, use Python to download and unarchive the dataset. Then start a GRASS session using the dataset as a project. Read more about projects in GRASS here. Since the dataset is approximately 120MB, it may take a couple of minutes to download. As a test that GRASS started correctly, run g.proj with flag g to print the current projection.\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\nimport requests\nfrom zipfile import ZipFile\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Download dataset\nurl = \"https://zenodo.org/records/13370131/files/natural_earth_dataset.zip?download=1\"\nfilepath = Path.cwd() / \"natural_earth_dataset.zip\"\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\nfilepath.write_bytes(request.content)\n\n# Unarchive dataset\nwith ZipFile(filepath, 'r') as archive:\n    archive.extractall()\n\n# Delete archive\nos.remove(filepath)\n\n# Start GRASS in project\nsession = gj.init(Path.cwd() / \"natural_earth_dataset\")\n\n# Print projection information\ngs.run_command(\"g.proj\", flags=\"g\")\n\n\n\nDisplay raster map\nThe Natural Earth raster is a global basemap with land cover and shaded relief rendered with a natural color scheme. Display the Natural Earth raster map with d.rast.\n\n# Display natural earth raster\nm = gj.Map(width=800)\nm.d_rast(map=\"natural_earth\")\nm.show()\n\n\n\n\nNatural Earth\n\n\n\n\nDisplay vector map\nNow display a vector map of global rivers. First apply a thematic color gradient to the rivers based on their stream order with v.colors. Then display the map with d.vect, scaling the line width by stream order.\n\n# Display rivers\nm = gj.Map(width=800)\ngs.run_command(\"v.colors\", map=\"rivers\", use=\"attr\", column=\"scalerank\", color=\"water\")\nm.d_vect(map=\"rivers\", width_column=\"strokeweig\", width_scale=2)\nm.show()\n\n\n\n\nRivers",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -609,7 +609,7 @@
     "href": "grass/basics.html",
     "title": "Earthworks: Basics",
     "section": "",
-    "text": "Random earthworks\nLearn the basics of terrain modeling with r.earthworks. This tool uses cut and fill operations to transform topography. Cut operations subtract from a topographic surface, while fill operations add to the topography. Transformations are based on proposed local topographic extrema, i.e. high points and low points. These extrema can be set with coordinates, rasters, vector points, or vector lines. In GRASS raster and vector data can be drawn with the raster digitizer and vector digitizer. Transformations are a function of the existing elevation, change in vertical distance, and change in slope over horizontal distance. Vertical distance is calculated as the difference between proposed local extrema and a topographic datum, while change in slope is a function of growth and decay applied to horizontal change in distance. This tutorial covers:",
+    "text": "Random earthworks\nLearn the basics of terrain modeling with r.earthworks [1]. This tool uses cut and fill operations to transform topography. Cut operations subtract from a topographic surface, while fill operations add to the topography. Transformations are based on proposed local topographic extrema, i.e. high points and low points. These extrema can be set with coordinates, rasters, vector points, or vector lines. In GRASS raster and vector data can be drawn with the raster digitizer and vector digitizer. Transformations are a function of the existing elevation, change in vertical distance, and change in slope over horizontal distance. Vertical distance is calculated as the difference between proposed local extrema and a topographic datum, while change in slope is a function of growth and decay applied to horizontal change in distance. This tutorial covers:",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -681,7 +681,7 @@
     "href": "grass/levees.html",
     "title": "Earthworks: Modeling Coastal Infrastructure",
     "section": "",
-    "text": "Levee improvement & ridge restoration\nLearn the how to model levees and ridges with r.earthworks. Download the Bayou L’Ours Dataset. The coordinate reference system for this project is Louisiana State Plane South in meters. We will model two of the coastal infrastructure projects in the Louisiana Coastal Protection and Restoration Authority’s 2023 Coastal Masterplan. Improvements are planned to the Larose to Golden Meadow Levee System which will raise existing earthen levees to an elevation between 3.6-6.4 meters NAVD88. The Bayou L’Ours Ridge Restoration project will restore the natural levee by closing gaps, rebuilding landforms, and reforesting uplands. While the improved levee system will better protect the towns, the restored ridge will attenuate storm surge. This tutorial covers:",
+    "text": "Levee improvement & ridge restoration\nLearn the how to model levees and ridges with r.earthworks [2]. Download the Bayou L’Ours Dataset [1]. The coordinate reference system for this project is Louisiana State Plane South in meters. We will model two of the coastal infrastructure projects in the Louisiana Coastal Protection and Restoration Authority’s 2023 Coastal Masterplan. Improvements are planned to the Larose to Golden Meadow Levee System which will raise existing earthen levees to an elevation between 3.6-6.4 meters NAVD88. The Bayou L’Ours Ridge Restoration project will restore the natural levee by closing gaps, rebuilding landforms, and reforesting uplands. While the improved levee system will better protect the towns, the restored ridge will attenuate storm surge. This tutorial covers:",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
