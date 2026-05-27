@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,6 +12,9 @@
 
 <title>Earthworks: Bioswale – Tutorials</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -90,15 +93,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6d604cde2437a0cf3f4fb600632b93be.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-61c98db17be7e0251c8e3d1f2cad0d0d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-961515f37f47913d3b2ca4bc1641e9cc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f72c0e4c7af1363b25c6ad671299c8d8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -153,11 +155,11 @@ div.csl-indent {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../design/index.html"> 
+    <a class="nav-link active" href="../design/index.html" aria-current="page"> 
 <span class="menu-text">Computational Design</span></a>
   </li>  
   <li class="nav-item">
@@ -189,10 +191,6 @@ div.csl-indent {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -370,7 +368,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">May 24, 2026</p>
+      <p class="date-modified">May 27, 2026</p>
     </div>
   </div>
     
@@ -417,7 +415,7 @@ div.csl-indent {
 <section id="setup" class="level1">
 <h1>Setup</h1>
 <p>Start a GRASS session in a new project with a Cartesian (XY) coordinate system. Use <a href="https://grass.osgeo.org/grass-stable/manuals/g.region.html">g.region</a> to set the extent and resolution of the computational region. Create a region starting at the origin and extending two hundred units north and eight hundred units east.</p>
-<div id="6189876a" class="cell" data-execution_count="1">
+<div id="eb396d79" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -452,7 +450,7 @@ div.csl-indent {
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <p>Install <a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html">r.earthworks</a> with <a href="https://grass.osgeo.org/grass-stable/manuals/g.extension.html">g.extension</a>.</p>
-<div id="7db76acf" class="cell" data-execution_count="2">
+<div id="8301dc16" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install extension</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.extension"</span>, extension<span class="op">=</span><span class="st">"r.earthworks"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -461,7 +459,7 @@ div.csl-indent {
 <section id="initial-terrain" class="level1">
 <h1>Initial Terrain</h1>
 <p>Model synthetic terrain using gradient noise. For a more detailed guide, see the <a href="../grass/noise.html">Procedural Noise</a> tutorial. First create a random surface using the raster calculator <a href="https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html">r.mapcalc</a>. Then use a <code>for</code> loop to progressively smooth the random surface using nearest neighbors analysis with <a href="https://grass.osgeo.org/grass-stable/manuals/r.neighbors.html">r.neighbors</a>. Calculate the average neighborhood using a circular moving window. The resulting terrain will be smooth and undulating with many ridges and valleys.</p>
-<div id="241e5fea" class="cell" data-execution_count="3">
+<div id="45482d78" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set parameters</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>amplitude <span class="op">=</span> <span class="fl">1000.0</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">3</span></span>
@@ -512,7 +510,7 @@ div.csl-indent {
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html">r.sim.water</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.relief.html">r.relief</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.colors.html">r.colors</a></p>
-<div id="3209ca6c" class="cell" data-execution_count="4">
+<div id="ab3f8d50" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute partial derivatives of terrain</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.slope.aspect"</span>, elevation<span class="op">=</span><span class="st">"noise"</span>, dx<span class="op">=</span><span class="st">"dx"</span>, dy<span class="op">=</span><span class="st">"dy"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -558,7 +556,7 @@ div.csl-indent {
 <p><a href="https://numpy.org/doc/stable/reference/generated/numpy.sin.html">numpy.sin</a></p>
 <p><a href="https://seaborn.pydata.org/generated/seaborn.scatterplot.html">seaborn.scatterplot</a></p>
 <p><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">matplotlib.pyplot.plot</a></p>
-<div id="48273ba0" class="cell" data-execution_count="5">
+<div id="dc780cde" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -587,11 +585,11 @@ div.csl-indent {
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For nicer plotting, use Seaborn. First install it using the package manager pip.</p>
-<div id="67fa5e4d" class="cell" data-execution_count="6">
+<div id="6714ec3a" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install seaborn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Then…</p>
-<div id="12c8aa12" class="cell" data-execution_count="7">
+<div id="4f0a418a" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set theme</span></span>
@@ -631,7 +629,7 @@ div.csl-indent {
 <section id="bioswale-modeling" class="level1">
 <h1>Bioswale Modeling</h1>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html">r.earthworks</a></p>
-<div id="0c1f683f" class="cell" data-execution_count="8">
+<div id="1deb89b0" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model landforms</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.earthworks"</span>,</span>
@@ -664,7 +662,7 @@ div.csl-indent {
 </section>
 <section id="hydrologic-simulation" class="level1">
 <h1>Hydrologic Simulation</h1>
-<div id="8a4234a4" class="cell" data-execution_count="9">
+<div id="584d3111" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute partial derivatives of terrain</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.slope.aspect"</span>, elevation<span class="op">=</span><span class="st">"bioswale"</span>, dx<span class="op">=</span><span class="st">"dx"</span>, dy<span class="op">=</span><span class="st">"dy"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -808,7 +806,7 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<div id="1fd41b85" class="cell" data-execution_count="10">
+<div id="1c8f6866" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define landcover colors</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">11|Open Water</span></span>
@@ -833,7 +831,7 @@ div.csl-indent {
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="st">95|Emergent Herbaceuous Wetlands</span></span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="84d2d8b0" class="cell" data-execution_count="11">
+<div id="891653d4" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define mannings roughness values</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mannings <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">11:11:0.001:0.001</span></span>
@@ -855,7 +853,7 @@ div.csl-indent {
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="st">100:100:0.40:0.40</span></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="2576c7bc" class="cell" data-execution_count="12">
+<div id="288b8b11" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define runoff rates</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>runoff <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">11:11:1:1</span></span>
@@ -881,7 +879,7 @@ div.csl-indent {
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.colors.html">r.colors</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.category.html">r.category</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.recode.html">r.recode</a></p>
-<div id="a5890fb4" class="cell" data-execution_count="13">
+<div id="a2afb377" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive landcover from channel</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"landcover = if(volume == 0, 71, 95)"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -918,7 +916,7 @@ div.csl-indent {
 </section>
 <section id="hydrologic-simulation-1" class="level1">
 <h1>Hydrologic Simulation</h1>
-<div id="11f670d6" class="cell" data-execution_count="14">
+<div id="83249aba" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate shallow water flow</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.sim.water"</span>,</span>
@@ -965,7 +963,7 @@ div.csl-indent {
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/t.rast.colors.html">t.rast.colors</a></p>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/g.gui.animation.html">g.gui.animation</a></p>
 <p><a href="https://grass.osgeo.org/grass85/manuals/libpython/grass.jupyter.html#grass.jupyter.TimeSeriesMap">grass.jupyter.TimeSeriesMap</a></p>
-<div id="5487941a" class="cell" data-execution_count="15">
+<div id="f48c8b84" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate shallow water flow as time series</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.sim.water"</span>,</span>
