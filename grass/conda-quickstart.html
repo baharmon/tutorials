@@ -304,6 +304,12 @@ div.csl-indent {
  <span class="menu-text">Earthworks: Terrain Synthesis</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../grass/wsl-quickstart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting started with GRASS using WSL</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -321,8 +327,8 @@ div.csl-indent {
   <li><a href="#notebook" id="toc-notebook" class="nav-link" data-scroll-target="#notebook">Notebook</a>
   <ul class="collapse">
   <li><a href="#start-grass" id="toc-start-grass" class="nav-link" data-scroll-target="#start-grass">Start GRASS</a></li>
-  <li><a href="#display-raster-map" id="toc-display-raster-map" class="nav-link" data-scroll-target="#display-raster-map">Display raster map</a></li>
-  <li><a href="#display-vector-map" id="toc-display-vector-map" class="nav-link" data-scroll-target="#display-vector-map">Display vector map</a></li>
+  <li><a href="#display-raster-map" id="toc-display-raster-map" class="nav-link" data-scroll-target="#display-raster-map">Display Raster Map</a></li>
+  <li><a href="#display-vector-map" id="toc-display-vector-map" class="nav-link" data-scroll-target="#display-vector-map">Display Vector Map</a></li>
   </ul></li>
   <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility">Reproducibility</a></li>
   </ul>
@@ -367,7 +373,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 13, 2026</p>
+      <p class="date-modified">August 28, 2026</p>
     </div>
   </div>
     
@@ -421,9 +427,9 @@ download the installation shell script and then run it in a terminal:</p>
 <p>Now that Conda is installed, let’s use it to create an environment for GRASS. We will install the GRASS, Jupyter Lab, and requests Python packages with all of their dependencies into this environment. In a terminal, run <a href="https://docs.conda.io/projects/conda/en/stable/commands/create.html">conda create</a> to create an environment named <code>grass</code>. Then use <a href="https://docs.conda.io/projects/conda/en/stable/commands/install.html">conda install</a> to install the GRASS package. Next, run <a href="https://docs.conda.io/projects/conda/en/stable/commands/activate.html">conda activate</a> to start the environment.</p>
 <pre class="{bash}"><code>conda create --name grass
 conda activate grass
-conda install grass jupyterlab requests</code></pre>
+conda install grass jupyterlab requests folium ipyleaflet</code></pre>
 <p>You can do this with just one line of code:</p>
-<pre class="{bash}"><code>conda create -n grass grass jupyterlab requests &amp;&amp; conda activate grass</code></pre>
+<pre class="{bash}"><code>conda create -n grass grass jupyterlab requests folium ipyleaflet &amp;&amp; conda activate grass</code></pre>
 <p>If you use a Conda distribution other than Miniforge, you will need to specify the conda-forge channel when creating the environment with <code>-c conda-forge</code>. You may also need to override your default channel settings with <code>--override-channels</code> to prevent conflicts.</p>
 </section>
 <section id="notebook" class="level2">
@@ -433,7 +439,7 @@ conda install grass jupyterlab requests</code></pre>
 <section id="start-grass" class="level3">
 <h3 class="anchored" data-anchor-id="start-grass">Start GRASS</h3>
 <p>To start a GRASS session, we need to define a project and its coordinate reference system. For this demonstration, we will use the Natural Earth Dataset for GRASS <span class="citation" data-cites="NaturalEarth">[<a href="#ref-NaturalEarth" role="doc-biblioref">3</a>]</span>. This dataset is a GRASS project with a collection of global raster and vector data in the World Geodetic System 1984. In your Jupyter notebook, use Python to download and unarchive the dataset. Then start a GRASS session using the dataset as a project. Read more about <a href="https://grass.osgeo.org/grass-stable/manuals/grass_projects.html">projects</a> in GRASS here. Since the dataset is approximately 120MB, it may take a couple of minutes to download. As a test that GRASS started correctly, run <a href="https://grass.osgeo.org/grass-stable/manuals/g.proj.html">g.proj</a> with flag <code>g</code> to print the current projection.</p>
-<div id="45d73ca8" class="cell" data-execution_count="1">
+<div id="7931be6b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -480,9 +486,9 @@ conda install grass jupyterlab requests</code></pre>
 </div>
 </section>
 <section id="display-raster-map" class="level3">
-<h3 class="anchored" data-anchor-id="display-raster-map">Display raster map</h3>
+<h3 class="anchored" data-anchor-id="display-raster-map">Display Raster Map</h3>
 <p>The Natural Earth raster is a global basemap with land cover and shaded relief rendered with a natural color scheme. Display the Natural Earth raster map with <a href="https://grass.osgeo.org/grass-stable/manuals/d.rast.html">d.rast</a>.</p>
-<div id="d8db28ff" class="cell" data-execution_count="2">
+<div id="cd53113a" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display natural earth raster</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"natural_earth"</span>)</span>
@@ -496,9 +502,9 @@ conda install grass jupyterlab requests</code></pre>
 </div>
 </section>
 <section id="display-vector-map" class="level3">
-<h3 class="anchored" data-anchor-id="display-vector-map">Display vector map</h3>
+<h3 class="anchored" data-anchor-id="display-vector-map">Display Vector Map</h3>
 <p>Now display a vector map of global rivers. First apply a thematic color gradient to the rivers based on their stream order with <a href="https://grass.osgeo.org/grass-stable/manuals/v.colors.html">v.colors</a>. Then display the map with <a href="https://grass.osgeo.org/grass-stable/manuals/d.vect.html">d.vect</a>, scaling the line width by stream order.</p>
-<div id="c0404705" class="cell" data-execution_count="3">
+<div id="51c93157" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display rivers</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>tools.v_colors(<span class="bu">map</span><span class="op">=</span><span class="st">"rivers"</span>, use<span class="op">=</span><span class="st">"attr"</span>, column<span class="op">=</span><span class="st">"scalerank"</span>, color<span class="op">=</span><span class="st">"water"</span>)</span>
@@ -1107,12 +1113,12 @@ conda install grass jupyterlab requests</code></pre>
 <span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
 <span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> grass</span>
 <span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate grass</span>
-<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install grass jupyterlab requests</span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install grass jupyterlab requests folium ipyleaflet</span>
 <span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a>You can do this with just one line of code:</span>
 <span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> grass grass jupyterlab requests <span class="kw">&amp;&amp;</span> <span class="ex">conda</span> activate grass</span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> grass grass jupyterlab requests folium ipyleaflet <span class="kw">&amp;&amp;</span> <span class="ex">conda</span> activate grass</span>
 <span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a>If you use a Conda distribution other than Miniforge,</span>
@@ -1206,7 +1212,7 @@ conda install grass jupyterlab requests</code></pre>
 <span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a>tools.g_proj(<span class="bu">format</span><span class="op">=</span><span class="st">"shell"</span>, flags<span class="op">=</span><span class="st">"p"</span>)</span>
 <span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a><span class="fu">### Display raster map</span></span>
+<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a><span class="fu">### Display Raster Map</span></span>
 <span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a>The Natural Earth raster is a global basemap</span>
 <span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a>with land cover and shaded relief</span>
@@ -1223,7 +1229,7 @@ conda install grass jupyterlab requests</code></pre>
 <span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a><span class="al">![Natural Earth](images/natural-earth-01.webp)</span></span>
 <span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a><span class="fu">### Display vector map</span></span>
+<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a><span class="fu">### Display Vector Map</span></span>
 <span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a>Now display a vector map of global rivers.</span>
 <span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a>First apply a thematic color gradient to the rivers</span>
