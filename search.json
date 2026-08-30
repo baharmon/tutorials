@@ -119,7 +119,7 @@
     "href": "grass/index.html",
     "title": "Geocomputation with GRASS",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nMay 24, 2026\n\n\nBasics of map algebra\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Basics\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nAug 20, 2025\n\n\nEarthworks: Bioswale\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Gully Modeling\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Modeling Coastal Infrastructure\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Terrain Synthesis\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nJul 3, 2026\n\n\nGetting started with GRASS for Conda\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nAug 28, 2026\n\n\nGetting started with GRASS using WSL\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nProcedural Noise\n\n\n\n\n\ntutorial, grass\n\n\n\n\n\n\nNo matching items",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nMay 24, 2026\n\n\nBasics of map algebra\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Basics\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nAug 20, 2025\n\n\nEarthworks: Bioswale\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Gully Modeling\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Modeling Coastal Infrastructure\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Terrain Synthesis\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nJul 3, 2026\n\n\nGetting started with GRASS for Conda\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nAug 28, 2026\n\n\nGetting started with GRASS using WSL\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nProcedural Noise\n\n\n\n\n\ntutorial, grass\n\n\n\n\n\n\nAug 29, 2026\n\n\nSpatial Interpolation\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS"
@@ -222,134 +222,207 @@
     ]
   },
   {
-    "objectID": "design/index.html",
-    "href": "design/index.html",
-    "title": "Computational Design",
+    "objectID": "grass/interpolation.html",
+    "href": "grass/interpolation.html",
+    "title": "Spatial Interpolation",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nMay 24, 2026\n\n\n3D random walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\n \n\n\nComputational Design\n\n\n\n\n\nlecture\n\n\n\n\n\n\nMay 24, 2026\n\n\nRandom walk with Grasshopper\n\n\n\n\n\ntutorial, grasshopper\n\n\n\n\n\n\nMay 24, 2026\n\n\nRandom walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nRandom walk with scripting in Grasshopper\n\n\n\n\n\ntutorial, grasshopper, python\n\n\n\n\n\n\nNo matching items",
+    "text": "This is a gentle introduction to spatial interpolation using GRASS. It covers binning, Voronoi tessellations, Delaunay triangulation, inverse weighted distance interpolation, bilinear spline interpolation, bicubic spline interpolation, regularized spline with tension interpolation, and cross-validation for parameter optimization. In this tutorial we will generate a random population of points representing samples of a spatial phenomena and then interpolate them as a surface using different methods.",
     "crumbs": [
       "Home",
-      "Computational Design"
+      "Geocomputation with GRASS",
+      "Spatial Interpolation"
     ]
   },
   {
-    "objectID": "design/random-walk-03.html",
-    "href": "design/random-walk-03.html",
-    "title": "Random walk with scripting in Grasshopper",
+    "objectID": "grass/interpolation.html#setup",
+    "href": "grass/interpolation.html#setup",
+    "title": "Spatial Interpolation",
+    "section": "Setup",
+    "text": "Setup\nStart GRASS in a Cartesian coordinate system.\n\n# Import modules\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Initialize GRASS session\ngs.create_project(\"interpolation\", overwrite=True)\ngj.init(\"interpolation\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Spatial Interpolation"
+    ]
+  },
+  {
+    "objectID": "grass/interpolation.html#set-region",
+    "href": "grass/interpolation.html#set-region",
+    "title": "Spatial Interpolation",
+    "section": "Set region",
+    "text": "Set region\nSet the computational region with g.region.\n\n# Set region\ntools.g_region(n=200, s=0, e=800, w=0, res=1)",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Spatial Interpolation"
+    ]
+  },
+  {
+    "objectID": "grass/interpolation.html#generate-random-points",
+    "href": "grass/interpolation.html#generate-random-points",
+    "title": "Spatial Interpolation",
+    "section": "Generate random points",
+    "text": "Generate random points\nGenerate a population of random 3-dimensional points for interpolation using v.random.\n\n# Generate random points\ntools.v_random(\n    output=\"points\",\n    npoints=20,\n    zmin=0.0,\n    zmax=10.0,\n    column=\"z\",\n    seed=17,\n    flags=\"z\"\n    )\n\n# Visualize\nm = gj.Map(width=800)\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.show()\n\n\n\n\nRandom points",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Spatial Interpolation"
+    ]
+  },
+  {
+    "objectID": "grass/interpolation.html#binning",
+    "href": "grass/interpolation.html#binning",
+    "title": "Spatial Interpolation",
+    "section": "Binning",
+    "text": "Binning\nv.mkgrid v.vect.stats v.colors\n\n# Grid\ntools.v_mkgrid(map=\"surface\", box=[50, 50], flags=\"h\")\n\n# Sample points\ntools.v_vect_stats(\n    points=\"points\",\n    areas=\"surface\",\n    method=\"average\",\n    points_column=\"z\",\n    count_column=\"count\",\n    stats_column=\"z\"\n    )\n\n# Set color gradient\ntools.v_colors(map=\"surface\", use=\"attr\", column=\"z\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_vect(map=\"surface\")\ntools.v_colors(map=\"surface\", flags=\"r\")\nm.d_vect(map=\"surface\",  color=\"white\", fill=\"none\")\nm.d_vect(map=\"points\", icon=\"basic/point\", color=\"white\", fill=\"white\", size=15)\nm.show()\n\n\n\n\nHexagonal binning",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Spatial Interpolation"
+    ]
+  },
+  {
+    "objectID": "grass/interpolation.html#voronoi-tessellation",
+    "href": "grass/interpolation.html#voronoi-tessellation",
+    "title": "Spatial Interpolation",
+    "section": "Voronoi tessellation",
+    "text": "Voronoi tessellation\nv.voronoi v.vect.stats v.colors\n\n# Interpolate surface\ntools.v_voronoi(input=\"points\", output=\"surface\")\n\n# Sample points\ntools.v_vect_stats(\n    points=\"points\",\n    areas=\"surface\",\n    method=\"average\",\n    points_column=\"z\",\n    count_column=\"count\",\n    stats_column=\"z\"\n    )\n\n# Set color gradient\ntools.v_colors(map=\"surface\", use=\"attr\", column=\"z\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_vect(map=\"surface\",  color=\"white\")\ntools.v_colors(map=\"surface\", flags=\"r\")\nm.d_vect(map=\"surface\",  color=\"white\", fill=\"none\")\nm.d_vect(map=\"points\", icon=\"basic/point\", color=\"white\", fill=\"white\", size=15)\nm.show()\n\n\n\n\nVoronoi tessellation",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Spatial Interpolation"
+    ]
+  },
+  {
+    "objectID": "grass/interpolation.html#delaunay-triangulation",
+    "href": "grass/interpolation.html#delaunay-triangulation",
+    "title": "Spatial Interpolation",
+    "section": "Delaunay triangulation",
+    "text": "Delaunay triangulation\nv.in.region v.to.points v.patch v.delaunay v.colors\n\n# Sample corners\ntools.v_in_region(output=\"region\", type=\"line\")\ntools.v_to_points(input=\"region\", output=\"corners\", use=\"vertex\")\ntools.v_patch(input=[\"points\", \"corners\"], output=\"samples\")\n\n# Interpolate surface\ntools.v_delaunay(input=\"samples\", output=\"surface\")\n\n# Set color gradient\ntools.v_colors(map=\"surface\", use=\"z\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_vect(map=\"surface\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.show()\n\n\n\n\nDelaunay triangulation",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Spatial Interpolation"
+    ]
+  },
+  {
+    "objectID": "grass/interpolation.html#inverse-weighted-distance-interpolation",
+    "href": "grass/interpolation.html#inverse-weighted-distance-interpolation",
+    "title": "Spatial Interpolation",
+    "section": "Inverse weighted distance interpolation",
+    "text": "Inverse weighted distance interpolation\nr.colors r.contour v.surf.idw\n\n# Interpolate surface\ntools.v_surf_idw(input=\"points\", output=\"surface\", power=2.0)\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nInverse weighted distance interpolation",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Spatial Interpolation"
+    ]
+  },
+  {
+    "objectID": "grass/interpolation.html#bilinear-spline-interpolation",
+    "href": "grass/interpolation.html#bilinear-spline-interpolation",
+    "title": "Spatial Interpolation",
+    "section": "Bilinear spline interpolation",
+    "text": "Bilinear spline interpolation\nv.surf.bspline r.colors r.contour\n\n# Interpolate surface\ntools.v_surf_bspline(\n    input=\"points\",\n    raster_output=\"surface\",\n    method=\"bilinear\",\n    ew_step=25,\n    ns_step=25\n    )\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nBilinear spline interpolation",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Spatial Interpolation"
+    ]
+  },
+  {
+    "objectID": "grass/interpolation.html#bicubic-spline-interpolation",
+    "href": "grass/interpolation.html#bicubic-spline-interpolation",
+    "title": "Spatial Interpolation",
+    "section": "Bicubic spline interpolation",
+    "text": "Bicubic spline interpolation\nv.surf.bspline r.colors r.contour\n\n# Interpolate surface\ntools.v_surf_bspline(\n    input=\"points\",\n    raster_output=\"surface\",\n    method=\"bicubic\",\n    ew_step=25,\n    ns_step=25\n    )\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nBicubic spline interpolation",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Spatial Interpolation"
+    ]
+  },
+  {
+    "objectID": "grass/interpolation.html#regularized-spline-with-tension-interpolation",
+    "href": "grass/interpolation.html#regularized-spline-with-tension-interpolation",
+    "title": "Spatial Interpolation",
+    "section": "Regularized spline with tension interpolation",
+    "text": "Regularized spline with tension interpolation\nv.surf.rst r.colors r.contour\n\n# Interpolate surface\ntools.v_surf_rst(input=\"points\", elevation=\"surface\", tension=40, flags=\"t\")\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nRegularized spline with tension interpolation",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Spatial Interpolation"
+    ]
+  },
+  {
+    "objectID": "grass/interpolation.html#parameter-optimization",
+    "href": "grass/interpolation.html#parameter-optimization",
+    "title": "Spatial Interpolation",
+    "section": "Parameter Optimization",
+    "text": "Parameter Optimization\ng.extension v.surf.rst.cv r.colors r.contour\n\n# Install addon\ntools.g_extension(extension=\"v.surf.rst.cv\")\n\n\n# Optimize parameters\nparameters = tools.v_surf_rst_cv(\n    point_cloud=\"points\",\n    format=\"json\",\n    output_file=\"parameters.json\",\n    flags=\"t\"\n    )\nresults = parameters[\"results\"]\nmae = min(results, key=lambda x: x[\"rmse\"])[\"mae\"]\nrmse = min(results, key=lambda x: x[\"rmse\"])[\"rmse\"]\nnmad = min(results, key=lambda x: x[\"rmse\"])[\"nmad\"]\ntension = min(results, key=lambda x: x[\"rmse\"])[\"tension\"]\nsmooth = min(results, key=lambda x: x[\"rmse\"])[\"smooth\"]\nprint(f\"Root mean squared error: {rmse}\")\nprint(f\"Mean absolute error: {mae}\")\nprint(f\"Normalized median absolute deviation: {nmad}\")\nprint(f\"Tension: {tension}\")\nprint(f\"Smoothing: {smooth}\")\n\n\n# Interpolate surface\ntools.v_surf_rst(\n    input=\"points\",\n    elevation=\"surface\",\n    tension=tension,\n    smooth=smooth,\n    flags=\"t\"\n    )\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nRegularized spline with tension interpolation using optimized parameters",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Spatial Interpolation"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-01.html",
+    "href": "design/random-walk-01.html",
+    "title": "Random walk with Grasshopper",
     "section": "",
     "text": "Random walk",
     "crumbs": [
       "Home",
       "Computational Design",
-      "Random walk with scripting in Grasshopper"
+      "Random walk with Grasshopper"
     ]
   },
   {
-    "objectID": "design/random-walk-03.html#introduction",
-    "href": "design/random-walk-03.html#introduction",
-    "title": "Random walk with scripting in Grasshopper",
+    "objectID": "design/random-walk-01.html#introduction",
+    "href": "design/random-walk-01.html#introduction",
+    "title": "Random walk with Grasshopper",
     "section": "Introduction",
-    "text": "Introduction\nLearn how to use Python scripting in Grasshopper to efficiently generate a random walk. In this tutorial you will create a custom script component for generating random walks in a visual programming environment. The simple visual program we composed in the tutorial Random walk with Grasshopper was quite slow, so we will write a faster, more efficient implementation in Python using the NumPy array programming library [1, 2].",
+    "text": "Introduction\nThis tutorial is a guide to simulating random walks with Grasshopper - Rhino’s visual programming environment [1]. A random walk is an algorithm that simulates a walker taking steps in random directions. To easily simulate a 2-dimensional random walk, first generate sets of random vectors representing steps and then take the cumulative sum of these vectors to find the position of the walker at each step. For this 2-dimensional random walk, we will decompose movement into x- and y-vectors representing east-west and north-south movement. For each step our walker will choose to move a pace to either east or west and north or south. To make the walk smoother, we will incorporate an element of unpredictability by allowing our walker to take partial steps.",
     "crumbs": [
       "Home",
       "Computational Design",
-      "Random walk with scripting in Grasshopper"
+      "Random walk with Grasshopper"
     ]
   },
   {
-    "objectID": "design/random-walk-03.html#script-component",
-    "href": "design/random-walk-03.html#script-component",
-    "title": "Random walk with scripting in Grasshopper",
-    "section": "Script component",
-    "text": "Script component\nPlace a Python 3 script component from the script panel in the math tab on Grasshopper’s canvas. Double click on the center of the script component to open the script editor and start writing your code. To learn more read the Rhino Developer’s Scripting Guides.\n\n\n\nScript component",
+    "objectID": "design/random-walk-01.html#define-x-component-of-steps",
+    "href": "design/random-walk-01.html#define-x-component-of-steps",
+    "title": "Random walk with Grasshopper",
+    "section": "Define x-component of steps",
+    "text": "Define x-component of steps\nFirst define the x-component of our walker’s movement. We will represent a full pace to the west as -1 and a full pace to the east as 1. Start by generating a list of random floating point numbers between -1 and 1. To do this, place a Random component on the canvas. Plug a Number Slider into the Seed input parameter to set the seed of the pseudorandom number generator. Plug a Number Slider into the Number input parameter to set the number of random values to be generated. Plug a text panel into the Range input parameter and set the text to -1 to 1. Then plug the output list of random numbers into a Mass Addition component. This will calculate the cumulative sum of the random numbers.\n\n\n\nDefine x-component of steps",
     "crumbs": [
       "Home",
       "Computational Design",
-      "Random walk with scripting in Grasshopper"
+      "Random walk with Grasshopper"
     ]
   },
   {
-    "objectID": "design/random-walk-03.html#python-script",
-    "href": "design/random-walk-03.html#python-script",
-    "title": "Random walk with scripting in Grasshopper",
-    "section": "Python script",
-    "text": "Python script\nIn the script editor write a Python program for simulating random walks. First import NumPy, then instantiate its random number generator, generate arrays of random x- and y-vectors representing the direction of each step, calculate the position of each step as the cumulative sum of the vectors, and convert the arrays into lists. Save your program and close the script editor. Right click on your script component to rename it Random Walk.\n\"\"\"Random Walk\"\"\"\n# requirements: numpy\n\n# Import library\nimport numpy as np\n\n# Instantiate random number generator\nif seed is not None:\n    rng = np.random.default_rng(seed)\nelse:\n    rng = np.random.default_rng()\n\n# Generate random steps\nu = rng.normal(mu, sigma, i)\nv = rng.normal(mu, sigma, i)\n\n# Solve position\nx = np.cumsum(u).tolist()\ny = np.cumsum(v).tolist()",
+    "objectID": "design/random-walk-01.html#define-y-component-of-steps",
+    "href": "design/random-walk-01.html#define-y-component-of-steps",
+    "title": "Random walk with Grasshopper",
+    "section": "Define y-component of steps",
+    "text": "Define y-component of steps\nNext define the y-component of our walker’s movement. Place a Random component on the canvas and use the same values for the input Range and Number, but use a different value for the input Seed. A simple way to do this is to reuse the same seed, but add 1 to it. Then use Mass Addition calculate the cumulative sum of the resulting list of random numbers.\n\n\n\nDefine y-component of steps",
     "crumbs": [
       "Home",
       "Computational Design",
-      "Random walk with scripting in Grasshopper"
+      "Random walk with Grasshopper"
     ]
   },
   {
-    "objectID": "design/random-walk-03.html#programmed-script-component",
-    "href": "design/random-walk-03.html#programmed-script-component",
-    "title": "Random walk with scripting in Grasshopper",
-    "section": "Programmed script component",
-    "text": "Programmed script component\nNow that your script is ready, compose a simple visual program using it. First define the input and output parameters for the component. Zoom in on the script component and plus icons for inserting parameters will appear. Use these to insert the input parameters i, mu, sigma, and seed and the output parameters x and y. Add number sliders to your canvas and plug these to the input parameters. Plug the output parameters x and y into a Construct Point component as the input x- and y-coordinates.\n\n\n\nVisual program with random walk script\n\n\n\n\n\nRandom walk",
+    "objectID": "design/random-walk-01.html#plot-random-walk",
+    "href": "design/random-walk-01.html#plot-random-walk",
+    "title": "Random walk with Grasshopper",
+    "section": "Plot random walk",
+    "text": "Plot random walk\nThe Mass Addition component returns a result - the total cumulative sum - and a list of partial results - the cumulative sum at each step. These partial results represent the x- or y-components of our walker’s position in space at each step. To plot our walkers position in space, place a Construct Point on the canvas and plug the partial results of the cumulative sums along the x- and y-vectors into its input x- and y-coordinates. Finally visualize the resulting points using a Dot Display component.\n\n\n\nPlot random walk\n\n\n\n\n\nRandom walk",
     "crumbs": [
       "Home",
       "Computational Design",
-      "Random walk with scripting in Grasshopper"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-04.html",
-    "href": "design/random-walk-04.html",
-    "title": "3D random walk with NumPy",
-    "section": "",
-    "text": "3D random walk",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "3D random walk with NumPy"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-04.html#introduction",
-    "href": "design/random-walk-04.html#introduction",
-    "title": "3D random walk with NumPy",
-    "section": "Introduction",
-    "text": "Introduction\nLearn how to generate a 3-dimensional random walk in Python with NumPy and render it with either PyVista or Open3D.",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "3D random walk with NumPy"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-04.html#random-walk-with-numpy",
-    "href": "design/random-walk-04.html#random-walk-with-numpy",
-    "title": "3D random walk with NumPy",
-    "section": "Random walk with NumPy",
-    "text": "Random walk with NumPy\nGenerate a 3-dimensional random walk with Python’s NumPy library for array programming [1, 2].\n# Import libraries\nimport numpy as np\n\n# Set variables\ni = 1000000 # Iterations\nmu = 0.0 # Mean\nsigma = 0.25 # Standard deviation\nscale = 2 # Scale factor\n\n# Instantiate random number generator\nrng = np.random.default_rng()\n\n# Generate random steps\nu = rng.normal(mu, sigma * scale, i)\nv = rng.normal(mu, sigma * scale, i)\nw = rng.normal(mu, sigma / scale, i)\n\n# Solve position\nx = np.cumsum(u)\ny = np.cumsum(v)\nz = np.cumsum(w)\n\n# Stack coordinates\nxyz = np.column_stack((x, y, z))",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "3D random walk with NumPy"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-04.html#render-with-pyvista",
-    "href": "design/random-walk-04.html#render-with-pyvista",
-    "title": "3D random walk with NumPy",
-    "section": "Render with PyVista",
-    "text": "Render with PyVista\nRender an interactive 3D visualization of the random walk with the Python library PyVista [3, 5].\n\n# Import libraries\nimport pyvista as pv\n\n# Set plot theme\npv.set_plot_theme(\"document\")\n\n# Plot\npv.plot(\n    xyz,\n    scalars=z,\n    render_points_as_spheres=True,\n    point_size=20,\n    show_scalar_bar=False,\n    eye_dome_lighting=True,\n    ambient=0.6,\n    diffuse=0.8,\n    window_size=(2000, 2000)\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3D random walks rendered with PyVista",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "3D random walk with NumPy"
-    ]
-  },
-  {
-    "objectID": "design/random-walk-04.html#render-with-open3d",
-    "href": "design/random-walk-04.html#render-with-open3d",
-    "title": "3D random walk with NumPy",
-    "section": "Render with Open3D",
-    "text": "Render with Open3D\nRender an interactive 3D visualization of the random walk with the Python library Open3D [4, 6].\n# Import libraries\nimport open3d as o3d\nimport matplotlib.cm as cm\nimport matplotlib.colors as colors\n\n# Read point cloud\ncloud = o3d.geometry.PointCloud()\ncloud.points = o3d.utility.Vector3dVector(xyz)\n\n# Assign color gradient\ncolormap = cm.get_cmap(\"viridis\")\nnormalization = colors.Normalize(vmin=z.min(), vmax=z.max())\nnormalization = normalization(z)\ngradient = colormap(normalization)\ngradient = gradient[:, :3]\ncloud.colors = o3d.utility.Vector3dVector(gradient)\n\n# Render points\no3d.visualization.draw(\n    [cloud],\n    point_size=4,\n    width=2000,\n    height=2000,\n    show_skybox=False,\n    raw_mode=True\n    )",
-    "crumbs": [
-      "Home",
-      "Computational Design",
-      "3D random walk with NumPy"
+      "Random walk with Grasshopper"
     ]
   },
   {
@@ -437,63 +510,134 @@
     ]
   },
   {
-    "objectID": "design/random-walk-01.html",
-    "href": "design/random-walk-01.html",
-    "title": "Random walk with Grasshopper",
+    "objectID": "design/random-walk-04.html",
+    "href": "design/random-walk-04.html",
+    "title": "3D random walk with NumPy",
+    "section": "",
+    "text": "3D random walk",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-04.html#introduction",
+    "href": "design/random-walk-04.html#introduction",
+    "title": "3D random walk with NumPy",
+    "section": "Introduction",
+    "text": "Introduction\nLearn how to generate a 3-dimensional random walk in Python with NumPy and render it with either PyVista or Open3D.",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-04.html#random-walk-with-numpy",
+    "href": "design/random-walk-04.html#random-walk-with-numpy",
+    "title": "3D random walk with NumPy",
+    "section": "Random walk with NumPy",
+    "text": "Random walk with NumPy\nGenerate a 3-dimensional random walk with Python’s NumPy library for array programming [1, 2].\n# Import libraries\nimport numpy as np\n\n# Set variables\ni = 1000000 # Iterations\nmu = 0.0 # Mean\nsigma = 0.25 # Standard deviation\nscale = 2 # Scale factor\n\n# Instantiate random number generator\nrng = np.random.default_rng()\n\n# Generate random steps\nu = rng.normal(mu, sigma * scale, i)\nv = rng.normal(mu, sigma * scale, i)\nw = rng.normal(mu, sigma / scale, i)\n\n# Solve position\nx = np.cumsum(u)\ny = np.cumsum(v)\nz = np.cumsum(w)\n\n# Stack coordinates\nxyz = np.column_stack((x, y, z))",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-04.html#render-with-pyvista",
+    "href": "design/random-walk-04.html#render-with-pyvista",
+    "title": "3D random walk with NumPy",
+    "section": "Render with PyVista",
+    "text": "Render with PyVista\nRender an interactive 3D visualization of the random walk with the Python library PyVista [3, 5].\n\n# Import libraries\nimport pyvista as pv\n\n# Set plot theme\npv.set_plot_theme(\"document\")\n\n# Plot\npv.plot(\n    xyz,\n    scalars=z,\n    render_points_as_spheres=True,\n    point_size=20,\n    show_scalar_bar=False,\n    eye_dome_lighting=True,\n    ambient=0.6,\n    diffuse=0.8,\n    window_size=(2000, 2000)\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3D random walks rendered with PyVista",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-04.html#render-with-open3d",
+    "href": "design/random-walk-04.html#render-with-open3d",
+    "title": "3D random walk with NumPy",
+    "section": "Render with Open3D",
+    "text": "Render with Open3D\nRender an interactive 3D visualization of the random walk with the Python library Open3D [4, 6].\n# Import libraries\nimport open3d as o3d\nimport matplotlib.cm as cm\nimport matplotlib.colors as colors\n\n# Read point cloud\ncloud = o3d.geometry.PointCloud()\ncloud.points = o3d.utility.Vector3dVector(xyz)\n\n# Assign color gradient\ncolormap = cm.get_cmap(\"viridis\")\nnormalization = colors.Normalize(vmin=z.min(), vmax=z.max())\nnormalization = normalization(z)\ngradient = colormap(normalization)\ngradient = gradient[:, :3]\ncloud.colors = o3d.utility.Vector3dVector(gradient)\n\n# Render points\no3d.visualization.draw(\n    [cloud],\n    point_size=4,\n    width=2000,\n    height=2000,\n    show_skybox=False,\n    raw_mode=True\n    )",
+    "crumbs": [
+      "Home",
+      "Computational Design",
+      "3D random walk with NumPy"
+    ]
+  },
+  {
+    "objectID": "design/random-walk-03.html",
+    "href": "design/random-walk-03.html",
+    "title": "Random walk with scripting in Grasshopper",
     "section": "",
     "text": "Random walk",
     "crumbs": [
       "Home",
       "Computational Design",
-      "Random walk with Grasshopper"
+      "Random walk with scripting in Grasshopper"
     ]
   },
   {
-    "objectID": "design/random-walk-01.html#introduction",
-    "href": "design/random-walk-01.html#introduction",
-    "title": "Random walk with Grasshopper",
+    "objectID": "design/random-walk-03.html#introduction",
+    "href": "design/random-walk-03.html#introduction",
+    "title": "Random walk with scripting in Grasshopper",
     "section": "Introduction",
-    "text": "Introduction\nThis tutorial is a guide to simulating random walks with Grasshopper - Rhino’s visual programming environment [1]. A random walk is an algorithm that simulates a walker taking steps in random directions. To easily simulate a 2-dimensional random walk, first generate sets of random vectors representing steps and then take the cumulative sum of these vectors to find the position of the walker at each step. For this 2-dimensional random walk, we will decompose movement into x- and y-vectors representing east-west and north-south movement. For each step our walker will choose to move a pace to either east or west and north or south. To make the walk smoother, we will incorporate an element of unpredictability by allowing our walker to take partial steps.",
+    "text": "Introduction\nLearn how to use Python scripting in Grasshopper to efficiently generate a random walk. In this tutorial you will create a custom script component for generating random walks in a visual programming environment. The simple visual program we composed in the tutorial Random walk with Grasshopper was quite slow, so we will write a faster, more efficient implementation in Python using the NumPy array programming library [1, 2].",
     "crumbs": [
       "Home",
       "Computational Design",
-      "Random walk with Grasshopper"
+      "Random walk with scripting in Grasshopper"
     ]
   },
   {
-    "objectID": "design/random-walk-01.html#define-x-component-of-steps",
-    "href": "design/random-walk-01.html#define-x-component-of-steps",
-    "title": "Random walk with Grasshopper",
-    "section": "Define x-component of steps",
-    "text": "Define x-component of steps\nFirst define the x-component of our walker’s movement. We will represent a full pace to the west as -1 and a full pace to the east as 1. Start by generating a list of random floating point numbers between -1 and 1. To do this, place a Random component on the canvas. Plug a Number Slider into the Seed input parameter to set the seed of the pseudorandom number generator. Plug a Number Slider into the Number input parameter to set the number of random values to be generated. Plug a text panel into the Range input parameter and set the text to -1 to 1. Then plug the output list of random numbers into a Mass Addition component. This will calculate the cumulative sum of the random numbers.\n\n\n\nDefine x-component of steps",
+    "objectID": "design/random-walk-03.html#script-component",
+    "href": "design/random-walk-03.html#script-component",
+    "title": "Random walk with scripting in Grasshopper",
+    "section": "Script component",
+    "text": "Script component\nPlace a Python 3 script component from the script panel in the math tab on Grasshopper’s canvas. Double click on the center of the script component to open the script editor and start writing your code. To learn more read the Rhino Developer’s Scripting Guides.\n\n\n\nScript component",
     "crumbs": [
       "Home",
       "Computational Design",
-      "Random walk with Grasshopper"
+      "Random walk with scripting in Grasshopper"
     ]
   },
   {
-    "objectID": "design/random-walk-01.html#define-y-component-of-steps",
-    "href": "design/random-walk-01.html#define-y-component-of-steps",
-    "title": "Random walk with Grasshopper",
-    "section": "Define y-component of steps",
-    "text": "Define y-component of steps\nNext define the y-component of our walker’s movement. Place a Random component on the canvas and use the same values for the input Range and Number, but use a different value for the input Seed. A simple way to do this is to reuse the same seed, but add 1 to it. Then use Mass Addition calculate the cumulative sum of the resulting list of random numbers.\n\n\n\nDefine y-component of steps",
+    "objectID": "design/random-walk-03.html#python-script",
+    "href": "design/random-walk-03.html#python-script",
+    "title": "Random walk with scripting in Grasshopper",
+    "section": "Python script",
+    "text": "Python script\nIn the script editor write a Python program for simulating random walks. First import NumPy, then instantiate its random number generator, generate arrays of random x- and y-vectors representing the direction of each step, calculate the position of each step as the cumulative sum of the vectors, and convert the arrays into lists. Save your program and close the script editor. Right click on your script component to rename it Random Walk.\n\"\"\"Random Walk\"\"\"\n# requirements: numpy\n\n# Import library\nimport numpy as np\n\n# Instantiate random number generator\nif seed is not None:\n    rng = np.random.default_rng(seed)\nelse:\n    rng = np.random.default_rng()\n\n# Generate random steps\nu = rng.normal(mu, sigma, i)\nv = rng.normal(mu, sigma, i)\n\n# Solve position\nx = np.cumsum(u).tolist()\ny = np.cumsum(v).tolist()",
     "crumbs": [
       "Home",
       "Computational Design",
-      "Random walk with Grasshopper"
+      "Random walk with scripting in Grasshopper"
     ]
   },
   {
-    "objectID": "design/random-walk-01.html#plot-random-walk",
-    "href": "design/random-walk-01.html#plot-random-walk",
-    "title": "Random walk with Grasshopper",
-    "section": "Plot random walk",
-    "text": "Plot random walk\nThe Mass Addition component returns a result - the total cumulative sum - and a list of partial results - the cumulative sum at each step. These partial results represent the x- or y-components of our walker’s position in space at each step. To plot our walkers position in space, place a Construct Point on the canvas and plug the partial results of the cumulative sums along the x- and y-vectors into its input x- and y-coordinates. Finally visualize the resulting points using a Dot Display component.\n\n\n\nPlot random walk\n\n\n\n\n\nRandom walk",
+    "objectID": "design/random-walk-03.html#programmed-script-component",
+    "href": "design/random-walk-03.html#programmed-script-component",
+    "title": "Random walk with scripting in Grasshopper",
+    "section": "Programmed script component",
+    "text": "Programmed script component\nNow that your script is ready, compose a simple visual program using it. First define the input and output parameters for the component. Zoom in on the script component and plus icons for inserting parameters will appear. Use these to insert the input parameters i, mu, sigma, and seed and the output parameters x and y. Add number sliders to your canvas and plug these to the input parameters. Plug the output parameters x and y into a Construct Point component as the input x- and y-coordinates.\n\n\n\nVisual program with random walk script\n\n\n\n\n\nRandom walk",
     "crumbs": [
       "Home",
       "Computational Design",
-      "Random walk with Grasshopper"
+      "Random walk with scripting in Grasshopper"
+    ]
+  },
+  {
+    "objectID": "design/index.html",
+    "href": "design/index.html",
+    "title": "Computational Design",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nMay 24, 2026\n\n\n3D random walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\n \n\n\nComputational Design\n\n\n\n\n\nlecture\n\n\n\n\n\n\nMay 24, 2026\n\n\nRandom walk with Grasshopper\n\n\n\n\n\ntutorial, grasshopper\n\n\n\n\n\n\nMay 24, 2026\n\n\nRandom walk with NumPy\n\n\n\n\n\ntutorial, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nRandom walk with scripting in Grasshopper\n\n\n\n\n\ntutorial, grasshopper, python\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "Computational Design"
     ]
   },
   {
