@@ -11,4 +11,4 @@ These open education resources are released under the
 * [Computational design](https://baharmon.github.io/tutorials/design)
 * [Geocomputation with GRASS](https://baharmon.github.io/tutorials/grass)
 
-![3D random walk](design/images/random-walk-11.png)
+![3D random walk](design/images/random-walk-11.webp)
