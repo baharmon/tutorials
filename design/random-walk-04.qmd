@@ -6,9 +6,8 @@ license: CC BY-SA
 categories: [tutorial, python]
 description: >
     Program a 3D random walk using NumPy
-image: images/random-walk-11.png
-bibliography: random-walk.bib
-csl: ../acm.csl
+image: images/random-walk-11.webp
+bibliography: design.bib
 code-links:
   - text: Python script
     href: random-walk-pyvista.py
@@ -24,7 +23,7 @@ resources:
 
 <!-- Add Jupyter notebook -->
 
-![3D random walk](images/random-walk-11.png)
+![3D random walk](images/random-walk-11.webp)
 
 ## Introduction
 
@@ -79,7 +78,7 @@ Render to an image file with:
 ```python
 window_size=(2000, 2000),
 off_screen=True,
-screenshot='random-walk-3d.png'
+screenshot='random-walk-3d.webp'
 ```
 -->
 
@@ -106,13 +105,13 @@ pv.plot(
 
 ::: {#fig:random-walks-3d layout-ncol=2}
 
-![](images/random-walk-11.png)
+![](images/random-walk-11.webp)
 
-![](images/random-walk-12.png)
+![](images/random-walk-12.webp)
 
-![](images/random-walk-13.png)
+![](images/random-walk-13.webp)
 
-![](images/random-walk-14.png)
+![](images/random-walk-14.webp)
 
 3D random walks rendered with PyVista
 :::

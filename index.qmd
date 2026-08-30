@@ -10,7 +10,7 @@ listing:
   fields: [date, title, image, categories]
 ---
 
-![Tutorials](grass/images/earthworks-01.png)
+![Tutorials](grass/images/earthworks-01.webp)
 
 This is a collection of tutorials
 teaching creative computation for design and spatial science.

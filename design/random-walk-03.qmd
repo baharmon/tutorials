@@ -6,9 +6,8 @@ license: CC BY-SA
 categories: [tutorial, grasshopper, python]
 description: >
     Program a 2D random walk using NumPy in Grasshopper
-image: images/random-walk-03.png
-bibliography: random-walk.bib
-csl: ../acm.csl
+image: images/random-walk-03.webp
+bibliography: design.bib
 links:
   gh_construct_point: "[Construct Point](https://grasshopperdocs.com/components/grasshoppervector/constructPoint.html)"
 code-links:
@@ -19,7 +18,7 @@ code-links:
 resources: random-walk-script.gh
 ---
 
-![Random walk](images/random-walk-03.png)
+![Random walk](images/random-walk-03.webp)
 
 ## Introduction
 
@@ -45,7 +44,7 @@ to open the script editor and start writing your code.
 To learn more read the
 [Rhino Developer's Scripting Guides](https://developer.rhino3d.com/en/guides/scripting/).
 
-![Script component](images/random-walk-script-01.png){fig-align="left" width=10%}
+![Script component](images/random-walk-script-01.webp){fig-align="left" width=10%}
 
 ## Python script
 
@@ -99,6 +98,6 @@ Plug the output parameters `x` and `y` into a
 {{< meta links.gh_construct_point >}}
 component as the input x- and y-coordinates.
 
-![Visual program with random walk script](images/random-walk-script-02.png){fig-align="left" width=75%}
+![Visual program with random walk script](images/random-walk-script-02.webp){fig-align="left" width=75%}
 
-![Random walk](images/random-walk-06.png)
+![Random walk](images/random-walk-06.webp)

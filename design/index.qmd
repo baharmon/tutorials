@@ -2,7 +2,7 @@
 title: "Computational Design"
 author: Brendan Harmon
 date: last-modified
-image: images/random-walk-02.png
+image: images/random-walk-02.webp
 categories: [collection]
 listing:
   type: table

@@ -2,7 +2,7 @@
 title: "Geocomputation with GRASS"
 author: Brendan Harmon
 date: last-modified
-image: images/earthworks-03.png
+image: images/earthworks-03.webp
 categories: [collection]
 listing:
   type: table

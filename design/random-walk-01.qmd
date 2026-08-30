@@ -6,9 +6,8 @@ license: CC BY-SA
 categories: [tutorial, grasshopper]
 description: >
     Model a 2D random walk using Grasshopper
-image: images/random-walk-01.png
-bibliography: random-walk.bib
-csl: ../acm.csl
+image: images/random-walk-01.webp
+bibliography: design.bib
 links:
   gh_random: "[Random](https://grasshopperdocs.com/components/grasshoppersets/random.html)"
   gh_number_slider: "[Number Slider](https://grasshopperdocs.com/components/grasshopperparams/numberSlider.html)"
@@ -23,7 +22,7 @@ code-links:
 resources: random-walk.gh
 ---
 
-![Random walk](images/random-walk-01.png)
+![Random walk](images/random-walk-01.webp)
 
 ## Introduction
 
@@ -75,7 +74,7 @@ Then plug the output list of random numbers into a
 This will calculate the cumulative sum
 of the random numbers.
 
-![Define x-component of steps](images/random-walk-definition-01.png){fig-align="left" width=100%}
+![Define x-component of steps](images/random-walk-definition-01.webp){fig-align="left" width=100%}
 
 ## Define y-component of steps
 
@@ -90,7 +89,7 @@ Then use {{< meta links.gh_mass_addition >}}
 calculate the cumulative sum
 of the resulting list of random numbers.
 
-![Define y-component of steps](images/random-walk-definition-02.png){fig-align="left" width=100%}
+![Define y-component of steps](images/random-walk-definition-02.webp){fig-align="left" width=100%}
 
 ## Plot random walk
 
@@ -110,6 +109,6 @@ into its input x- and y-coordinates.
 Finally visualize the resulting points
 using a {{< meta links.gh_dot_display >}} component.
 
-![Plot random walk](images/random-walk-definition-03.png){fig-align="left" width=65%}
+![Plot random walk](images/random-walk-definition-03.webp){fig-align="left" width=65%}
 
-![Random walk](images/random-walk-04.png)
+![Random walk](images/random-walk-04.webp)
