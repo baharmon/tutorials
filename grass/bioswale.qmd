@@ -1,0 +1,651 @@
+---
+title: "Earthworks: Bioswale"
+author: "Brendan Harmon"
+date: 2025-08-20
+date-modified: today
+categories: [tutorial, grass, python]
+description: Design and test a bioswale in GRASS.
+image: images/bioswale-07.webp
+bibliography: grass.bib
+links:
+  notebooks: "[Get started with GRASS & Python in Jupyter Notebooks](https://grass-tutorials.osgeo.org/content/tutorials/get_started/fast_track_grass_and_python.html)"
+  g_gui_vdigit: "[g.gui.vdigit](https://grass.osgeo.org/grass-stable/manuals/g.gui.vdigit.html)"
+  g_gui_rdigit: "[g.gui.rdigit](https://grass.osgeo.org/grass-stable/manuals/g.gui.rdigit.html)"
+  g_extension: "[g.extension](https://grass.osgeo.org/grass-stable/manuals/g.extension.html)"
+  r_earthworks: "[r.earthworks](https://grass.osgeo.org/grass-stable/manuals/addons/r.earthworks.html)"
+  g_region: "[g.region](https://grass.osgeo.org/grass-stable/manuals/g.region.html)"
+  r_mapcalc: "[r.mapcalc](https://grass.osgeo.org/grass-stable/manuals/r.mapcalc.html)"
+  r_sim_water: "[r.sim.water](https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html)"
+  r_neighbors: "[r.neighbors](https://grass.osgeo.org/grass-stable/manuals/r.neighbors.html)"
+  r_category: "[r.category](https://grass.osgeo.org/grass-stable/manuals/r.category.html)"
+  r_recode: "[r.recode](https://grass.osgeo.org/grass-stable/manuals/r.recode.html)"
+  r_slope_aspect: "[r.slope.aspect](https://grass.osgeo.org/grass-stable/manuals/r.slope.aspect.html)"
+  r_colors: "[r.colors](https://grass.osgeo.org/grass-stable/manuals/r.colors.html)"
+  r_relief: "[r.relief](https://grass.osgeo.org/grass-stable/manuals/r.relief.html)"
+  t_create: "[t.create](https://grass.osgeo.org/grass-stable/manuals/t.create.html)"
+  t_register: "[t.register](https://grass.osgeo.org/grass-stable/manuals/t.register.html)"
+  t_rast_colors: "[t.rast.colors](https://grass.osgeo.org/grass-stable/manuals/t.rast.colors.html)"
+  g_gui_animation: "[g.gui.animation](https://grass.osgeo.org/grass-stable/manuals/g.gui.animation.html)"
+  gs_list_strings: "[script.core.list_strings](https://grass.osgeo.org/grass85/manuals/libpython/script.html#script.core.list_strings)"
+  gj_TimeSeriesMap: "[grass.jupyter.TimeSeriesMap](https://grass.osgeo.org/grass85/manuals/libpython/grass.jupyter.html#grass.jupyter.TimeSeriesMap)"
+  np_linspace: "[numpy.linspace](https://numpy.org/doc/stable/reference/generated/numpy.linspace.html)"
+  np_sin: "[numpy.sin](https://numpy.org/doc/stable/reference/generated/numpy.sin.html)"
+  np_column_stack: "[numpy.column_stack](https://numpy.org/doc/stable/reference/generated/numpy.column_stack.html)"
+  sns_scatterplot: "[seaborn.scatterplot](https://seaborn.pydata.org/generated/seaborn.scatterplot.html)"
+  plt_plot: "[matplotlib.pyplot.plot](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)"
+format:
+  ipynb: default
+  html:
+    toc: true
+    code-tools: true
+    code-copy: true
+    code-fold: false
+engine: jupyter
+execute:
+  eval: false
+jupyter: python3
+---
+
+![Bioswale](images/bioswale-07.webp)
+
+<!-- Add check dams? -->
+
+Learn how to design, model, and simulate hydrologic systems 
+such as bioswales or restored streams. 
+This tutorial covers the design of swales 
+using {{< meta links.r_earthworks >}} [@Harmon:2026]
+and the simulation of shallow overland flows of water
+using {{< meta links.r_sim_water >}}. 
+Bioswales are shallow, vegetated channels
+for conveying, filtering, and infiltrating stormwater. 
+They are designed to move stormwater slowly enough through a site
+for retention, filtration, sedimentation, and infiltration, 
+yet quickly enough to prevent localized flooding.
+By retaining and infiltrating stormwater,
+bioswales reduce the peak flow of runoff during storm events,
+reducing the risk of flash flooding. 
+In this tutorial, 
+we will use an iterative cycle of modeling and simulation 
+to design a landscape with a bioswale
+that stores stormwater on site
+and conveys the overflow offsite. 
+
+While this tutorial uses Python 
+to procedurally design a bioswale using a trigonometric function,
+the process demonstrated here can easily be adapted 
+for the GRASS graphical user interface (GUI) 
+or command line interface (CLI)
+when working with real world sites.
+The centerline of the channel can be drawn in the GUI using
+the raster digitizer {{< meta links.g_gui_rdigit >}}
+or vector digitizer {{< meta links.g_gui_vdigit >}}.
+Alternatively if the channel is drawn in a computer-aided design program,
+then it can be imported into GRASS as a 2D or 3D vector map. 
+
+Our process will be to:
+
+* Model the initial terrain
+* Simulate shallow overland water flow over the terrain
+* Design the bioswale
+* Model the bioswale
+* Simulate shallow water flow with the bioswale
+* Design planting for the bioswale
+* Simulate shallow water flow with the planted bioswale
+* Animate the shallow water flow simulation
+
+::: {.callout-note title="Computational notebook"}
+This tutorial can be run as a computational notebook.
+Learn how to work with notebooks in the tutorial
+{{< meta links.notebooks >}}.
+:::
+
+# Setup
+
+Start a GRASS session in a new project
+with a Cartesian (XY) coordinate system.
+Use {{< meta links.g_region >}}
+to set the extent and resolution of the computational region.
+Create a region starting at the origin
+and extending two hundred units north and eight hundred units east.
+
+```{python}
+# Import libraries
+import os
+import sys
+import subprocess
+from pathlib import Path
+
+# Find GRASS Python packages
+sys.path.append(
+  subprocess.check_output(
+    ["grass", "--config", "python_path"],
+    text=True
+    ).strip()
+  )
+
+# Import GRASS packages
+import grass.script as gs
+import grass.jupyter as gj
+
+# Create a temporary folder
+import tempfile
+temporary = tempfile.TemporaryDirectory()
+
+# Create a project in the temporary directory
+gs.create_project(path=temporary.name, name="xy")
+
+# Start GRASS in this project
+session = gj.init(Path(temporary.name, "xy"))
+
+# Set region
+gs.run_command("g.region", n=200, e=800, s=0, w=0, res=1)
+```
+
+## Installation
+
+Install {{< meta links.r_earthworks >}} with {{< meta links.g_extension >}}. 
+
+```{python}
+# Install extension
+gs.run_command("g.extension", extension="r.earthworks")
+```
+
+# Initial Terrain
+
+Model synthetic terrain using gradient noise. 
+For a more detailed guide,
+see the [Procedural Noise](noise.qmd) tutorial.
+First create a random surface
+using the raster calculator
+{{< meta links.r_mapcalc >}}.
+Then use a `for` loop 
+to progressively smooth the random surface
+using nearest neighbors analysis
+with {{< meta links.r_neighbors >}}.
+Calculate the average neighborhood
+using a circular moving window.
+The resulting terrain will be smooth and undulating
+with many ridges and valleys. 
+
+```{python}
+# Set parameters
+amplitude = 1000.0
+iterations = 3
+wavelength = 33
+
+# Generate random surface
+gs.mapcalc(f"noise = rand(0, {amplitude})", seed=0)
+
+# Generate perlin noise
+for i in range(iterations):
+
+    # Smooth noise
+    gs.run_command(
+      "r.neighbors",
+      input="noise",
+      output="noise",
+      size=wavelength,
+      method="average",
+      flags="c",
+      overwrite=True
+      )
+
+# Set color gradient
+gs.run_command("r.colors", map="noise", color="viridis")
+
+# Visualize
+m = gj.Map(width=800)
+m.d_rast(map="noise")
+m.d_legend(raster="noise", font="FiraSans-Regular", at=(5, 95, 1, 3))
+m.show()
+
+# Save image
+m.save("images/bioswale-01.webp")
+```
+
+![Initial terrain](images/bioswale-01.webp)
+
+# Initial Hydrologic Simulation
+
+How will this landscape perform in a storm event?
+
+Run a simulation of shallow overland water flow
+to...
+
+
+The valleys will fill with water, 
+with pools forming in depressions. 
+
+{{< meta links.r_slope_aspect >}}
+
+{{< meta links.r_sim_water >}}
+
+{{< meta links.r_relief >}}
+
+{{< meta links.r_colors >}}
+
+```{python}
+# Compute partial derivatives of terrain
+gs.run_command("r.slope.aspect", elevation="noise", dx="dx", dy="dy")
+
+# Simulate shallow water flow
+gs.run_command(
+    "r.sim.water",
+    elevation="noise",
+    dx="dx",
+    dy="dy",
+    rain_value=150,
+    nwalkers=10000,
+    niterations=30,
+    nprocs=10,
+    depth="depth",
+    discharge="discharge"
+    )
+
+# Compute shaded relief
+gs.run_command("r.relief", input="noise", output="relief")
+
+# Set color gradient
+gs.run_command("r.colors", map="depth", color="haxby", flags="en")
+
+# Visualize
+m = gj.Map(width=800)
+m.d_shade(shade="relief", color="depth", brighten=25)
+m.d_legend(raster="depth", font="FiraSans-Regular", at=(5, 95, 1, 3))
+m.show()
+
+# Save image
+m.save("images/bioswale-02.webp")
+```
+
+![Initial water depth](images/bioswale-02.webp)
+
+# Bioswale Design
+
+{{< meta links.np_linspace >}}
+
+{{< meta links.np_sin >}}
+
+{{< meta links.sns_scatterplot >}}
+
+{{< meta links.plt_plot >}}
+
+```{python}
+# Import libraries
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Set wave variables
+n = 1000 # Steps
+a = 10 # Amplitude
+b = 0.025 # Scale
+c = 0 # Horizontal shift
+d = 100 # Vertical shift
+f = 0.002 # Decay rate
+
+# Set earthwork variables
+rate=0.5
+flat=6
+
+# Plot sinusoidal wave
+x = np.linspace(0, 800, n)
+y = a * np.sin(b * x - c) * np.e**(f * x) + d 
+z = np.linspace(490, 480, n)
+coordinates = np.column_stack((x, y))
+
+# Plot
+plt.figure(figsize=(8, 2)) 
+plt.plot(x, y)
+plt.show()
+```
+
+For nicer plotting, use Seaborn. 
+First install it using the package manager pip.
+
+```{python}
+%pip install seaborn
+```
+
+Then...
+
+```{python}
+import seaborn as sns
+
+# Set theme
+sns.set_theme(
+    context="paper", 
+    style="darkgrid"
+    )
+
+# Plot
+plot = sns.scatterplot(
+    x=x,
+    y=y,
+    size=x,
+    hue=-x,
+    palette="viridis",
+    edgecolor="none",
+    legend=False
+    )
+
+# Save figure
+fig = plot.get_figure()
+fig.set_size_inches(8, 2)
+fig.savefig(
+    "images/bioswale-03.webp",
+    dpi=150,
+    bbox_inches="tight",
+    pad_inches=0
+    )
+```
+
+![Sinusoidal wave](images/bioswale-03.webp)
+
+# Bioswale Modeling
+
+{{< meta links.r_earthworks >}}
+
+```{python}
+# Model landforms
+gs.run_command(
+    "r.earthworks",
+    elevation="noise",
+    earthworks="bioswale",
+    volume="volume",
+    operation="cut",
+    coordinates=coordinates,
+    z=z,
+    function="linear",
+    linear=rate,
+    flat=flat
+    )
+
+# Visualize
+m = gj.Map(width=800)
+m.d_rast(map="bioswale")
+m.d_legend(raster="bioswale", font="FiraSans-Regular", at=(5, 95, 1, 3))
+m.show()
+
+# Save image
+m.save("images/bioswale-04.webp")
+```
+
+![Terrain with bioswale](images/bioswale-04.webp)
+
+# Hydrologic Simulation
+
+```{python}
+# Compute partial derivatives of terrain
+gs.run_command("r.slope.aspect", elevation="bioswale", dx="dx", dy="dy")
+
+# Simulate shallow water flow
+gs.run_command(
+    "r.sim.water",
+    elevation="bioswale",
+    dx="dx",
+    dy="dy",
+    rain_value=150,
+    nwalkers=10000,
+    niterations=30,
+    nprocs=10,
+    depth="depth",
+    discharge="discharge"
+    )
+
+# Compute shaded relief
+gs.run_command("r.relief", input="bioswale", output="relief")
+
+# Set color gradient
+gs.run_command("r.colors", map="depth", color="haxby", flags="en")
+
+# Visualize
+m = gj.Map(width=800)
+m.d_shade(shade="relief", color="depth", brighten=36)
+m.d_legend(raster="depth", font="FiraSans-Regular", at=(5, 95, 1, 3))
+m.show()
+
+# Save image
+m.save("images/bioswale-05.webp")
+```
+
+![Water depth with bioswale](images/bioswale-05.webp)
+
+# Planting Design
+
+| Value | Category                      | Mannings | Runoff |
+|-------|-------------------------------|----------|--------|
+| 11    | Open Water                    | 0.001    | 1      |
+| 21    | Developed, Open Space         | 0.0404   | 0.8    |
+| 22    | Developed, Low Intensity      | 0.0678   | 0.85   |
+| 23    | Developed, Medium Intensity   | 0.0678   | 0.9    |
+| 24    | Developed, High Intensity     | 0.0404   | 0.95   |
+| 31    | Barren Land                   | 0.0113   | 0.6    |
+| 41    | Deciduous Forest              | 0.36     | 0.25   |
+| 42    | Evergreen Forest              | 0.32     | 0.25   |
+| 43    | Mixed Forest                  | 0.4      | 0.25   |
+| 52    | Shrub/Scrub                   | 0.4      | 0.5    |
+| 71    | Grassland/Herbaceuous         | 0.368    | 0.35   |
+| 81    | Pasture/Hay                   | 0.325    | 0.35   |
+| 82    | Cultivated Crops              | 0.325    | 0.4    |
+| 90    | Woody Wetlands                | 0.086    | 0.25   |
+| 95    | Emergent Herbaceuous Wetlands | 0.1825   | 0.25   |
+
+```{python}
+# Define landcover colors
+categories = """\
+11|Open Water
+12|Perennial Ice/Snow
+21|Developed, Open Space
+22|Developed, Low Intensity
+23|Developed, Medium Intensity
+24|Developed, High Intensity
+31|Barren Land
+41|Deciduous Forest
+42|Evergreen Forest
+43|Mixed Forest
+51|Dwarf Scrub
+52|Shrub/Scrub
+71|Grassland/Herbaceuous
+72|Sedge/Herbaceous
+73|Lichens
+74|Moss
+81|Pasture/Hay
+82|Cultivated Crops
+90|Woody Wetlands
+95|Emergent Herbaceuous Wetlands
+"""
+```
+
+```{python}
+# Define mannings roughness values
+mannings = """\
+11:11:0.001:0.001
+12:12:0.022:0.022
+21:21:0.0404:0.0404
+22:22:0.0678:0.0678
+23:23:0.0678:0.0678
+24:24:0.0404:0.0404
+31:31:0.0113:0.0113
+41:41:0.36:0.36
+42:42:0.32:0.32
+43:43:0.40:0.40
+52:52:0.40:0.40
+71:71:0.368:0.368
+81:81:0.325:0.325
+82:82:0.325:0.325
+90:90:0.086:0.086
+95:95:0.1825:0.1825
+100:100:0.40:0.40
+"""
+```
+
+```{python}
+# Define runoff rates
+runoff = """\
+11:11:1:1
+12:12:0.95:0.95
+21:21:0.8:0.8
+22:22:0.85:0.85
+23:23:0.9:0.9
+24:24:0.95:0.95
+31:31:0.6:0.6
+41:41:0.25:0.25
+42:42:0.25:0.25
+43:43:0.25:0.25
+52:52:0.5:0.5
+71:71:0.35:0.35
+81:81:0.35:0.35
+82:82:0.4:0.4
+90:90:0.25:0.25
+95:95:0.25:0.25
+100:100:0.25:0.25
+"""
+```
+
+{{< meta links.r_mapcalc >}}
+
+{{< meta links.r_colors >}}
+
+{{< meta links.r_category >}}
+
+{{< meta links.r_recode >}}
+
+```{python}
+# Derive landcover from channel
+gs.mapcalc("landcover = if(volume == 0, 71, 95)")
+
+# Set landcover colors
+gs.run_command("r.colors", map="landcover", color="nlcd")
+
+# Set landcover categories
+gs.write_command("r.category", map="landcover", separator="pipe", rules="-", stdin=categories)
+
+# Derive mannings from landcover
+gs.write_command("r.recode", input="landcover", output="mannings", rules="-", stdin=mannings)
+
+# Derive runoff from landcover
+rain = 150
+gs.write_command("r.recode", input="landcover", output="runoff", rules="-", stdin=runoff)
+gs.mapcalc(f"runoff = {rain} * runoff")
+
+# Visualize
+m = gj.Map(width=800)
+m.d_rast(map="landcover")
+m.d_legend(raster="landcover", font="FiraSans-Regular", fontsize=10, flags="n", at=(5, 95, 1, 3))
+# m.d_legend(raster="landcover", font="FiraSans-Regular", fontsize=10, use=(71,95), at=(5, 95, 1, 3))
+m.show()
+
+# Save image
+m.save("images/bioswale-06.webp")
+```
+
+![Landcover for bioswale](images/bioswale-06.webp)
+
+# Hydrologic Simulation
+
+```{python}
+# Simulate shallow water flow
+gs.run_command(
+    "r.sim.water",
+    elevation="bioswale",
+    dx="dx",
+    dy="dy",
+    man="mannings",
+    rain="runoff",
+    nwalkers=10000,
+    niterations=30,
+    nprocs=10,
+    depth="depth",
+    discharge="discharge"
+    )
+
+# Compute shaded relief
+gs.run_command("r.relief", input="bioswale", output="relief")
+
+# Set color gradient
+gs.run_command("r.colors", map="depth", color="haxby", flags="en")
+
+# Visualize
+m = gj.Map(width=800)
+m.d_shade(shade="relief", color="depth", brighten=36)
+m.d_legend(raster="depth", font="FiraSans-Regular", at=(5, 95, 1, 3))
+m.show()
+
+# Save image
+m.save("images/bioswale-07.webp")
+```
+
+![Water depth with planted bioswale](images/bioswale-07.webp)
+
+# Animation
+
+{{< meta links.r_sim_water >}}
+
+{{< meta links.gs_list_strings >}}
+
+{{< meta links.t_create >}}
+
+{{< meta links.t_register >}}
+
+{{< meta links.t_rast_colors >}}
+
+{{< meta links.g_gui_animation >}}
+
+{{< meta links.gj_TimeSeriesMap >}}
+
+```{python}
+# Simulate shallow water flow as time series
+gs.run_command(
+    "r.sim.water",
+    elevation="bioswale",
+    dx="dx",
+    dy="dy",
+    man="mannings",
+    rain="runoff",
+    nwalkers=10000,
+    niterations=30,
+    output_step=1,
+    nprocs=10,
+    depth="depth",
+    discharge="discharge",
+    flags="t"
+    )
+
+# List depth rasters
+rasters = gs.list_strings(type="rast", pattern="depth.*")
+
+# Create space time raster dataset
+gs.run_command(
+    "t.create", 
+    type="strds",
+    temporaltype="relative",
+    semantictype="sum",
+    output="depth",
+    title="depth",
+    description="depth"
+    )
+
+# Register depth rasters
+gs.run_command(
+    "t.register",
+    input="depth",
+    maps=rasters,
+    type="raster",
+    start=0,
+    unit="minutes",
+    increment=1,
+    separator="comma",
+    flags="i"
+    )
+
+# Set time series color gradient
+gs.run_command("t.rast.colors", input="depth", color="haxby", flags="en")
+
+# Animate time series
+depth = gj.TimeSeriesMap(width=800)
+depth.add_raster_series("depth")
+depth.d_legend()
+depth.show()
+```
+
+![Water depth animation](images/bioswale.gif)
