@@ -143,6 +143,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Computational Design</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../ecology/index.html"> 
+<span class="menu-text">Computational Ecology</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../grass/index.html"> 
 <span class="menu-text">Geocomputation with GRASS</span></a>
   </li>  
@@ -292,6 +296,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../grass/wsl-quickstart.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting started with GRASS using WSL</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../ecology/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Computational Ecology</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ecology/cadastre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Importing cadastral data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ecology/interactive-maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interactive maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ecology/national-map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Importing the National Elevation Dataset</span></a>
   </div>
 </li>
       </ul>
@@ -457,7 +490,7 @@ Table&nbsp;1: Types of map algebra operations
 <pre class="{bash}"><code>r.mapcalc expression="output = input"</code></pre>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div id="d48283ef" class="cell" data-execution_count="1">
+<div id="ce8d8d5b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"output = input"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
@@ -559,7 +592,7 @@ Table&nbsp;2: Map algebra operators, functions, and variables in this tutorial
 <pre class="{bash}"><code>g.region n=200 e=800 s=0 w=0 res=1</code></pre>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div id="7919cfe9" class="cell" data-execution_count="2">
+<div id="39a6cda7" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -605,7 +638,7 @@ Table&nbsp;2: Map algebra operators, functions, and variables in this tutorial
 <pre class="{bash}"><code>r.mapcalc expression="elevation = 0"</code></pre>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div id="9c256abf" class="cell" data-execution_count="3">
+<div id="19788624" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = 0"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -635,7 +668,7 @@ Table&nbsp;2: Map algebra operators, functions, and variables in this tutorial
 r.info -r map=fractal</code></pre>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div id="b470c085" class="cell" data-execution_count="4">
+<div id="f63000ee" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate fractal surface</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.surf.fractal"</span>, output<span class="op">=</span><span class="st">"fractal"</span>, dimension<span class="op">=</span><span class="fl">2.25</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -672,7 +705,7 @@ r.colors map=elevation color=elevation
 r.info -r map=elevation</code></pre>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div id="1d27bee5" class="cell" data-execution_count="5">
+<div id="ad051610" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = fractal / 10"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, color<span class="op">=</span><span class="st">"elevation"</span>)</span>
@@ -707,7 +740,7 @@ r.info -r map=elevation</code></pre>
 r.colors map=elevation color=elevation</code></pre>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<div id="8a317fe5" class="cell" data-execution_count="6">
+<div id="d371c191" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = abs(elevation)"</span>, overwrite<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, color<span class="op">=</span><span class="st">"elevation"</span>)</span>
@@ -738,7 +771,7 @@ r.colors map=elevation color=elevation</code></pre>
 <pre class="{bash}"><code>r.neighbors -c input=elevation output=weathering size=9</code></pre>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
-<div id="6bb4bcc3" class="cell" data-execution_count="7">
+<div id="f19b48bc" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nearest neighbors</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"r.neighbors"</span>,</span>
@@ -775,7 +808,7 @@ r.colors map=elevation color=elevation</code></pre>
 <pre class="{bash}"><code>r.mapcalc expression="random = rand(0.0, 10.0)" seed=0</code></pre>
 </div>
 <div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
-<div id="ef7d38d3" class="cell" data-execution_count="8">
+<div id="5119543b" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random surface</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"random = rand(0.0, 10.0)"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -801,7 +834,7 @@ r.colors map=elevation color=elevation</code></pre>
 <pre class="{bash}"><code>r.mapcalc expression="forest = elevation + random"</code></pre>
 </div>
 <div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
-<div id="f405daee" class="cell" data-execution_count="9">
+<div id="15aa8c09" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"forest = elevation + random"</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -900,7 +933,7 @@ Table&nbsp;3: Logical operators
 <pre class="{bash}"><code>r.mapcalc expression="plateaus = if(elevation &gt; 30)"</code></pre>
 </div>
 <div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
-<div id="6dddb9db" class="cell" data-execution_count="10">
+<div id="cba129ac" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"plateaus = if(elevation &gt; 30)"</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -935,7 +968,7 @@ Table&nbsp;3: Logical operators
 r.colors map=elevation color=elevation</code></pre>
 </div>
 <div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
-<div id="2749e54f" class="cell" data-execution_count="11">
+<div id="fcd8cf04" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"elevation = if(elevation &gt; 30, 30, elevation)"</span>, overwrite<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"elevation"</span>, color<span class="op">=</span><span class="st">"elevation"</span>)</span>
@@ -972,7 +1005,7 @@ r.colors map=elevation color=elevation</code></pre>
 r.colors map=rivers color=water</code></pre>
 </div>
 <div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
-<div id="83b9980d" class="cell" data-execution_count="12">
+<div id="eda2f635" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map algebra</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>gs.mapcalc(<span class="st">"rivers = if(elevation &lt; 6, 6 - elevation, null())"</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.colors"</span>, <span class="bu">map</span><span class="op">=</span><span class="st">"rivers"</span>, color<span class="op">=</span><span class="st">"water"</span>)</span>

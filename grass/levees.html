@@ -163,6 +163,10 @@ div.csl-indent {
 <span class="menu-text">Computational Design</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../ecology/index.html"> 
+<span class="menu-text">Computational Ecology</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../grass/index.html"> 
 <span class="menu-text">Geocomputation with GRASS</span></a>
   </li>  
@@ -316,6 +320,35 @@ div.csl-indent {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../ecology/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Computational Ecology</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ecology/cadastre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Importing cadastral data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ecology/interactive-maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interactive maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ecology/national-map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Importing the National Elevation Dataset</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -433,7 +466,7 @@ div.csl-indent {
 <pre class="{bash}"><code>grass ~/grassdata/bayou_lours/PERMANENT</code></pre>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="ca6c0d84" class="cell" data-execution_count="1">
+<div id="2ddd5283" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -489,7 +522,7 @@ div.csl-indent {
 <pre class="{bash}"><code>g.extension extension=r.earthworks</code></pre>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div id="0ea6ff2f" class="cell" data-execution_count="2">
+<div id="9852a36f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install extension</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.extension"</span>, extension<span class="op">=</span><span class="st">"r.earthworks"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -507,7 +540,7 @@ div.csl-indent {
 <pre class="{bash}"><code>g.region n=105100 s=102600 w=1105000 e=1115000 res=5</code></pre>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div id="984eea6b" class="cell" data-execution_count="3">
+<div id="024445aa" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"g.region"</span>, n<span class="op">=</span><span class="dv">105100</span>, s<span class="op">=</span><span class="dv">102600</span>, w<span class="op">=</span><span class="dv">1105000</span>, e<span class="op">=</span><span class="dv">1115000</span>, res<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -530,7 +563,7 @@ div.csl-indent {
 d.shade shade=relief color=imagery brighten=36</code></pre>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div id="e8be6316" class="cell" data-execution_count="4">
+<div id="918a547c" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model relief</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"r.relief"</span>, <span class="bu">input</span><span class="op">=</span><span class="st">"elevation"</span>, output<span class="op">=</span><span class="st">"relief"</span>, zscale<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -561,7 +594,7 @@ d.shade shade=relief color=imagery brighten=36</code></pre>
 d.legend raster=elevation digits=0 color=white at=5,95,1,3</code></pre>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div id="6c32ba83" class="cell" data-execution_count="5">
+<div id="d6cf9de2" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display elevation</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>m.d_shade(shade<span class="op">=</span><span class="st">"relief"</span>, color<span class="op">=</span><span class="st">"elevation"</span>, brighten<span class="op">=</span><span class="dv">36</span>)</span>
@@ -592,7 +625,7 @@ d.rast map=flooding
 d.legend raster=flooding digits=1 color=white at=5,95,1,3</code></pre>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<div id="ceb1bd0a" class="cell" data-execution_count="6">
+<div id="153d728e" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate flooding</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.lake"</span>,</span>
@@ -637,7 +670,7 @@ d.text text="Gap closure" color=white size=7 at=49,10
 d.legend raster=flooding digits=1 color=white at=5,95,1,3</code></pre>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
-<div id="78620fe2" class="cell" data-execution_count="7">
+<div id="d3582b85" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display projects</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>m.d_shade(shade<span class="op">=</span><span class="st">"relief"</span>, color<span class="op">=</span><span class="st">"elevation"</span>, brighten<span class="op">=</span><span class="dv">36</span>)</span>
@@ -677,7 +710,7 @@ d.rast map=earthworks
 d.legend raster=earthworks color=white at=5,95,1,3</code></pre>
 </div>
 <div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
-<div id="8d04084e" class="cell" data-execution_count="8">
+<div id="e25f3569" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shift ridgeline</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(<span class="st">"v.transform"</span>, <span class="bu">input</span><span class="op">=</span><span class="st">"ridges"</span>, output<span class="op">=</span><span class="st">"borrow"</span>, yshift<span class="op">=</span><span class="dv">36</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -722,7 +755,7 @@ d.rast map=earthworks
 d.legend raster=earthworks color=white at=5,95,1,3</code></pre>
 </div>
 <div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
-<div id="56f14bf6" class="cell" data-execution_count="9">
+<div id="95afa67d" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model ridges</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.earthworks"</span>,</span>
@@ -765,7 +798,7 @@ d.rast map=earthworks
 d.legend raster=earthworks color=white at=5,95,1,3</code></pre>
 </div>
 <div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
-<div id="ef3e1b85" class="cell" data-execution_count="10">
+<div id="e4935ece" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model levees</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.earthworks"</span>,</span>
@@ -809,7 +842,7 @@ d.shade shade=relief color=earthworks brighten=36
 d.legend raster=earthworks color=white at=5,95,1,3</code></pre>
 </div>
 <div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
-<div id="e3bf0930" class="cell" data-execution_count="11">
+<div id="3a9e88d7" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model gaps</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.earthworks"</span>,</span>
@@ -867,7 +900,7 @@ d.rast map=flooding
 d.legend raster=flooding digits=1 color=white at=5,95,1,3</code></pre>
 </div>
 <div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
-<div id="92012149" class="cell" data-execution_count="12">
+<div id="f19ace7b" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate flooding</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>gs.run_command(</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r.lake"</span>,</span>

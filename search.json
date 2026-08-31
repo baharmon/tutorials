@@ -1,10 +1,142 @@
 [
   {
+    "objectID": "ecology/interactive-maps.html",
+    "href": "ecology/interactive-maps.html",
+    "title": "Interactive maps",
+    "section": "",
+    "text": "Interactive maps\nUse an interactive map to find your study area and set your computational region.",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Interactive maps"
+    ]
+  },
+  {
+    "objectID": "ecology/interactive-maps.html#setup",
+    "href": "ecology/interactive-maps.html#setup",
+    "title": "Interactive maps",
+    "section": "Setup",
+    "text": "Setup\nStart a GRASS session in a new project. Set the coordinate reference system for the project to Louisiana State Plane South using EPSG code 2801.\n\n# Import modules\nimport sys\nimport subprocess\nimport numpy as np\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create GRASS project\ngs.create_project(\"hilltop\", epsg=\"2801\", overwrite=True)\n\n# Initialize GRASS session\ngj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Interactive maps"
+    ]
+  },
+  {
+    "objectID": "ecology/interactive-maps.html#imagery",
+    "href": "ecology/interactive-maps.html#imagery",
+    "title": "Interactive maps",
+    "section": "Imagery",
+    "text": "Imagery\n\nm = gj.InteractiveMap(\n    width=1600,\n    height=400,\n    map_backend=\"ipyleaflet\",\n    tiles=\"Esri.WorldImagery\",\n    use_region=True\n    )\nm.show()\n\n\n\n\nImagery",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Interactive maps"
+    ]
+  },
+  {
+    "objectID": "ecology/cadastre.html",
+    "href": "ecology/cadastre.html",
+    "title": "Importing cadastral data",
+    "section": "",
+    "text": "Importing cadastral data\nLearn how to import cadastral data, extract a parcel, and set your computational region.",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing cadastral data"
+    ]
+  },
+  {
+    "objectID": "ecology/cadastre.html#setup",
+    "href": "ecology/cadastre.html#setup",
+    "title": "Importing cadastral data",
+    "section": "Setup",
+    "text": "Setup\nStart a GRASS session in a new project. Set the coordinate reference system for the project to Louisiana State Plane South using EPSG code 2801.\n\n# Import modules\nimport sys\nimport subprocess\nimport numpy as np\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create GRASS project\ngs.create_project(\"hilltop\", epsg=\"2801\", overwrite=True)\n\n# Initialize GRASS session\ngj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing cadastral data"
+    ]
+  },
+  {
+    "objectID": "ecology/cadastre.html#set-computational-region",
+    "href": "ecology/cadastre.html#set-computational-region",
+    "title": "Importing cadastral data",
+    "section": "Set computational region",
+    "text": "Set computational region\n\n# Set region\ntools.g_region(n=206040, s=205640, e=1023700, w=1022100, res=1)",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing cadastral data"
+    ]
+  },
+  {
+    "objectID": "ecology/cadastre.html#import-parcels",
+    "href": "ecology/cadastre.html#import-parcels",
+    "title": "Importing cadastral data",
+    "section": "Import parcels",
+    "text": "Import parcels\n\n# Import parcels\ntools.v_import(input=\"Tax_Parcel.geojson\", output=\"parcels\", extent=\"region\")",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing cadastral data"
+    ]
+  },
+  {
+    "objectID": "ecology/cadastre.html#visualize-parcels",
+    "href": "ecology/cadastre.html#visualize-parcels",
+    "title": "Importing cadastral data",
+    "section": "Visualize parcels",
+    "text": "Visualize parcels\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"region\", color=\"white\", fill=\"black\")\nm.d_vect(map=\"contours\", color=\"grey\", size=0.5)\nm.d_vect(map=\"parcels\", color=\"white\", fill=\"none\", size=10)\nm.show()\n\n\n\n\nParcels",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing cadastral data"
+    ]
+  },
+  {
+    "objectID": "ecology/cadastre.html#extract-parcel",
+    "href": "ecology/cadastre.html#extract-parcel",
+    "title": "Importing cadastral data",
+    "section": "Extract parcel",
+    "text": "Extract parcel\n\n# Extract parcel by ID\ntools.v_extract(input=\"parcels\", output=\"parcel\", where=\"ID=26020\")\n\n\n# Extract parcel by address\ntools.v_extract(input=\"parcels\", output=\"parcel\", where=\"PHYSICAL_ADDRESS='11855 HIGHLAND RD'\")",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing cadastral data"
+    ]
+  },
+  {
+    "objectID": "ecology/cadastre.html#visualize-parcel",
+    "href": "ecology/cadastre.html#visualize-parcel",
+    "title": "Importing cadastral data",
+    "section": "Visualize parcel",
+    "text": "Visualize parcel\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"region\", color=\"white\", fill=\"black\")\nm.d_vect(map=\"parcels\", color=\"grey\", fill=\"none\", size=1)\nm.d_vect(map=\"parcel\", color=\"white\", fill=\"none\", size=10)\nm.show()\n\n\n\n\n…",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing cadastral data"
+    ]
+  },
+  {
+    "objectID": "ecology/cadastre.html#set-computational-region-1",
+    "href": "ecology/cadastre.html#set-computational-region-1",
+    "title": "Importing cadastral data",
+    "section": "Set computational region",
+    "text": "Set computational region\nSet your computational region to the vector map with your parcel.\n\ntools.g_region(vector=\"parcel\")",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing cadastral data"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Tutorials",
     "section": "",
-    "text": "Tutorials\n\n\nThis is a collection of tutorials teaching creative computation for design and spatial science. These open education resources are released under the  Creative Commons Attribution 4.0 International License.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nApr 26, 2026\n\n\nComputational Design\n\n\n\n\n\ncollection\n\n\n\n\n\n\nApr 26, 2026\n\n\nGeocomputation with GRASS\n\n\n\n\n\ncollection\n\n\n\n\n\n\nNo matching items"
+    "text": "Tutorials\n\n\nThis is a collection of tutorials teaching creative computation for design and spatial science. These open education resources are released under the  Creative Commons Attribution 4.0 International License.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nApr 26, 2026\n\n\nComputational Design\n\n\n\n\n\ncollection\n\n\n\n\n\n\nAug 30, 2026\n\n\nComputational Ecology\n\n\n\n\n\ncollection\n\n\n\n\n\n\nApr 26, 2026\n\n\nGeocomputation with GRASS\n\n\n\n\n\ncollection\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "grass/earthworks.html",
@@ -1058,6 +1190,101 @@
       "Home",
       "Geocomputation with GRASS",
       "Procedural Noise"
+    ]
+  },
+  {
+    "objectID": "ecology/index.html",
+    "href": "ecology/index.html",
+    "title": "Computational Ecology",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nAug 30, 2026\n\n\nImporting cadastral data\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nAug 30, 2026\n\n\nImporting the National Elevation Dataset\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nAug 30, 2026\n\n\nInteractive maps\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "Computational Ecology"
+    ]
+  },
+  {
+    "objectID": "ecology/national-map.html",
+    "href": "ecology/national-map.html",
+    "title": "Importing the National Elevation Dataset",
+    "section": "",
+    "text": "Data acquisition\nLearn how to import the National Elevation Dataset into GRASS via the National Map Access API.",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing the National Elevation Dataset"
+    ]
+  },
+  {
+    "objectID": "ecology/national-map.html#setup",
+    "href": "ecology/national-map.html#setup",
+    "title": "Importing the National Elevation Dataset",
+    "section": "Setup",
+    "text": "Setup\nStart a GRASS session in a new project. Set the coordinate reference system for the project to Louisiana State Plane South using EPSG code 2801.\n\n# Import modules\nimport sys\nimport subprocess\nimport numpy as np\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create GRASS project\ngs.create_project(\"hilltop\", epsg=\"2801\", overwrite=True)\n\n# Initialize GRASS session\ngj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing the National Elevation Dataset"
+    ]
+  },
+  {
+    "objectID": "ecology/national-map.html#set-computational-region",
+    "href": "ecology/national-map.html#set-computational-region",
+    "title": "Importing the National Elevation Dataset",
+    "section": "Set computational region",
+    "text": "Set computational region\n\n# Set region\ntools.g_region(n=206040, s=205640, e=1023700, w=1022100, res=1)",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing the National Elevation Dataset"
+    ]
+  },
+  {
+    "objectID": "ecology/national-map.html#install-extension",
+    "href": "ecology/national-map.html#install-extension",
+    "title": "Importing the National Elevation Dataset",
+    "section": "Install extension",
+    "text": "Install extension\n\n# Install extension\ntools.g_extension(extension=\"r.in.usgs\")",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing the National Elevation Dataset"
+    ]
+  },
+  {
+    "objectID": "ecology/national-map.html#download-elevation",
+    "href": "ecology/national-map.html#download-elevation",
+    "title": "Importing the National Elevation Dataset",
+    "section": "Download elevation",
+    "text": "Download elevation\n\n# Download elevation data\ntools.r_in_usgs(product=\"ned\", ned_dataset=\"ned19sec\", output_name=\"ned\")",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing the National Elevation Dataset"
+    ]
+  },
+  {
+    "objectID": "ecology/national-map.html#visualize-elevation",
+    "href": "ecology/national-map.html#visualize-elevation",
+    "title": "Importing the National Elevation Dataset",
+    "section": "Visualize elevation",
+    "text": "Visualize elevation\n\n# Set region resolution\ntools.g_region(res=1)\n\n# Supersample elevation\ntools.r_resamp_interp(input=\"ned\", output=\"elevation\", method=\"bicubic\")\n\n# Compute contours\ntools.r_contour(input=\"elevation\", output=\"contours\", step=0.3)\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"elevation\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nElevation",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing the National Elevation Dataset"
+    ]
+  },
+  {
+    "objectID": "ecology/national-map.html#export-elevation",
+    "href": "ecology/national-map.html#export-elevation",
+    "title": "Importing the National Elevation Dataset",
+    "section": "Export elevation",
+    "text": "Export elevation\n\n# Export elevation\ntools.r_out_gdal(input=\"elevation\", output=\"elevation.tif\", format=\"GTiff\")\n\n# Export contours\ntools.v_out_ogr(input=\"contours\", output=\"contours.gpkg\", format=\"GPKG\")\n\n# Export contours for computer aided design\ntools.v_out_dxf(input=\"contours\", output=\"contours.dxf\")",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing the National Elevation Dataset"
     ]
   }
 ]

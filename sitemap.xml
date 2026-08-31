@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://baharmon.github.io/tutorials/ecology/interactive-maps.html</loc>
+    <lastmod>2026-08-31T01:02:00.676Z</lastmod>
+  </url>
+  <url>
+    <loc>https://baharmon.github.io/tutorials/ecology/cadastre.html</loc>
+    <lastmod>2026-08-31T00:58:53.580Z</lastmod>
+  </url>
+  <url>
     <loc>https://baharmon.github.io/tutorials/index.html</loc>
     <lastmod>2026-04-27T04:51:15.228Z</lastmod>
   </url>
@@ -75,5 +83,13 @@
   <url>
     <loc>https://baharmon.github.io/tutorials/grass/noise.html</loc>
     <lastmod>2026-05-24T18:31:34.692Z</lastmod>
+  </url>
+  <url>
+    <loc>https://baharmon.github.io/tutorials/ecology/index.html</loc>
+    <lastmod>2026-08-31T00:32:27.524Z</lastmod>
+  </url>
+  <url>
+    <loc>https://baharmon.github.io/tutorials/ecology/national-map.html</loc>
+    <lastmod>2026-08-31T00:58:06.537Z</lastmod>
   </url>
 </urlset>
