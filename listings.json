@@ -1,10 +1,12 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/design/index.html",
     "items": [
-      "/design/index.html",
-      "/ecology/index.html",
-      "/grass/index.html"
+      "/design/random-walk-04.html",
+      "/design/computational-design.html",
+      "/design/random-walk-01.html",
+      "/design/random-walk-02.html",
+      "/design/random-walk-03.html"
     ]
   },
   {
@@ -19,18 +21,17 @@
       "/grass/synthesis.html",
       "/grass/conda-quickstart.html",
       "/grass/wsl-quickstart.html",
+      "/grass/projections.html",
       "/grass/noise.html",
       "/grass/interpolation.html"
     ]
   },
   {
-    "listing": "/design/index.html",
+    "listing": "/index.html",
     "items": [
-      "/design/random-walk-04.html",
-      "/design/computational-design.html",
-      "/design/random-walk-01.html",
-      "/design/random-walk-02.html",
-      "/design/random-walk-03.html"
+      "/design/index.html",
+      "/ecology/index.html",
+      "/grass/index.html"
     ]
   },
   {
@@ -38,7 +39,8 @@
     "items": [
       "/ecology/cadastre.html",
       "/ecology/national-map.html",
-      "/ecology/interactive-maps.html"
+      "/ecology/interactive-maps.html",
+      "/ecology/landscape-modeling.html"
     ]
   }
 ]

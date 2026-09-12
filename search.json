@@ -88,7 +88,7 @@
     "href": "ecology/cadastre.html#visualize-parcels",
     "title": "Importing cadastral data",
     "section": "Visualize parcels",
-    "text": "Visualize parcels\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"region\", color=\"white\", fill=\"black\")\nm.d_vect(map=\"contours\", color=\"grey\", size=0.5)\nm.d_vect(map=\"parcels\", color=\"white\", fill=\"none\", size=10)\nm.show()\n\n\n\n\nParcels",
+    "text": "Visualize parcels\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"parcels\", color=\"black\", fill=\"none\", size=10)\nm.show()\n\n\n\n\nParcels",
     "crumbs": [
       "Home",
       "Computational Ecology",
@@ -112,7 +112,7 @@
     "href": "ecology/cadastre.html#visualize-parcel",
     "title": "Importing cadastral data",
     "section": "Visualize parcel",
-    "text": "Visualize parcel\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"region\", color=\"white\", fill=\"black\")\nm.d_vect(map=\"parcels\", color=\"grey\", fill=\"none\", size=1)\nm.d_vect(map=\"parcel\", color=\"white\", fill=\"none\", size=10)\nm.show()\n\n\n\n\n…",
+    "text": "Visualize parcel\n\n\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"parcels\", color=\"grey\", fill=\"none\", size=1)\nm.d_vect(map=\"parcel\", color=\"black\", fill=\"none\", size=10)\nm.show()\n\n\n\n\nParcel",
     "crumbs": [
       "Home",
       "Computational Ecology",
@@ -132,225 +132,543 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Tutorials",
+    "objectID": "ecology/landscape-modeling.html",
+    "href": "ecology/landscape-modeling.html",
+    "title": "Landscape Modeling",
     "section": "",
-    "text": "Tutorials\n\n\nThis is a collection of tutorials teaching creative computation for design and spatial science. These open education resources are released under the  Creative Commons Attribution 4.0 International License.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nApr 26, 2026\n\n\nComputational Design\n\n\n\n\n\ncollection\n\n\n\n\n\n\nAug 30, 2026\n\n\nComputational Ecology\n\n\n\n\n\ncollection\n\n\n\n\n\n\nApr 26, 2026\n\n\nGeocomputation with GRASS\n\n\n\n\n\ncollection\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "grass/earthworks.html",
-    "href": "grass/earthworks.html",
-    "title": "Earthworks",
-    "section": "",
-    "text": "Random fill operation with r.earthworks\nLearn how model terrain with r.earthworks. With this tool you can generate new terrain or modify existing terrain using cut and fill operations inspired by earthworking. The first tutorial on the basics of terrain modeling introduces key concepts such as cut and fill operations. The subsequent tutorials introduce more advanced concepts such as relative operations and growth and decay functions. These tutorials demonstrate how to generate terrain, model natural landforms, and model anthropogenic landforms - i.e. earthworks - such as roads, dams, and levees. Read our paper to learn more [1].",
+    "text": "Landscape modeling\nLearn how to generate fractal terrain, derive landcover from the terrain, and draw landcover with the raster digitizer.",
     "crumbs": [
       "Home",
-      "Geocomputation with GRASS",
-      "Earthworks"
+      "Computational Ecology",
+      "Landscape Modeling"
     ]
   },
   {
-    "objectID": "grass/earthworks.html#installation",
-    "href": "grass/earthworks.html#installation",
-    "title": "Earthworks",
+    "objectID": "ecology/landscape-modeling.html#setup",
+    "href": "ecology/landscape-modeling.html#setup",
+    "title": "Landscape Modeling",
+    "section": "Setup",
+    "text": "Setup\nStart a GRASS session in a project with a Cartesian coordinate system.\n\n# Import modules\nimport io\nimport sys\nimport subprocess\nfrom pathlib import Path\nfrom contextlib import suppress\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create and initialize GRASS project\ntry:\n    gj.init(\"cartesian\")\nexcept ValueError:\n    with suppress(ValueError):\n        gs.create_project(\"cartesian\")\n        gj.init(\"cartesian\")\ntools = Tools(overwrite=True)\ntools.g_proj(format=\"plain\", flags=\"p\").text",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#set-computational-region",
+    "href": "ecology/landscape-modeling.html#set-computational-region",
+    "title": "Landscape Modeling",
+    "section": "Set computational region",
+    "text": "Set computational region\ng.region\n\n# Set region\ntools.g_region(n=200, s=0, e=800, w=0, res=1)",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#generate-fractal-terrain",
+    "href": "ecology/landscape-modeling.html#generate-fractal-terrain",
+    "title": "Landscape Modeling",
+    "section": "Generate fractal terrain",
+    "text": "Generate fractal terrain\nr.surf.fractal\n\n# Generate fractal terrain\ntools.r_surf_fractal(output=\"fractal\", dimension=2.25, seed=24)\n\n# Model river valleys\ntools.r_mapcalc(expression=\"terrain = abs(fractal) / 10\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"terrain\")\nm.d_legend(raster=\"terrain\", at=(5, 95, 1, 3))\nm.show()\nm.save(\"images/landscape-01.webp\")\n\n# Print elevation range\ninfo = tools.r_info(map=\"terrain\", flags=\"r\", format=\"json\")\nprint(f\"Mininum elevation: {info[\"min\"]:05.2f}\")\nprint(f\"Maximum elevation: {info[\"max\"]:05.2f}\")\n\n\n\n\nFractal terrain",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#model-rivers",
+    "href": "ecology/landscape-modeling.html#model-rivers",
+    "title": "Landscape Modeling",
+    "section": "Model rivers",
+    "text": "Model rivers\nr.mapcalc r.colors\n\n# Derive river from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &lt;= 2, 11, 31)\")\n\n# Derive wetlands from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 2 && terrain &lt;= 6, 95, landcover)\")\n\n# Derive woody wetlands from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 6 && terrain &lt; 10, 90, landcover)\")\n\n# Set landcover colors\ntools.r_colors(map=\"landcover\", color=\"nlcd\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.show()\nm.save(\"images/landscape-02.webp\")\n\n\n\n\nRiver valleys",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#classify-landforms",
+    "href": "ecology/landscape-modeling.html#classify-landforms",
+    "title": "Landscape Modeling",
+    "section": "Classify landforms",
+    "text": "Classify landforms\nr.grow r.geomorphon\n\n# Classify landforms\ntools.r_grow(input=\"terrain\", output=\"elevation\", radius=25)\ntools.r_geomorphon(elevation=\"elevation\", forms=\"landforms\", search=25, skip=5, flat=1, dist=0)\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landforms\")\nm.show()\nm.save(\"images/landscape-03.webp\")\n\n\n\n\nLandforms",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#model-uplands",
+    "href": "ecology/landscape-modeling.html#model-uplands",
+    "title": "Landscape Modeling",
+    "section": "Model uplands",
+    "text": "Model uplands\nr.mapcalc\n\n# Derive grass from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 15, 71, landcover)\")\n\n# Derive shrubs from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 30, 52, landcover)\")\n\n# Derive shrubs from landforms\ntools.r_mapcalc(expression = \"landcover = if(landcover == 71 & terrain &gt; 25 & landforms &lt; 7, 52, landcover)\")\n\n# Derive deciduous forest from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 35, 41, landcover)\")\n\n# Derive mixed forest from landforms\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 35 && landforms == 6, 43, landcover)\")\n\n# Derive evergreen forest from landforms\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 35 && landforms &lt; 6, 42, landcover)\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.show()\nm.save(\"images/landscape-04.webp\")\n\n\n\n\nUplands",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#model-wetlands",
+    "href": "ecology/landscape-modeling.html#model-wetlands",
+    "title": "Landscape Modeling",
+    "section": "Model wetlands",
+    "text": "Model wetlands\nr.fill_dir r.mapcalc\n\n# Find depressions\ntools.r_fill_dir(input=\"terrain\", output=\"fill\", areas=\"areas\", direction=\"direction\")\n\n# Calculate depth\ntools.r_mapcalc(expression = \"ponds = terrain - fill\")\n\n# Derive ponds from depressions\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 10 && terrain &lt; 30 && ponds &lt; -0.5, 11, landcover)\")\n\n# Derive wetlands from depressions\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 10 && terrain &lt; 30 && ponds &lt; -0.5  && ponds &gt; -1.0, 95, landcover)\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.show()\nm.save(\"images/landscape-05.webp\")\n\n\n\n\nUplands",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#define-landcover-categories",
+    "href": "ecology/landscape-modeling.html#define-landcover-categories",
+    "title": "Landscape Modeling",
+    "section": "Define landcover categories",
+    "text": "Define landcover categories\n\ncategories = \"\"\"\\\n11|Open Water\n12|Perennial Ice/Snow\n21|Developed, Open Space\n22|Developed, Low Intensity\n23|Developed, Medium Intensity\n24|Developed, High Intensity\n31|Barren Land\n41|Deciduous Forest\n42|Evergreen Forest\n43|Mixed Forest\n51|Dwarf Scrub\n52|Shrub/Scrub\n71|Grassland/Herbaceuous\n72|Sedge/Herbaceous\n73|Lichens\n74|Moss\n81|Pasture/Hay\n82|Cultivated Crops\n90|Woody Wetlands\n95|Emergent Herbaceuous Wetlands\n\"\"\"\n\nr.category\n\n# Set landcover categories\ntools.r_category(map=\"landcover\", separator=\"pipe\", rules=io.StringIO(categories))\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.d_legend(raster=\"landcover\", at=(5, 95, 1, 3), use=(11,31,41,42,43,52,71,90,95))\nm.show()\nm.save(\"images/landscape-06.webp\")\n\n\n\n\nUplands",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#draw-landcover",
+    "href": "ecology/landscape-modeling.html#draw-landcover",
+    "title": "Landscape Modeling",
+    "section": "Draw landcover",
+    "text": "Draw landcover\ng.gui.rdigit\n\n# Generate fractal terrain\n# tools.r_surf_fractal(output=\"fractal\", dimension=2.25, seed=27)\ntools.r_surf_fractal(output=\"fractal\", dimension=2.01, seed=27)\n\n# Model river valleys\ntools.r_mapcalc(expression=\"terrain = abs(fractal) / 10\")\n\n# Derive river from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &lt;= 2, 11, 31)\")\n\n# Derive wetlands from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 2 && terrain &lt;= 6, 95, landcover)\")\n\n# Derive woody wetlands from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 6 && terrain &lt; 10, 90, landcover)\")\n\n# Set landcover colors\ntools.r_colors(map=\"landcover\", color=\"nlcd\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.show()\nm.save(\"images/landscape-07.webp\")\n\n\n\n\nUplands\n\n\ng.gui.rdigit\n\n# Digitize\ntools.g_gui_rdigit(edit=\"landcover\", type=\"CELL\")\n\n# Set landcover categories\ntools.r_category(map=\"landcover\", separator=\"pipe\", rules=io.StringIO(categories))\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.d_legend(raster=\"landcover\", at=(5, 95, 1, 3), use=(11,31,41,42,43,52,71,90,95))\nm.show()\nm.save(\"images/landscape-08.webp\")\n\n\n\n\nUplands",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "grass/noise.html",
+    "href": "grass/noise.html",
+    "title": "Procedural Noise",
+    "section": "",
+    "text": "Fractal Brownian motion\n\n\nThis tutorial is an introduction to generating procedural noise with Python scripting in GRASS. The computer graphics community has developed stochastic functions for procedurally modeling textures. These procedural noise functions are useful for generating synthetic data representing stochastic natural phenomena such as terrain, water, and clouds. Let’s implement procedural noise using map algebra in GRASS! This tutorial covers:\n\nRandom walks\nGradient noise\nBillow noise\nRidge noise\nFractal noise\nMultifractal noise\nColored noise\n\n\n\n\n\n\n\nNoteComputational notebook\n\n\n\nThis tutorial can be run as a computational notebook. Learn how to work with notebooks in the tutorial Get started with GRASS & Python in Jupyter Notebooks.\n\n\n\nSetup\nStart a GRASS session in a new project with a Cartesian (XY) coordinate system. Use g.region to set the extent and resolution of the computational region. Create a region starting at the origin and extending two hundred units north and eight hundred units east.\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Create a temporary folder\nimport tempfile\ntemporary = tempfile.TemporaryDirectory()\n\n# Create a project in the temporary directory\ngs.create_project(path=temporary.name, name=\"xy\")\n\n# Start GRASS in this project\nsession = gj.init(Path(temporary.name, \"xy\"))\n\n# Set region\nnorth = 200\neast = 800\nsouth = 0\nwest = 0\nres = 1\ngs.run_command(\"g.region\", n=north, e=east, s=south, w=west, res=res)\n\n\n\nRandom Walks\nIn a random walk, a walker traverses a space by taking a sequence of steps in random directions. Random walks can used to simulate stochastic processes such as migration, searching, foraging, accumulation, and diffusion. Depending on the number of walkers and steps, 2-dimensional random walks can create sparse or dense stochastic surfaces, which can be useful for generating other forms of procedural noise. In GRASS, 2-dimensional random walks can be generated with the addon r.random.walk. Walkers will traverse the computational region, each stepping cell by cell in a random direction across a raster grid. The output raster records the frequency of visits per cell. First install r.random.walk with g.extension.\n\ngs.run_command(\"g.extension\", extension=\"r.random.walk\")\n\nThen run r.random.walk with multiple walkers. Experiment with the parameters. Try varying the number of steps and walkers. If it runs slowly, try increasing the memory or number of processes. The resulting random walk can be used instead of an initial random or fractal surface in the following sections of this tutorial.\n\n# Set parameters\ndirections = 8\nsteps = 50000\nwalkers = 10\nmemory = 1200\n\n# Generate random walks\ngs.run_command(\n    \"r.random.walk\",\n    output=\"walk\",\n    directions=directions,\n    steps=steps,\n    nwalkers=walkers,\n    memory=memory,\n    flags=\"s\",\n    overwrite=True\n    )\n\n# Set color gradient\ngs.run_command(\"r.colors\", map=\"walk\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"walk\")\nm.d_legend(raster=\"walk\", color=\"white\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nRandom walks\n\n\n\n\nGradient Noise\nThe original form of gradient noise - Perlin noise - is generated by interpolating between random gradient vectors on a grid and their offsets [8]. We will use map algebra to generate a generalized form of gradient noise by progressively smoothing a random raster surface. First create a random surface using the raster calculator r.mapcalc. Use formatted string literals to insert variables into raster calculator expressions in Python scripts. Then use a for loop to progressively smooth the random surface using nearest neighbors analysis with r.neighbors. Calculate the average neighborhood using a circular moving window. The key parameters for our gradient noise function are the seed of the pseudo-random number generator, the amplitude of the surface, the iterations of smoothing, and the wavelength of the moving window. Experiment with these parameters. Try setting different values for each of them. Then try using random walks generated with r.random.walk or a fractal surface generated with r.surf.fractal instead of a random surface.\n\n# Set parameters\nseed = 0\namplitude = 100.0\niterations = 3\nwavelength = 33\n\n# Generate random surface\ngs.mapcalc(f\"noise = rand({-amplitude}, {amplitude})\", seed=seed)\n\n# Generate gradient noise\nfor i in range(iterations):\n\n    # Smooth noise\n    gs.run_command(\n      \"r.neighbors\",\n      input=\"noise\",\n      output=\"noise\",\n      size=wavelength,\n      method=\"average\",\n      flags=\"c\",\n      overwrite=True\n      )\n\n# Set color gradient\ngs.run_command(\"r.colors\", map=\"noise\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"noise\")\nm.d_legend(raster=\"noise\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nGradient noise\n\n\n\n\nBillow Noise\nBillow noise or turbulence is a variation of gradient noise. After generating gradient noise, use the raster map calculator r.mapcalc to take the absolute value of the noise raster. This will transform pits and valleys into peaks and ridges and form new valleys near zero elevation, creating a billowing cloudy effect.\n\n# Set parameters\nseed = 0\namplitude = 100.0\niterations = 3\nwavelength = 33\n\n# Generate random surface\ngs.mapcalc(f\"noise =  rand(-{amplitude}, {amplitude})\", seed=seed)\n\n# Generate perlin noise\nfor i in range(iterations):\n\n    # Smooth noise\n    gs.run_command(\n      \"r.neighbors\",\n      input=\"noise\",\n      output=\"noise\",\n      size=wavelength,\n      method=\"average\",\n      flags=\"c\",\n      overwrite=True\n      )\n\n# Calculate absolute value\ngs.mapcalc(\"turbulence =  abs(noise)\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"turbulence\")\nm.d_legend(raster=\"turbulence\", color=\"white\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nBillow noise\n\n\n\n\nRidge Noise\nRidge noise is another variation of gradient noise. After generating gradient noise, use the raster map calculator r.mapcalc to subtract the absolute value of the noise raster from an offset and then raise it to an exponent. This will transform the valleys of billow noise into ridges. The key parameters for our ridge noise function are the seed of the pseudo-random number generator, the amplitude of the surface, the iterations of smoothing, the wavelength of the moving window, the offset of the ridges, and the exponent for scaling the ridges.\n\n# Set parameters\nseed = 0\namplitude = 100.0\niterations = 3\nwavelength = 33\noffset = 10\nexponent = 2\n\n# Generate random surface\ngs.mapcalc(f\"noise =  rand(-{amplitude}, {amplitude})\", seed=seed)\n\n# Generate perlin noise\nfor i in range(iterations):\n\n    # Smooth noise\n    gs.run_command(\n      \"r.neighbors\",\n      input=\"noise\",\n      output=\"noise\",\n      size=wavelength,\n      method=\"average\",\n      flags=\"c\",\n      overwrite=True\n      )\n\n# Calculate ridge function\ngs.mapcalc(f\"ridge =  exp({offset} - abs(noise), {exponent})\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"ridge\")\nm.d_legend(raster=\"ridge\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nRidge noise\n\n\n\n\nFractal Noise\nFractional Brownian motion is a random walk through space that is contingent on past steps and has self-similar fractal properties. Fractal noise can be generated from fractional Brownian motion by accumulating octaves, i.e. iterations, of procedural noise with incremental changes in frequency and amplitude [1, 4, 9]. First, use the raster map calculator r.mapcalc to create a constant surface. Then use a for loop to iterate through each octave. For each octave, generate gradient noise, add the gradient noise to the prior surface using r.mapcalc, and then increment the function’s fractal parameters. The key parameters for our fractal Brownian motion function are the seed of the pseudo-random number generator, the amplitude of the surface, the iterations of smoothing, the wavelength of the moving window, the octaves for accumulating noise, the lacunarity or change in frequency of each octave, and the gain in amplitude for each octave.\n\n# import libraries\nimport random\n\n# Set parameters\nseed = 0\namplitude = 100.0\niterations = 3\nwavelength = 33\noctaves = 6\nlacunarity = 0.5\ngain = 0.2\n\n# Generate zeros\ngs.mapcalc(\"fbm = 0\")\n\n# Generate fractional Brownian motion\nfor octave in range(octaves):\n\n    # Generate random surface\n    gs.mapcalc(f\"noise = rand(-{amplitude}, {amplitude})\", seed=seed)\n    \n    # Generate gradient noise\n    for i in range(iterations):\n    \n        # Smooth noise\n        gs.run_command(\n          \"r.neighbors\",\n          input=\"noise\",\n          output=\"noise\",\n          size=wavelength,\n          method=\"average\",\n          flags=\"c\",\n          overwrite=True\n          )\n\n    # Calculate sum of gradient noise maps\n    gs.mapcalc(\"fbm = fbm + noise\")\n\n    # Increment parameters\n    amplitude = amplitude * gain\n    wavelength = round(wavelength * lacunarity)\n    if wavelength % 2 == 0:\n        wavelength += 1\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"fbm\")\nm.d_legend(raster=\"fbm\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nFractal Brownian motion\n\n\n\n\nMultifractal noise\nMultifractal noise can be generated by more complex incremental accumulations of procedural noise [5, 6]. In this example we will model multifractal Brownian motion by accumulating octaves of turbulent fractal gradient noise. First, use the raster map calculator r.mapcalc to create a constant surface. Then use a for loop to iterate through each octave. For each octave, generate a fractal surface with r.surf.fractal, progressive smooth this surface in a nested for loop to model fractal gradient noise, add the absolute value of fractal gradient noise to the prior surface scaled by amplitude, and then increment the function’s fractal parameters. Experiment with different parameters. Try multiplying fractal maps instead of adding them, but be sure to start with a non-zero constant to avoid multiplication by zero. The key parameters for our multifractal function are the seed of the pseudo-random number generator, the dimension of the fractal surface, the amplitude of the multifractal surface, the iterations of smoothing, the wavelength of the moving window, the octaves for accumulating noise, the lacunarity of each octave, and the gain in amplitude for each octave.\n\n# Set parameters\nseed = 0\namplitude = 0.1\niterations = 3\nwavelength = 33\noctaves = 6\nlacunarity = 0.5\ngain = 0.05\ndimension = 2.2\n\n# Generate zeros\ngs.mapcalc(\"multifractal = 0\")\n\n# Generate multifractal surface\nfor octave in range(octaves):\n    \n    # Generate fractal surface\n    gs.run_command(\n        \"r.surf.fractal\",\n        output=\"fractal\",\n        dimension=dimension,\n        seed=seed\n        )\n\n    # Generate fractal gradient noise\n    for i in range(iterations):\n    \n        # Smooth noise\n        gs.run_command(\n          \"r.neighbors\",\n          input=\"fractal\",\n          output=\"fractal\",\n          size=wavelength,\n          method=\"average\",\n          flags=\"c\",\n          overwrite=True\n          )\n\n    # Calculate sum of fractal maps\n    gs.mapcalc(f\"multifractal = multifractal * {amplitude} + abs(fractal)\")\n\n    # Increment parameters\n    dimension = dimension + gain\n    amplitude = amplitude + gain\n    wavelength = round(wavelength * lacunarity)\n    if wavelength % 2 == 0:\n        wavelength += 1\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"multifractal\")\nm.d_legend(raster=\"multifractal\", color=\"white\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nMultifractal Brownian motion\n\n\n\n\nColored Noise\nIn signal processing, noise is described by its color – by the spectral density of the signal. These fractional noises take the form \\(1 / f^\\alpha\\) where \\(0 &lt; \\alpha &lt; 2\\) [3]. White noise has a constant spectral density and sounds indistinct. Examples include the radio and television static. Pink noise \\(1 / f\\) has a spectral density that is inversely proportional to its frequency and thus has equivalent energy in each octave. This gives pink noise the self similar properties needed for modeling fluctuating phenomena like clouds and terrain. In this example we will generate white noise simply by plotting a standard normal distribution. Then we will generate fractional noise by taking the Fourier transform of white noise, dividing this by frequency \\(f^\\alpha\\), and then taking its inverse Fourier transform. Try different values of \\(\\alpha\\) to generate other shades of colored noise!\nFirst we will plot the waveforms of one-dimensional white and pink noise with the Seaborn data visualization library [10, 11]. To generate one-dimensional white noise, instantiate Numpy’s random number generator numpy.random.default_rng, sample from a standard normal distribution with numpy.random.Generator.standard_normal, and plot with seaborn.lineplot.\n\n# Import libraries\nimport numpy as np\nimport seaborn as sns\n\n# Set parameters\nseed = 0\nn = 512 # number of samples\n\n# Generate white noise\nrng = np.random.default_rng(seed)\nnoise = rng.standard_normal(n)\n\n# Plot waveform\nsns.lineplot(data=noise, color=(0.26, 0.004, 0.33))\n\n\n\n\n1D white noise\n\n\nTo generate one-dimensional pink noise, first compute the Fast Fourier Transform of the white noise with numpy.fft.rfft, then scale the transformed noise by \\(1 / f^\\alpha\\), compute its inverse Fast Fourier Transform with numpy.fft.irfft, and plot with seaborn.lineplot.\n\n# Set parameters\nalpha = 1.0 # where white=0, pink=1, red=1.5, brownian=2\n\n# Generate pink noise\nnoise = np.fft.rfft(noise, n)\nfrequency = np.arange(1, noise.shape[-1]+1)\nnoise /= frequency ** alpha\nnoise = np.fft.irfft(noise, n)\n\n# Plot waveform\nsns.lineplot(data=noise, color=(0.26, 0.004, 0.33))\n\n\n\n\n1D pink noise\n\n\nNow we will generate two-dimensional fractional noise using GRASS and NumPy [2, 7]. First, generate a random surface with a normal distribution using r.surf.gauss and convert this raster into an array. Next generate a grid of frequencies. To do this, calculate sample frequencies for each dimension with numpy.fft.fftfreq register them in a grid with numpy.meshgrid, calculate their radial distance from the origin with numpy.hypot and then mask out zeroes to avoid division by zero. Compute the two-dimensional Fast Fourier Transform of the white noise with numpy.fft.fft2. Divide this transformed white noise by the frequency raised to scaling exponent \\(\\alpha\\). For fractional noise with the form \\(1 / f^\\alpha\\), \\(\\alpha\\) is a scaling exponent where zero generates white noise, one generates pink noise, and two generates fractional noise. Compute the two-dimensional inverse Fast Fourier Transform of the noise with numpy.fft.ifft2 and normalize the noise. Now that we have generated fractional noise with NumPy, we can write the array as a raster in GRASS.\n\n# Import libraries\nfrom grass.script import array as garray\nimport numpy as np\n\n# Set parameters\nmean = 0\nsigma = 1.0\nseed = 0\nalpha = 1.5 # where white=0, pink=1, red=1.5, brownian=2\n\n# Generate random surface\ngs.run_command(\n    \"r.surf.gauss\",\n    output=\"noise\",\n    mean=mean,\n    sigma=sigma,\n    seed=seed,\n    overwrite=True\n    )\n\n# Convert to array\nnoise = garray.array(mapname=\"noise\")\n\n# Generate frequency\nu = np.fft.fftfreq(east)\nv = np.fft.fftfreq(north)\nu, v = np.meshgrid(u, v)\nfrequency = np.hypot(u, v)\nmask = frequency != 0\nfrequency[~mask] = 1.0\n\n# Calculate noise\nnoise = np.fft.fft2(noise)\nscaling = frequency ** alpha\nnoise = noise / scaling\nnoise = np.fft.ifft2(noise).real\n\n# Normalize\nnoise = noise / np.linalg.norm(noise)\nminima, maxima = np.min(noise), np.max(noise)\nnoise = (noise - minima) / (maxima - minima)\n\n# Convert to raster\nraster = garray.array()\nfor y in range(raster.shape[0]):\n    for x in range(raster.shape[1]):\n        raster[y, x] = noise[y, x]\nraster.write(mapname=\"noise\", overwrite=True)\n\n# Set color table\ngs.run_command(\"r.colors\", map=\"noise\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"noise\")\nm.d_legend(raster=\"noise\", color=\"white\", digits=1, fontsize=10, at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n2D white noise where \\(a=0\\)\n\n\n\n\n\n2D pink noise where \\(a=1\\)\n\n\n\n\n\n2D red noise where \\(a=1.5\\)\n\n\n\n\n\n2D Brownian noise where \\(a=2\\)\n\n\n\n\n\n\n\n\n\nReferences\n\n[1] Patricio Gonzalez Vivo and Jen Lowe. 2015. Fractal Brownian Motion. In The Book of Shaders. Retrieved from https://thebookofshaders.com/13/\n\n\n[2] Charles R. Harris, K. Jarrod Millman, Stéfan J. van der Walt, Ralf Gommers, Pauli Virtanen, David Cournapeau, Eric Wieser, Julian Taylor, Sebastian Berg, Nathaniel J. Smith, Robert Kern, Matti Picus, Stephan Hoyer, Marten H. van Kerkwijk, Matthew Brett, Allan Haldane, Jaime Fernández del Río, Mark Wiebe, Pearu Peterson, Pierre Gérard-Marchant, Kevin Sheppard, Tyler Reddy, Warren Weckesser, Hameer Abbasi, Christoph Gohlke, and Travis E. Oliphant. 2020. Array programming with NumPy. Nature 585, 7825 (September 2020), 357–362. https://doi.org/10.1038/s41586-020-2649-2\n\n\n[3] Benoît B. Mandelbrot and John W. Van Ness. 1968. Fractional brownian motions, fractional noises and applications. SIAM Review 10, 4 (1968), 422–437. Retrieved from http://www.jstor.org/stable/2027184\n\n\n[4] Forest Kenton Musgrave. 2003. Procedural fractal terrains. In Texturing and modeling (Third Edition), David S. Ebert, Forest Kenton Musgrave, Darwyn Peachey, Ken Perlin, Steven Worley, William R. Mark and John C. Hart (eds.). Morgan Kaufmann, San Francisco, 489–506. https://doi.org/10.1016/B978-155860848-1/50045-0\n\n\n[5] Forest Kenton Musgrave. 2004. Fractal terrains and fractal planets. In The elements of nature: Interactive and realistic techniques, Oliver Deusen, David S. Ebert, Ron Fedkiw, Forest Kenton Musgrave, Przemyslaw Prusinkiewicz, Doug Roble, Jos Stam and Jerry Tessendorf (eds.). Association for Computing Machinery, New York, NY, USA, 7.1–7.45. https://doi.org/10.1145/1103900.1103932\n\n\n[6] Forest Kenton Musgrave, Craig E. Kolb, and Robert S. Mace. 1989. The synthesis and rendering of eroded fractal terrains. ACM SIGGRAPH Computer Graphics 23, 3 (July 1989), 41–50. https://doi.org/10.1145/74334.74337\n\n\n[7] NumPy Developers. 2023. NumPy. Retrieved from https://numpy.org\n\n\n[8] Ken Perlin. 1985. An image synthesizer. ACM SIGGRAPH Computer Graphics 19, 3 (July 1985), 287–296. https://doi.org/10.1145/325165.325247\n\n\n[9] Inigo Quilez. 2019. Fractional brownian motion. Retrieved April 26, 2026 from https://iquilezles.org/articles/fbm/\n\n\n[10] Michael L. Waskom. 2021. Seaborn: Statistical data visualization. Journal of Open Source Software 6, 60 (2021), 3021. https://doi.org/10.21105/joss.03021\n\n\n[11] Michael L. Waskom. 2022. Seaborn: statistical data visualization. Retrieved from https://seaborn.pydata.org\n\nReuseCC BY-SA 4.0",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Procedural Noise"
+    ]
+  },
+  {
+    "objectID": "grass/levees.html",
+    "href": "grass/levees.html",
+    "title": "Earthworks: Modeling Coastal Infrastructure",
+    "section": "",
+    "text": "Levee improvement & ridge restoration\nLearn the how to model levees and ridges with r.earthworks [2]. Download the Bayou L’Ours Dataset [1]. The coordinate reference system for this project is Louisiana State Plane South in meters. We will model two of the coastal infrastructure projects in the Louisiana Coastal Protection and Restoration Authority’s 2023 Coastal Masterplan. Improvements are planned to the Larose to Golden Meadow Levee System which will raise existing earthen levees to an elevation between 3.6-6.4 meters NAVD88. The Bayou L’Ours Ridge Restoration project will restore the natural levee by closing gaps, rebuilding landforms, and reforesting uplands. While the improved levee system will better protect the towns, the restored ridge will attenuate storm surge. This tutorial covers:",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Modeling Coastal Infrastructure"
+    ]
+  },
+  {
+    "objectID": "grass/levees.html#project",
+    "href": "grass/levees.html#project",
+    "title": "Earthworks: Modeling Coastal Infrastructure",
+    "section": "Project",
+    "text": "Project\nDownload and unarchive the Bayou L’Ours Dataset. Then start a GRASS session in the Bayou L’Ours project. Since the dataset is approximately 120MB, it may take a couple minutes to download.\n\nCommand linePython\n\n\ngrass ~/grassdata/bayou_lours/PERMANENT\n\n\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\nimport urllib.request\nfrom zipfile import ZipFile\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Set GRASS database\ngisdbase = os.path.join(Path.home(), \"grassdata\")\n\n# Download dataset\nurl = \"https://zenodo.org/records/15870442/files/bayou_lours.zip?download=1\"\nfilepath = os.path.join(gisdbase, \"bayou_lours.zip\")\ntry:\n    urllib.request.urlretrieve(url, filepath)\nexcept Exception as e:\n    print(f\"Error downloading file: {e}\")\n\n# Unarchive dataset\nwith ZipFile(filepath, 'r') as archive:\n    archive.extractall(gisdbase)\n\n# Delete archive\nos.remove(filepath)\n\n# Start GRASS in Bayou L'Ours project\nsession = gj.init(Path(gisdbase, \"bayou_lours\"))",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Modeling Coastal Infrastructure"
+    ]
+  },
+  {
+    "objectID": "grass/levees.html#installation",
+    "href": "grass/levees.html#installation",
+    "title": "Earthworks: Modeling Coastal Infrastructure",
     "section": "Installation",
-    "text": "Installation\n\nCommand linePython\n\n\ng.extension extension=r.earthworks\n\n\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
+    "text": "Installation\nInstall r.earthworks with g.extension.\n\nCommand linePython\n\n\ng.extension extension=r.earthworks\n\n\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks"
+      "Earthworks: Modeling Coastal Infrastructure"
     ]
   },
   {
-    "objectID": "grass/earthworks.html#tutorial-collection",
-    "href": "grass/earthworks.html#tutorial-collection",
-    "title": "Earthworks",
-    "section": "Tutorial Collection",
-    "text": "Tutorial Collection\n\nBasic earthworks\nLearn the basics of terrain modeling with r.earthworks.\nGully modeling\nModel gullies using relative cut operations.\nCoastal infrastructure\nModel coastal infrastructure projects including levees and restored alluvial ridges.\nTerrain synthesis\nSynthesize terrain by applying landforms from one landscape to another.",
+    "objectID": "grass/levees.html#region",
+    "href": "grass/levees.html#region",
+    "title": "Earthworks: Modeling Coastal Infrastructure",
+    "section": "Region",
+    "text": "Region\nUse g.region to set the extent and resolution of the computational region.\n\nCommand linePython\n\n\ng.region n=105100 s=102600 w=1105000 e=1115000 res=5\n\n\n\n# Set region\ngs.run_command(\"g.region\", n=105100, s=102600, w=1105000, e=1115000, res=5)",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks"
+      "Earthworks: Modeling Coastal Infrastructure"
     ]
   },
   {
-    "objectID": "grass/gullies.html",
-    "href": "grass/gullies.html",
-    "title": "Earthworks: Gully Modeling",
+    "objectID": "grass/levees.html#imagery",
+    "href": "grass/levees.html#imagery",
+    "title": "Earthworks: Modeling Coastal Infrastructure",
+    "section": "Imagery",
+    "text": "Imagery\nUse r.relief for hillshading and d.shade to drape the imagery over the hillshade. Adjust the brighten parameter to better illuminate the map.\n\nCommand linePython\n\n\nr.relief input=elevation output=relief zscale=10\nd.shade shade=relief color=imagery brighten=36\n\n\n\n# Model relief\ngs.run_command(\"r.relief\", input=\"elevation\", output=\"relief\", zscale=10)\n\n# Display imagery\nm = gj.Map(width=800)\nm.d_shade(shade=\"relief\", color=\"imagery\", brighten=36)\nm.show()\nm.save(\"images/levees-01.webp\")\n\n\n\n\n\n\n\nImagery",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Modeling Coastal Infrastructure"
+    ]
+  },
+  {
+    "objectID": "grass/levees.html#terrain",
+    "href": "grass/levees.html#terrain",
+    "title": "Earthworks: Modeling Coastal Infrastructure",
+    "section": "Terrain",
+    "text": "Terrain\nUse d.shade to drape the elevation over the hillshade.\n\nCommand linePython\n\n\nd.shade shade=relief color=elevation brighten=36\nd.legend raster=elevation digits=0 color=white at=5,95,1,3\n\n\n\n# Display elevation\nm = gj.Map(width=800)\nm.d_shade(shade=\"relief\", color=\"elevation\", brighten=36)\nm.d_legend(raster=\"elevation\", digits=0, color=\"white\", at=(5, 95, 1, 3))\nm.show()\nm.save(\"images/levees-02.webp\")\n\n\n\n\n\n\n\nTerrain",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Modeling Coastal Infrastructure"
+    ]
+  },
+  {
+    "objectID": "grass/levees.html#flood-simulation",
+    "href": "grass/levees.html#flood-simulation",
+    "title": "Earthworks: Modeling Coastal Infrastructure",
+    "section": "Flood Simulation",
+    "text": "Flood Simulation\nUse r.lake to model inundation from storm surge. Set the water level to one meter and the coordinates to 1109000, 102750. The simulation will show that the degraded ridge would be overtopped by a meter of surge.\n\nCommand linePython\n\n\nr.lake elevation=elevation water_level=1 lake=flooding coordinates=1109000,102750\nd.shade shade=relief color=elevation brighten=36\nd.rast map=flooding\nd.legend raster=flooding digits=1 color=white at=5,95,1,3\n\n\n\n# Simulate flooding\ngs.run_command(\n    \"r.lake\",\n    elevation=\"elevation\",\n    water_level=1,\n    lake=\"flooding\",\n    coordinates=[1109000, 102750]\n    )\n\n# Display flooding\nm = gj.Map(width=800)\nm.d_shade(shade=\"relief\", color=\"elevation\", brighten=36)\nm.d_rast(map=\"flooding\")\nm.d_legend(raster=\"flooding\", digits=1, color=\"white\", at=(5, 95, 1, 3))\nm.show()\nm.save(\"images/levees-03.webp\")\n\n\n\n\n\n\n\nFlood simulation",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Modeling Coastal Infrastructure"
+    ]
+  },
+  {
+    "objectID": "grass/levees.html#coastal-restoration",
+    "href": "grass/levees.html#coastal-restoration",
+    "title": "Earthworks: Modeling Coastal Infrastructure",
+    "section": "Coastal Restoration",
+    "text": "Coastal Restoration\nMap the proposed coastal infrastructure projects. Layer the vector maps of proposed ridge restoration, levee improvement, and gap closure projects over the shaded relief.\n\nCommand linePython\n\n\nd.shade shade=relief color=elevation brighten=36\nd.vect map=levees color=white width=4\nd.vect map=ridges color=yellow width=4\nd.vect map=gaps icon=basic/pin_dot size=25 color=white fill_color=white\nd.text text=\"Levee improvement\" color=white size=7 at=22,10\nd.text text=\"Ridge restoration\" color=yellow size=7 at=34,65\nd.text text=\"Gap closure\" color=white size=7 at=49,10\nd.legend raster=flooding digits=1 color=white at=5,95,1,3\n\n\n\n# Display projects\nm = gj.Map(width=800)\nm.d_shade(shade=\"relief\", color=\"elevation\", brighten=36)\nm.d_vect(map=\"levees\", color=\"white\", width=4)\nm.d_vect(map=\"ridges\", color=\"yellow\", width=4)\nm.d_vect(map=\"gaps\", icon=\"basic/pin_dot\", size=25, color=\"white\", fill_color=\"white\")\nm.d_text(text=\"Levee improvement\", color=\"white\", size=7, at=(22,10))\nm.d_text(text=\"Ridge restoration\", color=\"yellow\", size=7, at=(34,65))\nm.d_text(text=\"Gap closure\", color=\"white\", size=7, at=(49,10))\nm.show()\nm.save(\"images/levees-04.webp\")\n\n\n\n\n\n\n\nCoastal restoration and protection projects",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Modeling Coastal Infrastructure"
+    ]
+  },
+  {
+    "objectID": "grass/levees.html#borrow-area",
+    "href": "grass/levees.html#borrow-area",
+    "title": "Earthworks: Modeling Coastal Infrastructure",
+    "section": "Borrow Area",
+    "text": "Borrow Area\nStart by modeling the borrow area - an excavation for sourcing material for construction - needed to restore the ridge. To model the borrow area, offset the proposed ridge and then perform a cut operation. First use v.transform to shift the vector map of the proposed ridgeline 36 meters to the north. Then use a cut operation with r.earthworks to model the borrow area. Set elevation to the elevation raster, lines to the borrow vector, z to -1.5, linear to 0.2, and flat to 7.6.\n\nCommand linePython\n\n\nv.transform input=ridges output=borrow yshift=36\nr.earthworks elevation=elevation earthworks=earthworks operation=cut lines=borrow z=-1.5 linear=0.2 flat=7.6\nd.rast map=earthworks\nd.legend raster=earthworks color=white at=5,95,1,3\n\n\n\n# Shift ridgeline\ngs.run_command(\"v.transform\", input=\"ridges\", output=\"borrow\", yshift=36)\n\n# Model borrow\ngs.run_command(\n    \"r.earthworks\",\n    elevation=\"elevation\",\n    earthworks=\"earthworks\",\n    operation=\"cut\",\n    lines=\"borrow\",\n    z=[-1.5],\n    linear=0.2,\n    flat=7.6\n    )\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"earthworks\")\nm.d_legend(raster=\"earthworks\", color=\"white\", at=(5, 95, 1, 3))\nm.show()\nm.save(\"images/levees-05.webp\")\n\n\n\n\n\n\n\nBorrow area",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Modeling Coastal Infrastructure"
+    ]
+  },
+  {
+    "objectID": "grass/levees.html#ridge",
+    "href": "grass/levees.html#ridge",
+    "title": "Earthworks: Modeling Coastal Infrastructure",
+    "section": "Ridge",
+    "text": "Ridge\nUse a fill operation with r.earthworks to model the restored ridge. Set elevation to the earthworks raster, lines to the ridge vector, z to 1.5, linear to 0.2, and flat to 7.6.\n\nCommand linePython\n\n\nr.earthworks elevation=earthworks earthworks=earthworks operation=fill lines=ridges z=1.5 linear=0.2 flat=7.6 --overwrite\nd.rast map=earthworks\nd.legend raster=earthworks color=white at=5,95,1,3\n\n\n\n# Model ridges\ngs.run_command(\n    \"r.earthworks\",\n    elevation=\"earthworks\",\n    earthworks=\"earthworks\",\n    operation=\"fill\",\n    lines=\"ridges\",\n    z=1.5,\n    linear=0.2,\n    flat=7.6\n    )\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"earthworks\")\nm.d_legend(raster=\"earthworks\", color=\"white\", at=(5, 95, 1, 3))\nm.show()\nm.save(\"images/levees-06.webp\")\n\n\n\n\n\n\n\nRidge restoration",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Modeling Coastal Infrastructure"
+    ]
+  },
+  {
+    "objectID": "grass/basics.html",
+    "href": "grass/basics.html",
+    "title": "Earthworks: Basics",
     "section": "",
-    "text": "Gullies\nLearn the how to model gullies using relative cut operations with r.earthworks[2]. This tutorial introduces more features of r.earthworks including vector line input, relative operations, exponential functions, and volumetric change calculations. While absolute operations calculate cut and fill based on a vertical datum of zero and can be used to model features at a given elevation, relative operations calculate cut and fill relative to the existing topography and can be used to model features that follow the existing terrain.\nUse a relative earthworking operation with an exponential function to carve deep gullies into a landscape. In this tutorial all of the data will be created procedurally including the terrain and the streams. Start by generating fractal terrain. Then model flow accumulation through the fractal terrain and extract its stream network. Finally use the vector map of streams as input for a relative cut operation to transform valleys into deep gullies. This tutorial covers:\nFor a simulation based approach to modeling gullies, try the landscape evolution model r.sim.terrain [1] instead.",
+    "text": "Random earthworks\nLearn the basics of terrain modeling with r.earthworks [1]. This tool uses cut and fill operations to transform topography. Cut operations subtract from a topographic surface, while fill operations add to the topography. Transformations are based on proposed local topographic extrema, i.e. high points and low points. These extrema can be set with coordinates, rasters, vector points, or vector lines. In GRASS raster and vector data can be drawn with the raster digitizer and vector digitizer. Transformations are a function of the existing elevation, change in vertical distance, and change in slope over horizontal distance. Vertical distance is calculated as the difference between proposed local extrema and a topographic datum, while change in slope is a function of growth and decay applied to horizontal change in distance. This tutorial covers:",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Gully Modeling"
+      "Earthworks: Basics"
     ]
   },
   {
-    "objectID": "grass/gullies.html#project",
-    "href": "grass/gullies.html#project",
-    "title": "Earthworks: Gully Modeling",
+    "objectID": "grass/basics.html#project",
+    "href": "grass/basics.html#project",
+    "title": "Earthworks: Basics",
     "section": "Project",
     "text": "Project\nStart a GRASS session in a new project with a Cartesian (XY) coordinate system.\n\nCommand linePython\n\n\ngrass --tmp-project XY\n\n\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Create a temporary folder\nimport tempfile\ntemporary = tempfile.TemporaryDirectory()\n\n# Create a project in the temporary directory\ngs.create_project(path=temporary.name, name=\"xy\")\n\n# Start GRASS in this project\nsession = gj.init(Path(temporary.name, \"xy\"))",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Gully Modeling"
+      "Earthworks: Basics"
     ]
   },
   {
-    "objectID": "grass/gullies.html#installation",
-    "href": "grass/gullies.html#installation",
-    "title": "Earthworks: Gully Modeling",
+    "objectID": "grass/basics.html#installation",
+    "href": "grass/basics.html#installation",
+    "title": "Earthworks: Basics",
     "section": "Installation",
-    "text": "Installation\nInstall r.earthworks and r.stream.order with g.extension.\n\nCommand linePython\n\n\ng.extension extension=r.earthworks\ng.extension extension=r.stream.order\n\n\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")\ngs.run_command(\"g.extension\", extension=\"r.stream.order\")",
+    "text": "Installation\nInstall r.earthworks with g.extension.\n\nCommand linePython\n\n\ng.extension extension=r.earthworks\n\n\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Gully Modeling"
+      "Earthworks: Basics"
     ]
   },
   {
-    "objectID": "grass/gullies.html#region",
-    "href": "grass/gullies.html#region",
-    "title": "Earthworks: Gully Modeling",
+    "objectID": "grass/basics.html#region",
+    "href": "grass/basics.html#region",
+    "title": "Earthworks: Basics",
     "section": "Region",
-    "text": "Region\nUse g.region to set the extent and resolution of the computational region. Create a region starting at the origin and extending two hundred units north and eight hundred units east.\n\nCommand linePython\n\n\ng.region n=200 e=800 s=0 w=0 res=1\n\n\n\n# Set region\ngs.run_command(\"g.region\", n=200, e=800, s=0, w=0, res=1)",
+    "text": "Region\nUse g.region to set the extent and resolution of the computational region. Create a region starting at the origin and extending two hundred units north and eight hundred units east. Use the raster calculator r.mapcalc to generate a flat terrain with an constant elevation of zero.\n\nCommand linePython\n\n\ng.region n=200 e=800 s=0 w=0 res=1\nr.mapcalc expression=\"elevation = 0\"\n\n\n\n# Set region\ngs.run_command(\"g.region\", n=200, e=800, s=0, w=0, res=1)\n\n# Generate base elevation\ngs.mapcalc(\"elevation = 0\")\n\n\n\n\n\n\n\nConstant base elevation",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Gully Modeling"
+      "Earthworks: Basics"
     ]
   },
   {
-    "objectID": "grass/bioswale.html",
-    "href": "grass/bioswale.html",
-    "title": "Earthworks: Bioswale",
+    "objectID": "grass/basics.html#randomness",
+    "href": "grass/basics.html#randomness",
+    "title": "Earthworks: Basics",
+    "section": "Randomness",
+    "text": "Randomness\nModel a set of random peaks by generating a random surface, sampling random points, and then filling on those points. First generate a random surface with r.surf.random. Set a seed for reproducible results or set flags=\"s\" for a random seed. Then randomly sample 50 cells from the random surface r.random. Use a fill operation to model random peaks with r.earthworks. Set input raster to the random cells.\n\nCommand linePython\n\n\nr.surf.random out=surface min=0 max=25 seed=2\nr.random input=surface npoints=50 raster=random seed=7\nr.earthworks elevation=elevation earthworks=earthworks operation=fill raster=random function=linear linear=0.25 flat=25\n\n\n\n# Generate random surface\ngs.run_command(\"r.surf.random\", out=\"surface\", min=0, max=25, seed=2)\n\n# Sample random points\ngs.run_command(\n    \"r.random\",\n    input=\"surface\",\n    npoints=50,\n    raster=\"random\",\n    seed=7\n    )\n\n# Model earthworks\ngs.run_command(\n    \"r.earthworks\",\n    elevation=\"elevation\",\n    earthworks=\"earthworks\",\n    operation=\"fill\",\n    raster=\"random\",\n    function=\"linear\",\n    linear=0.25,\n    flat=25\n    )\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"earthworks\")\nm.d_legend(raster=\"earthworks\", digits=0, at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nRandom peaks",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Basics"
+    ]
+  },
+  {
+    "objectID": "grass/basics.html#visualization",
+    "href": "grass/basics.html#visualization",
+    "title": "Earthworks: Basics",
+    "section": "Visualization",
+    "text": "Visualization\nCompute contours for earthworks with r.contour.\n\nCommand linePython\n\n\nr.contour input=earthworks output=contours step=2\n\n\n\n# Derive contours\ngs.run_command(\"r.contour\", input=\"earthworks\", output=\"contours\", step=2)\n\n# Visualize Contours\nm = gj.Map(width=800)\nm.d_vect(map=\"contours\")\nm.show()\n\n\n\n\n\n\n\nContours",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Basics"
+    ]
+  },
+  {
+    "objectID": "grass/conda-quickstart.html",
+    "href": "grass/conda-quickstart.html",
+    "title": "Getting started with GRASS for Conda",
     "section": "",
-    "text": "Bioswale\nLearn how to design, model, and simulate hydrologic systems such as bioswales or restored streams. This tutorial covers the design of swales using r.earthworks [1] and the simulation of shallow overland flows of water using r.sim.water. Bioswales are shallow, vegetated channels for conveying, filtering, and infiltrating stormwater. They are designed to move stormwater slowly enough through a site for retention, filtration, sedimentation, and infiltration, yet quickly enough to prevent localized flooding. By retaining and infiltrating stormwater, bioswales reduce the peak flow of runoff during storm events, reducing the risk of flash flooding. In this tutorial, we will use an iterative cycle of modeling and simulation to design a landscape with a bioswale that stores stormwater on site and conveys the overflow offsite.\nWhile this tutorial uses Python to procedurally design a bioswale using a trigonometric function, the process demonstrated here can easily be adapted for the GRASS graphical user interface (GUI) or command line interface (CLI) when working with real world sites. The centerline of the channel can be drawn in the GUI using the raster digitizer g.gui.rdigit or vector digitizer g.gui.vdigit. Alternatively if the channel is drawn in a computer-aided design program, then it can be imported into GRASS as a 2D or 3D vector map.\nOur process will be to:",
+    "text": "This is a very short introduction to installing GRASS distributed via Conda. With the Conda distribution of GRASS, you can install GRASS and the rest of the Python stack for data science with a single command. This means that you can easily integrate GRASS into data science workflows using the Python scientific ecosystem. This brief tutorial covers:",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Bioswale"
+      "Getting started with GRASS for Conda"
     ]
   },
   {
-    "objectID": "grass/bioswale.html#installation",
-    "href": "grass/bioswale.html#installation",
-    "title": "Earthworks: Bioswale",
-    "section": "Installation",
-    "text": "Installation\nInstall r.earthworks with g.extension.\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
+    "objectID": "grass/conda-quickstart.html#manager",
+    "href": "grass/conda-quickstart.html#manager",
+    "title": "Getting started with GRASS for Conda",
+    "section": "Manager",
+    "text": "Manager\nConda is an open source package and environment manager. Many open source projects use Conda to publish their software. With Conda, you can easily install collections of these packages in isolated environments to avoid conflicting software dependencies. With Conda, packages are distributed via channels, remote repositories that host packages. GRASS is distributed via conda-forge, a community smithy and repository [1]. There are several different distributions of Conda. For this tutorial, install Miniforge, a minimal distribution of Conda that uses conda-forge as its default channel [2]. We recommend Miniforge because it is the easiest, cleanest way to install the GRASS Conda Package. Other distributions may be incompatible with conda-forge, requiring proper configuration to work.\n\n\n\n\n\n\nNoteUnix\n\n\n\nOn Unix-like platforms - including  Linux,  MacOS, and  Windows Subsystem for Linux -\ndownload the installation shell script and then run it in a terminal:\nbash Miniforge3-$(uname)-$(uname -m).sh\n\n\n\n\n\n\n\n\nNoteWindows\n\n\n\nFor  Windows, download and run the binary installer. See here for more detailed instructions.",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Bioswale"
+      "Getting started with GRASS for Conda"
     ]
   },
   {
-    "objectID": "grass/index.html",
-    "href": "grass/index.html",
-    "title": "Geocomputation with GRASS",
-    "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nMay 24, 2026\n\n\nBasics of map algebra\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Basics\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nAug 20, 2025\n\n\nEarthworks: Bioswale\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Gully Modeling\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Modeling Coastal Infrastructure\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Terrain Synthesis\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nJul 3, 2026\n\n\nGetting started with GRASS for Conda\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nAug 28, 2026\n\n\nGetting started with GRASS using WSL\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nProcedural Noise\n\n\n\n\n\ntutorial, grass\n\n\n\n\n\n\nAug 29, 2026\n\n\nSpatial Interpolation\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS"
-    ]
-  },
-  {
-    "objectID": "grass/wsl-quickstart.html",
-    "href": "grass/wsl-quickstart.html",
-    "title": "Getting started with GRASS using WSL",
-    "section": "",
-    "text": "This is a very short introduction to using GRASS on  Windows Subsystem for Linux. This is the recommended way to use GRASS as a Python library on Windows, because Python and GRASS are more seamlessly integrated with Unix-like operating systems.",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Getting started with GRASS using WSL"
-    ]
-  },
-  {
-    "objectID": "grass/wsl-quickstart.html#windows-terminal",
-    "href": "grass/wsl-quickstart.html#windows-terminal",
-    "title": "Getting started with GRASS using WSL",
-    "section": "Windows Terminal",
-    "text": "Windows Terminal\nYou will use shell scripting with Bash in a terminal to set up GRASS in a Conda environment. We recommend using the new Windows Terminal which has been included in Windows 11 releases since 2022. If you have an older version of Windows 10 or 11, then install Windows Terminal from the Microsoft Store. With Windows Terminal you can open new tabs for different command line shells such as Powershell. Once you have installed Windows System for Linux, you will be be able to open an Ubuntu tab too.\n\n\n\n\n\n\nNoteSetting up Windows Terminal\n\n\n\nMore more information, see the official guide to install and get started setting up Windows Terminal.",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Getting started with GRASS using WSL"
-    ]
-  },
-  {
-    "objectID": "grass/wsl-quickstart.html#windows-subsystem-for-linux",
-    "href": "grass/wsl-quickstart.html#windows-subsystem-for-linux",
-    "title": "Getting started with GRASS using WSL",
-    "section": "Windows Subsystem for Linux",
-    "text": "Windows Subsystem for Linux\nWith Windows Subsystem for Linux you can cleanly install the Linux build of GRASS in a Conda environment on Windows. With this build of GRASS you will be able to install hundreds of addon tools, have much faster multiprocessing, and easier scripting in Python. Let’s get started. Open the Windows start menu, type terminal, and right click on Terminal’s icon to run as an administrator. By default Terminal will open a PowerShell tab. Run the following command in this administrator’s PowerShell tab to install Windows Subsystem for Linux and Ubuntu. Once the installation is complete, restart your computer.\nwsl --install\n\n\n\n\n\n\nNoteSetting up WSL\n\n\n\nMore more information, see the official guide to set up a WSL development environment.",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Getting started with GRASS using WSL"
-    ]
-  },
-  {
-    "objectID": "grass/wsl-quickstart.html#ubuntu",
-    "href": "grass/wsl-quickstart.html#ubuntu",
-    "title": "Getting started with GRASS using WSL",
-    "section": "Ubuntu",
-    "text": "Ubuntu\nAfter you have restarted your computer, open an Ubuntu shell in Windows Terminal. To do this, you can search for Terminal via the Windows start menu and then select Ubuntu as your shell. If you already have Terminal open, click on the dropdown menu beside the top of the tab and pick Ubuntu to open that shell in a new tab. The hotkey for should be Ctrl + Shift + 3. In the dropdown menu, you can also find the settings tab where you can set Ubuntu as the default shell if desired. Once you open the Ubuntu shell for the first time, you will be prompted to enter a new username and password.",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Getting started with GRASS using WSL"
-    ]
-  },
-  {
-    "objectID": "grass/wsl-quickstart.html#python-distribution",
-    "href": "grass/wsl-quickstart.html#python-distribution",
-    "title": "Getting started with GRASS using WSL",
-    "section": "Python Distribution",
-    "text": "Python Distribution\nInstall Miniforge, a minimal Python distribution with Conda for package management and conda-forge as the default channel [1]. We recommend Miniforge because it is the easiest, cleanest way to install the GRASS Conda Package. In the Ubuntu shell, download and run the installation shell script. Answer yes when asked whether to initialize Conda. After installing Miniforge, run the source command so that your Ubuntu terminal finds the installation.\nsudo apt-get install wget\nwget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh\nbash Miniforge3-$(uname)-$(uname -m).sh\nsource ~/.bashrc\n\n\n\n\n\n\nNoteDownloads\n\n\n\nFor Ubuntu distributions since 2025 wget has been replaced with wcurl.",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Getting started with GRASS using WSL"
-    ]
-  },
-  {
-    "objectID": "grass/wsl-quickstart.html#environment",
-    "href": "grass/wsl-quickstart.html#environment",
-    "title": "Getting started with GRASS using WSL",
+    "objectID": "grass/conda-quickstart.html#environment",
+    "href": "grass/conda-quickstart.html#environment",
+    "title": "Getting started with GRASS for Conda",
     "section": "Environment",
-    "text": "Environment\nNow that Conda is installed, let’s use it to create an environment for GRASS. We will install the GRASS, Jupyter Lab, and other useful Python packages with all of their dependencies into this environment. In a terminal, run conda create to create an environment named grass. Then use conda install to install the GRASS package. Next, run conda activate to start the environment.\nconda create --name grass\nconda activate grass\nconda install grass jupyterlab requests folium ipyleaflet seaborn\nYou can do this with just one line of code:\nconda create -n grass grass jupyterlab requests folium ipyleaflet seaborn && conda activate grass\n\n\n\n\n\n\nNoteOther Conda distributions\n\n\n\nIf you use a Conda distribution other than Miniforge, you will need to specify the conda-forge channel when creating the environment with -c conda-forge. You may also need to override your default channel settings with --override-channels to prevent conflicts.",
+    "text": "Environment\nNow that Conda is installed, let’s use it to create an environment for GRASS. We will install the GRASS, Jupyter Lab, and requests Python packages with all of their dependencies into this environment. In a terminal, run conda create to create an environment named grass. Then use conda install to install the GRASS package. Next, run conda activate to start the environment.\nconda create --name grass\nconda activate grass\nconda install grass jupyterlab requests folium ipyleaflet make gcc\nYou can do this with just one line of code:\nconda create -n grass grass jupyterlab requests folium ipyleaflet make gcc && conda activate grass\nIf you use a Conda distribution other than Miniforge, you will need to specify the conda-forge channel when creating the environment with -c conda-forge. You may also need to override your default channel settings with --override-channels to prevent conflicts.",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Getting started with GRASS using WSL"
+      "Getting started with GRASS for Conda"
     ]
   },
   {
-    "objectID": "grass/wsl-quickstart.html#computational-notebook",
-    "href": "grass/wsl-quickstart.html#computational-notebook",
-    "title": "Getting started with GRASS using WSL",
-    "section": "Computational Notebook",
-    "text": "Computational Notebook\nLet’s try the newly installed GRASS Conda package in a Jupyter notebook. We will use scripting to generate and visualize fractal terrain. Let’s begin by launching Jupyter Lab from the terminal. This will open a new Jupyter notebook in a web browser window.\njupyter lab\n\nStart GRASS\nTo start a GRASS session, we need to define a project and its coordinate reference system. Use grass.script.create_project to create a project named fractal without specifying a coordinate system. By default this will create an unprojected Cartesian coordinate system. Start the GRASS session with grass.jupyter.setup.init. Then instantiate a grass.tools object so that you can call GRASS tools as Python functions.\n\n\n\n\n\n\nNoteGRASS Projects\n\n\n\nRead more about projects in GRASS here.\n\n\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Initialize GRASS session\ngs.create_project(\"fractal\", overwrite=True)\ngj.init(\"fractal\")\ntools = Tools()\n\nAs a test that GRASS started correctly, run g.proj with flag g to print the current projection.\n\n# Print projection information\ntools.g_proj(format=\"shell\", flags=\"p\")\n\n\n\nGenerate Fractal Terrain\nNow let’s generate fractal terrain. Set your computational region with g.region, generate a fractal surface with r.surf.fractal, and then display the resulting raster with d.rast.\n\n# Set region\ntools.g_region(s=0, w=0, n=2000, e=8000, res=10)\n\n# Generate fractal terrain\ntools.r_surf_fractal(output=\"fractal\")\n\n# Visualize fractal terrain\nm = gj.Map()\nm.d_rast(map=\"fractal\")\nm.show()\n\n\n\n\nFractal terrain",
+    "objectID": "grass/conda-quickstart.html#notebook",
+    "href": "grass/conda-quickstart.html#notebook",
+    "title": "Getting started with GRASS for Conda",
+    "section": "Notebook",
+    "text": "Notebook\nLet’s try the newly installed GRASS Conda package in a Jupyter notebook. We will use scripting to display maps from a sample dataset. We will download the dataset, start a GRASS session, and then display raster and vector maps from the dataset. Let’s begin by launching Jupyter Lab from the terminal. This will open a new Jupyter notebook in a web browser window.\njupyter lab\n\nStart GRASS\nTo start a GRASS session, we need to define a project and its coordinate reference system. For this demonstration, we will use the Natural Earth Dataset for GRASS [3]. This dataset is a GRASS project with a collection of global raster and vector data in the World Geodetic System 1984. In your Jupyter notebook, use Python to download and unarchive the dataset. Then start a GRASS session using the dataset as a project. Read more about projects in GRASS here. Since the dataset is approximately 120MB, it may take a couple of minutes to download. As a test that GRASS started correctly, run g.proj with flag g to print the current projection.\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\nimport requests\nfrom zipfile import ZipFile\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Download dataset\nurl = \"https://zenodo.org/records/13370131/files/natural_earth_dataset.zip?download=1\"\nfilepath = Path.cwd() / \"natural_earth_dataset.zip\"\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\nfilepath.write_bytes(request.content)\n\n# Unarchive dataset\nwith ZipFile(filepath, 'r') as archive:\n    archive.extractall()\n\n# Delete archive\nos.remove(filepath)\n\n# Start GRASS in project\nhome = Path.cwd()\nproject = \"natural_earth_dataset\"\nsession = gj.init(home, project)\ntools = Tools()\n\n# Print projection information\ntools.g_proj(format=\"shell\", flags=\"p\")\n\n\n\nDisplay Raster Map\nThe Natural Earth raster is a global basemap with land cover and shaded relief rendered with a natural color scheme. Display the Natural Earth raster map with d.rast.\n\n# Display natural earth raster\nm = gj.Map(width=800)\nm.d_rast(map=\"natural_earth\")\nm.show()\n\n\n\n\nNatural Earth\n\n\n\n\nDisplay Vector Map\nNow display a vector map of global rivers. First apply a thematic color gradient to the rivers based on their stream order with v.colors. Then display the map with d.vect, scaling the line width by stream order.\n\n# Display rivers\nm = gj.Map(width=800)\ntools.v_colors(map=\"rivers\", use=\"attr\", column=\"scalerank\", color=\"water\")\nm.d_vect(map=\"rivers\", width_column=\"strokeweig\", width_scale=2)\nm.show()\n\n\n\n\nRivers",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Getting started with GRASS using WSL"
+      "Getting started with GRASS for Conda"
     ]
   },
   {
-    "objectID": "grass/wsl-quickstart.html#visual-studio-code",
-    "href": "grass/wsl-quickstart.html#visual-studio-code",
-    "title": "Getting started with GRASS using WSL",
-    "section": "Visual Studio Code",
-    "text": "Visual Studio Code\nAlternatively, you could run your computational notebook in an integrated development environment. Follow these instructions, if you would like to use Visual Studio Code. Install Visual Studio Code for Windows. When prompted during installation, add it to your path. The install the WSL Extension. Start Visual Studio Code, open the Command Palette with Ctrl + Shift + P, and connect to WSL. Open extensions pane with Ctrl + Shift + X and install the Python Extension for your remote WSL connection. When prompted choose Install in WSL: Ubuntu.\nIn Visual Studio Code’s explorer, browse to the directory in which you plan to work. The first time you open a directory, it will be restricted, so you must trust this workspace before you can run code. When prompted whether you trust the authors of file in this folder, choose yes. Now, create a new Jupyter notebook in this directory. For this notebook, set the Python interpreter and notebook kernel to your Conda environment. To do this, open the Command Palette with Ctrl + Shift + P, run Python: Select Interpreter, and select your environment named grass. Open the Command Palette again, run Notebook: Select Notebook Kernel, and select your environment named grass.\n\n\n\n\n\n\nNoteSetting up Visual Studio Code\n\n\n\nMore more information, see the official guide to get started using Visual Studio Code with Windows Subsystem for Linux.",
+    "objectID": "grass/conda-quickstart.html#reproducibility",
+    "href": "grass/conda-quickstart.html#reproducibility",
+    "title": "Getting started with GRASS for Conda",
+    "section": "Reproducibility",
+    "text": "Reproducibility\nConda environments can also be created from an environment definition file that specifies the environment name, channel, and packages. This is an easy way to share and reproduce your environment. While you can specify versions for given packages, this example just installs the latest compatible versions for simplicity’s sake. To do this, first use a text editor to create a YAML file named environment.yml with the following contents:\n# environment.yml\nname: grass\nchannels:\n  - conda-forge\ndependencies:\n  - grass\n  - jupyterlab\n  - requests\nThen run conda env create using --file to specify your path to the environment definition file:\nconda env create --file environment.yml",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Getting started with GRASS using WSL"
+      "Getting started with GRASS for Conda"
+    ]
+  },
+  {
+    "objectID": "grass/basic-map-algebra.html",
+    "href": "grass/basic-map-algebra.html",
+    "title": "Basics of map algebra",
+    "section": "",
+    "text": "Terrain modeled with map algebra",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Basics of map algebra"
+    ]
+  },
+  {
+    "objectID": "grass/basic-map-algebra.html#raster-calculator",
+    "href": "grass/basic-map-algebra.html#raster-calculator",
+    "title": "Basics of map algebra",
+    "section": "Raster Calculator",
+    "text": "Raster Calculator\nThe raster map calculator r.mapcalc uses map algebra expressions to transform rasters. The left side of the expression is the output raster map, while the right side is the input syntax including rasters, operators, functions, and variables. The raster map calculator can be run from the graphical user interface (GUI), from the command line, or with Python.\n\nGUICommand linePython\n\n\n\n\n\nr.mapcalc\n\n\n\n\nr.mapcalc expression=\"output = input\"\n\n\n\ngs.mapcalc(\"output = input\")\n\n\n\n\nThe raster calculator can be used for the simplest of tasks such as copying rasters, creating constant rasters, scaling rasters, patching rasters together, or adding rasters together. It can also be used for more sophisticated tasks such as normalizing rasters, processing imagery, calculating vegetation indices, implementing mathematical models, and generating synthetic data. In this tutorial, we will use map algebra to generate terrain with mountains, valleys, weathering, forest, plateaus, and rivers. We will use the following operators, functions, and internal variables:\n\n\n\nTable 2: Map algebra operators, functions, and variables in this tutorial\n\n\n\n\n\n\n\nOperator\nSyntax\n\n\n\n\nAddition\n+\n\n\nDivision\n\\\n\n\nGreater than\n&gt;\n\n\nLess than\n&lt;\n\n\n\n\n\n\n\n\nFunction\nSyntax\n\n\n\n\nAbsolute value\nabs(x)\n\n\nRandom\nrand(a,b)\n\n\nIf\nif(x)\n\n\nIf then else\nif(x,a,b)\n\n\n\n\n\n\n\n\nVariable\nSyntax\n\n\n\n\nNull\nnull()",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Basics of map algebra"
+    ]
+  },
+  {
+    "objectID": "grass/basic-map-algebra.html#operations",
+    "href": "grass/basic-map-algebra.html#operations",
+    "title": "Basics of map algebra",
+    "section": "Operations",
+    "text": "Operations\nNext let’s try arithmetic with map algebra. Since our fractal mountains are too high, rescale them with the raster map calculator r.mapcalc. Write the expression elevation = fractal / 10 to create a new elevation raster equal to the fractal surface divided by ten. This is a local map algebra operation using simple arithmetic. Print the rescaled elevation range with r.info.\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = fractal / 10\"\nr.colors map=elevation color=elevation\nr.info -r map=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = fractal / 10\")\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n# Print range\ninfo = gs.read_command(\"r.info\", map=\"elevation\", flags=\"r\")\nprint(info)\n\n\n\n\n\n\n\nMountains",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Basics of map algebra"
+    ]
+  },
+  {
+    "objectID": "grass/basic-map-algebra.html#functions",
+    "href": "grass/basic-map-algebra.html#functions",
+    "title": "Basics of map algebra",
+    "section": "Functions",
+    "text": "Functions\nMap algebra has arithmetic functions as well as operators. Let’s take the absolute value of our terrain to model river valleys winding through our fractal mountains. In the raster map calculator r.mapcalc, write the expression elevation = abs(elevation) to create a new elevation raster equal to absolute value of the fractal surface. Because our fractal terrain has values both below and above mean sea level, i.e. zero, taking its absolute value will raise the low-lying valleys into mountains. The elevation gradient close to zero will become river valleys at the feet of the mountains. Use r.colors to assign a color gradient to the elevation raster, ensuring that the gradient fits the rescaled elevation range of the raster.\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = abs(elevation)\" --overwrite\nr.colors map=elevation color=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = abs(elevation)\", overwrite=True)\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nValleys",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Basics of map algebra"
+    ]
+  },
+  {
+    "objectID": "grass/basic-map-algebra.html#if-statements",
+    "href": "grass/basic-map-algebra.html#if-statements",
+    "title": "Basics of map algebra",
+    "section": "If statements",
+    "text": "If statements\nLet’s use logic in map algebra to transform the mountain peaks into plateaus. First use the raster map calculator r.mapcalc with an if statement to find all cells with an elevation above thirty. Write the expression plateaus = if(elevation &gt; 30). Simple if statements with the form if(x) - where x is an equality or inequality statement - return a raster with ones where the statement is true and zeros where it is false. So this expression will return a new raster with ones where the plateaus will be and zeros elsewhere. This is a zonal map algebra operation using logic to isolate a zone of cells.\n\n\n\nIf statement diagram\n\n\n\nCommand linePython\n\n\nr.mapcalc expression=\"plateaus = if(elevation &gt; 30)\"\n\n\n\n# Map algebra\ngs.mapcalc(\"plateaus = if(elevation &gt; 30)\")\n\n# Visualize\nm.d_rast(map=\"plateaus\")\nm.show()\n\n\n\n\n\n\n\nZones",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Basics of map algebra"
+    ]
+  },
+  {
+    "objectID": "grass/basic-map-algebra.html#if-then-else-statements",
+    "href": "grass/basic-map-algebra.html#if-then-else-statements",
+    "title": "Basics of map algebra",
+    "section": "If then else statements",
+    "text": "If then else statements\nNow use the raster map calculator r.mapcalc to model the plateaus using an if then else statement. In map algebra, the syntax for these logical statements is if(x, a, b) where if the relational statement x is true, then do a, else do b. Write the expression elevation = if(elevation &gt; 30, 30, elevation). All cells with elevation values greater than 30 will be assigned a value of 30, while all other cells will keep their original values. This will flatten all of the mountain peaks above the threshold of 30, forming plateaus.\n\n\n\nIf then else statement diagram\n\n\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = if(elevation &gt; 30, 30, elevation)\" --overwrite\nr.colors map=elevation color=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = if(elevation &gt; 30, 30, elevation)\", overwrite=True)\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nPlateaus",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Basics of map algebra"
+    ]
+  },
+  {
+    "objectID": "grass/basic-map-algebra.html#complex-expressions",
+    "href": "grass/basic-map-algebra.html#complex-expressions",
+    "title": "Basics of map algebra",
+    "section": "Complex expressions",
+    "text": "Complex expressions\nUse map algebra to model a river that fills the valleys. With the raster map calculator r.mapcalc write the expression river = if(elevation &lt; 6, 6 - elevation, null()) to simulate the depth of the river. This is a more complicated map algebra expression that combines logic with an if then else statement, arithmetical operations between rasters, and the internal variable null(). If cells in the elevation raster have values less than six, then they will be assigned the difference between six and the elevation raster, else they will be assigned null values. Then use r.colors to assign the water color gradient to the river raster. The null cells will be transparent, so the river depth raster can be layered over the elevation raster.\n\n\n\nComplex expression diagram\n\n\n\nCommand linePython\n\n\nr.mapcalc expression=\"rivers = if(elevation &lt; 6, 6 - elevation, null())\"\nr.colors map=rivers color=water\n\n\n\n# Map algebra\ngs.mapcalc(\"rivers = if(elevation &lt; 6, 6 - elevation, null())\")\ngs.run_command(\"r.colors\", map=\"rivers\", color=\"water\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_rast(map=\"rivers\")\nm.d_legend(raster=\"rivers\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nRivers",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Basics of map algebra"
+    ]
+  },
+  {
+    "objectID": "grass/synthesis.html",
+    "href": "grass/synthesis.html",
+    "title": "Earthworks: Terrain Synthesis",
+    "section": "",
+    "text": "Volumetric change during terrain synthesis\nLearn how to synthesize terrain with r.earthworks [2]. In terrain synthesis, landforms from one terrain are applied to another, creating a hybrid landscape. This technique is used in computer graphics to model landscapes that are challenging to create with procedural noise and erosion simulations [1, 3, 4]. Landforms that are hard to model, for example, can be sampled from real terrain and grafted onto synthetic terrain. In this tutorial, we will use fractal terrain for simplicity’s sake. Our process will be to:",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Terrain Synthesis"
+    ]
+  },
+  {
+    "objectID": "grass/synthesis.html#project",
+    "href": "grass/synthesis.html#project",
+    "title": "Earthworks: Terrain Synthesis",
+    "section": "Project",
+    "text": "Project\nStart a GRASS session in a new project with a Cartesian (XY) coordinate system.\n\nCommand linePython\n\n\ngrass --tmp-project XY\n\n\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Create a temporary folder\nimport tempfile\ntemporary = tempfile.TemporaryDirectory()\n\n# Create a project in the temporary directory\ngs.create_project(path=temporary.name, name=\"xy\")\n\n# Start GRASS in this project\nsession = gj.init(Path(temporary.name, \"xy\"))",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Terrain Synthesis"
+    ]
+  },
+  {
+    "objectID": "grass/synthesis.html#installation",
+    "href": "grass/synthesis.html#installation",
+    "title": "Earthworks: Terrain Synthesis",
+    "section": "Installation",
+    "text": "Installation\nInstall r.earthworks with g.extension.\n\nCommand linePython\n\n\ng.extension extension=r.earthworks\n\n\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Terrain Synthesis"
+    ]
+  },
+  {
+    "objectID": "grass/synthesis.html#region",
+    "href": "grass/synthesis.html#region",
+    "title": "Earthworks: Terrain Synthesis",
+    "section": "Region",
+    "text": "Region\nUse g.region to set the extent and resolution of the computational region. Create a region starting at the origin and extending two hundred units north and eight hundred units east. Set the resolution to ten.\n\nCommand linePython\n\n\ng.region n=200 e=800 s=0 w=0 res=1\n\n\n\n# Set region\ngs.run_command(\"g.region\", n=200, e=800, s=0, w=0, res=10)",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Terrain Synthesis"
+    ]
+  },
+  {
+    "objectID": "grass/synthesis.html#terrain",
+    "href": "grass/synthesis.html#terrain",
+    "title": "Earthworks: Terrain Synthesis",
+    "section": "Terrain",
+    "text": "Terrain\nGenerate a fractal terrain with r.surf.fractal. For reproducible results, set the seed to one. Then use the raster calculator r.mapcalc to take the absolute value of the fractal and divide by a vertical scale factor. Taking the absolute value of the fractal terrain will raise cells with negative elevation values, turning low points into high points and transforming slopes near zero into valleys.\n\nCommand linePython\n\n\nr.surf.fractal output=fractal dimension=2.25 seed=1\nr.mapcalc expression=\"fractal = abs(fractal) / 10\"\n\n\n\n# Generate fractal surface\ngs.run_command(\n    \"r.surf.fractal\",\n    output=\"fractal\",\n    dimension=2.25,\n    seed=1\n    )\ngs.mapcalc(\"fractal = abs(fractal) / 10\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"fractal\")\nm.d_legend(raster=\"fractal\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nFractal terrain",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Terrain Synthesis"
+    ]
+  },
+  {
+    "objectID": "grass/synthesis.html#texture",
+    "href": "grass/synthesis.html#texture",
+    "title": "Earthworks: Terrain Synthesis",
+    "section": "Texture",
+    "text": "Texture\nRepeat this process to generate a fractal texture that will be grafted onto the original terrain. Set a different seed for r.surf.fractal to generate a new fractal raster. If you wish to work with real rather than synthetic elevation data, simply substitute these fractal rasters with digital elevation models for real landscapes.\n\nCommand linePython\n\n\nr.surf.fractal output=texture dimension=2.25 seed=3\nr.mapcalc expression=\"texture = abs(texture) / 10\"\n\n\n\n# Generate fractal surface\ngs.run_command(\n    \"r.surf.fractal\",\n    output=\"texture\",\n    dimension=2.25,\n    seed=3\n    )\ngs.mapcalc(\"texture = abs(texture) / 10\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"texture\")\nm.d_legend(raster=\"texture\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nFractal texture",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Terrain Synthesis"
     ]
   },
   {
@@ -773,431 +1091,341 @@
     ]
   },
   {
-    "objectID": "grass/synthesis.html",
-    "href": "grass/synthesis.html",
-    "title": "Earthworks: Terrain Synthesis",
+    "objectID": "grass/projections.html",
+    "href": "grass/projections.html",
+    "title": "Map Projections",
     "section": "",
-    "text": "Volumetric change during terrain synthesis\nLearn how to synthesize terrain with r.earthworks [2]. In terrain synthesis, landforms from one terrain are applied to another, creating a hybrid landscape. This technique is used in computer graphics to model landscapes that are challenging to create with procedural noise and erosion simulations [1, 3, 4]. Landforms that are hard to model, for example, can be sampled from real terrain and grafted onto synthetic terrain. In this tutorial, we will use fractal terrain for simplicity’s sake. Our process will be to:",
+    "text": "Airocean",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Terrain Synthesis"
+      "Map Projections"
     ]
   },
   {
-    "objectID": "grass/synthesis.html#project",
-    "href": "grass/synthesis.html#project",
-    "title": "Earthworks: Terrain Synthesis",
-    "section": "Project",
-    "text": "Project\nStart a GRASS session in a new project with a Cartesian (XY) coordinate system.\n\nCommand linePython\n\n\ngrass --tmp-project XY\n\n\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Create a temporary folder\nimport tempfile\ntemporary = tempfile.TemporaryDirectory()\n\n# Create a project in the temporary directory\ngs.create_project(path=temporary.name, name=\"xy\")\n\n# Start GRASS in this project\nsession = gj.init(Path(temporary.name, \"xy\"))",
+    "objectID": "grass/projections.html#setup",
+    "href": "grass/projections.html#setup",
+    "title": "Map Projections",
+    "section": "Setup",
+    "text": "Setup\n\n# Import libraries\nimport io\nimport sys\nimport subprocess\nfrom pathlib import Path\nimport requests\nfrom zipfile import ZipFile\nimport functools\nimport shutil\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.jupyter as gj\nimport grass.script as gs\nfrom grass.tools import Tools",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Terrain Synthesis"
+      "Map Projections"
     ]
   },
   {
-    "objectID": "grass/synthesis.html#installation",
-    "href": "grass/synthesis.html#installation",
-    "title": "Earthworks: Terrain Synthesis",
-    "section": "Installation",
-    "text": "Installation\nInstall r.earthworks with g.extension.\n\nCommand linePython\n\n\ng.extension extension=r.earthworks\n\n\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
+    "objectID": "grass/projections.html#download-land",
+    "href": "grass/projections.html#download-land",
+    "title": "Map Projections",
+    "section": "Download land",
+    "text": "Download land\nNatural Earth\n[2]\n\n# Set url\nurl = \"https://naciscdn.org/naturalearth/10m/physical/ne_10m_land.zip\"\n\n# Set path\ndata = Path.cwd() / \"data\"\ndata.mkdir(exist_ok=True)\nland = data / Path(url).name\n\n# Download dataset\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\nland.write_bytes(request.content)\nprint(land)\n\n# Unarchive dataset\nwith ZipFile(land, 'r') as archive:\n    archive.extractall(path=land.parent)\n\n# Delete archive\nland.unlink()",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Terrain Synthesis"
+      "Map Projections"
     ]
   },
   {
-    "objectID": "grass/synthesis.html#region",
-    "href": "grass/synthesis.html#region",
-    "title": "Earthworks: Terrain Synthesis",
-    "section": "Region",
-    "text": "Region\nUse g.region to set the extent and resolution of the computational region. Create a region starting at the origin and extending two hundred units north and eight hundred units east. Set the resolution to ten.\n\nCommand linePython\n\n\ng.region n=200 e=800 s=0 w=0 res=1\n\n\n\n# Set region\ngs.run_command(\"g.region\", n=200, e=800, s=0, w=0, res=10)",
+    "objectID": "grass/projections.html#download-graticules",
+    "href": "grass/projections.html#download-graticules",
+    "title": "Map Projections",
+    "section": "Download graticules",
+    "text": "Download graticules\nNatural Earth\n\n# Set url\nurl = \"https://naciscdn.org/naturalearth/10m/physical/ne_10m_graticules_15.zip\"\n\n# Set path\ndata = Path.cwd() / \"data\"\ndata.mkdir(exist_ok=True)\ngraticules = data / Path(url).name\n\n# Download dataset\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\ngraticules.write_bytes(request.content)\nprint(graticules)\n\n# Unarchive dataset\nwith ZipFile(graticules, 'r') as archive:\n    archive.extractall(path=graticules.parent)\n\n# Delete archive\ngraticules.unlink()",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Terrain Synthesis"
+      "Map Projections"
     ]
   },
   {
-    "objectID": "grass/synthesis.html#terrain",
-    "href": "grass/synthesis.html#terrain",
-    "title": "Earthworks: Terrain Synthesis",
-    "section": "Terrain",
-    "text": "Terrain\nGenerate a fractal terrain with r.surf.fractal. For reproducible results, set the seed to one. Then use the raster calculator r.mapcalc to take the absolute value of the fractal and divide by a vertical scale factor. Taking the absolute value of the fractal terrain will raise cells with negative elevation values, turning low points into high points and transforming slopes near zero into valleys.\n\nCommand linePython\n\n\nr.surf.fractal output=fractal dimension=2.25 seed=1\nr.mapcalc expression=\"fractal = abs(fractal) / 10\"\n\n\n\n# Generate fractal surface\ngs.run_command(\n    \"r.surf.fractal\",\n    output=\"fractal\",\n    dimension=2.25,\n    seed=1\n    )\ngs.mapcalc(\"fractal = abs(fractal) / 10\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"fractal\")\nm.d_legend(raster=\"fractal\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nFractal terrain",
+    "objectID": "grass/projections.html#natural-earth-ii",
+    "href": "grass/projections.html#natural-earth-ii",
+    "title": "Map Projections",
+    "section": "Natural Earth II",
+    "text": "Natural Earth II\nNatural Earth II\n[3]\n\n# Start GRASS in Natural Earth II project\ngs.create_project(\"natural_earth\", epsg=54078, overwrite=True)\nsession = gj.init(\"natural_earth\")\ntools = Tools()\n\n# Import natural earth vector\ntools.v_import(input=land.with_suffix(\".shp\"), output=\"land\")\n\n# Print projection information\ntools.g_proj(format=\"shell\", flags=\"p\").text\n\n\n# Display projection\nm = gj.Map(width=800)\nm.d_vect(map=\"land\", color=\"black\", fill=\"black\")\nm.d_grid(size=15, color=\"black\", flags=\"gbt\")\nm.show()\n\n\n\n\nNatural Earth II",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Terrain Synthesis"
+      "Map Projections"
     ]
   },
   {
-    "objectID": "grass/synthesis.html#texture",
-    "href": "grass/synthesis.html#texture",
-    "title": "Earthworks: Terrain Synthesis",
-    "section": "Texture",
-    "text": "Texture\nRepeat this process to generate a fractal texture that will be grafted onto the original terrain. Set a different seed for r.surf.fractal to generate a new fractal raster. If you wish to work with real rather than synthetic elevation data, simply substitute these fractal rasters with digital elevation models for real landscapes.\n\nCommand linePython\n\n\nr.surf.fractal output=texture dimension=2.25 seed=3\nr.mapcalc expression=\"texture = abs(texture) / 10\"\n\n\n\n# Generate fractal surface\ngs.run_command(\n    \"r.surf.fractal\",\n    output=\"texture\",\n    dimension=2.25,\n    seed=3\n    )\ngs.mapcalc(\"texture = abs(texture) / 10\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"texture\")\nm.d_legend(raster=\"texture\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nFractal texture",
+    "objectID": "grass/projections.html#equal-earth",
+    "href": "grass/projections.html#equal-earth",
+    "title": "Map Projections",
+    "section": "Equal Earth",
+    "text": "Equal Earth\nEqual Earth\n[4]\n\n# Create Equal Earth project\ntools.g_proj(proj4=\"+proj=eqearth +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs\", project=\"equal_earth\")\n\n\n# Start GRASS in Equal Earth project\nsession = gj.init(\"equal_earth\")\ntools = Tools()\n\n# Import natural earth vector\ntools.v_import(input=land.with_suffix(\".shp\"), output=\"land\") # epsg=\"4326\", , flags=\"o\"\n\n# Print projection information\ntools.g_proj(format=\"shell\", flags=\"p\").text\n\n\n# Display projection\nm = gj.Map(width=800)\nm.d_vect(map=\"land\", color=\"black\", fill=\"black\")\nm.d_grid(size=15, color=\"black\", flags=\"gbt\")\nm.show()\n\n\n\n\nEqual Earth",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Terrain Synthesis"
+      "Map Projections"
     ]
   },
   {
-    "objectID": "grass/basic-map-algebra.html",
-    "href": "grass/basic-map-algebra.html",
-    "title": "Basics of map algebra",
+    "objectID": "grass/projections.html#airocean",
+    "href": "grass/projections.html#airocean",
+    "title": "Map Projections",
+    "section": "Airocean",
+    "text": "Airocean\nAirocean\n[1]\n\n# Create Airocean project\ntools.g_proj(proj4=\"+proj=airocean +orient=horizontal +lon_0=0.0 +x_0=0.0 +y_0=0.0 +datum=WGS84 +type=crs\", project=\"airocean\") # vertical\n\n\n# Start GRASS in Airocean project\nsession = gj.init(\"airocean\")\ntools = Tools()\n\n# Import natural earth vector\ntools.v_import(input=land.with_suffix(\".shp\"), output=\"land\")\n\n# Print projection information\ntools.g_proj(format=\"shell\", flags=\"p\").text\n\n\n# Display projection\nm = gj.Map(width=800)\nm.d_vect(map=\"land\", color=\"black\", fill=\"black\")\nm.show()\n\n\n\n\nAirocean",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Map Projections"
+    ]
+  },
+  {
+    "objectID": "grass/projections.html#peirce-quincuncial",
+    "href": "grass/projections.html#peirce-quincuncial",
+    "title": "Map Projections",
+    "section": "Peirce Quincuncial",
+    "text": "Peirce Quincuncial\nPeirce Quincuncial\n\n# Create Peirce Quincuncial project\ntools.g_proj(proj4=\"+proj=peirce_q +lon_0=25 +shape=square +datum=WGS84 +type=crs\", project=\"peirce_quincuncial\") # +shape=diamond\n\n\n# Start GRASS in Peirce Quincuncial project\nsession = gj.init(\"peirce_quincuncial\")\ntools = Tools()\n\n# Import land\ntools.v_import(input=land.with_suffix(\".shp\"), output=\"land\")\n\n# Import graticules\ntools.v_import(input=graticules.with_suffix(\".shp\"), output=\"graticules\")\n\n# Print projection information\ntools.g_proj(format=\"shell\", flags=\"p\").text\n\n\n# Display projection\nm = gj.Map(width=800)\nm.d_vect(map=\"land\", color=\"black\", fill=\"black\")\nm.d_vect(map=\"graticules\", color=\"black\", fill=\"none\")\nm.show()\n\n\n\n\nPeirce Quincuncial",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Map Projections"
+    ]
+  },
+  {
+    "objectID": "grass/projections.html#van-der-grinten-iv",
+    "href": "grass/projections.html#van-der-grinten-iv",
+    "title": "Map Projections",
+    "section": "van der Grinten IV",
+    "text": "van der Grinten IV\nvan der Grinten IV\n\n# Create van der Grinten IV project\ntools.g_proj(proj4=\"+proj=vandg4 +datum=WGS84 +type=crs\", project=\"vandg4\")\n\n\n# Start GRASS in van der Grinten IV project\nsession = gj.init(\"vandg4\")\ntools = Tools()\n\n# Import land\ntools.v_import(input=land.with_suffix(\".shp\"), output=\"land\")\n\n# Print projection information\ntools.g_proj(format=\"shell\", flags=\"p\").text\n\n\n# Display projection\nm = gj.Map(width=800)\nm.d_vect(map=\"land\", color=\"black\", fill=\"black\")\nm.show()\n\n\n\n\nvan der Grinten IV",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Map Projections"
+    ]
+  },
+  {
+    "objectID": "grass/wsl-quickstart.html",
+    "href": "grass/wsl-quickstart.html",
+    "title": "Getting started with GRASS using WSL",
     "section": "",
-    "text": "Terrain modeled with map algebra",
+    "text": "This is a very short introduction to using GRASS on  Windows Subsystem for Linux. This is the recommended way to use GRASS as a Python library on Windows, because Python and GRASS are more seamlessly integrated with Unix-like operating systems.",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Basics of map algebra"
+      "Getting started with GRASS using WSL"
     ]
   },
   {
-    "objectID": "grass/basic-map-algebra.html#raster-calculator",
-    "href": "grass/basic-map-algebra.html#raster-calculator",
-    "title": "Basics of map algebra",
-    "section": "Raster Calculator",
-    "text": "Raster Calculator\nThe raster map calculator r.mapcalc uses map algebra expressions to transform rasters. The left side of the expression is the output raster map, while the right side is the input syntax including rasters, operators, functions, and variables. The raster map calculator can be run from the graphical user interface (GUI), from the command line, or with Python.\n\nGUICommand linePython\n\n\n\n\n\nr.mapcalc\n\n\n\n\nr.mapcalc expression=\"output = input\"\n\n\n\ngs.mapcalc(\"output = input\")\n\n\n\n\nThe raster calculator can be used for the simplest of tasks such as copying rasters, creating constant rasters, scaling rasters, patching rasters together, or adding rasters together. It can also be used for more sophisticated tasks such as normalizing rasters, processing imagery, calculating vegetation indices, implementing mathematical models, and generating synthetic data. In this tutorial, we will use map algebra to generate terrain with mountains, valleys, weathering, forest, plateaus, and rivers. We will use the following operators, functions, and internal variables:\n\n\n\nTable 2: Map algebra operators, functions, and variables in this tutorial\n\n\n\n\n\n\n\nOperator\nSyntax\n\n\n\n\nAddition\n+\n\n\nDivision\n\\\n\n\nGreater than\n&gt;\n\n\nLess than\n&lt;\n\n\n\n\n\n\n\n\nFunction\nSyntax\n\n\n\n\nAbsolute value\nabs(x)\n\n\nRandom\nrand(a,b)\n\n\nIf\nif(x)\n\n\nIf then else\nif(x,a,b)\n\n\n\n\n\n\n\n\nVariable\nSyntax\n\n\n\n\nNull\nnull()",
+    "objectID": "grass/wsl-quickstart.html#windows-terminal",
+    "href": "grass/wsl-quickstart.html#windows-terminal",
+    "title": "Getting started with GRASS using WSL",
+    "section": "Windows Terminal",
+    "text": "Windows Terminal\nYou will use shell scripting with Bash in a terminal to set up GRASS in a Conda environment. We recommend using the new Windows Terminal which has been included in Windows 11 releases since 2022. If you have an older version of Windows 10 or 11, then install Windows Terminal from the Microsoft Store. With Windows Terminal you can open new tabs for different command line shells such as Powershell. Once you have installed Windows System for Linux, you will be be able to open an Ubuntu tab too.\n\n\n\n\n\n\nNoteSetting up Windows Terminal\n\n\n\nMore more information, see the official guide to install and get started setting up Windows Terminal.",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Basics of map algebra"
+      "Getting started with GRASS using WSL"
     ]
   },
   {
-    "objectID": "grass/basic-map-algebra.html#operations",
-    "href": "grass/basic-map-algebra.html#operations",
-    "title": "Basics of map algebra",
-    "section": "Operations",
-    "text": "Operations\nNext let’s try arithmetic with map algebra. Since our fractal mountains are too high, rescale them with the raster map calculator r.mapcalc. Write the expression elevation = fractal / 10 to create a new elevation raster equal to the fractal surface divided by ten. This is a local map algebra operation using simple arithmetic. Print the rescaled elevation range with r.info.\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = fractal / 10\"\nr.colors map=elevation color=elevation\nr.info -r map=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = fractal / 10\")\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n# Print range\ninfo = gs.read_command(\"r.info\", map=\"elevation\", flags=\"r\")\nprint(info)\n\n\n\n\n\n\n\nMountains",
+    "objectID": "grass/wsl-quickstart.html#windows-subsystem-for-linux",
+    "href": "grass/wsl-quickstart.html#windows-subsystem-for-linux",
+    "title": "Getting started with GRASS using WSL",
+    "section": "Windows Subsystem for Linux",
+    "text": "Windows Subsystem for Linux\nWith Windows Subsystem for Linux you can cleanly install the Linux build of GRASS in a Conda environment on Windows. With this build of GRASS you will be able to install hundreds of addon tools, have much faster multiprocessing, and easier scripting in Python. Let’s get started. Open the Windows start menu, type terminal, and right click on Terminal’s icon to run as an administrator. By default Terminal will open a PowerShell tab. Run the following command in this administrator’s PowerShell tab to install Windows Subsystem for Linux and Ubuntu. Once the installation is complete, restart your computer.\nwsl --install\n\n\n\n\n\n\nNoteSetting up WSL\n\n\n\nMore more information, see the official guide to set up a WSL development environment.",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Basics of map algebra"
+      "Getting started with GRASS using WSL"
     ]
   },
   {
-    "objectID": "grass/basic-map-algebra.html#functions",
-    "href": "grass/basic-map-algebra.html#functions",
-    "title": "Basics of map algebra",
-    "section": "Functions",
-    "text": "Functions\nMap algebra has arithmetic functions as well as operators. Let’s take the absolute value of our terrain to model river valleys winding through our fractal mountains. In the raster map calculator r.mapcalc, write the expression elevation = abs(elevation) to create a new elevation raster equal to absolute value of the fractal surface. Because our fractal terrain has values both below and above mean sea level, i.e. zero, taking its absolute value will raise the low-lying valleys into mountains. The elevation gradient close to zero will become river valleys at the feet of the mountains. Use r.colors to assign a color gradient to the elevation raster, ensuring that the gradient fits the rescaled elevation range of the raster.\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = abs(elevation)\" --overwrite\nr.colors map=elevation color=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = abs(elevation)\", overwrite=True)\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nValleys",
+    "objectID": "grass/wsl-quickstart.html#ubuntu",
+    "href": "grass/wsl-quickstart.html#ubuntu",
+    "title": "Getting started with GRASS using WSL",
+    "section": "Ubuntu",
+    "text": "Ubuntu\nAfter you have restarted your computer, open an Ubuntu shell in Windows Terminal. To do this, you can search for Terminal via the Windows start menu and then select Ubuntu as your shell. If you already have Terminal open, click on the dropdown menu beside the top of the tab and pick Ubuntu to open that shell in a new tab. The hotkey for should be Ctrl + Shift + 3. In the dropdown menu, you can also find the settings tab where you can set Ubuntu as the default shell if desired. Once you open the Ubuntu shell for the first time, you will be prompted to enter a new username and password.",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Basics of map algebra"
+      "Getting started with GRASS using WSL"
     ]
   },
   {
-    "objectID": "grass/basic-map-algebra.html#if-statements",
-    "href": "grass/basic-map-algebra.html#if-statements",
-    "title": "Basics of map algebra",
-    "section": "If statements",
-    "text": "If statements\nLet’s use logic in map algebra to transform the mountain peaks into plateaus. First use the raster map calculator r.mapcalc with an if statement to find all cells with an elevation above thirty. Write the expression plateaus = if(elevation &gt; 30). Simple if statements with the form if(x) - where x is an equality or inequality statement - return a raster with ones where the statement is true and zeros where it is false. So this expression will return a new raster with ones where the plateaus will be and zeros elsewhere. This is a zonal map algebra operation using logic to isolate a zone of cells.\n\n\n\nIf statement diagram\n\n\n\nCommand linePython\n\n\nr.mapcalc expression=\"plateaus = if(elevation &gt; 30)\"\n\n\n\n# Map algebra\ngs.mapcalc(\"plateaus = if(elevation &gt; 30)\")\n\n# Visualize\nm.d_rast(map=\"plateaus\")\nm.show()\n\n\n\n\n\n\n\nZones",
+    "objectID": "grass/wsl-quickstart.html#python-distribution",
+    "href": "grass/wsl-quickstart.html#python-distribution",
+    "title": "Getting started with GRASS using WSL",
+    "section": "Python Distribution",
+    "text": "Python Distribution\nInstall Miniforge, a minimal Python distribution with Conda for package management and conda-forge as the default channel [1]. We recommend Miniforge because it is the easiest, cleanest way to install the GRASS Conda Package. In the Ubuntu shell, download and run the installation shell script. Answer yes when asked whether to initialize Conda. After installing Miniforge, run the source command so that your Ubuntu terminal finds the installation.\nsudo apt-get install wget\nwget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh\nbash Miniforge3-$(uname)-$(uname -m).sh\nsource ~/.bashrc\n\n\n\n\n\n\nNoteDownloads\n\n\n\nFor Ubuntu distributions since 2025 wget has been replaced with wcurl.",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Basics of map algebra"
+      "Getting started with GRASS using WSL"
     ]
   },
   {
-    "objectID": "grass/basic-map-algebra.html#if-then-else-statements",
-    "href": "grass/basic-map-algebra.html#if-then-else-statements",
-    "title": "Basics of map algebra",
-    "section": "If then else statements",
-    "text": "If then else statements\nNow use the raster map calculator r.mapcalc to model the plateaus using an if then else statement. In map algebra, the syntax for these logical statements is if(x, a, b) where if the relational statement x is true, then do a, else do b. Write the expression elevation = if(elevation &gt; 30, 30, elevation). All cells with elevation values greater than 30 will be assigned a value of 30, while all other cells will keep their original values. This will flatten all of the mountain peaks above the threshold of 30, forming plateaus.\n\n\n\nIf then else statement diagram\n\n\n\nCommand linePython\n\n\nr.mapcalc expression=\"elevation = if(elevation &gt; 30, 30, elevation)\" --overwrite\nr.colors map=elevation color=elevation\n\n\n\n# Map algebra\ngs.mapcalc(\"elevation = if(elevation &gt; 30, 30, elevation)\", overwrite=True)\ngs.run_command(\"r.colors\", map=\"elevation\", color=\"elevation\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nPlateaus",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Basics of map algebra"
-    ]
-  },
-  {
-    "objectID": "grass/basic-map-algebra.html#complex-expressions",
-    "href": "grass/basic-map-algebra.html#complex-expressions",
-    "title": "Basics of map algebra",
-    "section": "Complex expressions",
-    "text": "Complex expressions\nUse map algebra to model a river that fills the valleys. With the raster map calculator r.mapcalc write the expression river = if(elevation &lt; 6, 6 - elevation, null()) to simulate the depth of the river. This is a more complicated map algebra expression that combines logic with an if then else statement, arithmetical operations between rasters, and the internal variable null(). If cells in the elevation raster have values less than six, then they will be assigned the difference between six and the elevation raster, else they will be assigned null values. Then use r.colors to assign the water color gradient to the river raster. The null cells will be transparent, so the river depth raster can be layered over the elevation raster.\n\n\n\nComplex expression diagram\n\n\n\nCommand linePython\n\n\nr.mapcalc expression=\"rivers = if(elevation &lt; 6, 6 - elevation, null())\"\nr.colors map=rivers color=water\n\n\n\n# Map algebra\ngs.mapcalc(\"rivers = if(elevation &lt; 6, 6 - elevation, null())\")\ngs.run_command(\"r.colors\", map=\"rivers\", color=\"water\")\n\n# Visualize\nm.d_rast(map=\"elevation\")\nm.d_rast(map=\"rivers\")\nm.d_legend(raster=\"rivers\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nRivers",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Basics of map algebra"
-    ]
-  },
-  {
-    "objectID": "grass/conda-quickstart.html",
-    "href": "grass/conda-quickstart.html",
-    "title": "Getting started with GRASS for Conda",
-    "section": "",
-    "text": "This is a very short introduction to installing GRASS distributed via Conda. With the Conda distribution of GRASS, you can install GRASS and the rest of the Python stack for data science with a single command. This means that you can easily integrate GRASS into data science workflows using the Python scientific ecosystem. This brief tutorial covers:",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Getting started with GRASS for Conda"
-    ]
-  },
-  {
-    "objectID": "grass/conda-quickstart.html#manager",
-    "href": "grass/conda-quickstart.html#manager",
-    "title": "Getting started with GRASS for Conda",
-    "section": "Manager",
-    "text": "Manager\nConda is an open source package and environment manager. Many open source projects use Conda to publish their software. With Conda, you can easily install collections of these packages in isolated environments to avoid conflicting software dependencies. With Conda, packages are distributed via channels, remote repositories that host packages. GRASS is distributed via conda-forge, a community smithy and repository [1]. There are several different distributions of Conda. For this tutorial, install Miniforge, a minimal distribution of Conda that uses conda-forge as its default channel [2]. We recommend Miniforge because it is the easiest, cleanest way to install the GRASS Conda Package. Other distributions may be incompatible with conda-forge, requiring proper configuration to work.\n\n\n\n\n\n\nNoteUnix\n\n\n\nOn Unix-like platforms - including  Linux,  MacOS, and  Windows Subsystem for Linux -\ndownload the installation shell script and then run it in a terminal:\nbash Miniforge3-$(uname)-$(uname -m).sh\n\n\n\n\n\n\n\n\nNoteWindows\n\n\n\nFor  Windows, download and run the binary installer. See here for more detailed instructions.",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Getting started with GRASS for Conda"
-    ]
-  },
-  {
-    "objectID": "grass/conda-quickstart.html#environment",
-    "href": "grass/conda-quickstart.html#environment",
-    "title": "Getting started with GRASS for Conda",
+    "objectID": "grass/wsl-quickstart.html#environment",
+    "href": "grass/wsl-quickstart.html#environment",
+    "title": "Getting started with GRASS using WSL",
     "section": "Environment",
-    "text": "Environment\nNow that Conda is installed, let’s use it to create an environment for GRASS. We will install the GRASS, Jupyter Lab, and requests Python packages with all of their dependencies into this environment. In a terminal, run conda create to create an environment named grass. Then use conda install to install the GRASS package. Next, run conda activate to start the environment.\nconda create --name grass\nconda activate grass\nconda install grass jupyterlab requests folium ipyleaflet\nYou can do this with just one line of code:\nconda create -n grass grass jupyterlab requests folium ipyleaflet && conda activate grass\nIf you use a Conda distribution other than Miniforge, you will need to specify the conda-forge channel when creating the environment with -c conda-forge. You may also need to override your default channel settings with --override-channels to prevent conflicts.",
+    "text": "Environment\nNow that Conda is installed, let’s use it to create an environment for GRASS. We will install the GRASS, Jupyter Lab, and other useful Python packages with all of their dependencies into this environment. In a terminal, run conda create to create an environment named grass. Then use conda install to install the GRASS package. Next, run conda activate to start the environment.\nconda create --name grass\nconda activate grass\nconda install grass jupyterlab requests folium ipyleaflet seaborn make gcc\nYou can do this with just one line of code:\nconda create -n grass grass jupyterlab requests folium ipyleaflet seaborn make gcc && conda activate grass\n\n\n\n\n\n\nNoteOther Conda distributions\n\n\n\nIf you use a Conda distribution other than Miniforge, you will need to specify the conda-forge channel when creating the environment with -c conda-forge. You may also need to override your default channel settings with --override-channels to prevent conflicts.",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Getting started with GRASS for Conda"
+      "Getting started with GRASS using WSL"
     ]
   },
   {
-    "objectID": "grass/conda-quickstart.html#notebook",
-    "href": "grass/conda-quickstart.html#notebook",
-    "title": "Getting started with GRASS for Conda",
-    "section": "Notebook",
-    "text": "Notebook\nLet’s try the newly installed GRASS Conda package in a Jupyter notebook. We will use scripting to display maps from a sample dataset. We will download the dataset, start a GRASS session, and then display raster and vector maps from the dataset. Let’s begin by launching Jupyter Lab from the terminal. This will open a new Jupyter notebook in a web browser window.\njupyter lab\n\nStart GRASS\nTo start a GRASS session, we need to define a project and its coordinate reference system. For this demonstration, we will use the Natural Earth Dataset for GRASS [3]. This dataset is a GRASS project with a collection of global raster and vector data in the World Geodetic System 1984. In your Jupyter notebook, use Python to download and unarchive the dataset. Then start a GRASS session using the dataset as a project. Read more about projects in GRASS here. Since the dataset is approximately 120MB, it may take a couple of minutes to download. As a test that GRASS started correctly, run g.proj with flag g to print the current projection.\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\nimport requests\nfrom zipfile import ZipFile\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Download dataset\nurl = \"https://zenodo.org/records/13370131/files/natural_earth_dataset.zip?download=1\"\nfilepath = Path.cwd() / \"natural_earth_dataset.zip\"\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\nfilepath.write_bytes(request.content)\n\n# Unarchive dataset\nwith ZipFile(filepath, 'r') as archive:\n    archive.extractall()\n\n# Delete archive\nos.remove(filepath)\n\n# Start GRASS in project\nhome = Path.cwd()\nproject = \"natural_earth_dataset\"\nsession = gj.init(home, project)\ntools = Tools()\n\n# Print projection information\ntools.g_proj(format=\"shell\", flags=\"p\")\n\n\n\nDisplay Raster Map\nThe Natural Earth raster is a global basemap with land cover and shaded relief rendered with a natural color scheme. Display the Natural Earth raster map with d.rast.\n\n# Display natural earth raster\nm = gj.Map(width=800)\nm.d_rast(map=\"natural_earth\")\nm.show()\n\n\n\n\nNatural Earth\n\n\n\n\nDisplay Vector Map\nNow display a vector map of global rivers. First apply a thematic color gradient to the rivers based on their stream order with v.colors. Then display the map with d.vect, scaling the line width by stream order.\n\n# Display rivers\nm = gj.Map(width=800)\ntools.v_colors(map=\"rivers\", use=\"attr\", column=\"scalerank\", color=\"water\")\nm.d_vect(map=\"rivers\", width_column=\"strokeweig\", width_scale=2)\nm.show()\n\n\n\n\nRivers",
+    "objectID": "grass/wsl-quickstart.html#computational-notebook",
+    "href": "grass/wsl-quickstart.html#computational-notebook",
+    "title": "Getting started with GRASS using WSL",
+    "section": "Computational Notebook",
+    "text": "Computational Notebook\nLet’s try the newly installed GRASS Conda package in a Jupyter notebook. We will use scripting to generate and visualize fractal terrain. Let’s begin by launching Jupyter Lab from the terminal. This will open a new Jupyter notebook in a web browser window.\njupyter lab\n\nStart GRASS\nTo start a GRASS session, we need to define a project and its coordinate reference system. Use grass.script.create_project to create a project named fractal without specifying a coordinate system. By default this will create an unprojected Cartesian coordinate system. Start the GRASS session with grass.jupyter.setup.init. Then instantiate a grass.tools object so that you can call GRASS tools as Python functions.\n\n\n\n\n\n\nNoteGRASS Projects\n\n\n\nRead more about projects in GRASS here.\n\n\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Initialize GRASS session\ngs.create_project(\"fractal\", overwrite=True)\ngj.init(\"fractal\")\ntools = Tools()\n\nAs a test that GRASS started correctly, run g.proj with flag g to print the current projection.\n\n# Print projection information\ntools.g_proj(format=\"shell\", flags=\"p\")\n\n\n\nGenerate Fractal Terrain\nNow let’s generate fractal terrain. Set your computational region with g.region, generate a fractal surface with r.surf.fractal, and then display the resulting raster with d.rast.\n\n# Set region\ntools.g_region(s=0, w=0, n=2000, e=8000, res=10)\n\n# Generate fractal terrain\ntools.r_surf_fractal(output=\"fractal\")\n\n# Visualize fractal terrain\nm = gj.Map()\nm.d_rast(map=\"fractal\")\nm.show()\n\n\n\n\nFractal terrain",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Getting started with GRASS for Conda"
+      "Getting started with GRASS using WSL"
     ]
   },
   {
-    "objectID": "grass/conda-quickstart.html#reproducibility",
-    "href": "grass/conda-quickstart.html#reproducibility",
-    "title": "Getting started with GRASS for Conda",
-    "section": "Reproducibility",
-    "text": "Reproducibility\nConda environments can also be created from an environment definition file that specifies the environment name, channel, and packages. This is an easy way to share and reproduce your environment. While you can specify versions for given packages, this example just installs the latest compatible versions for simplicity’s sake. To do this, first use a text editor to create a YAML file named environment.yml with the following contents:\n# environment.yml\nname: grass\nchannels:\n  - conda-forge\ndependencies:\n  - grass\n  - jupyterlab\n  - requests\nThen run conda env create using --file to specify your path to the environment definition file:\nconda env create --file environment.yml",
+    "objectID": "grass/wsl-quickstart.html#visual-studio-code",
+    "href": "grass/wsl-quickstart.html#visual-studio-code",
+    "title": "Getting started with GRASS using WSL",
+    "section": "Visual Studio Code",
+    "text": "Visual Studio Code\nAlternatively, you could run your computational notebook in an integrated development environment. Follow these instructions, if you would like to use Visual Studio Code. Install Visual Studio Code for Windows. When prompted during installation, add it to your path. The install the WSL Extension. Start Visual Studio Code, open the Command Palette with Ctrl + Shift + P, and connect to WSL. Open extensions pane with Ctrl + Shift + X and install the Python Extension for your remote WSL connection. When prompted choose Install in WSL: Ubuntu.\nIn Visual Studio Code’s explorer, browse to the directory in which you plan to work. The first time you open a directory, it will be restricted, so you must trust this workspace before you can run code. When prompted whether you trust the authors of file in this folder, choose yes. Now, create a new Jupyter notebook in this directory. For this notebook, set the Python interpreter and notebook kernel to your Conda environment. To do this, open the Command Palette with Ctrl + Shift + P, run Python: Select Interpreter, and select your environment named grass. Open the Command Palette again, run Notebook: Select Notebook Kernel, and select your environment named grass.\n\n\n\n\n\n\nNoteSetting up Visual Studio Code\n\n\n\nMore more information, see the official guide to get started using Visual Studio Code with Windows Subsystem for Linux.",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Getting started with GRASS for Conda"
+      "Getting started with GRASS using WSL"
     ]
   },
   {
-    "objectID": "grass/basics.html",
-    "href": "grass/basics.html",
-    "title": "Earthworks: Basics",
+    "objectID": "grass/index.html",
+    "href": "grass/index.html",
+    "title": "Geocomputation with GRASS",
     "section": "",
-    "text": "Random earthworks\nLearn the basics of terrain modeling with r.earthworks [1]. This tool uses cut and fill operations to transform topography. Cut operations subtract from a topographic surface, while fill operations add to the topography. Transformations are based on proposed local topographic extrema, i.e. high points and low points. These extrema can be set with coordinates, rasters, vector points, or vector lines. In GRASS raster and vector data can be drawn with the raster digitizer and vector digitizer. Transformations are a function of the existing elevation, change in vertical distance, and change in slope over horizontal distance. Vertical distance is calculated as the difference between proposed local extrema and a topographic datum, while change in slope is a function of growth and decay applied to horizontal change in distance. This tutorial covers:",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nMay 24, 2026\n\n\nBasics of map algebra\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Basics\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nAug 20, 2025\n\n\nEarthworks: Bioswale\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Gully Modeling\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Modeling Coastal Infrastructure\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nEarthworks: Terrain Synthesis\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nJul 3, 2026\n\n\nGetting started with GRASS for Conda\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nAug 28, 2026\n\n\nGetting started with GRASS using WSL\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nSep 12, 2026\n\n\nMap Projections\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nMay 24, 2026\n\n\nProcedural Noise\n\n\n\n\n\ntutorial, grass\n\n\n\n\n\n\nAug 29, 2026\n\n\nSpatial Interpolation\n\n\n\n\n\ntutorial, grass, python\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Basics"
+      "Geocomputation with GRASS"
     ]
   },
   {
-    "objectID": "grass/basics.html#project",
-    "href": "grass/basics.html#project",
-    "title": "Earthworks: Basics",
+    "objectID": "grass/bioswale.html",
+    "href": "grass/bioswale.html",
+    "title": "Earthworks: Bioswale",
+    "section": "",
+    "text": "Bioswale\nLearn how to design, model, and simulate hydrologic systems such as bioswales or restored streams. This tutorial covers the design of swales using r.earthworks [1] and the simulation of shallow overland flows of water using r.sim.water. Bioswales are shallow, vegetated channels for conveying, filtering, and infiltrating stormwater. They are designed to move stormwater slowly enough through a site for retention, filtration, sedimentation, and infiltration, yet quickly enough to prevent localized flooding. By retaining and infiltrating stormwater, bioswales reduce the peak flow of runoff during storm events, reducing the risk of flash flooding. In this tutorial, we will use an iterative cycle of modeling and simulation to design a landscape with a bioswale that stores stormwater on site and conveys the overflow offsite.\nWhile this tutorial uses Python to procedurally design a bioswale using a trigonometric function, the process demonstrated here can easily be adapted for the GRASS graphical user interface (GUI) or command line interface (CLI) when working with real world sites. The centerline of the channel can be drawn in the GUI using the raster digitizer g.gui.rdigit or vector digitizer g.gui.vdigit. Alternatively if the channel is drawn in a computer-aided design program, then it can be imported into GRASS as a 2D or 3D vector map.\nOur process will be to:",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Bioswale"
+    ]
+  },
+  {
+    "objectID": "grass/bioswale.html#installation",
+    "href": "grass/bioswale.html#installation",
+    "title": "Earthworks: Bioswale",
+    "section": "Installation",
+    "text": "Installation\nInstall r.earthworks with g.extension.\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Bioswale"
+    ]
+  },
+  {
+    "objectID": "grass/gullies.html",
+    "href": "grass/gullies.html",
+    "title": "Earthworks: Gully Modeling",
+    "section": "",
+    "text": "Gullies\nLearn the how to model gullies using relative cut operations with r.earthworks[2]. This tutorial introduces more features of r.earthworks including vector line input, relative operations, exponential functions, and volumetric change calculations. While absolute operations calculate cut and fill based on a vertical datum of zero and can be used to model features at a given elevation, relative operations calculate cut and fill relative to the existing topography and can be used to model features that follow the existing terrain.\nUse a relative earthworking operation with an exponential function to carve deep gullies into a landscape. In this tutorial all of the data will be created procedurally including the terrain and the streams. Start by generating fractal terrain. Then model flow accumulation through the fractal terrain and extract its stream network. Finally use the vector map of streams as input for a relative cut operation to transform valleys into deep gullies. This tutorial covers:\nFor a simulation based approach to modeling gullies, try the landscape evolution model r.sim.terrain [1] instead.",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Earthworks: Gully Modeling"
+    ]
+  },
+  {
+    "objectID": "grass/gullies.html#project",
+    "href": "grass/gullies.html#project",
+    "title": "Earthworks: Gully Modeling",
     "section": "Project",
     "text": "Project\nStart a GRASS session in a new project with a Cartesian (XY) coordinate system.\n\nCommand linePython\n\n\ngrass --tmp-project XY\n\n\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Create a temporary folder\nimport tempfile\ntemporary = tempfile.TemporaryDirectory()\n\n# Create a project in the temporary directory\ngs.create_project(path=temporary.name, name=\"xy\")\n\n# Start GRASS in this project\nsession = gj.init(Path(temporary.name, \"xy\"))",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Basics"
+      "Earthworks: Gully Modeling"
     ]
   },
   {
-    "objectID": "grass/basics.html#installation",
-    "href": "grass/basics.html#installation",
-    "title": "Earthworks: Basics",
+    "objectID": "grass/gullies.html#installation",
+    "href": "grass/gullies.html#installation",
+    "title": "Earthworks: Gully Modeling",
     "section": "Installation",
-    "text": "Installation\nInstall r.earthworks with g.extension.\n\nCommand linePython\n\n\ng.extension extension=r.earthworks\n\n\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
+    "text": "Installation\nInstall r.earthworks and r.stream.order with g.extension.\n\nCommand linePython\n\n\ng.extension extension=r.earthworks\ng.extension extension=r.stream.order\n\n\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")\ngs.run_command(\"g.extension\", extension=\"r.stream.order\")",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Basics"
+      "Earthworks: Gully Modeling"
     ]
   },
   {
-    "objectID": "grass/basics.html#region",
-    "href": "grass/basics.html#region",
-    "title": "Earthworks: Basics",
+    "objectID": "grass/gullies.html#region",
+    "href": "grass/gullies.html#region",
+    "title": "Earthworks: Gully Modeling",
     "section": "Region",
-    "text": "Region\nUse g.region to set the extent and resolution of the computational region. Create a region starting at the origin and extending two hundred units north and eight hundred units east. Use the raster calculator r.mapcalc to generate a flat terrain with an constant elevation of zero.\n\nCommand linePython\n\n\ng.region n=200 e=800 s=0 w=0 res=1\nr.mapcalc expression=\"elevation = 0\"\n\n\n\n# Set region\ngs.run_command(\"g.region\", n=200, e=800, s=0, w=0, res=1)\n\n# Generate base elevation\ngs.mapcalc(\"elevation = 0\")\n\n\n\n\n\n\n\nConstant base elevation",
+    "text": "Region\nUse g.region to set the extent and resolution of the computational region. Create a region starting at the origin and extending two hundred units north and eight hundred units east.\n\nCommand linePython\n\n\ng.region n=200 e=800 s=0 w=0 res=1\n\n\n\n# Set region\ngs.run_command(\"g.region\", n=200, e=800, s=0, w=0, res=1)",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Basics"
+      "Earthworks: Gully Modeling"
     ]
   },
   {
-    "objectID": "grass/basics.html#randomness",
-    "href": "grass/basics.html#randomness",
-    "title": "Earthworks: Basics",
-    "section": "Randomness",
-    "text": "Randomness\nModel a set of random peaks by generating a random surface, sampling random points, and then filling on those points. First generate a random surface with r.surf.random. Set a seed for reproducible results or set flags=\"s\" for a random seed. Then randomly sample 50 cells from the random surface r.random. Use a fill operation to model random peaks with r.earthworks. Set input raster to the random cells.\n\nCommand linePython\n\n\nr.surf.random out=surface min=0 max=25 seed=2\nr.random input=surface npoints=50 raster=random seed=7\nr.earthworks elevation=elevation earthworks=earthworks operation=fill raster=random function=linear linear=0.25 flat=25\n\n\n\n# Generate random surface\ngs.run_command(\"r.surf.random\", out=\"surface\", min=0, max=25, seed=2)\n\n# Sample random points\ngs.run_command(\n    \"r.random\",\n    input=\"surface\",\n    npoints=50,\n    raster=\"random\",\n    seed=7\n    )\n\n# Model earthworks\ngs.run_command(\n    \"r.earthworks\",\n    elevation=\"elevation\",\n    earthworks=\"earthworks\",\n    operation=\"fill\",\n    raster=\"random\",\n    function=\"linear\",\n    linear=0.25,\n    flat=25\n    )\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"earthworks\")\nm.d_legend(raster=\"earthworks\", digits=0, at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n\n\n\nRandom peaks",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Basics"
-    ]
-  },
-  {
-    "objectID": "grass/basics.html#visualization",
-    "href": "grass/basics.html#visualization",
-    "title": "Earthworks: Basics",
-    "section": "Visualization",
-    "text": "Visualization\nCompute contours for earthworks with r.contour.\n\nCommand linePython\n\n\nr.contour input=earthworks output=contours step=2\n\n\n\n# Derive contours\ngs.run_command(\"r.contour\", input=\"earthworks\", output=\"contours\", step=2)\n\n# Visualize Contours\nm = gj.Map(width=800)\nm.d_vect(map=\"contours\")\nm.show()\n\n\n\n\n\n\n\nContours",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Basics"
-    ]
-  },
-  {
-    "objectID": "grass/levees.html",
-    "href": "grass/levees.html",
-    "title": "Earthworks: Modeling Coastal Infrastructure",
+    "objectID": "grass/earthworks.html",
+    "href": "grass/earthworks.html",
+    "title": "Earthworks",
     "section": "",
-    "text": "Levee improvement & ridge restoration\nLearn the how to model levees and ridges with r.earthworks [2]. Download the Bayou L’Ours Dataset [1]. The coordinate reference system for this project is Louisiana State Plane South in meters. We will model two of the coastal infrastructure projects in the Louisiana Coastal Protection and Restoration Authority’s 2023 Coastal Masterplan. Improvements are planned to the Larose to Golden Meadow Levee System which will raise existing earthen levees to an elevation between 3.6-6.4 meters NAVD88. The Bayou L’Ours Ridge Restoration project will restore the natural levee by closing gaps, rebuilding landforms, and reforesting uplands. While the improved levee system will better protect the towns, the restored ridge will attenuate storm surge. This tutorial covers:",
+    "text": "Random fill operation with r.earthworks\nLearn how model terrain with r.earthworks. With this tool you can generate new terrain or modify existing terrain using cut and fill operations inspired by earthworking. The first tutorial on the basics of terrain modeling introduces key concepts such as cut and fill operations. The subsequent tutorials introduce more advanced concepts such as relative operations and growth and decay functions. These tutorials demonstrate how to generate terrain, model natural landforms, and model anthropogenic landforms - i.e. earthworks - such as roads, dams, and levees. Read our paper to learn more [1].",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Modeling Coastal Infrastructure"
+      "Earthworks"
     ]
   },
   {
-    "objectID": "grass/levees.html#project",
-    "href": "grass/levees.html#project",
-    "title": "Earthworks: Modeling Coastal Infrastructure",
-    "section": "Project",
-    "text": "Project\nDownload and unarchive the Bayou L’Ours Dataset. Then start a GRASS session in the Bayou L’Ours project. Since the dataset is approximately 120MB, it may take a couple minutes to download.\n\nCommand linePython\n\n\ngrass ~/grassdata/bayou_lours/PERMANENT\n\n\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\nimport urllib.request\nfrom zipfile import ZipFile\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Set GRASS database\ngisdbase = os.path.join(Path.home(), \"grassdata\")\n\n# Download dataset\nurl = \"https://zenodo.org/records/15870442/files/bayou_lours.zip?download=1\"\nfilepath = os.path.join(gisdbase, \"bayou_lours.zip\")\ntry:\n    urllib.request.urlretrieve(url, filepath)\nexcept Exception as e:\n    print(f\"Error downloading file: {e}\")\n\n# Unarchive dataset\nwith ZipFile(filepath, 'r') as archive:\n    archive.extractall(gisdbase)\n\n# Delete archive\nos.remove(filepath)\n\n# Start GRASS in Bayou L'Ours project\nsession = gj.init(Path(gisdbase, \"bayou_lours\"))",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Modeling Coastal Infrastructure"
-    ]
-  },
-  {
-    "objectID": "grass/levees.html#installation",
-    "href": "grass/levees.html#installation",
-    "title": "Earthworks: Modeling Coastal Infrastructure",
+    "objectID": "grass/earthworks.html#installation",
+    "href": "grass/earthworks.html#installation",
+    "title": "Earthworks",
     "section": "Installation",
-    "text": "Installation\nInstall r.earthworks with g.extension.\n\nCommand linePython\n\n\ng.extension extension=r.earthworks\n\n\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
+    "text": "Installation\n\nCommand linePython\n\n\ng.extension extension=r.earthworks\n\n\n\n# Install extension\ngs.run_command(\"g.extension\", extension=\"r.earthworks\")",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Modeling Coastal Infrastructure"
+      "Earthworks"
     ]
   },
   {
-    "objectID": "grass/levees.html#region",
-    "href": "grass/levees.html#region",
-    "title": "Earthworks: Modeling Coastal Infrastructure",
-    "section": "Region",
-    "text": "Region\nUse g.region to set the extent and resolution of the computational region.\n\nCommand linePython\n\n\ng.region n=105100 s=102600 w=1105000 e=1115000 res=5\n\n\n\n# Set region\ngs.run_command(\"g.region\", n=105100, s=102600, w=1105000, e=1115000, res=5)",
+    "objectID": "grass/earthworks.html#tutorial-collection",
+    "href": "grass/earthworks.html#tutorial-collection",
+    "title": "Earthworks",
+    "section": "Tutorial Collection",
+    "text": "Tutorial Collection\n\nBasic earthworks\nLearn the basics of terrain modeling with r.earthworks.\nGully modeling\nModel gullies using relative cut operations.\nCoastal infrastructure\nModel coastal infrastructure projects including levees and restored alluvial ridges.\nTerrain synthesis\nSynthesize terrain by applying landforms from one landscape to another.",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
-      "Earthworks: Modeling Coastal Infrastructure"
+      "Earthworks"
     ]
   },
   {
-    "objectID": "grass/levees.html#imagery",
-    "href": "grass/levees.html#imagery",
-    "title": "Earthworks: Modeling Coastal Infrastructure",
-    "section": "Imagery",
-    "text": "Imagery\nUse r.relief for hillshading and d.shade to drape the imagery over the hillshade. Adjust the brighten parameter to better illuminate the map.\n\nCommand linePython\n\n\nr.relief input=elevation output=relief zscale=10\nd.shade shade=relief color=imagery brighten=36\n\n\n\n# Model relief\ngs.run_command(\"r.relief\", input=\"elevation\", output=\"relief\", zscale=10)\n\n# Display imagery\nm = gj.Map(width=800)\nm.d_shade(shade=\"relief\", color=\"imagery\", brighten=36)\nm.show()\nm.save(\"images/levees-01.webp\")\n\n\n\n\n\n\n\nImagery",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Modeling Coastal Infrastructure"
-    ]
-  },
-  {
-    "objectID": "grass/levees.html#terrain",
-    "href": "grass/levees.html#terrain",
-    "title": "Earthworks: Modeling Coastal Infrastructure",
-    "section": "Terrain",
-    "text": "Terrain\nUse d.shade to drape the elevation over the hillshade.\n\nCommand linePython\n\n\nd.shade shade=relief color=elevation brighten=36\nd.legend raster=elevation digits=0 color=white at=5,95,1,3\n\n\n\n# Display elevation\nm = gj.Map(width=800)\nm.d_shade(shade=\"relief\", color=\"elevation\", brighten=36)\nm.d_legend(raster=\"elevation\", digits=0, color=\"white\", at=(5, 95, 1, 3))\nm.show()\nm.save(\"images/levees-02.webp\")\n\n\n\n\n\n\n\nTerrain",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Modeling Coastal Infrastructure"
-    ]
-  },
-  {
-    "objectID": "grass/levees.html#flood-simulation",
-    "href": "grass/levees.html#flood-simulation",
-    "title": "Earthworks: Modeling Coastal Infrastructure",
-    "section": "Flood Simulation",
-    "text": "Flood Simulation\nUse r.lake to model inundation from storm surge. Set the water level to one meter and the coordinates to 1109000, 102750. The simulation will show that the degraded ridge would be overtopped by a meter of surge.\n\nCommand linePython\n\n\nr.lake elevation=elevation water_level=1 lake=flooding coordinates=1109000,102750\nd.shade shade=relief color=elevation brighten=36\nd.rast map=flooding\nd.legend raster=flooding digits=1 color=white at=5,95,1,3\n\n\n\n# Simulate flooding\ngs.run_command(\n    \"r.lake\",\n    elevation=\"elevation\",\n    water_level=1,\n    lake=\"flooding\",\n    coordinates=[1109000, 102750]\n    )\n\n# Display flooding\nm = gj.Map(width=800)\nm.d_shade(shade=\"relief\", color=\"elevation\", brighten=36)\nm.d_rast(map=\"flooding\")\nm.d_legend(raster=\"flooding\", digits=1, color=\"white\", at=(5, 95, 1, 3))\nm.show()\nm.save(\"images/levees-03.webp\")\n\n\n\n\n\n\n\nFlood simulation",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Modeling Coastal Infrastructure"
-    ]
-  },
-  {
-    "objectID": "grass/levees.html#coastal-restoration",
-    "href": "grass/levees.html#coastal-restoration",
-    "title": "Earthworks: Modeling Coastal Infrastructure",
-    "section": "Coastal Restoration",
-    "text": "Coastal Restoration\nMap the proposed coastal infrastructure projects. Layer the vector maps of proposed ridge restoration, levee improvement, and gap closure projects over the shaded relief.\n\nCommand linePython\n\n\nd.shade shade=relief color=elevation brighten=36\nd.vect map=levees color=white width=4\nd.vect map=ridges color=yellow width=4\nd.vect map=gaps icon=basic/pin_dot size=25 color=white fill_color=white\nd.text text=\"Levee improvement\" color=white size=7 at=22,10\nd.text text=\"Ridge restoration\" color=yellow size=7 at=34,65\nd.text text=\"Gap closure\" color=white size=7 at=49,10\nd.legend raster=flooding digits=1 color=white at=5,95,1,3\n\n\n\n# Display projects\nm = gj.Map(width=800)\nm.d_shade(shade=\"relief\", color=\"elevation\", brighten=36)\nm.d_vect(map=\"levees\", color=\"white\", width=4)\nm.d_vect(map=\"ridges\", color=\"yellow\", width=4)\nm.d_vect(map=\"gaps\", icon=\"basic/pin_dot\", size=25, color=\"white\", fill_color=\"white\")\nm.d_text(text=\"Levee improvement\", color=\"white\", size=7, at=(22,10))\nm.d_text(text=\"Ridge restoration\", color=\"yellow\", size=7, at=(34,65))\nm.d_text(text=\"Gap closure\", color=\"white\", size=7, at=(49,10))\nm.show()\nm.save(\"images/levees-04.webp\")\n\n\n\n\n\n\n\nCoastal restoration and protection projects",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Modeling Coastal Infrastructure"
-    ]
-  },
-  {
-    "objectID": "grass/levees.html#borrow-area",
-    "href": "grass/levees.html#borrow-area",
-    "title": "Earthworks: Modeling Coastal Infrastructure",
-    "section": "Borrow Area",
-    "text": "Borrow Area\nStart by modeling the borrow area - an excavation for sourcing material for construction - needed to restore the ridge. To model the borrow area, offset the proposed ridge and then perform a cut operation. First use v.transform to shift the vector map of the proposed ridgeline 36 meters to the north. Then use a cut operation with r.earthworks to model the borrow area. Set elevation to the elevation raster, lines to the borrow vector, z to -1.5, linear to 0.2, and flat to 7.6.\n\nCommand linePython\n\n\nv.transform input=ridges output=borrow yshift=36\nr.earthworks elevation=elevation earthworks=earthworks operation=cut lines=borrow z=-1.5 linear=0.2 flat=7.6\nd.rast map=earthworks\nd.legend raster=earthworks color=white at=5,95,1,3\n\n\n\n# Shift ridgeline\ngs.run_command(\"v.transform\", input=\"ridges\", output=\"borrow\", yshift=36)\n\n# Model borrow\ngs.run_command(\n    \"r.earthworks\",\n    elevation=\"elevation\",\n    earthworks=\"earthworks\",\n    operation=\"cut\",\n    lines=\"borrow\",\n    z=[-1.5],\n    linear=0.2,\n    flat=7.6\n    )\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"earthworks\")\nm.d_legend(raster=\"earthworks\", color=\"white\", at=(5, 95, 1, 3))\nm.show()\nm.save(\"images/levees-05.webp\")\n\n\n\n\n\n\n\nBorrow area",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Modeling Coastal Infrastructure"
-    ]
-  },
-  {
-    "objectID": "grass/levees.html#ridge",
-    "href": "grass/levees.html#ridge",
-    "title": "Earthworks: Modeling Coastal Infrastructure",
-    "section": "Ridge",
-    "text": "Ridge\nUse a fill operation with r.earthworks to model the restored ridge. Set elevation to the earthworks raster, lines to the ridge vector, z to 1.5, linear to 0.2, and flat to 7.6.\n\nCommand linePython\n\n\nr.earthworks elevation=earthworks earthworks=earthworks operation=fill lines=ridges z=1.5 linear=0.2 flat=7.6 --overwrite\nd.rast map=earthworks\nd.legend raster=earthworks color=white at=5,95,1,3\n\n\n\n# Model ridges\ngs.run_command(\n    \"r.earthworks\",\n    elevation=\"earthworks\",\n    earthworks=\"earthworks\",\n    operation=\"fill\",\n    lines=\"ridges\",\n    z=1.5,\n    linear=0.2,\n    flat=7.6\n    )\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"earthworks\")\nm.d_legend(raster=\"earthworks\", color=\"white\", at=(5, 95, 1, 3))\nm.show()\nm.save(\"images/levees-06.webp\")\n\n\n\n\n\n\n\nRidge restoration",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Earthworks: Modeling Coastal Infrastructure"
-    ]
-  },
-  {
-    "objectID": "grass/noise.html",
-    "href": "grass/noise.html",
-    "title": "Procedural Noise",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Tutorials",
     "section": "",
-    "text": "Fractal Brownian motion\n\n\nThis tutorial is an introduction to generating procedural noise with Python scripting in GRASS. The computer graphics community has developed stochastic functions for procedurally modeling textures. These procedural noise functions are useful for generating synthetic data representing stochastic natural phenomena such as terrain, water, and clouds. Let’s implement procedural noise using map algebra in GRASS! This tutorial covers:\n\nRandom walks\nGradient noise\nBillow noise\nRidge noise\nFractal noise\nMultifractal noise\nColored noise\n\n\n\n\n\n\n\nNoteComputational notebook\n\n\n\nThis tutorial can be run as a computational notebook. Learn how to work with notebooks in the tutorial Get started with GRASS & Python in Jupyter Notebooks.\n\n\n\nSetup\nStart a GRASS session in a new project with a Cartesian (XY) coordinate system. Use g.region to set the extent and resolution of the computational region. Create a region starting at the origin and extending two hundred units north and eight hundred units east.\n\n# Import libraries\nimport os\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\n\n# Create a temporary folder\nimport tempfile\ntemporary = tempfile.TemporaryDirectory()\n\n# Create a project in the temporary directory\ngs.create_project(path=temporary.name, name=\"xy\")\n\n# Start GRASS in this project\nsession = gj.init(Path(temporary.name, \"xy\"))\n\n# Set region\nnorth = 200\neast = 800\nsouth = 0\nwest = 0\nres = 1\ngs.run_command(\"g.region\", n=north, e=east, s=south, w=west, res=res)\n\n\n\nRandom Walks\nIn a random walk, a walker traverses a space by taking a sequence of steps in random directions. Random walks can used to simulate stochastic processes such as migration, searching, foraging, accumulation, and diffusion. Depending on the number of walkers and steps, 2-dimensional random walks can create sparse or dense stochastic surfaces, which can be useful for generating other forms of procedural noise. In GRASS, 2-dimensional random walks can be generated with the addon r.random.walk. Walkers will traverse the computational region, each stepping cell by cell in a random direction across a raster grid. The output raster records the frequency of visits per cell. First install r.random.walk with g.extension.\n\ngs.run_command(\"g.extension\", extension=\"r.random.walk\")\n\nThen run r.random.walk with multiple walkers. Experiment with the parameters. Try varying the number of steps and walkers. If it runs slowly, try increasing the memory or number of processes. The resulting random walk can be used instead of an initial random or fractal surface in the following sections of this tutorial.\n\n# Set parameters\ndirections = 8\nsteps = 50000\nwalkers = 10\nmemory = 1200\n\n# Generate random walks\ngs.run_command(\n    \"r.random.walk\",\n    output=\"walk\",\n    directions=directions,\n    steps=steps,\n    nwalkers=walkers,\n    memory=memory,\n    flags=\"s\",\n    overwrite=True\n    )\n\n# Set color gradient\ngs.run_command(\"r.colors\", map=\"walk\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"walk\")\nm.d_legend(raster=\"walk\", color=\"white\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nRandom walks\n\n\n\n\nGradient Noise\nThe original form of gradient noise - Perlin noise - is generated by interpolating between random gradient vectors on a grid and their offsets [8]. We will use map algebra to generate a generalized form of gradient noise by progressively smoothing a random raster surface. First create a random surface using the raster calculator r.mapcalc. Use formatted string literals to insert variables into raster calculator expressions in Python scripts. Then use a for loop to progressively smooth the random surface using nearest neighbors analysis with r.neighbors. Calculate the average neighborhood using a circular moving window. The key parameters for our gradient noise function are the seed of the pseudo-random number generator, the amplitude of the surface, the iterations of smoothing, and the wavelength of the moving window. Experiment with these parameters. Try setting different values for each of them. Then try using random walks generated with r.random.walk or a fractal surface generated with r.surf.fractal instead of a random surface.\n\n# Set parameters\nseed = 0\namplitude = 100.0\niterations = 3\nwavelength = 33\n\n# Generate random surface\ngs.mapcalc(f\"noise = rand({-amplitude}, {amplitude})\", seed=seed)\n\n# Generate gradient noise\nfor i in range(iterations):\n\n    # Smooth noise\n    gs.run_command(\n      \"r.neighbors\",\n      input=\"noise\",\n      output=\"noise\",\n      size=wavelength,\n      method=\"average\",\n      flags=\"c\",\n      overwrite=True\n      )\n\n# Set color gradient\ngs.run_command(\"r.colors\", map=\"noise\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"noise\")\nm.d_legend(raster=\"noise\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nGradient noise\n\n\n\n\nBillow Noise\nBillow noise or turbulence is a variation of gradient noise. After generating gradient noise, use the raster map calculator r.mapcalc to take the absolute value of the noise raster. This will transform pits and valleys into peaks and ridges and form new valleys near zero elevation, creating a billowing cloudy effect.\n\n# Set parameters\nseed = 0\namplitude = 100.0\niterations = 3\nwavelength = 33\n\n# Generate random surface\ngs.mapcalc(f\"noise =  rand(-{amplitude}, {amplitude})\", seed=seed)\n\n# Generate perlin noise\nfor i in range(iterations):\n\n    # Smooth noise\n    gs.run_command(\n      \"r.neighbors\",\n      input=\"noise\",\n      output=\"noise\",\n      size=wavelength,\n      method=\"average\",\n      flags=\"c\",\n      overwrite=True\n      )\n\n# Calculate absolute value\ngs.mapcalc(\"turbulence =  abs(noise)\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"turbulence\")\nm.d_legend(raster=\"turbulence\", color=\"white\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nBillow noise\n\n\n\n\nRidge Noise\nRidge noise is another variation of gradient noise. After generating gradient noise, use the raster map calculator r.mapcalc to subtract the absolute value of the noise raster from an offset and then raise it to an exponent. This will transform the valleys of billow noise into ridges. The key parameters for our ridge noise function are the seed of the pseudo-random number generator, the amplitude of the surface, the iterations of smoothing, the wavelength of the moving window, the offset of the ridges, and the exponent for scaling the ridges.\n\n# Set parameters\nseed = 0\namplitude = 100.0\niterations = 3\nwavelength = 33\noffset = 10\nexponent = 2\n\n# Generate random surface\ngs.mapcalc(f\"noise =  rand(-{amplitude}, {amplitude})\", seed=seed)\n\n# Generate perlin noise\nfor i in range(iterations):\n\n    # Smooth noise\n    gs.run_command(\n      \"r.neighbors\",\n      input=\"noise\",\n      output=\"noise\",\n      size=wavelength,\n      method=\"average\",\n      flags=\"c\",\n      overwrite=True\n      )\n\n# Calculate ridge function\ngs.mapcalc(f\"ridge =  exp({offset} - abs(noise), {exponent})\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"ridge\")\nm.d_legend(raster=\"ridge\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nRidge noise\n\n\n\n\nFractal Noise\nFractional Brownian motion is a random walk through space that is contingent on past steps and has self-similar fractal properties. Fractal noise can be generated from fractional Brownian motion by accumulating octaves, i.e. iterations, of procedural noise with incremental changes in frequency and amplitude [1, 4, 9]. First, use the raster map calculator r.mapcalc to create a constant surface. Then use a for loop to iterate through each octave. For each octave, generate gradient noise, add the gradient noise to the prior surface using r.mapcalc, and then increment the function’s fractal parameters. The key parameters for our fractal Brownian motion function are the seed of the pseudo-random number generator, the amplitude of the surface, the iterations of smoothing, the wavelength of the moving window, the octaves for accumulating noise, the lacunarity or change in frequency of each octave, and the gain in amplitude for each octave.\n\n# import libraries\nimport random\n\n# Set parameters\nseed = 0\namplitude = 100.0\niterations = 3\nwavelength = 33\noctaves = 6\nlacunarity = 0.5\ngain = 0.2\n\n# Generate zeros\ngs.mapcalc(\"fbm = 0\")\n\n# Generate fractional Brownian motion\nfor octave in range(octaves):\n\n    # Generate random surface\n    gs.mapcalc(f\"noise = rand(-{amplitude}, {amplitude})\", seed=seed)\n    \n    # Generate gradient noise\n    for i in range(iterations):\n    \n        # Smooth noise\n        gs.run_command(\n          \"r.neighbors\",\n          input=\"noise\",\n          output=\"noise\",\n          size=wavelength,\n          method=\"average\",\n          flags=\"c\",\n          overwrite=True\n          )\n\n    # Calculate sum of gradient noise maps\n    gs.mapcalc(\"fbm = fbm + noise\")\n\n    # Increment parameters\n    amplitude = amplitude * gain\n    wavelength = round(wavelength * lacunarity)\n    if wavelength % 2 == 0:\n        wavelength += 1\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"fbm\")\nm.d_legend(raster=\"fbm\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nFractal Brownian motion\n\n\n\n\nMultifractal noise\nMultifractal noise can be generated by more complex incremental accumulations of procedural noise [5, 6]. In this example we will model multifractal Brownian motion by accumulating octaves of turbulent fractal gradient noise. First, use the raster map calculator r.mapcalc to create a constant surface. Then use a for loop to iterate through each octave. For each octave, generate a fractal surface with r.surf.fractal, progressive smooth this surface in a nested for loop to model fractal gradient noise, add the absolute value of fractal gradient noise to the prior surface scaled by amplitude, and then increment the function’s fractal parameters. Experiment with different parameters. Try multiplying fractal maps instead of adding them, but be sure to start with a non-zero constant to avoid multiplication by zero. The key parameters for our multifractal function are the seed of the pseudo-random number generator, the dimension of the fractal surface, the amplitude of the multifractal surface, the iterations of smoothing, the wavelength of the moving window, the octaves for accumulating noise, the lacunarity of each octave, and the gain in amplitude for each octave.\n\n# Set parameters\nseed = 0\namplitude = 0.1\niterations = 3\nwavelength = 33\noctaves = 6\nlacunarity = 0.5\ngain = 0.05\ndimension = 2.2\n\n# Generate zeros\ngs.mapcalc(\"multifractal = 0\")\n\n# Generate multifractal surface\nfor octave in range(octaves):\n    \n    # Generate fractal surface\n    gs.run_command(\n        \"r.surf.fractal\",\n        output=\"fractal\",\n        dimension=dimension,\n        seed=seed\n        )\n\n    # Generate fractal gradient noise\n    for i in range(iterations):\n    \n        # Smooth noise\n        gs.run_command(\n          \"r.neighbors\",\n          input=\"fractal\",\n          output=\"fractal\",\n          size=wavelength,\n          method=\"average\",\n          flags=\"c\",\n          overwrite=True\n          )\n\n    # Calculate sum of fractal maps\n    gs.mapcalc(f\"multifractal = multifractal * {amplitude} + abs(fractal)\")\n\n    # Increment parameters\n    dimension = dimension + gain\n    amplitude = amplitude + gain\n    wavelength = round(wavelength * lacunarity)\n    if wavelength % 2 == 0:\n        wavelength += 1\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"multifractal\")\nm.d_legend(raster=\"multifractal\", color=\"white\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nMultifractal Brownian motion\n\n\n\n\nColored Noise\nIn signal processing, noise is described by its color – by the spectral density of the signal. These fractional noises take the form \\(1 / f^\\alpha\\) where \\(0 &lt; \\alpha &lt; 2\\) [3]. White noise has a constant spectral density and sounds indistinct. Examples include the radio and television static. Pink noise \\(1 / f\\) has a spectral density that is inversely proportional to its frequency and thus has equivalent energy in each octave. This gives pink noise the self similar properties needed for modeling fluctuating phenomena like clouds and terrain. In this example we will generate white noise simply by plotting a standard normal distribution. Then we will generate fractional noise by taking the Fourier transform of white noise, dividing this by frequency \\(f^\\alpha\\), and then taking its inverse Fourier transform. Try different values of \\(\\alpha\\) to generate other shades of colored noise!\nFirst we will plot the waveforms of one-dimensional white and pink noise with the Seaborn data visualization library [10, 11]. To generate one-dimensional white noise, instantiate Numpy’s random number generator numpy.random.default_rng, sample from a standard normal distribution with numpy.random.Generator.standard_normal, and plot with seaborn.lineplot.\n\n# Import libraries\nimport numpy as np\nimport seaborn as sns\n\n# Set parameters\nseed = 0\nn = 512 # number of samples\n\n# Generate white noise\nrng = np.random.default_rng(seed)\nnoise = rng.standard_normal(n)\n\n# Plot waveform\nsns.lineplot(data=noise, color=(0.26, 0.004, 0.33))\n\n\n\n\n1D white noise\n\n\nTo generate one-dimensional pink noise, first compute the Fast Fourier Transform of the white noise with numpy.fft.rfft, then scale the transformed noise by \\(1 / f^\\alpha\\), compute its inverse Fast Fourier Transform with numpy.fft.irfft, and plot with seaborn.lineplot.\n\n# Set parameters\nalpha = 1.0 # where white=0, pink=1, red=1.5, brownian=2\n\n# Generate pink noise\nnoise = np.fft.rfft(noise, n)\nfrequency = np.arange(1, noise.shape[-1]+1)\nnoise /= frequency ** alpha\nnoise = np.fft.irfft(noise, n)\n\n# Plot waveform\nsns.lineplot(data=noise, color=(0.26, 0.004, 0.33))\n\n\n\n\n1D pink noise\n\n\nNow we will generate two-dimensional fractional noise using GRASS and NumPy [2, 7]. First, generate a random surface with a normal distribution using r.surf.gauss and convert this raster into an array. Next generate a grid of frequencies. To do this, calculate sample frequencies for each dimension with numpy.fft.fftfreq register them in a grid with numpy.meshgrid, calculate their radial distance from the origin with numpy.hypot and then mask out zeroes to avoid division by zero. Compute the two-dimensional Fast Fourier Transform of the white noise with numpy.fft.fft2. Divide this transformed white noise by the frequency raised to scaling exponent \\(\\alpha\\). For fractional noise with the form \\(1 / f^\\alpha\\), \\(\\alpha\\) is a scaling exponent where zero generates white noise, one generates pink noise, and two generates fractional noise. Compute the two-dimensional inverse Fast Fourier Transform of the noise with numpy.fft.ifft2 and normalize the noise. Now that we have generated fractional noise with NumPy, we can write the array as a raster in GRASS.\n\n# Import libraries\nfrom grass.script import array as garray\nimport numpy as np\n\n# Set parameters\nmean = 0\nsigma = 1.0\nseed = 0\nalpha = 1.5 # where white=0, pink=1, red=1.5, brownian=2\n\n# Generate random surface\ngs.run_command(\n    \"r.surf.gauss\",\n    output=\"noise\",\n    mean=mean,\n    sigma=sigma,\n    seed=seed,\n    overwrite=True\n    )\n\n# Convert to array\nnoise = garray.array(mapname=\"noise\")\n\n# Generate frequency\nu = np.fft.fftfreq(east)\nv = np.fft.fftfreq(north)\nu, v = np.meshgrid(u, v)\nfrequency = np.hypot(u, v)\nmask = frequency != 0\nfrequency[~mask] = 1.0\n\n# Calculate noise\nnoise = np.fft.fft2(noise)\nscaling = frequency ** alpha\nnoise = noise / scaling\nnoise = np.fft.ifft2(noise).real\n\n# Normalize\nnoise = noise / np.linalg.norm(noise)\nminima, maxima = np.min(noise), np.max(noise)\nnoise = (noise - minima) / (maxima - minima)\n\n# Convert to raster\nraster = garray.array()\nfor y in range(raster.shape[0]):\n    for x in range(raster.shape[1]):\n        raster[y, x] = noise[y, x]\nraster.write(mapname=\"noise\", overwrite=True)\n\n# Set color table\ngs.run_command(\"r.colors\", map=\"noise\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"noise\")\nm.d_legend(raster=\"noise\", color=\"white\", digits=1, fontsize=10, at=(5, 95, 1, 3))\nm.show()\n\n\n\n\n2D white noise where \\(a=0\\)\n\n\n\n\n\n2D pink noise where \\(a=1\\)\n\n\n\n\n\n2D red noise where \\(a=1.5\\)\n\n\n\n\n\n2D Brownian noise where \\(a=2\\)\n\n\n\n\n\n\n\n\n\nReferences\n\n[1] Patricio Gonzalez Vivo and Jen Lowe. 2015. Fractal Brownian Motion. In The Book of Shaders. Retrieved from https://thebookofshaders.com/13/\n\n\n[2] Charles R. Harris, K. Jarrod Millman, Stéfan J. van der Walt, Ralf Gommers, Pauli Virtanen, David Cournapeau, Eric Wieser, Julian Taylor, Sebastian Berg, Nathaniel J. Smith, Robert Kern, Matti Picus, Stephan Hoyer, Marten H. van Kerkwijk, Matthew Brett, Allan Haldane, Jaime Fernández del Río, Mark Wiebe, Pearu Peterson, Pierre Gérard-Marchant, Kevin Sheppard, Tyler Reddy, Warren Weckesser, Hameer Abbasi, Christoph Gohlke, and Travis E. Oliphant. 2020. Array programming with NumPy. Nature 585, 7825 (September 2020), 357–362. https://doi.org/10.1038/s41586-020-2649-2\n\n\n[3] Benoît B. Mandelbrot and John W. Van Ness. 1968. Fractional brownian motions, fractional noises and applications. SIAM Review 10, 4 (1968), 422–437. Retrieved from http://www.jstor.org/stable/2027184\n\n\n[4] Forest Kenton Musgrave. 2003. Procedural fractal terrains. In Texturing and modeling (Third Edition), David S. Ebert, Forest Kenton Musgrave, Darwyn Peachey, Ken Perlin, Steven Worley, William R. Mark and John C. Hart (eds.). Morgan Kaufmann, San Francisco, 489–506. https://doi.org/10.1016/B978-155860848-1/50045-0\n\n\n[5] Forest Kenton Musgrave. 2004. Fractal terrains and fractal planets. In The elements of nature: Interactive and realistic techniques, Oliver Deusen, David S. Ebert, Ron Fedkiw, Forest Kenton Musgrave, Przemyslaw Prusinkiewicz, Doug Roble, Jos Stam and Jerry Tessendorf (eds.). Association for Computing Machinery, New York, NY, USA, 7.1–7.45. https://doi.org/10.1145/1103900.1103932\n\n\n[6] Forest Kenton Musgrave, Craig E. Kolb, and Robert S. Mace. 1989. The synthesis and rendering of eroded fractal terrains. ACM SIGGRAPH Computer Graphics 23, 3 (July 1989), 41–50. https://doi.org/10.1145/74334.74337\n\n\n[7] NumPy Developers. 2023. NumPy. Retrieved from https://numpy.org\n\n\n[8] Ken Perlin. 1985. An image synthesizer. ACM SIGGRAPH Computer Graphics 19, 3 (July 1985), 287–296. https://doi.org/10.1145/325165.325247\n\n\n[9] Inigo Quilez. 2019. Fractional brownian motion. Retrieved April 26, 2026 from https://iquilezles.org/articles/fbm/\n\n\n[10] Michael L. Waskom. 2021. Seaborn: Statistical data visualization. Journal of Open Source Software 6, 60 (2021), 3021. https://doi.org/10.21105/joss.03021\n\n\n[11] Michael L. Waskom. 2022. Seaborn: statistical data visualization. Retrieved from https://seaborn.pydata.org\n\nReuseCC BY-SA 4.0",
-    "crumbs": [
-      "Home",
-      "Geocomputation with GRASS",
-      "Procedural Noise"
-    ]
+    "text": "Tutorials\n\n\nThis is a collection of tutorials teaching creative computation for design and spatial science. These open education resources are released under the  Creative Commons Attribution 4.0 International License.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nApr 26, 2026\n\n\nComputational Design\n\n\n\n\n\ncollection\n\n\n\n\n\n\nSep 12, 2026\n\n\nComputational Ecology\n\n\n\n\n\ncollection\n\n\n\n\n\n\nApr 26, 2026\n\n\nGeocomputation with GRASS\n\n\n\n\n\ncollection\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "ecology/index.html",
     "href": "ecology/index.html",
     "title": "Computational Ecology",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nAug 30, 2026\n\n\nImporting cadastral data\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nAug 30, 2026\n\n\nImporting the National Elevation Dataset\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nAug 30, 2026\n\n\nInteractive maps\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nNo matching items",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\nAug 30, 2026\n\n\nImporting cadastral data\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nAug 30, 2026\n\n\nImporting the National Elevation Dataset\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nAug 30, 2026\n\n\nInteractive maps\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nSep 6, 2026\n\n\nLandscape Modeling\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Computational Ecology"
