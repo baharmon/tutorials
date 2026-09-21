@@ -712,7 +712,7 @@
     "href": "grass/interpolation.html#generate-random-points",
     "title": "Spatial Interpolation",
     "section": "Generate random points",
-    "text": "Generate random points\nGenerate a population of random 3-dimensional points for interpolation using v.random.\n\n# Generate random points\ntools.v_random(\n    output=\"points\",\n    npoints=20,\n    zmin=0.0,\n    zmax=10.0,\n    column=\"z\",\n    seed=17,\n    flags=\"z\"\n    )\n\n# Visualize\nm = gj.Map(width=800)\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.show()\n\n\n\n\nRandom points",
+    "text": "Generate random points\nGenerate a fractal surface with r.surf.fractal and then sample a population of random 3-dimensional points for interpolation with r.random.\n\n# Generate fractal surface\ntools.r_surf_fractal(out=\"fractal\", seed=0)\ntools.r_mapcalc(expression=\"fractal = fractal / 10\")\n\n# Sample random points\ntools.r_random(\n    input=\"fractal\",\n    npoints=100,\n    vector=\"points\",\n    seed=0,\n    flags=\"z\"\n    )\n\n# Add coordinates to table\ntools.v_to_db(map=\"points\", option=\"coor\", columns=\"x,y,z\")\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=25)\nm.show()\n\n\n\n\nRandom points",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -724,7 +724,7 @@
     "href": "grass/interpolation.html#binning",
     "title": "Spatial Interpolation",
     "section": "Binning",
-    "text": "Binning\nv.mkgrid v.vect.stats v.colors\n\n# Grid\ntools.v_mkgrid(map=\"surface\", box=[50, 50], flags=\"h\")\n\n# Sample points\ntools.v_vect_stats(\n    points=\"points\",\n    areas=\"surface\",\n    method=\"average\",\n    points_column=\"z\",\n    count_column=\"count\",\n    stats_column=\"z\"\n    )\n\n# Set color gradient\ntools.v_colors(map=\"surface\", use=\"attr\", column=\"z\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_vect(map=\"surface\")\ntools.v_colors(map=\"surface\", flags=\"r\")\nm.d_vect(map=\"surface\",  color=\"white\", fill=\"none\")\nm.d_vect(map=\"points\", icon=\"basic/point\", color=\"white\", fill=\"white\", size=15)\nm.show()\n\n\n\n\nHexagonal binning",
+    "text": "Binning\nv.mkgrid v.vect.stats v.colors\n\n# Grid\ntools.v_mkgrid(map=\"surface\", box=[50, 50], flags=\"h\")\n\n# Sample points\ntools.v_vect_stats(\n    points=\"points\",\n    areas=\"surface\",\n    method=\"average\",\n    points_column=\"z\",\n    count_column=\"count\",\n    stats_column=\"z\"\n    )\n\n# Set color gradient\ntools.v_colors(map=\"surface\", use=\"attr\", column=\"z\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"surface\")\ntools.v_colors(map=\"surface\", flags=\"r\")\nm.d_vect(map=\"surface\",  color=\"white\", fill=\"none\")\nm.d_vect(map=\"points\", icon=\"basic/point\", color=\"white\", fill=\"white\", size=25)\nm.show()\n\n\n\n\nHexagonal binning",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -736,7 +736,7 @@
     "href": "grass/interpolation.html#voronoi-tessellation",
     "title": "Spatial Interpolation",
     "section": "Voronoi tessellation",
-    "text": "Voronoi tessellation\nv.voronoi v.vect.stats v.colors\n\n# Interpolate surface\ntools.v_voronoi(input=\"points\", output=\"surface\")\n\n# Sample points\ntools.v_vect_stats(\n    points=\"points\",\n    areas=\"surface\",\n    method=\"average\",\n    points_column=\"z\",\n    count_column=\"count\",\n    stats_column=\"z\"\n    )\n\n# Set color gradient\ntools.v_colors(map=\"surface\", use=\"attr\", column=\"z\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_vect(map=\"surface\",  color=\"white\")\ntools.v_colors(map=\"surface\", flags=\"r\")\nm.d_vect(map=\"surface\",  color=\"white\", fill=\"none\")\nm.d_vect(map=\"points\", icon=\"basic/point\", color=\"white\", fill=\"white\", size=15)\nm.show()\n\n\n\n\nVoronoi tessellation",
+    "text": "Voronoi tessellation\nv.voronoi v.vect.stats v.colors\n\n# Interpolate surface\ntools.v_voronoi(input=\"points\", output=\"surface\")\n\n# Sample points\ntools.v_vect_stats(\n    points=\"points\",\n    areas=\"surface\",\n    method=\"average\",\n    points_column=\"z\",\n    count_column=\"count\",\n    stats_column=\"z\"\n    )\n\n# Set color gradient\ntools.v_colors(map=\"surface\", use=\"attr\", column=\"z\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"surface\",  color=\"white\")\ntools.v_colors(map=\"surface\", flags=\"r\")\nm.d_vect(map=\"surface\",  color=\"white\", fill=\"none\")\nm.d_vect(map=\"points\", icon=\"basic/point\", color=\"white\", fill=\"white\", size=25)\nm.show()\n\n\n\n\nVoronoi tessellation",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -748,7 +748,7 @@
     "href": "grass/interpolation.html#delaunay-triangulation",
     "title": "Spatial Interpolation",
     "section": "Delaunay triangulation",
-    "text": "Delaunay triangulation\nv.in.region v.to.points v.patch v.delaunay v.colors\n\n# Sample corners\ntools.v_in_region(output=\"region\", type=\"line\")\ntools.v_to_points(input=\"region\", output=\"corners\", use=\"vertex\")\ntools.v_patch(input=[\"points\", \"corners\"], output=\"samples\")\n\n# Interpolate surface\ntools.v_delaunay(input=\"samples\", output=\"surface\")\n\n# Set color gradient\ntools.v_colors(map=\"surface\", use=\"z\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_vect(map=\"surface\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.show()\n\n\n\n\nDelaunay triangulation",
+    "text": "Delaunay triangulation\nv.in.region v.to.points v.patch v.delaunay v.colors\n\n# Sample corners\ntools.v_in_region(output=\"region\", type=\"line\")\ntools.v_to_points(input=\"region\", output=\"corners\", use=\"vertex\")\ntools.v_patch(input=[\"points\", \"corners\"], output=\"samples\")\n\n# Interpolate surface\ntools.v_delaunay(input=\"samples\", output=\"surface\")\n\n# Set color gradient\ntools.v_colors(map=\"surface\", use=\"z\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"surface\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=25)\nm.show()\n\n\n\n\nDelaunay triangulation",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -760,7 +760,7 @@
     "href": "grass/interpolation.html#inverse-weighted-distance-interpolation",
     "title": "Spatial Interpolation",
     "section": "Inverse weighted distance interpolation",
-    "text": "Inverse weighted distance interpolation\nr.colors r.contour v.surf.idw\n\n# Interpolate surface\ntools.v_surf_idw(input=\"points\", output=\"surface\", power=2.0)\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nInverse weighted distance interpolation",
+    "text": "Inverse weighted distance interpolation\nr.colors r.contour v.surf.idw\n\n# Interpolate surface\ntools.v_surf_idw(input=\"points\", output=\"surface\", power=2.0)\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1, cut=25)\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=25)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nInverse weighted distance interpolation",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -772,7 +772,7 @@
     "href": "grass/interpolation.html#bilinear-spline-interpolation",
     "title": "Spatial Interpolation",
     "section": "Bilinear spline interpolation",
-    "text": "Bilinear spline interpolation\nv.surf.bspline r.colors r.contour\n\n# Interpolate surface\ntools.v_surf_bspline(\n    input=\"points\",\n    raster_output=\"surface\",\n    method=\"bilinear\",\n    ew_step=25,\n    ns_step=25\n    )\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nBilinear spline interpolation",
+    "text": "Bilinear spline interpolation\nv.surf.bspline r.colors r.contour\n\n# Interpolate surface\ntools.v_surf_bspline(\n    input=\"points\",\n    raster_output=\"surface\",\n    method=\"bilinear\",\n    ew_step=25,\n    ns_step=25\n    )\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=25)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nBilinear spline interpolation",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -784,7 +784,7 @@
     "href": "grass/interpolation.html#bicubic-spline-interpolation",
     "title": "Spatial Interpolation",
     "section": "Bicubic spline interpolation",
-    "text": "Bicubic spline interpolation\nv.surf.bspline r.colors r.contour\n\n# Interpolate surface\ntools.v_surf_bspline(\n    input=\"points\",\n    raster_output=\"surface\",\n    method=\"bicubic\",\n    ew_step=25,\n    ns_step=25\n    )\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nBicubic spline interpolation",
+    "text": "Bicubic spline interpolation\nv.surf.bspline r.colors r.contour\n\n# Interpolate surface\ntools.v_surf_bspline(\n    input=\"points\",\n    raster_output=\"surface\",\n    method=\"bicubic\",\n    ew_step=25,\n    ns_step=25\n    )\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=25)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nBicubic spline interpolation",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -796,7 +796,7 @@
     "href": "grass/interpolation.html#regularized-spline-with-tension-interpolation",
     "title": "Spatial Interpolation",
     "section": "Regularized spline with tension interpolation",
-    "text": "Regularized spline with tension interpolation\nv.surf.rst r.colors r.contour\n\n# Interpolate surface\ntools.v_surf_rst(input=\"points\", elevation=\"surface\", tension=40, flags=\"t\")\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nRegularized spline with tension interpolation",
+    "text": "Regularized spline with tension interpolation\nv.surf.rst r.colors r.contour\n\n# Interpolate surface\ntools.v_surf_rst(input=\"points\", elevation=\"surface\", tension=40, segmax=100, flags=\"t\")\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=25)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nRegularized spline with tension interpolation",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",
@@ -808,7 +808,19 @@
     "href": "grass/interpolation.html#parameter-optimization",
     "title": "Spatial Interpolation",
     "section": "Parameter Optimization",
-    "text": "Parameter Optimization\ng.extension v.surf.rst.cv r.colors r.contour\n\n# Install addon\ntools.g_extension(extension=\"v.surf.rst.cv\")\n\n\n# Optimize parameters\nparameters = tools.v_surf_rst_cv(\n    point_cloud=\"points\",\n    format=\"json\",\n    output_file=\"parameters.json\",\n    flags=\"t\"\n    )\nresults = parameters[\"results\"]\nmae = min(results, key=lambda x: x[\"rmse\"])[\"mae\"]\nrmse = min(results, key=lambda x: x[\"rmse\"])[\"rmse\"]\nnmad = min(results, key=lambda x: x[\"rmse\"])[\"nmad\"]\ntension = min(results, key=lambda x: x[\"rmse\"])[\"tension\"]\nsmooth = min(results, key=lambda x: x[\"rmse\"])[\"smooth\"]\nprint(f\"Root mean squared error: {rmse}\")\nprint(f\"Mean absolute error: {mae}\")\nprint(f\"Normalized median absolute deviation: {nmad}\")\nprint(f\"Tension: {tension}\")\nprint(f\"Smoothing: {smooth}\")\n\n\n# Interpolate surface\ntools.v_surf_rst(\n    input=\"points\",\n    elevation=\"surface\",\n    tension=tension,\n    smooth=smooth,\n    flags=\"t\"\n    )\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=15)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nRegularized spline with tension interpolation using optimized parameters",
+    "text": "Parameter Optimization\ng.extension v.surf.rst.cv r.colors r.contour\n\n# Install addon\ntools.g_extension(extension=\"v.surf.rst.cv\")\n\n\n# Optimize parameters\nparameters = tools.v_surf_rst_cv(\n    point_cloud=\"points\",\n    segmax=100,\n    format=\"json\",\n    output_file=\"parameters.json\",\n    flags=\"t\"\n    )\nresults = parameters[\"results\"]\nmae = min(results, key=lambda x: x[\"rmse\"])[\"mae\"]\nrmse = min(results, key=lambda x: x[\"rmse\"])[\"rmse\"]\nnmad = min(results, key=lambda x: x[\"rmse\"])[\"nmad\"]\ntension = min(results, key=lambda x: x[\"rmse\"])[\"tension\"]\nsmooth = min(results, key=lambda x: x[\"rmse\"])[\"smooth\"]\nprint(f\"Root mean squared error: {rmse}\")\nprint(f\"Mean absolute error: {mae}\")\nprint(f\"Normalized median absolute deviation: {nmad}\")\nprint(f\"Tension: {tension}\")\nprint(f\"Smoothing: {smooth}\")\n\n\n# Interpolate surface\ntools.v_surf_rst(\n    input=\"points\",\n    elevation=\"surface\",\n    tension=tension,\n    smooth=smooth,\n    segmax=100,\n    flags=\"t\"\n    )\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Compute contours\ntools.r_contour(input=\"surface\", output=\"contours\", step=1)\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"surface\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_vect(map=\"points\", icon=\"basic/point\", zcolor=\"viridis\", size=25)\nm.d_legend(raster=\"surface\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nRegularized spline with tension interpolation using optimized parameters",
+    "crumbs": [
+      "Home",
+      "Geocomputation with GRASS",
+      "Spatial Interpolation"
+    ]
+  },
+  {
+    "objectID": "grass/interpolation.html#difference",
+    "href": "grass/interpolation.html#difference",
+    "title": "Spatial Interpolation",
+    "section": "Difference",
+    "text": "Difference\ng.extension r.colors.matplotlib ?meta:links.r_mapcalc r.univar\n\n# Install addon\ntools.g_extension(extension=\"r.colors.matplotlib\")\n\n\n# Calculate difference\ntools.r_mapcalc(expression=\"difference = fractal - surface\")\n\n# Report univariate statistics\nstats = tools.r_univar(map=\"difference\", format=\"json\")\nnet = stats[\"sum\"]\nprint(f\"Net difference: {net} cubic meters\")\n\n# Set color gradient\ntools.r_colors_matplotlib(map=\"difference\", color=\"managua\")\n\n# Visualize\nm = gj.Map(width=width)\nm.d_rast(map=\"difference\")\nm.d_legend(raster=\"difference\", color=\"white\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nDifference between fractal and interpolated surfaces",
     "crumbs": [
       "Home",
       "Geocomputation with GRASS",

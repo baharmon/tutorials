@@ -424,7 +424,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 12, 2026</p>
+      <p class="date-modified">September 21, 2026</p>
     </div>
   </div>
     
@@ -490,7 +490,7 @@ conda install grass jupyterlab requests folium ipyleaflet make gcc</code></pre>
 <section id="start-grass" class="level3">
 <h3 class="anchored" data-anchor-id="start-grass">Start GRASS</h3>
 <p>To start a GRASS session, we need to define a project and its coordinate reference system. For this demonstration, we will use the Natural Earth Dataset for GRASS <span class="citation" data-cites="NaturalEarth">[<a href="#ref-NaturalEarth" role="doc-biblioref">3</a>]</span>. This dataset is a GRASS project with a collection of global raster and vector data in the World Geodetic System 1984. In your Jupyter notebook, use Python to download and unarchive the dataset. Then start a GRASS session using the dataset as a project. Read more about <a href="https://grass.osgeo.org/grass-stable/manuals/grass_projects.html">projects</a> in GRASS here. Since the dataset is approximately 120MB, it may take a couple of minutes to download. As a test that GRASS started correctly, run <a href="https://grass.osgeo.org/grass-stable/manuals/g.proj.html">g.proj</a> with flag <code>g</code> to print the current projection.</p>
-<div id="de2f3fd7" class="cell" data-execution_count="1">
+<div id="dfa5f860" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -539,7 +539,7 @@ conda install grass jupyterlab requests folium ipyleaflet make gcc</code></pre>
 <section id="display-raster-map" class="level3">
 <h3 class="anchored" data-anchor-id="display-raster-map">Display Raster Map</h3>
 <p>The Natural Earth raster is a global basemap with land cover and shaded relief rendered with a natural color scheme. Display the Natural Earth raster map with <a href="https://grass.osgeo.org/grass-stable/manuals/d.rast.html">d.rast</a>.</p>
-<div id="7bda38fd" class="cell" data-execution_count="2">
+<div id="28f47676" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display natural earth raster</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"natural_earth"</span>)</span>
@@ -555,7 +555,7 @@ conda install grass jupyterlab requests folium ipyleaflet make gcc</code></pre>
 <section id="display-vector-map" class="level3">
 <h3 class="anchored" data-anchor-id="display-vector-map">Display Vector Map</h3>
 <p>Now display a vector map of global rivers. First apply a thematic color gradient to the rivers based on their stream order with <a href="https://grass.osgeo.org/grass-stable/manuals/v.colors.html">v.colors</a>. Then display the map with <a href="https://grass.osgeo.org/grass-stable/manuals/d.vect.html">d.vect</a>, scaling the line width by stream order.</p>
-<div id="b2a519a0" class="cell" data-execution_count="3">
+<div id="bd11aec3" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display rivers</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>tools.v_colors(<span class="bu">map</span><span class="op">=</span><span class="st">"rivers"</span>, use<span class="op">=</span><span class="st">"attr"</span>, column<span class="op">=</span><span class="st">"scalerank"</span>, color<span class="op">=</span><span class="st">"water"</span>)</span>
