@@ -359,6 +359,12 @@ div.csl-indent {
  <span class="menu-text">Importing the National Elevation Dataset</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ecology/species-distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Species Distribution</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -421,7 +427,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 21, 2026</p>
+      <p class="date-modified">September 23, 2026</p>
     </div>
   </div>
     
@@ -440,7 +446,7 @@ div.csl-indent {
 </div>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<div id="51bf493e" class="cell" data-execution_count="1">
+<div id="588aa77c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -469,7 +475,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="download-land">Download land</h2>
 <p><a href="https://www.naturalearthdata.com/">Natural Earth</a></p>
 <p><span class="citation" data-cites="Kelso:2010">[<a href="#ref-Kelso:2010" role="doc-biblioref">2</a>]</span></p>
-<div id="93ff56cd" class="cell" data-execution_count="2">
+<div id="663dfe91" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set url</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://naciscdn.org/naturalearth/10m/physical/ne_10m_land.zip"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -496,7 +502,7 @@ div.csl-indent {
 <section id="download-graticules" class="level2">
 <h2 class="anchored" data-anchor-id="download-graticules">Download graticules</h2>
 <p><a href="https://www.naturalearthdata.com/">Natural Earth</a></p>
-<div id="28da161d" class="cell" data-execution_count="3">
+<div id="006be146" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set url</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://naciscdn.org/naturalearth/10m/physical/ne_10m_graticules_15.zip"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -524,7 +530,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="natural-earth-ii">Natural Earth II</h2>
 <p><a href="https://proj.org/en/stable/operations/projections/natearth2.html">Natural Earth II</a></p>
 <p><span class="citation" data-cites="Šavrič:2015">[<a href="#ref-Šavrič:2015" role="doc-biblioref">3</a>]</span></p>
-<div id="33619240" class="cell" data-execution_count="4">
+<div id="a29b9f2d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start GRASS in Natural Earth II project</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gs.create_project(<span class="st">"natural_earth"</span>, epsg<span class="op">=</span><span class="dv">54078</span>, overwrite<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> gj.init(<span class="st">"natural_earth"</span>)</span>
@@ -536,7 +542,7 @@ div.csl-indent {
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Print projection information</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>tools.g_proj(<span class="bu">format</span><span class="op">=</span><span class="st">"shell"</span>, flags<span class="op">=</span><span class="st">"p"</span>).text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="e8096da9" class="cell" data-execution_count="5">
+<div id="01e014ea" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display projection</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>m.d_vect(<span class="bu">map</span><span class="op">=</span><span class="st">"land"</span>, color<span class="op">=</span><span class="st">"black"</span>, fill<span class="op">=</span><span class="st">"black"</span>)</span>
@@ -554,11 +560,11 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="equal-earth">Equal Earth</h2>
 <p><a href="https://proj.org/en/stable/operations/projections/eqearth.html">Equal Earth</a></p>
 <p><span class="citation" data-cites="Šavrič:2019">[<a href="#ref-Šavrič:2019" role="doc-biblioref">4</a>]</span></p>
-<div id="e8336e70" class="cell" data-execution_count="6">
+<div id="956dcd07" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Equal Earth project</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tools.g_proj(proj4<span class="op">=</span><span class="st">"+proj=eqearth +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs"</span>, project<span class="op">=</span><span class="st">"equal_earth"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="e3f41963" class="cell" data-execution_count="7">
+<div id="eb4451bd" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start GRASS in Equal Earth project</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> gj.init(<span class="st">"equal_earth"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> Tools()</span>
@@ -569,7 +575,7 @@ div.csl-indent {
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print projection information</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>tools.g_proj(<span class="bu">format</span><span class="op">=</span><span class="st">"shell"</span>, flags<span class="op">=</span><span class="st">"p"</span>).text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="5fe5a391" class="cell" data-execution_count="8">
+<div id="d5ccc9d5" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display projection</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>m.d_vect(<span class="bu">map</span><span class="op">=</span><span class="st">"land"</span>, color<span class="op">=</span><span class="st">"black"</span>, fill<span class="op">=</span><span class="st">"black"</span>)</span>
@@ -587,11 +593,11 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="airocean">Airocean</h2>
 <p><a href="https://proj.org/en/stable/operations/projections/airocean.html">Airocean</a></p>
 <p><span class="citation" data-cites="Gray:1995">[<a href="#ref-Gray:1995" role="doc-biblioref">1</a>]</span></p>
-<div id="d62de16d" class="cell" data-execution_count="9">
+<div id="a94e9cd2" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Airocean project</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tools.g_proj(proj4<span class="op">=</span><span class="st">"+proj=airocean +orient=horizontal +lon_0=0.0 +x_0=0.0 +y_0=0.0 +datum=WGS84 +type=crs"</span>, project<span class="op">=</span><span class="st">"airocean"</span>) <span class="co"># vertical</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="43a6a589" class="cell" data-execution_count="10">
+<div id="5bf9fe13" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start GRASS in Airocean project</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> gj.init(<span class="st">"airocean"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> Tools()</span>
@@ -602,7 +608,7 @@ div.csl-indent {
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print projection information</span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>tools.g_proj(<span class="bu">format</span><span class="op">=</span><span class="st">"shell"</span>, flags<span class="op">=</span><span class="st">"p"</span>).text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cf585d17" class="cell" data-execution_count="11">
+<div id="e0edfcda" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display projection</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>m.d_vect(<span class="bu">map</span><span class="op">=</span><span class="st">"land"</span>, color<span class="op">=</span><span class="st">"black"</span>, fill<span class="op">=</span><span class="st">"black"</span>)</span>
@@ -618,11 +624,11 @@ div.csl-indent {
 <section id="peirce-quincuncial" class="level2">
 <h2 class="anchored" data-anchor-id="peirce-quincuncial">Peirce Quincuncial</h2>
 <p><a href="https://proj.org/en/stable/operations/projections/peirce_q.html">Peirce Quincuncial</a></p>
-<div id="953cc16c" class="cell" data-execution_count="12">
+<div id="6af21011" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Peirce Quincuncial project</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tools.g_proj(proj4<span class="op">=</span><span class="st">"+proj=peirce_q +lon_0=25 +shape=square +datum=WGS84 +type=crs"</span>, project<span class="op">=</span><span class="st">"peirce_quincuncial"</span>) <span class="co"># +shape=diamond</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="aa8ac660" class="cell" data-execution_count="13">
+<div id="b8376e5f" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start GRASS in Peirce Quincuncial project</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> gj.init(<span class="st">"peirce_quincuncial"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> Tools()</span>
@@ -636,7 +642,7 @@ div.csl-indent {
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print projection information</span></span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>tools.g_proj(<span class="bu">format</span><span class="op">=</span><span class="st">"shell"</span>, flags<span class="op">=</span><span class="st">"p"</span>).text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="96773461" class="cell" data-execution_count="14">
+<div id="cb3c8688" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display projection</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>m.d_vect(<span class="bu">map</span><span class="op">=</span><span class="st">"land"</span>, color<span class="op">=</span><span class="st">"black"</span>, fill<span class="op">=</span><span class="st">"black"</span>)</span>
@@ -653,11 +659,11 @@ div.csl-indent {
 <section id="van-der-grinten-iv" class="level2">
 <h2 class="anchored" data-anchor-id="van-der-grinten-iv">van der Grinten IV</h2>
 <p><a href="https://proj.org/en/stable/operations/projections/vandg4.html">van der Grinten IV</a></p>
-<div id="a854c54b" class="cell" data-execution_count="15">
+<div id="a9ae33a3" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create van der Grinten IV project</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>tools.g_proj(proj4<span class="op">=</span><span class="st">"+proj=vandg4 +datum=WGS84 +type=crs"</span>, project<span class="op">=</span><span class="st">"vandg4"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="2a426289" class="cell" data-execution_count="16">
+<div id="36ea453f" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start GRASS in van der Grinten IV project</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> gj.init(<span class="st">"vandg4"</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> Tools()</span>
@@ -668,7 +674,7 @@ div.csl-indent {
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print projection information</span></span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>tools.g_proj(<span class="bu">format</span><span class="op">=</span><span class="st">"shell"</span>, flags<span class="op">=</span><span class="st">"p"</span>).text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="74eb40a7" class="cell" data-execution_count="17">
+<div id="c9604766" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display projection</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>m.d_vect(<span class="bu">map</span><span class="op">=</span><span class="st">"land"</span>, color<span class="op">=</span><span class="st">"black"</span>, fill<span class="op">=</span><span class="st">"black"</span>)</span>

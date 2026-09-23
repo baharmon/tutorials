@@ -361,6 +361,12 @@ div.csl-indent {
  <span class="menu-text">Importing the National Elevation Dataset</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ecology/species-distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Species Distribution</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -426,7 +432,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 21, 2026</p>
+      <p class="date-modified">September 23, 2026</p>
     </div>
   </div>
     
@@ -500,12 +506,12 @@ source ~/.bashrc</code></pre>
 </section>
 <section id="environment" class="level2">
 <h2 class="anchored" data-anchor-id="environment">Environment</h2>
-<p>Now that Conda is installed, let’s use it to create an environment for GRASS. We will install the GRASS, Jupyter Lab, and other useful Python packages with all of their dependencies into this environment. In a terminal, run <a href="https://docs.conda.io/projects/conda/en/stable/commands/create.html">conda create</a> to create an environment named <code>grass</code>. Then use <a href="https://docs.conda.io/projects/conda/en/stable/commands/install.html">conda install</a> to install the GRASS package. Next, run <a href="https://docs.conda.io/projects/conda/en/stable/commands/activate.html">conda activate</a> to start the environment.</p>
+<p>Now that Conda is installed, let’s use it to create an environment for GRASS. We will install GRASS, Jupyter Lab, and other useful Python packages with all of their dependencies into this environment. Compilers and build tools are needed for installing addons, so we will install these too. In a terminal, run <a href="https://docs.conda.io/projects/conda/en/stable/commands/create.html">conda create</a> to create an environment named <code>grass</code>. Then use <a href="https://docs.conda.io/projects/conda/en/stable/commands/install.html">conda install</a> to install the Python packages. Next, run <a href="https://docs.conda.io/projects/conda/en/stable/commands/activate.html">conda activate</a> to start the environment.</p>
 <pre class="{bash}"><code>conda create --name grass
 conda activate grass
-conda install grass jupyterlab requests folium ipyleaflet seaborn make gcc</code></pre>
+conda install grass jupyterlab requests folium ipyleaflet seaborn c-compiler cxx-compiler make cmake</code></pre>
 <p>You can do this with just one line of code:</p>
-<pre class="{bash}"><code>conda create -n grass grass jupyterlab requests folium ipyleaflet seaborn make gcc &amp;&amp; conda activate grass</code></pre>
+<pre class="{bash}"><code>conda create -n grass grass jupyterlab requests folium ipyleaflet seaborn c-compiler cxx-compiler make cmake &amp;&amp; conda activate grass</code></pre>
 <div class="callout callout-style-default callout-note callout-titled" title="Other Conda distributions">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -540,7 +546,7 @@ conda install grass jupyterlab requests folium ipyleaflet seaborn make gcc</code
 <p>Read more about <a href="https://grass.osgeo.org/grass-stable/manuals/grass_projects.html">projects</a> in GRASS here.</p>
 </div>
 </div>
-<div id="ee3fb53d" class="cell" data-execution_count="1">
+<div id="1a6a350b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -566,7 +572,7 @@ conda install grass jupyterlab requests folium ipyleaflet seaborn make gcc</code
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> Tools()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>As a test that GRASS started correctly, run <a href="https://grass.osgeo.org/grass-stable/manuals/g.proj.html">g.proj</a> with flag <code>g</code> to print the current projection.</p>
-<div id="bf112cde" class="cell" data-execution_count="2">
+<div id="84fb3ab0" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print projection information</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tools.g_proj(<span class="bu">format</span><span class="op">=</span><span class="st">"shell"</span>, flags<span class="op">=</span><span class="st">"p"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -574,7 +580,7 @@ conda install grass jupyterlab requests folium ipyleaflet seaborn make gcc</code
 <section id="generate-fractal-terrain" class="level3">
 <h3 class="anchored" data-anchor-id="generate-fractal-terrain">Generate Fractal Terrain</h3>
 <p>Now let’s generate fractal terrain. Set your computational region with <a href="https://grass.osgeo.org/grass-stable/manuals/g.region.html">g.region</a>, generate a fractal surface with <a href="https://grass.osgeo.org/grass-stable/manuals/r.surf.fractal.html">r.surf.fractal</a>, and then display the resulting raster with <a href="https://grass.osgeo.org/grass-stable/manuals/d.rast.html">d.rast</a>.</p>
-<div id="c26358d8" class="cell" data-execution_count="3">
+<div id="aeaccca6" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tools.g_region(s<span class="op">=</span><span class="dv">0</span>, w<span class="op">=</span><span class="dv">0</span>, n<span class="op">=</span><span class="dv">2000</span>, e<span class="op">=</span><span class="dv">8000</span>, res<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1219,163 +1225,165 @@ conda install grass jupyterlab requests folium ipyleaflet seaborn make gcc</code
 <span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a>Now that Conda is installed, </span>
 <span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a>let's use it to create an environment for GRASS.</span>
-<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a>We will install the GRASS, Jupyter Lab, and other useful Python packages</span>
-<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a>with all of their dependencies into this environment. </span>
-<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>In a terminal, </span>
-<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a>run {{&lt; meta links.conda_create &gt;}}</span>
-<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a>to create an environment named <span class="in">`grass`</span>.</span>
-<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a>Then use {{&lt; meta links.conda_install &gt;}} </span>
-<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a>to install the GRASS package.</span>
-<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>Next, run {{&lt; meta links.conda_activate &gt;}}</span>
-<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>to start the environment. </span>
-<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> grass</span>
-<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate grass</span>
-<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install grass jupyterlab requests folium ipyleaflet seaborn make gcc</span>
-<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>You can do this with just one line of code:</span>
-<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> grass grass jupyterlab requests folium ipyleaflet seaborn make gcc <span class="kw">&amp;&amp;</span> <span class="ex">conda</span> activate grass</span>
-<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="Other Conda distributions"}</span>
-<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a>If you use a Conda distribution other than Miniforge,</span>
-<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a>you will need to specify the conda-forge channel</span>
-<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a>when creating the environment with</span>
-<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a><span class="in">`-c conda-forge`</span>.</span>
-<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a>You may also need to override your default channel settings</span>
-<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a>with <span class="in">`--override-channels`</span> to prevent conflicts.</span>
-<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a><span class="fu">## Computational Notebook</span></span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a>We will install GRASS, Jupyter Lab, and other useful Python packages</span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a>with all of their dependencies into this environment.</span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>Compilers and build tools are needed for installing addons,</span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a>so we will install these too. </span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a>In a terminal, </span>
+<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a>run {{&lt; meta links.conda_create &gt;}}</span>
+<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a>to create an environment named <span class="in">`grass`</span>.</span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>Then use {{&lt; meta links.conda_install &gt;}} </span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>to install the Python packages.</span>
+<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a>Next, run {{&lt; meta links.conda_activate &gt;}}</span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a>to start the environment. </span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> grass</span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate grass</span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install grass jupyterlab requests folium ipyleaflet seaborn c-compiler cxx-compiler make cmake</span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a>You can do this with just one line of code:</span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> grass grass jupyterlab requests folium ipyleaflet seaborn c-compiler cxx-compiler make cmake <span class="kw">&amp;&amp;</span> <span class="ex">conda</span> activate grass</span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="Other Conda distributions"}</span>
+<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a>If you use a Conda distribution other than Miniforge,</span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a>you will need to specify the conda-forge channel</span>
+<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a>when creating the environment with</span>
+<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a><span class="in">`-c conda-forge`</span>.</span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a>You may also need to override your default channel settings</span>
+<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a>with <span class="in">`--override-channels`</span> to prevent conflicts.</span>
+<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a>Let's try the newly installed GRASS Conda package in a Jupyter notebook.</span>
-<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a>We will use scripting to generate and visualize fractal terrain. </span>
-<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a>Let's begin by launching Jupyter Lab from the terminal.</span>
-<span id="cb9-189"><a href="#cb9-189" aria-hidden="true" tabindex="-1"></a>This will open a new Jupyter notebook in a web browser window. </span>
-<span id="cb9-190"><a href="#cb9-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-193"><a href="#cb9-193" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb9-194"><a href="#cb9-194" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span>
-<span id="cb9-195"><a href="#cb9-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-196"><a href="#cb9-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-197"><a href="#cb9-197" aria-hidden="true" tabindex="-1"></a><span class="fu">### Start GRASS</span></span>
+<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a><span class="fu">## Computational Notebook</span></span>
+<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a>Let's try the newly installed GRASS Conda package in a Jupyter notebook.</span>
+<span id="cb9-189"><a href="#cb9-189" aria-hidden="true" tabindex="-1"></a>We will use scripting to generate and visualize fractal terrain. </span>
+<span id="cb9-190"><a href="#cb9-190" aria-hidden="true" tabindex="-1"></a>Let's begin by launching Jupyter Lab from the terminal.</span>
+<span id="cb9-191"><a href="#cb9-191" aria-hidden="true" tabindex="-1"></a>This will open a new Jupyter notebook in a web browser window. </span>
+<span id="cb9-192"><a href="#cb9-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-195"><a href="#cb9-195" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb9-196"><a href="#cb9-196" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span>
+<span id="cb9-197"><a href="#cb9-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb9-198"><a href="#cb9-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-199"><a href="#cb9-199" aria-hidden="true" tabindex="-1"></a>To start a GRASS session, </span>
-<span id="cb9-200"><a href="#cb9-200" aria-hidden="true" tabindex="-1"></a>we need to define a project </span>
-<span id="cb9-201"><a href="#cb9-201" aria-hidden="true" tabindex="-1"></a>and its coordinate reference system. </span>
-<span id="cb9-202"><a href="#cb9-202" aria-hidden="true" tabindex="-1"></a>Use {{&lt; meta links.grass_create_project &gt;}}</span>
-<span id="cb9-203"><a href="#cb9-203" aria-hidden="true" tabindex="-1"></a>to create a project named <span class="in">`fractal`</span></span>
-<span id="cb9-204"><a href="#cb9-204" aria-hidden="true" tabindex="-1"></a>without specifying a coordinate system.</span>
-<span id="cb9-205"><a href="#cb9-205" aria-hidden="true" tabindex="-1"></a>By default this will create</span>
-<span id="cb9-206"><a href="#cb9-206" aria-hidden="true" tabindex="-1"></a>an unprojected Cartesian coordinate system.</span>
-<span id="cb9-207"><a href="#cb9-207" aria-hidden="true" tabindex="-1"></a>Start the GRASS session with {{&lt; meta links.gj_init &gt;}}. </span>
-<span id="cb9-208"><a href="#cb9-208" aria-hidden="true" tabindex="-1"></a>Then instantiate a {{&lt; meta links.grass_tools &gt;}} object</span>
-<span id="cb9-209"><a href="#cb9-209" aria-hidden="true" tabindex="-1"></a>so that you can call GRASS tools as Python functions. </span>
-<span id="cb9-210"><a href="#cb9-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-211"><a href="#cb9-211" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="GRASS Projects"}</span>
-<span id="cb9-212"><a href="#cb9-212" aria-hidden="true" tabindex="-1"></a>Read more about {{&lt; meta links.grass_projects &gt;}} in GRASS here. </span>
-<span id="cb9-213"><a href="#cb9-213" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb9-214"><a href="#cb9-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-217"><a href="#cb9-217" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb9-218"><a href="#cb9-218" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
-<span id="cb9-219"><a href="#cb9-219" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb9-220"><a href="#cb9-220" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb9-221"><a href="#cb9-221" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
-<span id="cb9-222"><a href="#cb9-222" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb9-223"><a href="#cb9-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-224"><a href="#cb9-224" aria-hidden="true" tabindex="-1"></a><span class="co"># Find GRASS Python packages</span></span>
-<span id="cb9-225"><a href="#cb9-225" aria-hidden="true" tabindex="-1"></a>sys.path.append(</span>
-<span id="cb9-226"><a href="#cb9-226" aria-hidden="true" tabindex="-1"></a>  subprocess.check_output(</span>
-<span id="cb9-227"><a href="#cb9-227" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"grass"</span>, <span class="st">"--config"</span>, <span class="st">"python_path"</span>],</span>
-<span id="cb9-228"><a href="#cb9-228" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="va">True</span></span>
-<span id="cb9-229"><a href="#cb9-229" aria-hidden="true" tabindex="-1"></a>    ).strip()</span>
-<span id="cb9-230"><a href="#cb9-230" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-231"><a href="#cb9-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-232"><a href="#cb9-232" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages</span></span>
-<span id="cb9-233"><a href="#cb9-233" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> grass.script <span class="im">as</span> gs</span>
-<span id="cb9-234"><a href="#cb9-234" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> grass.jupyter <span class="im">as</span> gj</span>
-<span id="cb9-235"><a href="#cb9-235" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> grass.tools <span class="im">import</span> Tools</span>
-<span id="cb9-236"><a href="#cb9-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-237"><a href="#cb9-237" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize GRASS session</span></span>
-<span id="cb9-238"><a href="#cb9-238" aria-hidden="true" tabindex="-1"></a>gs.create_project(<span class="st">"fractal"</span>, overwrite<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-239"><a href="#cb9-239" aria-hidden="true" tabindex="-1"></a>gj.init(<span class="st">"fractal"</span>)</span>
-<span id="cb9-240"><a href="#cb9-240" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> Tools()</span>
-<span id="cb9-241"><a href="#cb9-241" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-242"><a href="#cb9-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-243"><a href="#cb9-243" aria-hidden="true" tabindex="-1"></a>As a test that GRASS started correctly,</span>
-<span id="cb9-244"><a href="#cb9-244" aria-hidden="true" tabindex="-1"></a>run {{&lt; meta links.g_proj &gt;}} with flag <span class="in">`g`</span> </span>
-<span id="cb9-245"><a href="#cb9-245" aria-hidden="true" tabindex="-1"></a>to print the current projection.</span>
-<span id="cb9-246"><a href="#cb9-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-249"><a href="#cb9-249" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb9-250"><a href="#cb9-250" aria-hidden="true" tabindex="-1"></a><span class="co"># Print projection information</span></span>
-<span id="cb9-251"><a href="#cb9-251" aria-hidden="true" tabindex="-1"></a>tools.g_proj(<span class="bu">format</span><span class="op">=</span><span class="st">"shell"</span>, flags<span class="op">=</span><span class="st">"p"</span>)</span>
-<span id="cb9-252"><a href="#cb9-252" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-253"><a href="#cb9-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-254"><a href="#cb9-254" aria-hidden="true" tabindex="-1"></a><span class="fu">### Generate Fractal Terrain</span></span>
+<span id="cb9-199"><a href="#cb9-199" aria-hidden="true" tabindex="-1"></a><span class="fu">### Start GRASS</span></span>
+<span id="cb9-200"><a href="#cb9-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-201"><a href="#cb9-201" aria-hidden="true" tabindex="-1"></a>To start a GRASS session, </span>
+<span id="cb9-202"><a href="#cb9-202" aria-hidden="true" tabindex="-1"></a>we need to define a project </span>
+<span id="cb9-203"><a href="#cb9-203" aria-hidden="true" tabindex="-1"></a>and its coordinate reference system. </span>
+<span id="cb9-204"><a href="#cb9-204" aria-hidden="true" tabindex="-1"></a>Use {{&lt; meta links.grass_create_project &gt;}}</span>
+<span id="cb9-205"><a href="#cb9-205" aria-hidden="true" tabindex="-1"></a>to create a project named <span class="in">`fractal`</span></span>
+<span id="cb9-206"><a href="#cb9-206" aria-hidden="true" tabindex="-1"></a>without specifying a coordinate system.</span>
+<span id="cb9-207"><a href="#cb9-207" aria-hidden="true" tabindex="-1"></a>By default this will create</span>
+<span id="cb9-208"><a href="#cb9-208" aria-hidden="true" tabindex="-1"></a>an unprojected Cartesian coordinate system.</span>
+<span id="cb9-209"><a href="#cb9-209" aria-hidden="true" tabindex="-1"></a>Start the GRASS session with {{&lt; meta links.gj_init &gt;}}. </span>
+<span id="cb9-210"><a href="#cb9-210" aria-hidden="true" tabindex="-1"></a>Then instantiate a {{&lt; meta links.grass_tools &gt;}} object</span>
+<span id="cb9-211"><a href="#cb9-211" aria-hidden="true" tabindex="-1"></a>so that you can call GRASS tools as Python functions. </span>
+<span id="cb9-212"><a href="#cb9-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-213"><a href="#cb9-213" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="GRASS Projects"}</span>
+<span id="cb9-214"><a href="#cb9-214" aria-hidden="true" tabindex="-1"></a>Read more about {{&lt; meta links.grass_projects &gt;}} in GRASS here. </span>
+<span id="cb9-215"><a href="#cb9-215" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-216"><a href="#cb9-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-219"><a href="#cb9-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-220"><a href="#cb9-220" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
+<span id="cb9-221"><a href="#cb9-221" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb9-222"><a href="#cb9-222" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb9-223"><a href="#cb9-223" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb9-224"><a href="#cb9-224" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb9-225"><a href="#cb9-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-226"><a href="#cb9-226" aria-hidden="true" tabindex="-1"></a><span class="co"># Find GRASS Python packages</span></span>
+<span id="cb9-227"><a href="#cb9-227" aria-hidden="true" tabindex="-1"></a>sys.path.append(</span>
+<span id="cb9-228"><a href="#cb9-228" aria-hidden="true" tabindex="-1"></a>  subprocess.check_output(</span>
+<span id="cb9-229"><a href="#cb9-229" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"grass"</span>, <span class="st">"--config"</span>, <span class="st">"python_path"</span>],</span>
+<span id="cb9-230"><a href="#cb9-230" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="va">True</span></span>
+<span id="cb9-231"><a href="#cb9-231" aria-hidden="true" tabindex="-1"></a>    ).strip()</span>
+<span id="cb9-232"><a href="#cb9-232" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-233"><a href="#cb9-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-234"><a href="#cb9-234" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages</span></span>
+<span id="cb9-235"><a href="#cb9-235" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> grass.script <span class="im">as</span> gs</span>
+<span id="cb9-236"><a href="#cb9-236" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> grass.jupyter <span class="im">as</span> gj</span>
+<span id="cb9-237"><a href="#cb9-237" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> grass.tools <span class="im">import</span> Tools</span>
+<span id="cb9-238"><a href="#cb9-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-239"><a href="#cb9-239" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize GRASS session</span></span>
+<span id="cb9-240"><a href="#cb9-240" aria-hidden="true" tabindex="-1"></a>gs.create_project(<span class="st">"fractal"</span>, overwrite<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-241"><a href="#cb9-241" aria-hidden="true" tabindex="-1"></a>gj.init(<span class="st">"fractal"</span>)</span>
+<span id="cb9-242"><a href="#cb9-242" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> Tools()</span>
+<span id="cb9-243"><a href="#cb9-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-244"><a href="#cb9-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-245"><a href="#cb9-245" aria-hidden="true" tabindex="-1"></a>As a test that GRASS started correctly,</span>
+<span id="cb9-246"><a href="#cb9-246" aria-hidden="true" tabindex="-1"></a>run {{&lt; meta links.g_proj &gt;}} with flag <span class="in">`g`</span> </span>
+<span id="cb9-247"><a href="#cb9-247" aria-hidden="true" tabindex="-1"></a>to print the current projection.</span>
+<span id="cb9-248"><a href="#cb9-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-251"><a href="#cb9-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-252"><a href="#cb9-252" aria-hidden="true" tabindex="-1"></a><span class="co"># Print projection information</span></span>
+<span id="cb9-253"><a href="#cb9-253" aria-hidden="true" tabindex="-1"></a>tools.g_proj(<span class="bu">format</span><span class="op">=</span><span class="st">"shell"</span>, flags<span class="op">=</span><span class="st">"p"</span>)</span>
+<span id="cb9-254"><a href="#cb9-254" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb9-255"><a href="#cb9-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-256"><a href="#cb9-256" aria-hidden="true" tabindex="-1"></a>Now let's generate fractal terrain. </span>
-<span id="cb9-257"><a href="#cb9-257" aria-hidden="true" tabindex="-1"></a>Set your computational region with </span>
-<span id="cb9-258"><a href="#cb9-258" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.g_region &gt;}},</span>
-<span id="cb9-259"><a href="#cb9-259" aria-hidden="true" tabindex="-1"></a>generate a fractal surface with </span>
-<span id="cb9-260"><a href="#cb9-260" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_surf_fractal &gt;}},</span>
-<span id="cb9-261"><a href="#cb9-261" aria-hidden="true" tabindex="-1"></a>and then display the resulting raster</span>
-<span id="cb9-262"><a href="#cb9-262" aria-hidden="true" tabindex="-1"></a>with {{&lt; meta links.d_rast &gt;}}.</span>
-<span id="cb9-263"><a href="#cb9-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-266"><a href="#cb9-266" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb9-267"><a href="#cb9-267" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
-<span id="cb9-268"><a href="#cb9-268" aria-hidden="true" tabindex="-1"></a>tools.g_region(s<span class="op">=</span><span class="dv">0</span>, w<span class="op">=</span><span class="dv">0</span>, n<span class="op">=</span><span class="dv">2000</span>, e<span class="op">=</span><span class="dv">8000</span>, res<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb9-269"><a href="#cb9-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-270"><a href="#cb9-270" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate fractal terrain</span></span>
-<span id="cb9-271"><a href="#cb9-271" aria-hidden="true" tabindex="-1"></a>tools.r_surf_fractal(output<span class="op">=</span><span class="st">"fractal"</span>)</span>
-<span id="cb9-272"><a href="#cb9-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-273"><a href="#cb9-273" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize fractal terrain</span></span>
-<span id="cb9-274"><a href="#cb9-274" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map()</span>
-<span id="cb9-275"><a href="#cb9-275" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"fractal"</span>)</span>
-<span id="cb9-276"><a href="#cb9-276" aria-hidden="true" tabindex="-1"></a>m.show()</span>
-<span id="cb9-277"><a href="#cb9-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-278"><a href="#cb9-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-279"><a href="#cb9-279" aria-hidden="true" tabindex="-1"></a><span class="al">![Fractal terrain](images/wsl-01.webp)</span></span>
+<span id="cb9-256"><a href="#cb9-256" aria-hidden="true" tabindex="-1"></a><span class="fu">### Generate Fractal Terrain</span></span>
+<span id="cb9-257"><a href="#cb9-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-258"><a href="#cb9-258" aria-hidden="true" tabindex="-1"></a>Now let's generate fractal terrain. </span>
+<span id="cb9-259"><a href="#cb9-259" aria-hidden="true" tabindex="-1"></a>Set your computational region with </span>
+<span id="cb9-260"><a href="#cb9-260" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.g_region &gt;}},</span>
+<span id="cb9-261"><a href="#cb9-261" aria-hidden="true" tabindex="-1"></a>generate a fractal surface with </span>
+<span id="cb9-262"><a href="#cb9-262" aria-hidden="true" tabindex="-1"></a>{{&lt; meta links.r_surf_fractal &gt;}},</span>
+<span id="cb9-263"><a href="#cb9-263" aria-hidden="true" tabindex="-1"></a>and then display the resulting raster</span>
+<span id="cb9-264"><a href="#cb9-264" aria-hidden="true" tabindex="-1"></a>with {{&lt; meta links.d_rast &gt;}}.</span>
+<span id="cb9-265"><a href="#cb9-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-268"><a href="#cb9-268" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-269"><a href="#cb9-269" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
+<span id="cb9-270"><a href="#cb9-270" aria-hidden="true" tabindex="-1"></a>tools.g_region(s<span class="op">=</span><span class="dv">0</span>, w<span class="op">=</span><span class="dv">0</span>, n<span class="op">=</span><span class="dv">2000</span>, e<span class="op">=</span><span class="dv">8000</span>, res<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-271"><a href="#cb9-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-272"><a href="#cb9-272" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate fractal terrain</span></span>
+<span id="cb9-273"><a href="#cb9-273" aria-hidden="true" tabindex="-1"></a>tools.r_surf_fractal(output<span class="op">=</span><span class="st">"fractal"</span>)</span>
+<span id="cb9-274"><a href="#cb9-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-275"><a href="#cb9-275" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize fractal terrain</span></span>
+<span id="cb9-276"><a href="#cb9-276" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map()</span>
+<span id="cb9-277"><a href="#cb9-277" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"fractal"</span>)</span>
+<span id="cb9-278"><a href="#cb9-278" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb9-279"><a href="#cb9-279" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb9-280"><a href="#cb9-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-281"><a href="#cb9-281" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visual Studio Code</span></span>
+<span id="cb9-281"><a href="#cb9-281" aria-hidden="true" tabindex="-1"></a><span class="al">![Fractal terrain](images/wsl-01.webp)</span></span>
 <span id="cb9-282"><a href="#cb9-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-283"><a href="#cb9-283" aria-hidden="true" tabindex="-1"></a>Alternatively, you could run your computational notebook</span>
-<span id="cb9-284"><a href="#cb9-284" aria-hidden="true" tabindex="-1"></a>in an integrated development environment.</span>
-<span id="cb9-285"><a href="#cb9-285" aria-hidden="true" tabindex="-1"></a>Follow these instructions, </span>
-<span id="cb9-286"><a href="#cb9-286" aria-hidden="true" tabindex="-1"></a>if you would like to use Visual Studio Code. </span>
-<span id="cb9-287"><a href="#cb9-287" aria-hidden="true" tabindex="-1"></a>Install <span class="co">[</span><span class="ot">Visual Studio Code</span><span class="co">](https://code.visualstudio.com/download)</span></span>
-<span id="cb9-288"><a href="#cb9-288" aria-hidden="true" tabindex="-1"></a>for Windows. When prompted during installation, add it to your path. </span>
-<span id="cb9-289"><a href="#cb9-289" aria-hidden="true" tabindex="-1"></a>The install the <span class="co">[</span><span class="ot">WSL Extension</span><span class="co">](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl)</span>.</span>
-<span id="cb9-290"><a href="#cb9-290" aria-hidden="true" tabindex="-1"></a>Start Visual Studio Code,</span>
-<span id="cb9-291"><a href="#cb9-291" aria-hidden="true" tabindex="-1"></a>open the Command Palette with <span class="in">`Ctrl + Shift + P`</span>,</span>
-<span id="cb9-292"><a href="#cb9-292" aria-hidden="true" tabindex="-1"></a>and connect to WSL.</span>
-<span id="cb9-293"><a href="#cb9-293" aria-hidden="true" tabindex="-1"></a>Open extensions pane with <span class="in">`Ctrl + Shift + X`</span></span>
-<span id="cb9-294"><a href="#cb9-294" aria-hidden="true" tabindex="-1"></a>and install the <span class="co">[</span><span class="ot">Python Extension</span><span class="co">](https://marketplace.visualstudio.com/items?itemName=ms-python.python)</span></span>
-<span id="cb9-295"><a href="#cb9-295" aria-hidden="true" tabindex="-1"></a>for your remote WSL connection.</span>
-<span id="cb9-296"><a href="#cb9-296" aria-hidden="true" tabindex="-1"></a>When prompted choose <span class="in">`Install in WSL: Ubuntu`</span>.</span>
-<span id="cb9-297"><a href="#cb9-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-298"><a href="#cb9-298" aria-hidden="true" tabindex="-1"></a>In Visual Studio Code's explorer, </span>
-<span id="cb9-299"><a href="#cb9-299" aria-hidden="true" tabindex="-1"></a>browse to the directory in which you plan to work. </span>
-<span id="cb9-300"><a href="#cb9-300" aria-hidden="true" tabindex="-1"></a>The first time you open a directory, it will be restricted,</span>
-<span id="cb9-301"><a href="#cb9-301" aria-hidden="true" tabindex="-1"></a>so you must trust this workspace before you can run code. </span>
-<span id="cb9-302"><a href="#cb9-302" aria-hidden="true" tabindex="-1"></a>When prompted whether you trust the authors of file in this folder, choose yes. </span>
-<span id="cb9-303"><a href="#cb9-303" aria-hidden="true" tabindex="-1"></a>Now, create a new Jupyter notebook in this directory. </span>
-<span id="cb9-304"><a href="#cb9-304" aria-hidden="true" tabindex="-1"></a>For this notebook, </span>
-<span id="cb9-305"><a href="#cb9-305" aria-hidden="true" tabindex="-1"></a>set the Python interpreter and notebook kernel </span>
-<span id="cb9-306"><a href="#cb9-306" aria-hidden="true" tabindex="-1"></a>to your Conda environment.</span>
-<span id="cb9-307"><a href="#cb9-307" aria-hidden="true" tabindex="-1"></a>To do this, open the Command Palette with <span class="in">`Ctrl + Shift + P`</span>,</span>
-<span id="cb9-308"><a href="#cb9-308" aria-hidden="true" tabindex="-1"></a>run <span class="in">`Python: Select Interpreter`</span>,</span>
-<span id="cb9-309"><a href="#cb9-309" aria-hidden="true" tabindex="-1"></a>and select your environment named <span class="in">`grass`</span>.</span>
-<span id="cb9-310"><a href="#cb9-310" aria-hidden="true" tabindex="-1"></a>Open the Command Palette again,</span>
-<span id="cb9-311"><a href="#cb9-311" aria-hidden="true" tabindex="-1"></a>run <span class="in">`Notebook: Select Notebook Kernel`</span>,</span>
-<span id="cb9-312"><a href="#cb9-312" aria-hidden="true" tabindex="-1"></a>and select your environment named <span class="in">`grass`</span>.</span>
-<span id="cb9-313"><a href="#cb9-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-314"><a href="#cb9-314" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="Setting up Visual Studio Code"}</span>
-<span id="cb9-315"><a href="#cb9-315" aria-hidden="true" tabindex="-1"></a>More more information, </span>
-<span id="cb9-316"><a href="#cb9-316" aria-hidden="true" tabindex="-1"></a>see the official guide to</span>
-<span id="cb9-317"><a href="#cb9-317" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">get started using Visual Studio Code with Windows Subsystem for Linux</span><span class="co">](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode)</span>.</span>
-<span id="cb9-318"><a href="#cb9-318" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-283"><a href="#cb9-283" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visual Studio Code</span></span>
+<span id="cb9-284"><a href="#cb9-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-285"><a href="#cb9-285" aria-hidden="true" tabindex="-1"></a>Alternatively, you could run your computational notebook</span>
+<span id="cb9-286"><a href="#cb9-286" aria-hidden="true" tabindex="-1"></a>in an integrated development environment.</span>
+<span id="cb9-287"><a href="#cb9-287" aria-hidden="true" tabindex="-1"></a>Follow these instructions, </span>
+<span id="cb9-288"><a href="#cb9-288" aria-hidden="true" tabindex="-1"></a>if you would like to use Visual Studio Code. </span>
+<span id="cb9-289"><a href="#cb9-289" aria-hidden="true" tabindex="-1"></a>Install <span class="co">[</span><span class="ot">Visual Studio Code</span><span class="co">](https://code.visualstudio.com/download)</span></span>
+<span id="cb9-290"><a href="#cb9-290" aria-hidden="true" tabindex="-1"></a>for Windows. When prompted during installation, add it to your path. </span>
+<span id="cb9-291"><a href="#cb9-291" aria-hidden="true" tabindex="-1"></a>The install the <span class="co">[</span><span class="ot">WSL Extension</span><span class="co">](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl)</span>.</span>
+<span id="cb9-292"><a href="#cb9-292" aria-hidden="true" tabindex="-1"></a>Start Visual Studio Code,</span>
+<span id="cb9-293"><a href="#cb9-293" aria-hidden="true" tabindex="-1"></a>open the Command Palette with <span class="in">`Ctrl + Shift + P`</span>,</span>
+<span id="cb9-294"><a href="#cb9-294" aria-hidden="true" tabindex="-1"></a>and connect to WSL.</span>
+<span id="cb9-295"><a href="#cb9-295" aria-hidden="true" tabindex="-1"></a>Open extensions pane with <span class="in">`Ctrl + Shift + X`</span></span>
+<span id="cb9-296"><a href="#cb9-296" aria-hidden="true" tabindex="-1"></a>and install the <span class="co">[</span><span class="ot">Python Extension</span><span class="co">](https://marketplace.visualstudio.com/items?itemName=ms-python.python)</span></span>
+<span id="cb9-297"><a href="#cb9-297" aria-hidden="true" tabindex="-1"></a>for your remote WSL connection.</span>
+<span id="cb9-298"><a href="#cb9-298" aria-hidden="true" tabindex="-1"></a>When prompted choose <span class="in">`Install in WSL: Ubuntu`</span>.</span>
+<span id="cb9-299"><a href="#cb9-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-300"><a href="#cb9-300" aria-hidden="true" tabindex="-1"></a>In Visual Studio Code's explorer, </span>
+<span id="cb9-301"><a href="#cb9-301" aria-hidden="true" tabindex="-1"></a>browse to the directory in which you plan to work. </span>
+<span id="cb9-302"><a href="#cb9-302" aria-hidden="true" tabindex="-1"></a>The first time you open a directory, it will be restricted,</span>
+<span id="cb9-303"><a href="#cb9-303" aria-hidden="true" tabindex="-1"></a>so you must trust this workspace before you can run code. </span>
+<span id="cb9-304"><a href="#cb9-304" aria-hidden="true" tabindex="-1"></a>When prompted whether you trust the authors of file in this folder, choose yes. </span>
+<span id="cb9-305"><a href="#cb9-305" aria-hidden="true" tabindex="-1"></a>Now, create a new Jupyter notebook in this directory. </span>
+<span id="cb9-306"><a href="#cb9-306" aria-hidden="true" tabindex="-1"></a>For this notebook, </span>
+<span id="cb9-307"><a href="#cb9-307" aria-hidden="true" tabindex="-1"></a>set the Python interpreter and notebook kernel </span>
+<span id="cb9-308"><a href="#cb9-308" aria-hidden="true" tabindex="-1"></a>to your Conda environment.</span>
+<span id="cb9-309"><a href="#cb9-309" aria-hidden="true" tabindex="-1"></a>To do this, open the Command Palette with <span class="in">`Ctrl + Shift + P`</span>,</span>
+<span id="cb9-310"><a href="#cb9-310" aria-hidden="true" tabindex="-1"></a>run <span class="in">`Python: Select Interpreter`</span>,</span>
+<span id="cb9-311"><a href="#cb9-311" aria-hidden="true" tabindex="-1"></a>and select your environment named <span class="in">`grass`</span>.</span>
+<span id="cb9-312"><a href="#cb9-312" aria-hidden="true" tabindex="-1"></a>Open the Command Palette again,</span>
+<span id="cb9-313"><a href="#cb9-313" aria-hidden="true" tabindex="-1"></a>run <span class="in">`Notebook: Select Notebook Kernel`</span>,</span>
+<span id="cb9-314"><a href="#cb9-314" aria-hidden="true" tabindex="-1"></a>and select your environment named <span class="in">`grass`</span>.</span>
+<span id="cb9-315"><a href="#cb9-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-316"><a href="#cb9-316" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="Setting up Visual Studio Code"}</span>
+<span id="cb9-317"><a href="#cb9-317" aria-hidden="true" tabindex="-1"></a>More more information, </span>
+<span id="cb9-318"><a href="#cb9-318" aria-hidden="true" tabindex="-1"></a>see the official guide to</span>
+<span id="cb9-319"><a href="#cb9-319" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">get started using Visual Studio Code with Windows Subsystem for Linux</span><span class="co">](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode)</span>.</span>
+<span id="cb9-320"><a href="#cb9-320" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
