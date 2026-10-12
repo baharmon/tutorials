@@ -2,6 +2,7 @@
   {
     "listing": "/ecology/index.html",
     "items": [
+      "/ecology/census.html",
       "/ecology/cadastre.html",
       "/ecology/national-map.html",
       "/ecology/interactive-maps.html",
@@ -10,11 +11,13 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/design/index.html",
     "items": [
-      "/design/index.html",
-      "/ecology/index.html",
-      "/grass/index.html"
+      "/design/random-walk-04.html",
+      "/design/computational-design.html",
+      "/design/random-walk-01.html",
+      "/design/random-walk-02.html",
+      "/design/random-walk-03.html"
     ]
   },
   {
@@ -35,13 +38,11 @@
     ]
   },
   {
-    "listing": "/design/index.html",
+    "listing": "/index.html",
     "items": [
-      "/design/random-walk-04.html",
-      "/design/computational-design.html",
-      "/design/random-walk-01.html",
-      "/design/random-walk-02.html",
-      "/design/random-walk-03.html"
+      "/design/index.html",
+      "/ecology/index.html",
+      "/grass/index.html"
     ]
   }
 ]

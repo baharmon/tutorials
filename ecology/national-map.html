@@ -323,6 +323,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../ecology/census.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ecological Census</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../ecology/interactive-maps.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interactive maps</span></a>
   </div>
@@ -406,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 23, 2026</p>
+      <p class="date-modified">October 12, 2026</p>
     </div>
   </div>
     
@@ -427,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p>Start a GRASS session in a new project. Set the coordinate reference system for the project to Louisiana State Plane South using EPSG code 2801.</p>
-<div id="24852e5b" class="cell" data-execution_count="1">
+<div id="351f3b2f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import modules</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
@@ -460,28 +466,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="set-computational-region" class="level2">
 <h2 class="anchored" data-anchor-id="set-computational-region">Set computational region</h2>
-<div id="59e4a8ef" class="cell" data-execution_count="2">
+<div id="8e17093f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tools.g_region(n<span class="op">=</span><span class="dv">206040</span>, s<span class="op">=</span><span class="dv">205640</span>, e<span class="op">=</span><span class="dv">1023700</span>, w<span class="op">=</span><span class="dv">1022100</span>, res<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="install-extension" class="level2">
 <h2 class="anchored" data-anchor-id="install-extension">Install extension</h2>
-<div id="f3402485" class="cell" data-execution_count="3">
+<div id="cc6d012e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install extension</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tools.g_extension(extension<span class="op">=</span><span class="st">"r.in.usgs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="download-elevation" class="level2">
 <h2 class="anchored" data-anchor-id="download-elevation">Download elevation</h2>
-<div id="a67b875b" class="cell" data-execution_count="4">
+<div id="07d49f6e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download elevation data</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tools.r_in_usgs(product<span class="op">=</span><span class="st">"ned"</span>, ned_dataset<span class="op">=</span><span class="st">"ned19sec"</span>, output_name<span class="op">=</span><span class="st">"ned"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="visualize-elevation" class="level2">
 <h2 class="anchored" data-anchor-id="visualize-elevation">Visualize elevation</h2>
-<div id="5492345c" class="cell" data-execution_count="5">
+<div id="5d6cd754" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region resolution</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tools.g_region(res<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -507,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="export-elevation" class="level2">
 <h2 class="anchored" data-anchor-id="export-elevation">Export elevation</h2>
-<div id="a33a7255" class="cell" data-execution_count="6">
+<div id="fdc3bb53" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Export elevation</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tools.r_out_gdal(<span class="bu">input</span><span class="op">=</span><span class="st">"elevation"</span>, output<span class="op">=</span><span class="st">"elevation.tif"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">"GTiff"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
