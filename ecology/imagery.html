@@ -369,6 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#set-region" id="toc-set-region" class="nav-link" data-scroll-target="#set-region">Set region</a></li>
   <li><a href="#import-imagery" id="toc-import-imagery" class="nav-link" data-scroll-target="#import-imagery">Import imagery</a></li>
+  <li><a href="#false-color" id="toc-false-color" class="nav-link" data-scroll-target="#false-color">False color</a></li>
   </ul>
 </nav>
     </div>
@@ -394,9 +395,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>Download 2021 USDA NAIP 4-Band 8 Bit Imagery for Louisiana from <a href="https://coast.noaa.gov/dataviewer/#/imagery/search">NOAA Digital Coast Data Access Viewer</a>.</p>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<div id="2700fab6-86f7-4747-878b-f37e31017ee1" class="cell" data-execution_count="1">
+<div id="2700fab6-86f7-4747-878b-f37e31017ee1" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import modules</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
@@ -421,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    gj.init(<span class="st">"hilltop"</span>)</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ValueError</span>:</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> suppress(<span class="pp">ValueError</span>):</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        gs.create_project(<span class="st">"hilltop"</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        gs.create_project(<span class="st">"hilltop"</span>, epsg<span class="op">=</span><span class="st">"2801"</span>)</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        gj.init(<span class="st">"hilltop"</span>)</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> Tools(overwrite<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
@@ -435,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="set-region" class="level2">
 <h2 class="anchored" data-anchor-id="set-region">Set region</h2>
-<div id="2e0e74e5-1e8f-43c1-a54b-f62f83186038" class="cell" data-execution_count="5">
+<div id="2e0e74e5-1e8f-43c1-a54b-f62f83186038" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tools.g_region(n<span class="op">=</span><span class="fl">206019.34802663</span>, s<span class="op">=</span><span class="fl">205675.10652713</span>, e<span class="op">=</span><span class="fl">1023034.67463463</span>, w<span class="op">=</span><span class="fl">1022764.8431352</span>, res<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tools.v_in_region(output<span class="op">=</span><span class="st">"region"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -443,24 +445,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="import-imagery" class="level2">
 <h2 class="anchored" data-anchor-id="import-imagery">Import imagery</h2>
-<div id="8363334b-d7e4-4bc2-86cb-7824d905148f" class="cell" data-execution_count="7">
+<div id="8363334b-d7e4-4bc2-86cb-7824d905148f" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set path</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> Path(<span class="st">"m_3009148_nw_15_030_20230503"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> Path.cwd() <span class="op">/</span> <span class="st">"data"</span> <span class="op">/</span> data <span class="op">/</span> data.with_suffix(<span class="st">".tif"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Import imagery</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>tools.r_import(<span class="bu">input</span><span class="op">=</span>data, output<span class="op">=</span><span class="st">"imagery"</span>, extent<span class="op">=</span><span class="st">"region"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># List imagery</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>tools.g_list(<span class="bu">type</span><span class="op">=</span><span class="st">"raster"</span>, pattern<span class="op">=</span><span class="st">"imagery*"</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Composite imagery</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>tools.r_composite(red<span class="op">=</span><span class="st">"imagery.1"</span>, green<span class="op">=</span><span class="st">"imagery.2"</span>, blue<span class="op">=</span><span class="st">"imagery.3"</span>, output<span class="op">=</span><span class="st">"imagery"</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize imagery</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"imagery"</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>m.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> Path.cwd() <span class="op">/</span> <span class="st">"data"</span> <span class="op">/</span> <span class="st">"naip_2021_4BandImagery_Louisiana_J1469548tR0_C0.tif"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import imagery</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>tools.r_import(<span class="bu">input</span><span class="op">=</span>data, output<span class="op">=</span><span class="st">"imagery"</span>, extent<span class="op">=</span><span class="st">"region"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># List imagery</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>tools.g_list(<span class="bu">type</span><span class="op">=</span><span class="st">"raster"</span>, pattern<span class="op">=</span><span class="st">"imagery*"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Composite imagery</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>tools.r_composite(red<span class="op">=</span><span class="st">"imagery.1"</span>, green<span class="op">=</span><span class="st">"imagery.2"</span>, blue<span class="op">=</span><span class="st">"imagery.3"</span>, output<span class="op">=</span><span class="st">"imagery"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize imagery</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"imagery"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>m.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -469,7 +470,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="87ff356b-ab19-40e5-a68a-6c61175313e5" class="cell" data-execution_count="8">
+</section>
+<section id="false-color" class="level2">
+<h2 class="anchored" data-anchor-id="false-color">False color</h2>
+<div id="87ff356b-ab19-40e5-a68a-6c61175313e5" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Composite false color imagery</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tools.r_composite(red<span class="op">=</span><span class="st">"imagery.4"</span>, green<span class="op">=</span><span class="st">"imagery.1"</span>, blue<span class="op">=</span><span class="st">"imagery.2"</span>, output<span class="op">=</span><span class="st">"false_color"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>

@@ -147,7 +147,7 @@
     "href": "ecology/imagery.html",
     "title": "Imagery",
     "section": "",
-    "text": "# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\nfrom contextlib import suppress\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create and initialize GRASS project\ntry:\n    gj.init(\"hilltop\")\nexcept ValueError:\n    with suppress(ValueError):\n        gs.create_project(\"hilltop\")\n        gj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nNAD83(HARN) / Louisiana South",
+    "text": "Download 2021 USDA NAIP 4-Band 8 Bit Imagery for Louisiana from NOAA Digital Coast Data Access Viewer.",
     "crumbs": [
       "Home",
       "Computational Ecology",
@@ -158,8 +158,8 @@
     "objectID": "ecology/imagery.html#setup",
     "href": "ecology/imagery.html#setup",
     "title": "Imagery",
-    "section": "",
-    "text": "# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\nfrom contextlib import suppress\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create and initialize GRASS project\ntry:\n    gj.init(\"hilltop\")\nexcept ValueError:\n    with suppress(ValueError):\n        gs.create_project(\"hilltop\")\n        gj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nNAD83(HARN) / Louisiana South",
+    "section": "Setup",
+    "text": "Setup\n\n# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\nfrom contextlib import suppress\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create and initialize GRASS project\ntry:\n    gj.init(\"hilltop\")\nexcept ValueError:\n    with suppress(ValueError):\n        gs.create_project(\"hilltop\", epsg=\"2801\")\n        gj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nNAD83(HARN) / Louisiana South",
     "crumbs": [
       "Home",
       "Computational Ecology",
@@ -183,7 +183,19 @@
     "href": "ecology/imagery.html#import-imagery",
     "title": "Imagery",
     "section": "Import imagery",
-    "text": "Import imagery\n\n# Set path\ndata = Path(\"m_3009148_nw_15_030_20230503\")\ndata = Path.cwd() / \"data\" / data / data.with_suffix(\".tif\")\n\n# Import imagery\ntools.r_import(input=data, output=\"imagery\", extent=\"region\")\n\n# List imagery\ntools.g_list(type=\"raster\", pattern=\"imagery*\")\n\n# Composite imagery\ntools.r_composite(red=\"imagery.1\", green=\"imagery.2\", blue=\"imagery.3\", output=\"imagery\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"imagery\")\nm.show()\n\n\n\n\n\n\n\n\n\n# Composite false color imagery\ntools.r_composite(red=\"imagery.4\", green=\"imagery.1\", blue=\"imagery.2\", output=\"false_color\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"false_color\")\nm.show()",
+    "text": "Import imagery\n\n# Set path\ndata = Path.cwd() / \"data\" / \"naip_2021_4BandImagery_Louisiana_J1469548tR0_C0.tif\"\n\n# Import imagery\ntools.r_import(input=data, output=\"imagery\", extent=\"region\")\n\n# List imagery\ntools.g_list(type=\"raster\", pattern=\"imagery*\")\n\n# Composite imagery\ntools.r_composite(red=\"imagery.1\", green=\"imagery.2\", blue=\"imagery.3\", output=\"imagery\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"imagery\")\nm.show()",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Imagery"
+    ]
+  },
+  {
+    "objectID": "ecology/imagery.html#false-color",
+    "href": "ecology/imagery.html#false-color",
+    "title": "Imagery",
+    "section": "False color",
+    "text": "False color\n\n# Composite false color imagery\ntools.r_composite(red=\"imagery.4\", green=\"imagery.1\", blue=\"imagery.2\", output=\"false_color\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"false_color\")\nm.show()",
     "crumbs": [
       "Home",
       "Computational Ecology",
@@ -1388,7 +1400,7 @@
     "href": "ecology/census.html#setup",
     "title": "Ecologial Census",
     "section": "Setup",
-    "text": "Setup\n\n# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\nfrom contextlib import suppress\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create and initialize GRASS project\ntry:\n    gj.init(\"hilltop\")\nexcept ValueError:\n    with suppress(ValueError):\n        gs.create_project(\"hilltop\")\n        gj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nNAD83(HARN) / Louisiana South",
+    "text": "Setup\n\n# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\nfrom contextlib import suppress\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create and initialize GRASS project\ntry:\n    gj.init(\"hilltop\")\nexcept ValueError:\n    with suppress(ValueError):\n        gs.create_project(\"hilltop\", epsg=\"2801\")\n        gj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nNAD83(HARN) / Louisiana South",
     "crumbs": [
       "Home",
       "Computational Ecology",
