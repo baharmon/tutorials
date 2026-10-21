@@ -370,6 +370,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#set-region" id="toc-set-region" class="nav-link" data-scroll-target="#set-region">Set region</a></li>
   <li><a href="#import-imagery" id="toc-import-imagery" class="nav-link" data-scroll-target="#import-imagery">Import imagery</a></li>
   <li><a href="#false-color" id="toc-false-color" class="nav-link" data-scroll-target="#false-color">False color</a></li>
+  <li><a href="#normalized-difference-vegetation-index" id="toc-normalized-difference-vegetation-index" class="nav-link" data-scroll-target="#normalized-difference-vegetation-index">Normalized Difference Vegetation Index</a></li>
+  <li><a href="#normalized-difference-water-index" id="toc-normalized-difference-water-index" class="nav-link" data-scroll-target="#normalized-difference-water-index">Normalized Difference Water Index</a></li>
+  <li><a href="#fuzzy-clumping" id="toc-fuzzy-clumping" class="nav-link" data-scroll-target="#fuzzy-clumping">Fuzzy clumping</a></li>
+  <li><a href="#extract-lake" id="toc-extract-lake" class="nav-link" data-scroll-target="#extract-lake">Extract lake</a></li>
+  <li><a href="#vectorize-lake" id="toc-vectorize-lake" class="nav-link" data-scroll-target="#vectorize-lake">Vectorize lake</a></li>
   </ul>
 </nav>
     </div>
@@ -398,7 +403,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Download 2021 USDA NAIP 4-Band 8 Bit Imagery for Louisiana from <a href="https://coast.noaa.gov/dataviewer/#/imagery/search">NOAA Digital Coast Data Access Viewer</a>.</p>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<div id="2700fab6-86f7-4747-878b-f37e31017ee1" class="cell" data-execution_count="9">
+<div id="2700fab6-86f7-4747-878b-f37e31017ee1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import modules</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
@@ -437,7 +442,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="set-region" class="level2">
 <h2 class="anchored" data-anchor-id="set-region">Set region</h2>
-<div id="2e0e74e5-1e8f-43c1-a54b-f62f83186038" class="cell" data-execution_count="10">
+<div id="2e0e74e5-1e8f-43c1-a54b-f62f83186038" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tools.g_region(n<span class="op">=</span><span class="fl">206019.34802663</span>, s<span class="op">=</span><span class="fl">205675.10652713</span>, e<span class="op">=</span><span class="fl">1023034.67463463</span>, w<span class="op">=</span><span class="fl">1022764.8431352</span>, res<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tools.v_in_region(output<span class="op">=</span><span class="st">"region"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -473,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="false-color" class="level2">
 <h2 class="anchored" data-anchor-id="false-color">False color</h2>
-<div id="87ff356b-ab19-40e5-a68a-6c61175313e5" class="cell" data-execution_count="12">
+<div id="87ff356b-ab19-40e5-a68a-6c61175313e5" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Composite false color imagery</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tools.r_composite(red<span class="op">=</span><span class="st">"imagery.4"</span>, green<span class="op">=</span><span class="st">"imagery.1"</span>, blue<span class="op">=</span><span class="st">"imagery.2"</span>, output<span class="op">=</span><span class="st">"false_color"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -485,6 +490,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div>
 <figure class="figure">
 <p><img src="imagery_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="normalized-difference-vegetation-index" class="level2">
+<h2 class="anchored" data-anchor-id="normalized-difference-vegetation-index">Normalized Difference Vegetation Index</h2>
+<p>Normalized Difference Vegetation Index (NDVI)</p>
+<p>NDVI = (NIR - Red) / (NIR + Red)</p>
+<div id="a5c9be17-b127-45fd-8149-0a274daafd48" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Normalized Difference Vegetation Index</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tools.i_vi(output<span class="op">=</span><span class="st">"ndvi"</span>, viname<span class="op">=</span><span class="st">"ndvi"</span>, red<span class="op">=</span><span class="st">"imagery.1"</span>, nir<span class="op">=</span><span class="st">"imagery.4"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize index</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"ndvi"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>m.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="imagery_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="normalized-difference-water-index" class="level2">
+<h2 class="anchored" data-anchor-id="normalized-difference-water-index">Normalized Difference Water Index</h2>
+<p>Normalized Difference Water Index (NDWI)</p>
+<p>NDWI = (green - NIR) / (green + NIR)</p>
+<div id="44886fca-6974-46eb-b92e-c8bfe8906b52" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Normalized Difference Water Index</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tools.i_vi(output<span class="op">=</span><span class="st">"ndwi"</span>, viname<span class="op">=</span><span class="st">"ndwi"</span>, green<span class="op">=</span><span class="st">"imagery.2"</span>, nir<span class="op">=</span><span class="st">"imagery.4"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize index</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"ndwi"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"ndwi"</span>, at<span class="op">=</span>(<span class="dv">50</span>, <span class="dv">95</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>m.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="imagery_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fuzzy-clumping" class="level2">
+<h2 class="anchored" data-anchor-id="fuzzy-clumping">Fuzzy clumping</h2>
+<div id="200396d3-0b18-411b-a9a2-c06566dd1b86" class="cell" data-execution_count="62">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract upper range</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tools.r_mapcalc(expression<span class="op">=</span><span class="st">"filter = if(ndwi &gt; 0.45, ndwi, null())"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fuzzy clumping</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>tools.r_clump(<span class="bu">input</span><span class="op">=</span><span class="st">"filter"</span>, output<span class="op">=</span><span class="st">"clumps"</span>, threshold<span class="op">=</span><span class="fl">0.1</span>, minsize<span class="op">=</span><span class="dv">2000</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort clumps</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>tools.r_report(<span class="bu">map</span><span class="op">=</span><span class="st">"clumps"</span>, units<span class="op">=</span><span class="st">"cells"</span>, sort<span class="op">=</span><span class="st">"des"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">"plain"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize clumps</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"ndwi"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"clumps"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>m.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="imagery_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="extract-lake" class="level2">
+<h2 class="anchored" data-anchor-id="extract-lake">Extract lake</h2>
+<div id="fd64e9b5-6cfe-4665-a0a5-0a784ca7770f" class="cell" data-execution_count="63">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find largest clump</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> tools.r_report(<span class="bu">map</span><span class="op">=</span><span class="st">"clumps"</span>, units<span class="op">=</span><span class="st">"cells"</span>, sort<span class="op">=</span><span class="st">"des"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">"json"</span>, flags<span class="op">=</span><span class="st">"n"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> report[<span class="st">"categories"</span>]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>category <span class="op">=</span> categories[<span class="dv">0</span>][<span class="st">"category"</span>]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(category)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract clump</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>tools.r_mapcalc(expression<span class="op">=</span><span class="ss">f"lake = if(clumps == </span><span class="sc">{</span>category<span class="sc">}</span><span class="ss">, 1, null())"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize imagery</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"ndwi"</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"lake"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>m.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>530</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="imagery_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="vectorize-lake" class="level2">
+<h2 class="anchored" data-anchor-id="vectorize-lake">Vectorize lake</h2>
+<div id="2c55632a-464a-4fe0-a2ff-8dbfb1895de1" class="cell" data-execution_count="64">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorize</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tools.r_to_vect(<span class="bu">input</span><span class="op">=</span><span class="st">"lake"</span>, output<span class="op">=</span><span class="st">"lake"</span>, <span class="bu">type</span><span class="op">=</span><span class="st">"area"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>tools.v_clean(<span class="bu">input</span><span class="op">=</span><span class="st">"lake"</span>, output<span class="op">=</span><span class="st">"cleaned"</span>, <span class="bu">type</span><span class="op">=</span><span class="st">"point,line,area"</span>, tool<span class="op">=</span><span class="st">"rmarea"</span>, thres<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Generalize</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>tools.v_generalize(<span class="bu">input</span><span class="op">=</span><span class="st">"cleaned"</span>, output<span class="op">=</span><span class="st">"lake"</span>, <span class="bu">type</span><span class="op">=</span><span class="st">"area"</span>, method<span class="op">=</span><span class="st">"snakes"</span>, threshold<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="dv">1</span>, beta<span class="op">=</span><span class="dv">1</span> )</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove intermediate map</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>tools.g_remove(<span class="bu">type</span><span class="op">=</span><span class="st">"vector"</span>, name<span class="op">=</span><span class="st">"cleaned"</span>, flags<span class="op">=</span><span class="st">"f"</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize imagery</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"imagery"</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>m.d_vect(<span class="bu">map</span><span class="op">=</span><span class="st">"lake"</span>, color<span class="op">=</span><span class="st">"white"</span>, fill<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>m.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="imagery_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>

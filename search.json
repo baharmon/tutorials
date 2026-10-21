@@ -203,6 +203,66 @@
     ]
   },
   {
+    "objectID": "ecology/imagery.html#normalized-difference-vegetation-index",
+    "href": "ecology/imagery.html#normalized-difference-vegetation-index",
+    "title": "Imagery",
+    "section": "Normalized Difference Vegetation Index",
+    "text": "Normalized Difference Vegetation Index\nNormalized Difference Vegetation Index (NDVI)\nNDVI = (NIR - Red) / (NIR + Red)\n\n# Calculate Normalized Difference Vegetation Index\ntools.i_vi(output=\"ndvi\", viname=\"ndvi\", red=\"imagery.1\", nir=\"imagery.4\")\n\n# Visualize index\nm = gj.Map(width=800)\nm.d_rast(map=\"ndvi\")\nm.show()",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Imagery"
+    ]
+  },
+  {
+    "objectID": "ecology/imagery.html#normalized-difference-water-index",
+    "href": "ecology/imagery.html#normalized-difference-water-index",
+    "title": "Imagery",
+    "section": "Normalized Difference Water Index",
+    "text": "Normalized Difference Water Index\nNormalized Difference Water Index (NDWI)\nNDWI = (green - NIR) / (green + NIR)\n\n# Calculate Normalized Difference Water Index\ntools.i_vi(output=\"ndwi\", viname=\"ndwi\", green=\"imagery.2\", nir=\"imagery.4\")\n\n# Visualize index\nm = gj.Map(width=800)\nm.d_rast(map=\"ndwi\")\nm.d_legend(raster=\"ndwi\", at=(50, 95, 2, 4))\nm.show()",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Imagery"
+    ]
+  },
+  {
+    "objectID": "ecology/imagery.html#fuzzy-clumping",
+    "href": "ecology/imagery.html#fuzzy-clumping",
+    "title": "Imagery",
+    "section": "Fuzzy clumping",
+    "text": "Fuzzy clumping\n\n# Extract upper range\ntools.r_mapcalc(expression=\"filter = if(ndwi &gt; 0.45, ndwi, null())\")\n\n# Fuzzy clumping\ntools.r_clump(input=\"filter\", output=\"clumps\", threshold=0.1, minsize=2000)\n\n# Sort clumps\ntools.r_report(map=\"clumps\", units=\"cells\", sort=\"des\", format=\"plain\")\n\n# Visualize clumps\nm = gj.Map(width=800)\nm.d_rast(map=\"ndwi\")\nm.d_rast(map=\"clumps\")\nm.show()",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Imagery"
+    ]
+  },
+  {
+    "objectID": "ecology/imagery.html#extract-lake",
+    "href": "ecology/imagery.html#extract-lake",
+    "title": "Imagery",
+    "section": "Extract lake",
+    "text": "Extract lake\n\n# Find largest clump\nreport = tools.r_report(map=\"clumps\", units=\"cells\", sort=\"des\", format=\"json\", flags=\"n\")\ncategories = report[\"categories\"]\ncategory = categories[0][\"category\"]\nprint(category)\n\n# Extract clump\ntools.r_mapcalc(expression=f\"lake = if(clumps == {category}, 1, null())\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"ndwi\")\nm.d_rast(map=\"lake\")\nm.show()\n\n530",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Imagery"
+    ]
+  },
+  {
+    "objectID": "ecology/imagery.html#vectorize-lake",
+    "href": "ecology/imagery.html#vectorize-lake",
+    "title": "Imagery",
+    "section": "Vectorize lake",
+    "text": "Vectorize lake\n\n# Vectorize\ntools.r_to_vect(input=\"lake\", output=\"lake\", type=\"area\")\n\n# Clean\ntools.v_clean(input=\"lake\", output=\"cleaned\", type=\"point,line,area\", tool=\"rmarea\", thres=100)\n\n# Generalize\ntools.v_generalize(input=\"cleaned\", output=\"lake\", type=\"area\", method=\"snakes\", threshold=2, alpha=1, beta=1 )\n\n# Remove intermediate map\ntools.g_remove(type=\"vector\", name=\"cleaned\", flags=\"f\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"imagery\")\nm.d_vect(map=\"lake\", color=\"white\", fill=\"white\")\nm.show()",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Imagery"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Tutorials",
