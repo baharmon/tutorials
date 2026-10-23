@@ -1,17 +1,5 @@
 [
   {
-    "listing": "/ecology/index.html",
-    "items": [
-      "/ecology/census.html",
-      "/ecology/imagery.html",
-      "/ecology/cadastre.html",
-      "/ecology/national-map.html",
-      "/ecology/interactive-maps.html",
-      "/ecology/landscape-modeling.html",
-      "/ecology/species-distribution.html"
-    ]
-  },
-  {
     "listing": "/index.html",
     "items": [
       "/design/index.html",
@@ -44,6 +32,20 @@
       "/design/random-walk-01.html",
       "/design/random-walk-02.html",
       "/design/random-walk-03.html"
+    ]
+  },
+  {
+    "listing": "/ecology/index.html",
+    "items": [
+      "/ecology/census.html",
+      "/ecology/imagery.html",
+      "/ecology/cadastre.html",
+      "/ecology/national-map.html",
+      "/ecology/interactive-maps.html",
+      "/ecology/landscape-modeling.html",
+      "/ecology/meadow-lidar.html",
+      "/ecology/lidar.html",
+      "/ecology/species-distribution.html"
     ]
   }
 ]

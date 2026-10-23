@@ -36,230 +36,555 @@
     ]
   },
   {
-    "objectID": "ecology/cadastre.html",
-    "href": "ecology/cadastre.html",
-    "title": "Importing cadastral data",
+    "objectID": "ecology/national-map.html",
+    "href": "ecology/national-map.html",
+    "title": "Importing the National Elevation Dataset",
     "section": "",
-    "text": "Importing cadastral data\nLearn how to import cadastral data, extract a parcel, and set your computational region.",
+    "text": "Data acquisition\nLearn how to import the National Elevation Dataset into GRASS via the National Map Access API.",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing cadastral data"
+      "Importing the National Elevation Dataset"
     ]
   },
   {
-    "objectID": "ecology/cadastre.html#setup",
-    "href": "ecology/cadastre.html#setup",
-    "title": "Importing cadastral data",
+    "objectID": "ecology/national-map.html#setup",
+    "href": "ecology/national-map.html#setup",
+    "title": "Importing the National Elevation Dataset",
     "section": "Setup",
     "text": "Setup\nStart a GRASS session in a new project. Set the coordinate reference system for the project to Louisiana State Plane South using EPSG code 2801.\n\n# Import modules\nimport sys\nimport subprocess\nimport numpy as np\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create GRASS project\ngs.create_project(\"hilltop\", epsg=\"2801\", overwrite=True)\n\n# Initialize GRASS session\ngj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing cadastral data"
+      "Importing the National Elevation Dataset"
     ]
   },
   {
-    "objectID": "ecology/cadastre.html#set-computational-region",
-    "href": "ecology/cadastre.html#set-computational-region",
-    "title": "Importing cadastral data",
+    "objectID": "ecology/national-map.html#set-computational-region",
+    "href": "ecology/national-map.html#set-computational-region",
+    "title": "Importing the National Elevation Dataset",
     "section": "Set computational region",
     "text": "Set computational region\n\n# Set region\ntools.g_region(n=206040, s=205640, e=1023700, w=1022100, res=1)",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing cadastral data"
+      "Importing the National Elevation Dataset"
     ]
   },
   {
-    "objectID": "ecology/cadastre.html#import-parcels",
-    "href": "ecology/cadastre.html#import-parcels",
-    "title": "Importing cadastral data",
-    "section": "Import parcels",
-    "text": "Import parcels\n\n# Import parcels\ntools.v_import(input=\"Tax_Parcel.geojson\", output=\"parcels\", extent=\"region\")",
+    "objectID": "ecology/national-map.html#install-extension",
+    "href": "ecology/national-map.html#install-extension",
+    "title": "Importing the National Elevation Dataset",
+    "section": "Install extension",
+    "text": "Install extension\n\n# Install extension\ntools.g_extension(extension=\"r.in.usgs\")",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing cadastral data"
+      "Importing the National Elevation Dataset"
     ]
   },
   {
-    "objectID": "ecology/cadastre.html#visualize-parcels",
-    "href": "ecology/cadastre.html#visualize-parcels",
-    "title": "Importing cadastral data",
-    "section": "Visualize parcels",
-    "text": "Visualize parcels\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"parcels\", color=\"black\", fill=\"none\", size=10)\nm.show()\n\n\n\n\nParcels",
+    "objectID": "ecology/national-map.html#download-elevation",
+    "href": "ecology/national-map.html#download-elevation",
+    "title": "Importing the National Elevation Dataset",
+    "section": "Download elevation",
+    "text": "Download elevation\n\n# Download elevation data\ntools.r_in_usgs(product=\"ned\", ned_dataset=\"ned19sec\", output_name=\"ned\")",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing cadastral data"
+      "Importing the National Elevation Dataset"
     ]
   },
   {
-    "objectID": "ecology/cadastre.html#extract-parcel",
-    "href": "ecology/cadastre.html#extract-parcel",
-    "title": "Importing cadastral data",
-    "section": "Extract parcel",
-    "text": "Extract parcel\n\n# Extract parcel by ID\ntools.v_extract(input=\"parcels\", output=\"parcel\", where=\"ID=26020\")\n\n\n# Extract parcel by address\ntools.v_extract(input=\"parcels\", output=\"parcel\", where=\"PHYSICAL_ADDRESS='11855 HIGHLAND RD'\")",
+    "objectID": "ecology/national-map.html#visualize-elevation",
+    "href": "ecology/national-map.html#visualize-elevation",
+    "title": "Importing the National Elevation Dataset",
+    "section": "Visualize elevation",
+    "text": "Visualize elevation\n\n# Set region resolution\ntools.g_region(res=1)\n\n# Supersample elevation\ntools.r_resamp_interp(input=\"ned\", output=\"elevation\", method=\"bicubic\")\n\n# Compute contours\ntools.r_contour(input=\"elevation\", output=\"contours\", step=0.3)\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"elevation\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nElevation",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing cadastral data"
+      "Importing the National Elevation Dataset"
     ]
   },
   {
-    "objectID": "ecology/cadastre.html#visualize-parcel",
-    "href": "ecology/cadastre.html#visualize-parcel",
-    "title": "Importing cadastral data",
-    "section": "Visualize parcel",
-    "text": "Visualize parcel\n\n\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"parcels\", color=\"grey\", fill=\"none\", size=1)\nm.d_vect(map=\"parcel\", color=\"black\", fill=\"none\", size=10)\nm.show()\n\n\n\n\nParcel",
+    "objectID": "ecology/national-map.html#export-elevation",
+    "href": "ecology/national-map.html#export-elevation",
+    "title": "Importing the National Elevation Dataset",
+    "section": "Export elevation",
+    "text": "Export elevation\n\n# Export elevation\ntools.r_out_gdal(input=\"elevation\", output=\"elevation.tif\", format=\"GTiff\")\n\n# Export contours\ntools.v_out_ogr(input=\"contours\", output=\"contours.gpkg\", format=\"GPKG\")\n\n# Export contours for computer aided design\ntools.v_out_dxf(input=\"contours\", output=\"contours.dxf\")",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing cadastral data"
+      "Importing the National Elevation Dataset"
     ]
   },
   {
-    "objectID": "ecology/cadastre.html#set-computational-region-1",
-    "href": "ecology/cadastre.html#set-computational-region-1",
-    "title": "Importing cadastral data",
-    "section": "Set computational region",
-    "text": "Set computational region\nSet your computational region to the vector map with your parcel.\n\ntools.g_region(vector=\"parcel\")",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Importing cadastral data"
-    ]
-  },
-  {
-    "objectID": "ecology/index.html",
-    "href": "ecology/index.html",
-    "title": "Computational Ecology",
+    "objectID": "ecology/species-distribution.html",
+    "href": "ecology/species-distribution.html",
+    "title": "Species Distribution",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\n \n\n\nEcologial Census\n\n\n\n\n\n \n\n\n\n\n\n\n \n\n\nImagery\n\n\n\n\n\n \n\n\n\n\n\n\nAug 30, 2026\n\n\nImporting cadastral data\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nAug 30, 2026\n\n\nImporting the National Elevation Dataset\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nAug 30, 2026\n\n\nInteractive maps\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nSep 6, 2026\n\n\nLandscape Modeling\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nSep 22, 2026\n\n\nSpecies Distribution\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Home",
-      "Computational Ecology"
-    ]
-  },
-  {
-    "objectID": "ecology/imagery.html",
-    "href": "ecology/imagery.html",
-    "title": "Imagery",
-    "section": "",
-    "text": "Download 2021 USDA NAIP 4-Band 8 Bit Imagery for Louisiana from NOAA Digital Coast Data Access Viewer.",
+    "text": "Observations of armadillos over time\nLearn how to download, map, and plot observations of species occurrence.",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Imagery"
+      "Species Distribution"
     ]
   },
   {
-    "objectID": "ecology/imagery.html#setup",
-    "href": "ecology/imagery.html#setup",
-    "title": "Imagery",
+    "objectID": "ecology/species-distribution.html#setup",
+    "href": "ecology/species-distribution.html#setup",
+    "title": "Species Distribution",
     "section": "Setup",
-    "text": "Setup\n\n# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\nfrom contextlib import suppress\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create and initialize GRASS project\ntry:\n    gj.init(\"hilltop\")\nexcept ValueError:\n    with suppress(ValueError):\n        gs.create_project(\"hilltop\", epsg=\"2801\")\n        gj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nNAD83(HARN) / Louisiana South",
+    "text": "Setup\n\n# Import libraries\nimport io\nimport sys\nimport subprocess\nfrom pathlib import Path\nimport requests\nfrom zipfile import ZipFile\nimport functools\nimport shutil\nimport pandas as pd\nimport seaborn as sns\nsns.set_theme()\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.jupyter as gj\nimport grass.script as gs\nfrom grass.tools import Tools",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Imagery"
+      "Species Distribution"
     ]
   },
   {
-    "objectID": "ecology/imagery.html#set-region",
-    "href": "ecology/imagery.html#set-region",
-    "title": "Imagery",
+    "objectID": "ecology/species-distribution.html#create-project",
+    "href": "ecology/species-distribution.html#create-project",
+    "title": "Species Distribution",
+    "section": "Create project",
+    "text": "Create project\nStart a GRASS session in a project with the Natural Earth II coordinate system.\n\n# Start GRASS in Natural Earth II project\ngs.create_project(\"natural_earth\", epsg=54078, overwrite=True)\nsession = gj.init(\"natural_earth\")\ntools = Tools()\n\n# Print projection information\ntools.g_proj(format=\"shell\", flags=\"p\").text",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#download-species-data",
+    "href": "ecology/species-distribution.html#download-species-data",
+    "title": "Species Distribution",
+    "section": "Download species data",
+    "text": "Download species data\n\n# Set url\nurl = \"https://api.gbif.org/v1/occurrence/download/request/0010338-260806074905277.zip\"\n\n# Set path\ndirectory = Path.cwd() / \"data\"\ndirectory.mkdir(exist_ok=True)\ndata = directory / Path(url).name\n\n# Download dataset\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\ndata.write_bytes(request.content)\nprint(data)\n\n# Unarchive dataset\nwith ZipFile(data, 'r') as archive:\n    archive.printdir()\n    archive.extractall(path=data.parent)\n\n# Set path\nspecies = data.with_suffix(\".csv\")\nprint(species)\n\n# Delete archive\ndata.unlink()",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#download-landmasses",
+    "href": "ecology/species-distribution.html#download-landmasses",
+    "title": "Species Distribution",
+    "section": "Download landmasses",
+    "text": "Download landmasses\n\n# Set url\nurl = \"https://naciscdn.org/naturalearth/50m/physical/ne_50m_land.zip\"\n\n# Set path\ndirectory = Path.cwd() / \"data\"\ndirectory.mkdir(exist_ok=True)\ndata = directory / Path(url).name\n\n# Download dataset\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\ndata.write_bytes(request.content)\nprint(data)\n\n# Unarchive dataset\nwith ZipFile(data, 'r') as archive:\n    archive.printdir()\n    archive.extractall(path=data.parent)\n\n# Set path\nland = data.with_suffix(\".shp\")\nprint(land)\n\n# Delete archive\ndata.unlink()",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#download-countries",
+    "href": "ecology/species-distribution.html#download-countries",
+    "title": "Species Distribution",
+    "section": "Download countries",
+    "text": "Download countries\n\n# Set url\nurl = \"https://naciscdn.org/naturalearth/50m/cultural/ne_50m_admin_0_countries.zip\"\n\n# Set path\ndirectory = Path.cwd() / \"data\"\ndirectory.mkdir(exist_ok=True)\ndata = directory / Path(url).name\n\n# Download dataset\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\ndata.write_bytes(request.content)\nprint(data)\n\n# Unarchive dataset\nwith ZipFile(data, 'r') as archive:\n    archive.printdir()\n    archive.extractall(path=data.parent)\n\n# Set path\ncountries = data.with_suffix(\".shp\")\nprint(countries)\n\n# Delete archive\ndata.unlink()",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#import-reference-data",
+    "href": "ecology/species-distribution.html#import-reference-data",
+    "title": "Species Distribution",
+    "section": "Import reference data",
+    "text": "Import reference data\n\n# Import land\ntools.v_import(input=land, output=\"land\")\n\n# Import countries\ntools.v_import(input=countries, output=\"countries\")",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#visualize-reference-data",
+    "href": "ecology/species-distribution.html#visualize-reference-data",
+    "title": "Species Distribution",
+    "section": "Visualize reference data",
+    "text": "Visualize reference data\n\n# Display landmasses\nm = gj.Map(width=1600)\nm.d_vect(map=\"land\", color=\"black\", fill=\"black\")\nm.d_grid(size=15, color=\"black\", flags=\"gbt\")\nm.show()\n\n\n\n\nReference map",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#install-extension",
+    "href": "ecology/species-distribution.html#install-extension",
+    "title": "Species Distribution",
+    "section": "Install extension",
+    "text": "Install extension\ng.extension\n\n# Install extension\ntools.g_extension(extension=\"v.in.gbif\")",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#import-species-data",
+    "href": "ecology/species-distribution.html#import-species-data",
+    "title": "Species Distribution",
+    "section": "Import species data",
+    "text": "Import species data\nv.in.gbif\n\n# Import species data\ntools.v_in_gbif(input=species, output=\"armadillos\", dir=species.parent, flags=\"r\")",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#map-species-occurrence",
+    "href": "ecology/species-distribution.html#map-species-occurrence",
+    "title": "Species Distribution",
+    "section": "Map species occurrence",
+    "text": "Map species occurrence\n\n# Display species\nm = gj.Map(width=1600)\nm.d_vect(map=\"land\", color=(211,211,211), fill=(211,211,211))\nm.d_grid(size=15, color=(211,211,211), flags=\"gbt\")\nm.d_vect(map=\"armadillos\", color=\"black\", fill=\"black\", size=6, icon=\"basic/point\")\nm.show()\n\n\n\n\nMap of armadillo observations",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#map-species-occurrence-over-time",
+    "href": "ecology/species-distribution.html#map-species-occurrence-over-time",
+    "title": "Species Distribution",
+    "section": "Map species occurrence over time",
+    "text": "Map species occurrence over time\ndb.columns\n\n# Print table header\ntools.db_columns(table=\"armadillos\", format=\"plain\")\n\nv.extract v.colors g.region v.to.rast\n\n# Filter years\ntools.v_extract(input=\"armadillos\", output=\"year\", where=\"g_year != 0\")\n\n# Set color gradient\ntools.v_colors(map=\"year\", use=\"attr\", column=\"g_year\", color=\"viridis\")\n\n# Rasterize\ntools.g_region(vector=\"land\", res=1000)\ntools.v_to_rast(input=\"year\", output=\"year\", use=\"attr\", attribute_column=\"g_year\")\ntools.v_colors(map=\"year\", color=\"viridis\")\n\n# Display species\nm = gj.Map(width=1600)\nm.d_vect(map=\"land\", color=(211,211,211), fill=(211,211,211))\nm.d_grid(size=15, color=(211,211,211), flags=\"gbt\")\nm.d_vect(map=\"year\", color=\"none\", size=6, icon=\"basic/point\")\nm.d_legend(raster=\"year\", at=(5, 95, 1, 2), font=\"FiraSans-Regular\", fontsize=18, flags=\"sf\")\nm.show()\n\n\n\n\nMap of armadillo observations over time",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#map-species-occurrence-by-country",
+    "href": "ecology/species-distribution.html#map-species-occurrence-by-country",
+    "title": "Species Distribution",
+    "section": "Map species occurrence by country",
+    "text": "Map species occurrence by country\nv.vect.stats v.colors\n\n# Sample points\ntools.v_vect_stats(points=\"armadillos\", areas=\"countries\", count_column=\"count\")\n\n# Set color gradient\ntools.v_colors(map=\"countries\", use=\"attr\", column=\"count\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"land\", color=\"white\", fill=(211,211,211))\nm.d_grid(size=15, color=(211,211,211), flags=\"gbt\")\nm.d_vect(map=\"countries\")\ntools.v_colors(map=\"countries\", flags=\"r\")\nm.d_vect(map=\"countries\", color=\"white\", fill=\"none\")\nm.show()\n\n# Save image\nm.save(\"images/species-distribution-04.webp\")\n\n\n\n\nChoropleth map of armadillo observations by country",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#parse-table",
+    "href": "ecology/species-distribution.html#parse-table",
+    "title": "Species Distribution",
+    "section": "Parse table",
+    "text": "Parse table\ndb.columns v.db.select pandas.DataFrame pandas.DataFrame.rename\n\n# Print table header\ntools.db_columns(table=\"armadillos\", format=\"plain\")\n\n\n# Export table with observations by country and year\ndata = tools.v_db_select(map=\"armadillos\", columns=(\"g_countrycode\", \"g_year\"), where=\"g_year != 0\", format=\"json\")\ndata = data[\"records\"]\n\n# Print table\ndf = pd.DataFrame(data)\ndf = df.rename(columns={\"g_year\": \"Year\", \"g_countrycode\": \"Country\"})\nprint(df)",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#plot-histogram",
+    "href": "ecology/species-distribution.html#plot-histogram",
+    "title": "Species Distribution",
+    "section": "Plot histogram",
+    "text": "Plot histogram\nseaborn.histplot\n\n# Plot count by year\nplot = sns.histplot(df, x=\"Year\", bins=100)\n\n\n\n\nHistogram of observations per year",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#plot-bivariate-histogram",
+    "href": "ecology/species-distribution.html#plot-bivariate-histogram",
+    "title": "Species Distribution",
+    "section": "Plot bivariate histogram",
+    "text": "Plot bivariate histogram\nseaborn.histplot\n\n# Bivariate histogram\nplot = sns.histplot(df, x=\"Year\", y=\"Country\", bins=100, cbar=True)\n\n\n\n\nBivariate histogram of observations per country per year",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#plot-bivariate-and-univariate-histograms",
+    "href": "ecology/species-distribution.html#plot-bivariate-and-univariate-histograms",
+    "title": "Species Distribution",
+    "section": "Plot bivariate and univariate histograms",
+    "text": "Plot bivariate and univariate histograms\nseaborn.jointplot\n\n# Bivariate and univariate histograms\nplot = sns.jointplot(df, x=\"Year\", y=\"Country\", bins=100, kind=\"hist\")\n\n\n\n\nBivariate and univariate histograms",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/species-distribution.html#plot-sorted-histogram",
+    "href": "ecology/species-distribution.html#plot-sorted-histogram",
+    "title": "Species Distribution",
+    "section": "Plot sorted histogram",
+    "text": "Plot sorted histogram\nseaborn.histplot\n\n# Filter\nthreshold = 2\ncounts = df[\"Country\"].value_counts()\ncategories = counts[counts &gt;= threshold].index\ndf = df[df[\"Country\"].isin(categories)]\n\n# Sort\ndf = (df.assign(counts=df.groupby(\"Country\")[\"Country\"].transform(\"count\"))\n        .sort_values(by=\"counts\", ascending=False)\n        .drop(columns=\"counts\"))\n\n# Plot count by country\nplot = sns.histplot(df, x=\"Country\")\n\n\n\n\nSorted histogram of observations per country",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Species Distribution"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html",
+    "href": "ecology/landscape-modeling.html",
+    "title": "Landscape Modeling",
+    "section": "",
+    "text": "Landscape modeling\nLearn how to generate fractal terrain, derive landcover from the terrain, and draw landcover with the raster digitizer.",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#setup",
+    "href": "ecology/landscape-modeling.html#setup",
+    "title": "Landscape Modeling",
+    "section": "Setup",
+    "text": "Setup\nStart a GRASS session in a project with a Cartesian coordinate system.\n\n# Import modules\nimport io\nimport sys\nimport subprocess\nfrom pathlib import Path\nfrom contextlib import suppress\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create and initialize GRASS project\ntry:\n    gj.init(\"cartesian\")\nexcept ValueError:\n    with suppress(ValueError):\n        gs.create_project(\"cartesian\")\n        gj.init(\"cartesian\")\ntools = Tools(overwrite=True)\ntools.g_proj(format=\"plain\", flags=\"p\").text",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#set-computational-region",
+    "href": "ecology/landscape-modeling.html#set-computational-region",
+    "title": "Landscape Modeling",
+    "section": "Set computational region",
+    "text": "Set computational region\ng.region\n\n# Set region\ntools.g_region(n=200, s=0, e=800, w=0, res=1)",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#generate-fractal-terrain",
+    "href": "ecology/landscape-modeling.html#generate-fractal-terrain",
+    "title": "Landscape Modeling",
+    "section": "Generate fractal terrain",
+    "text": "Generate fractal terrain\nr.surf.fractal\n\n# Generate fractal terrain\ntools.r_surf_fractal(output=\"fractal\", dimension=2.25, seed=24)\n\n# Model river valleys\ntools.r_mapcalc(expression=\"terrain = abs(fractal) / 10\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"terrain\")\nm.d_legend(raster=\"terrain\", at=(5, 95, 1, 3))\nm.show()\nm.save(\"images/landscape-01.webp\")\n\n# Print elevation range\ninfo = tools.r_info(map=\"terrain\", flags=\"r\", format=\"json\")\nprint(f\"Mininum elevation: {info[\"min\"]:05.2f}\")\nprint(f\"Maximum elevation: {info[\"max\"]:05.2f}\")\n\n\n\n\nFractal terrain",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#model-rivers",
+    "href": "ecology/landscape-modeling.html#model-rivers",
+    "title": "Landscape Modeling",
+    "section": "Model rivers",
+    "text": "Model rivers\nr.mapcalc r.colors\n\n# Derive river from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &lt;= 2, 11, 31)\")\n\n# Derive wetlands from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 2 && terrain &lt;= 6, 95, landcover)\")\n\n# Derive woody wetlands from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 6 && terrain &lt; 10, 90, landcover)\")\n\n# Set landcover colors\ntools.r_colors(map=\"landcover\", color=\"nlcd\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.show()\nm.save(\"images/landscape-02.webp\")\n\n\n\n\nRiver valleys",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#classify-landforms",
+    "href": "ecology/landscape-modeling.html#classify-landforms",
+    "title": "Landscape Modeling",
+    "section": "Classify landforms",
+    "text": "Classify landforms\nr.grow r.geomorphon\n\n# Classify landforms\ntools.r_grow(input=\"terrain\", output=\"elevation\", radius=25)\ntools.r_geomorphon(elevation=\"elevation\", forms=\"landforms\", search=25, skip=5, flat=1, dist=0)\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landforms\")\nm.show()\nm.save(\"images/landscape-03.webp\")\n\n\n\n\nLandforms",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#model-uplands",
+    "href": "ecology/landscape-modeling.html#model-uplands",
+    "title": "Landscape Modeling",
+    "section": "Model uplands",
+    "text": "Model uplands\nr.mapcalc\n\n# Derive grass from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 15, 71, landcover)\")\n\n# Derive shrubs from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 30, 52, landcover)\")\n\n# Derive shrubs from landforms\ntools.r_mapcalc(expression = \"landcover = if(landcover == 71 & terrain &gt; 25 & landforms &lt; 7, 52, landcover)\")\n\n# Derive deciduous forest from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 35, 41, landcover)\")\n\n# Derive mixed forest from landforms\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 35 && landforms == 6, 43, landcover)\")\n\n# Derive evergreen forest from landforms\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 35 && landforms &lt; 6, 42, landcover)\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.show()\nm.save(\"images/landscape-04.webp\")\n\n\n\n\nUplands",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#model-wetlands",
+    "href": "ecology/landscape-modeling.html#model-wetlands",
+    "title": "Landscape Modeling",
+    "section": "Model wetlands",
+    "text": "Model wetlands\nr.fill_dir r.mapcalc\n\n# Find depressions\ntools.r_fill_dir(input=\"terrain\", output=\"fill\", areas=\"areas\", direction=\"direction\")\n\n# Calculate depth\ntools.r_mapcalc(expression = \"ponds = terrain - fill\")\n\n# Derive ponds from depressions\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 10 && terrain &lt; 30 && ponds &lt; -0.5, 11, landcover)\")\n\n# Derive wetlands from depressions\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 10 && terrain &lt; 30 && ponds &lt; -0.5  && ponds &gt; -1.0, 95, landcover)\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.show()\nm.save(\"images/landscape-05.webp\")\n\n\n\n\nUplands",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#define-landcover-categories",
+    "href": "ecology/landscape-modeling.html#define-landcover-categories",
+    "title": "Landscape Modeling",
+    "section": "Define landcover categories",
+    "text": "Define landcover categories\n\ncategories = \"\"\"\\\n11|Open Water\n12|Perennial Ice/Snow\n21|Developed, Open Space\n22|Developed, Low Intensity\n23|Developed, Medium Intensity\n24|Developed, High Intensity\n31|Barren Land\n41|Deciduous Forest\n42|Evergreen Forest\n43|Mixed Forest\n51|Dwarf Scrub\n52|Shrub/Scrub\n71|Grassland/Herbaceuous\n72|Sedge/Herbaceous\n73|Lichens\n74|Moss\n81|Pasture/Hay\n82|Cultivated Crops\n90|Woody Wetlands\n95|Emergent Herbaceuous Wetlands\n\"\"\"\n\nr.category\n\n# Set landcover categories\ntools.r_category(map=\"landcover\", separator=\"pipe\", rules=io.StringIO(categories))\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.d_legend(raster=\"landcover\", at=(5, 95, 1, 3), use=(11,31,41,42,43,52,71,90,95))\nm.show()\nm.save(\"images/landscape-06.webp\")\n\n\n\n\nUplands",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/landscape-modeling.html#draw-landcover",
+    "href": "ecology/landscape-modeling.html#draw-landcover",
+    "title": "Landscape Modeling",
+    "section": "Draw landcover",
+    "text": "Draw landcover\ng.gui.rdigit\n\n# Generate fractal terrain\n# tools.r_surf_fractal(output=\"fractal\", dimension=2.25, seed=27)\ntools.r_surf_fractal(output=\"fractal\", dimension=2.01, seed=27)\n\n# Model river valleys\ntools.r_mapcalc(expression=\"terrain = abs(fractal) / 10\")\n\n# Derive river from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &lt;= 2, 11, 31)\")\n\n# Derive wetlands from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 2 && terrain &lt;= 6, 95, landcover)\")\n\n# Derive woody wetlands from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 6 && terrain &lt; 10, 90, landcover)\")\n\n# Set landcover colors\ntools.r_colors(map=\"landcover\", color=\"nlcd\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.show()\nm.save(\"images/landscape-07.webp\")\n\n\n\n\nUplands\n\n\ng.gui.rdigit\n\n# Digitize\ntools.g_gui_rdigit(edit=\"landcover\", type=\"CELL\")\n\n# Set landcover categories\ntools.r_category(map=\"landcover\", separator=\"pipe\", rules=io.StringIO(categories))\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.d_legend(raster=\"landcover\", at=(5, 95, 1, 3), use=(11,31,41,42,43,52,71,90,95))\nm.show()\nm.save(\"images/landscape-08.webp\")\n\n\n\n\nUplands",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Landscape Modeling"
+    ]
+  },
+  {
+    "objectID": "ecology/meadow-lidar.html",
+    "href": "ecology/meadow-lidar.html",
+    "title": "Lidar",
+    "section": "",
+    "text": "%conda install gdown",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/meadow-lidar.html#dependencies",
+    "href": "ecology/meadow-lidar.html#dependencies",
+    "title": "Lidar",
+    "section": "",
+    "text": "%conda install gdown",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/meadow-lidar.html#setup",
+    "href": "ecology/meadow-lidar.html#setup",
+    "title": "Lidar",
+    "section": "Setup",
+    "text": "Setup\n\n# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\nfrom contextlib import suppress\nimport gdown\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create and initialize GRASS project\ntry:\n    gj.init(\"hilltop\")\nexcept ValueError:\n    with suppress(ValueError):\n        gs.create_project(\"hilltop\", epsg=\"2801\")\n        gj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nNAD83(HARN) / Louisiana South",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/meadow-lidar.html#download-lidar",
+    "href": "ecology/meadow-lidar.html#download-lidar",
+    "title": "Lidar",
+    "section": "Download lidar",
+    "text": "Download lidar\n\n# Set url\nurl = \"https://drive.google.com/file/d/1_RpKPPOvtgpajvw4MdZNJPZ9dud5kGMo/view?usp=drive_link\"\n\n# Set filename\noutput = \"meadow.laz\"\n\n# Download data\ngdown.download(url, output, quiet=False)\n\nDownloading...\nFrom: https://drive.google.com/uc?id=1_RpKPPOvtgpajvw4MdZNJPZ9dud5kGMo\nTo: /Users/baharmon/academia/computational-ecology/meadow.laz\n100%|███████████████████████████████████████████████████████████████████████████████████| 27.1M/27.1M [00:07&lt;00:00, 3.75MB/s]\n\n\n'meadow.laz'",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/meadow-lidar.html#bin-lidar",
+    "href": "ecology/meadow-lidar.html#bin-lidar",
+    "title": "Lidar",
+    "section": "Bin lidar",
+    "text": "Bin lidar\n\n%%time\n\n# Bin lidar\ntools.r_in_pdal(\n    input=\"meadow.laz\",\n    output=\"surface\",\n    method=\"max\",\n    resolution=0.3,\n    flags=\"o\"\n    )\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"surface\")\nm.d_legend(raster=\"surface\", color=\"white\", at=(50, 95, 2, 4))\nm.show()\n\n\n\n\n\n\n\n\nCPU times: user 6.48 ms, sys: 27.4 ms, total: 33.9 ms\nWall time: 1 s",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/meadow-lidar.html#import-lidar",
+    "href": "ecology/meadow-lidar.html#import-lidar",
+    "title": "Lidar",
+    "section": "Import lidar",
+    "text": "Import lidar\n\n%%time\n\n# Import lidar\ntools.v_in_pdal(\n    input=\"meadow.laz\",\n    output=\"lidar\",\n    flags=\"o\"\n    )\n\n# Print point count\ninfo = tools.v_info(map=\"lidar\", format=\"json\", flags=\"gt\").json\nprint(info[\"points\"])\n\n2000000\nCPU times: user 4 ms, sys: 18.5 ms, total: 22.5 ms\nWall time: 7.67 s",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/meadow-lidar.html#set-region",
+    "href": "ecology/meadow-lidar.html#set-region",
+    "title": "Lidar",
     "section": "Set region",
-    "text": "Set region\n\n# Set region\ntools.g_region(n=206019.34802663, s=205675.10652713, e=1023034.67463463, w=1022764.8431352, res=0.3)\ntools.v_in_region(output=\"region\")",
+    "text": "Set region\n\n# Set region\ntools.g_region(vector=\"lidar\", res=0.3)",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Imagery"
+      "Lidar"
     ]
   },
   {
-    "objectID": "ecology/imagery.html#import-imagery",
-    "href": "ecology/imagery.html#import-imagery",
-    "title": "Imagery",
-    "section": "Import imagery",
-    "text": "Import imagery\n\n# Set path\ndata = Path.cwd() / \"data\" / \"naip_2021_4BandImagery_Louisiana_J1469548tR0_C0.tif\"\n\n# Import imagery\ntools.r_import(input=data, output=\"imagery\", extent=\"region\")\n\n# List imagery\ntools.g_list(type=\"raster\", pattern=\"imagery*\")\n\n# Composite imagery\ntools.r_composite(red=\"imagery.1\", green=\"imagery.2\", blue=\"imagery.3\", output=\"imagery\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"imagery\")\nm.show()",
+    "objectID": "ecology/meadow-lidar.html#decimate-lidar",
+    "href": "ecology/meadow-lidar.html#decimate-lidar",
+    "title": "Lidar",
+    "section": "Decimate lidar",
+    "text": "Decimate lidar\n\n%%time\n\n# Decimate lidar\ntools.v_decimate(\n    input=\"lidar\",\n    output=\"points\",\n    layer=1,\n    zdiff=1.0,\n    flags=\"gz\"\n    )\n\n# Print point count\ninfo = tools.v_info(map=\"points\", format=\"json\", flags=\"gt\").json\nprint(info[\"points\"])\n\n210216\nCPU times: user 1.92 ms, sys: 7.27 ms, total: 9.19 ms\nWall time: 5.07 s",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Imagery"
+      "Lidar"
     ]
   },
   {
-    "objectID": "ecology/imagery.html#false-color",
-    "href": "ecology/imagery.html#false-color",
-    "title": "Imagery",
-    "section": "False color",
-    "text": "False color\n\n# Composite false color imagery\ntools.r_composite(red=\"imagery.4\", green=\"imagery.1\", blue=\"imagery.2\", output=\"false_color\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"false_color\")\nm.show()",
+    "objectID": "ecology/meadow-lidar.html#classify-ground",
+    "href": "ecology/meadow-lidar.html#classify-ground",
+    "title": "Lidar",
+    "section": "Classify ground",
+    "text": "Classify ground\n\n# Install addon\ntools.g_extension(extension=\"v.lidar.mcc\")\n\n\n%%time\n\n# Classify lidar\ntools.v_lidar_mcc(\n    input=\"points\",\n    ground=\"ground\",\n    nonground=\"nonground\",\n    nl=3,\n    t=0.2,\n    j=0.1,\n    f=2,\n    s=15\n    )\n\nCPU times: user 2.5 ms, sys: 9.39 ms, total: 11.9 ms\nWall time: 6.22 s",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Imagery"
+      "Lidar"
     ]
   },
   {
-    "objectID": "ecology/imagery.html#normalized-difference-vegetation-index",
-    "href": "ecology/imagery.html#normalized-difference-vegetation-index",
-    "title": "Imagery",
-    "section": "Normalized Difference Vegetation Index",
-    "text": "Normalized Difference Vegetation Index\nNormalized Difference Vegetation Index (NDVI)\nNDVI = (NIR - Red) / (NIR + Red)\n\n# Calculate Normalized Difference Vegetation Index\ntools.i_vi(output=\"ndvi\", viname=\"ndvi\", red=\"imagery.1\", nir=\"imagery.4\")\n\n# Visualize index\nm = gj.Map(width=800)\nm.d_rast(map=\"ndvi\")\nm.show()",
+    "objectID": "ecology/meadow-lidar.html#interpolate-ground",
+    "href": "ecology/meadow-lidar.html#interpolate-ground",
+    "title": "Lidar",
+    "section": "Interpolate ground",
+    "text": "Interpolate ground\n\n%%time\n\n# Interpolate ground\ntools.v_surf_rst(\n    input=\"ground\",\n    elevation=\"elevation\",\n    nprocs=12\n    )\n\n# Set color gradient\ntools.r_colors(map=\"elevation\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", color=\"white\", at=(50, 95, 2, 4))\nm.show()\n\n\n\n\n\n\n\n\nCPU times: user 9.35 ms, sys: 29 ms, total: 38.4 ms\nWall time: 11.1 s",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Imagery"
+      "Lidar"
     ]
   },
   {
-    "objectID": "ecology/imagery.html#normalized-difference-water-index",
-    "href": "ecology/imagery.html#normalized-difference-water-index",
-    "title": "Imagery",
-    "section": "Normalized Difference Water Index",
-    "text": "Normalized Difference Water Index\nNormalized Difference Water Index (NDWI)\nNDWI = (green - NIR) / (green + NIR)\n\n# Calculate Normalized Difference Water Index\ntools.i_vi(output=\"ndwi\", viname=\"ndwi\", green=\"imagery.2\", nir=\"imagery.4\")\n\n# Visualize index\nm = gj.Map(width=800)\nm.d_rast(map=\"ndwi\")\nm.d_legend(raster=\"ndwi\", at=(50, 95, 2, 4))\nm.show()",
+    "objectID": "ecology/meadow-lidar.html#calculate-canopy-height",
+    "href": "ecology/meadow-lidar.html#calculate-canopy-height",
+    "title": "Lidar",
+    "section": "Calculate canopy height",
+    "text": "Calculate canopy height\n\n# Calculate difference\ntools.r_mapcalc(expression=\"canopy = surface - elevation\")\n\n# Set color gradient\ntools.r_colors(map=\"canopy\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"canopy\")\nm.d_legend(raster=\"canopy\", color=\"white\", at=(50, 95, 2, 4))\nm.show()",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Imagery"
-    ]
-  },
-  {
-    "objectID": "ecology/imagery.html#fuzzy-clumping",
-    "href": "ecology/imagery.html#fuzzy-clumping",
-    "title": "Imagery",
-    "section": "Fuzzy clumping",
-    "text": "Fuzzy clumping\n\n# Extract upper range\ntools.r_mapcalc(expression=\"filter = if(ndwi &gt; 0.45, ndwi, null())\")\n\n# Fuzzy clumping\ntools.r_clump(input=\"filter\", output=\"clumps\", threshold=0.1, minsize=2000)\n\n# Sort clumps\ntools.r_report(map=\"clumps\", units=\"cells\", sort=\"des\", format=\"plain\")\n\n# Visualize clumps\nm = gj.Map(width=800)\nm.d_rast(map=\"ndwi\")\nm.d_rast(map=\"clumps\")\nm.show()",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Imagery"
-    ]
-  },
-  {
-    "objectID": "ecology/imagery.html#extract-lake",
-    "href": "ecology/imagery.html#extract-lake",
-    "title": "Imagery",
-    "section": "Extract lake",
-    "text": "Extract lake\n\n# Find largest clump\nreport = tools.r_report(map=\"clumps\", units=\"cells\", sort=\"des\", format=\"json\", flags=\"n\")\ncategories = report[\"categories\"]\ncategory = categories[0][\"category\"]\nprint(category)\n\n# Extract clump\ntools.r_mapcalc(expression=f\"lake = if(clumps == {category}, 1, null())\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"ndwi\")\nm.d_rast(map=\"lake\")\nm.show()\n\n530",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Imagery"
-    ]
-  },
-  {
-    "objectID": "ecology/imagery.html#vectorize-lake",
-    "href": "ecology/imagery.html#vectorize-lake",
-    "title": "Imagery",
-    "section": "Vectorize lake",
-    "text": "Vectorize lake\n\n# Vectorize\ntools.r_to_vect(input=\"lake\", output=\"lake\", type=\"area\")\n\n# Clean\ntools.v_clean(input=\"lake\", output=\"cleaned\", type=\"point,line,area\", tool=\"rmarea\", thres=100)\n\n# Generalize\ntools.v_generalize(input=\"cleaned\", output=\"lake\", type=\"area\", method=\"snakes\", threshold=2, alpha=1, beta=1 )\n\n# Remove intermediate map\ntools.g_remove(type=\"vector\", name=\"cleaned\", flags=\"f\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"imagery\")\nm.d_vect(map=\"lake\", color=\"white\", fill=\"white\")\nm.show()",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Imagery"
+      "Lidar"
     ]
   },
   {
@@ -1588,423 +1913,398 @@
     ]
   },
   {
-    "objectID": "ecology/landscape-modeling.html",
-    "href": "ecology/landscape-modeling.html",
-    "title": "Landscape Modeling",
+    "objectID": "ecology/imagery.html",
+    "href": "ecology/imagery.html",
+    "title": "Imagery",
     "section": "",
-    "text": "Landscape modeling\nLearn how to generate fractal terrain, derive landcover from the terrain, and draw landcover with the raster digitizer.",
+    "text": "Download 2021 USDA NAIP 4-Band 8 Bit Imagery for Louisiana from NOAA Digital Coast Data Access Viewer.",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Landscape Modeling"
+      "Imagery"
     ]
   },
   {
-    "objectID": "ecology/landscape-modeling.html#setup",
-    "href": "ecology/landscape-modeling.html#setup",
-    "title": "Landscape Modeling",
+    "objectID": "ecology/imagery.html#setup",
+    "href": "ecology/imagery.html#setup",
+    "title": "Imagery",
     "section": "Setup",
-    "text": "Setup\nStart a GRASS session in a project with a Cartesian coordinate system.\n\n# Import modules\nimport io\nimport sys\nimport subprocess\nfrom pathlib import Path\nfrom contextlib import suppress\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create and initialize GRASS project\ntry:\n    gj.init(\"cartesian\")\nexcept ValueError:\n    with suppress(ValueError):\n        gs.create_project(\"cartesian\")\n        gj.init(\"cartesian\")\ntools = Tools(overwrite=True)\ntools.g_proj(format=\"plain\", flags=\"p\").text",
+    "text": "Setup\n\n# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\nfrom contextlib import suppress\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create and initialize GRASS project\ntry:\n    gj.init(\"hilltop\")\nexcept ValueError:\n    with suppress(ValueError):\n        gs.create_project(\"hilltop\", epsg=\"2801\")\n        gj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nNAD83(HARN) / Louisiana South",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Landscape Modeling"
+      "Imagery"
     ]
   },
   {
-    "objectID": "ecology/landscape-modeling.html#set-computational-region",
-    "href": "ecology/landscape-modeling.html#set-computational-region",
-    "title": "Landscape Modeling",
-    "section": "Set computational region",
-    "text": "Set computational region\ng.region\n\n# Set region\ntools.g_region(n=200, s=0, e=800, w=0, res=1)",
+    "objectID": "ecology/imagery.html#set-region",
+    "href": "ecology/imagery.html#set-region",
+    "title": "Imagery",
+    "section": "Set region",
+    "text": "Set region\n\n# Set region\ntools.g_region(n=206019.34802663, s=205675.10652713, e=1023034.67463463, w=1022764.8431352, res=0.3)\ntools.v_in_region(output=\"region\")",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Landscape Modeling"
+      "Imagery"
     ]
   },
   {
-    "objectID": "ecology/landscape-modeling.html#generate-fractal-terrain",
-    "href": "ecology/landscape-modeling.html#generate-fractal-terrain",
-    "title": "Landscape Modeling",
-    "section": "Generate fractal terrain",
-    "text": "Generate fractal terrain\nr.surf.fractal\n\n# Generate fractal terrain\ntools.r_surf_fractal(output=\"fractal\", dimension=2.25, seed=24)\n\n# Model river valleys\ntools.r_mapcalc(expression=\"terrain = abs(fractal) / 10\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"terrain\")\nm.d_legend(raster=\"terrain\", at=(5, 95, 1, 3))\nm.show()\nm.save(\"images/landscape-01.webp\")\n\n# Print elevation range\ninfo = tools.r_info(map=\"terrain\", flags=\"r\", format=\"json\")\nprint(f\"Mininum elevation: {info[\"min\"]:05.2f}\")\nprint(f\"Maximum elevation: {info[\"max\"]:05.2f}\")\n\n\n\n\nFractal terrain",
+    "objectID": "ecology/imagery.html#import-imagery",
+    "href": "ecology/imagery.html#import-imagery",
+    "title": "Imagery",
+    "section": "Import imagery",
+    "text": "Import imagery\n\n# Set path\ndata = Path.cwd() / \"data\" / \"naip_2021_4BandImagery_Louisiana_J1469548tR0_C0.tif\"\n\n# Import imagery\ntools.r_import(input=data, output=\"imagery\", extent=\"region\")\n\n# List imagery\ntools.g_list(type=\"raster\", pattern=\"imagery*\")\n\n# Composite imagery\ntools.r_composite(red=\"imagery.1\", green=\"imagery.2\", blue=\"imagery.3\", output=\"imagery\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"imagery\")\nm.show()",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Landscape Modeling"
+      "Imagery"
     ]
   },
   {
-    "objectID": "ecology/landscape-modeling.html#model-rivers",
-    "href": "ecology/landscape-modeling.html#model-rivers",
-    "title": "Landscape Modeling",
-    "section": "Model rivers",
-    "text": "Model rivers\nr.mapcalc r.colors\n\n# Derive river from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &lt;= 2, 11, 31)\")\n\n# Derive wetlands from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 2 && terrain &lt;= 6, 95, landcover)\")\n\n# Derive woody wetlands from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 6 && terrain &lt; 10, 90, landcover)\")\n\n# Set landcover colors\ntools.r_colors(map=\"landcover\", color=\"nlcd\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.show()\nm.save(\"images/landscape-02.webp\")\n\n\n\n\nRiver valleys",
+    "objectID": "ecology/imagery.html#false-color",
+    "href": "ecology/imagery.html#false-color",
+    "title": "Imagery",
+    "section": "False color",
+    "text": "False color\n\n# Composite false color imagery\ntools.r_composite(red=\"imagery.4\", green=\"imagery.1\", blue=\"imagery.2\", output=\"false_color\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"false_color\")\nm.show()",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Landscape Modeling"
+      "Imagery"
     ]
   },
   {
-    "objectID": "ecology/landscape-modeling.html#classify-landforms",
-    "href": "ecology/landscape-modeling.html#classify-landforms",
-    "title": "Landscape Modeling",
-    "section": "Classify landforms",
-    "text": "Classify landforms\nr.grow r.geomorphon\n\n# Classify landforms\ntools.r_grow(input=\"terrain\", output=\"elevation\", radius=25)\ntools.r_geomorphon(elevation=\"elevation\", forms=\"landforms\", search=25, skip=5, flat=1, dist=0)\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landforms\")\nm.show()\nm.save(\"images/landscape-03.webp\")\n\n\n\n\nLandforms",
+    "objectID": "ecology/imagery.html#normalized-difference-vegetation-index",
+    "href": "ecology/imagery.html#normalized-difference-vegetation-index",
+    "title": "Imagery",
+    "section": "Normalized Difference Vegetation Index",
+    "text": "Normalized Difference Vegetation Index\nNormalized Difference Vegetation Index (NDVI)\nNDVI = (NIR - Red) / (NIR + Red)\n\n# Calculate Normalized Difference Vegetation Index\ntools.i_vi(output=\"ndvi\", viname=\"ndvi\", red=\"imagery.1\", nir=\"imagery.4\")\n\n# Visualize index\nm = gj.Map(width=800)\nm.d_rast(map=\"ndvi\")\nm.show()",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Landscape Modeling"
+      "Imagery"
     ]
   },
   {
-    "objectID": "ecology/landscape-modeling.html#model-uplands",
-    "href": "ecology/landscape-modeling.html#model-uplands",
-    "title": "Landscape Modeling",
-    "section": "Model uplands",
-    "text": "Model uplands\nr.mapcalc\n\n# Derive grass from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 15, 71, landcover)\")\n\n# Derive shrubs from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 30, 52, landcover)\")\n\n# Derive shrubs from landforms\ntools.r_mapcalc(expression = \"landcover = if(landcover == 71 & terrain &gt; 25 & landforms &lt; 7, 52, landcover)\")\n\n# Derive deciduous forest from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 35, 41, landcover)\")\n\n# Derive mixed forest from landforms\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 35 && landforms == 6, 43, landcover)\")\n\n# Derive evergreen forest from landforms\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 35 && landforms &lt; 6, 42, landcover)\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.show()\nm.save(\"images/landscape-04.webp\")\n\n\n\n\nUplands",
+    "objectID": "ecology/imagery.html#normalized-difference-water-index",
+    "href": "ecology/imagery.html#normalized-difference-water-index",
+    "title": "Imagery",
+    "section": "Normalized Difference Water Index",
+    "text": "Normalized Difference Water Index\nNormalized Difference Water Index (NDWI)\nNDWI = (green - NIR) / (green + NIR)\n\n# Calculate Normalized Difference Water Index\ntools.i_vi(output=\"ndwi\", viname=\"ndwi\", green=\"imagery.2\", nir=\"imagery.4\")\n\n# Visualize index\nm = gj.Map(width=800)\nm.d_rast(map=\"ndwi\")\nm.d_legend(raster=\"ndwi\", at=(50, 95, 2, 4))\nm.show()",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Landscape Modeling"
+      "Imagery"
     ]
   },
   {
-    "objectID": "ecology/landscape-modeling.html#model-wetlands",
-    "href": "ecology/landscape-modeling.html#model-wetlands",
-    "title": "Landscape Modeling",
-    "section": "Model wetlands",
-    "text": "Model wetlands\nr.fill_dir r.mapcalc\n\n# Find depressions\ntools.r_fill_dir(input=\"terrain\", output=\"fill\", areas=\"areas\", direction=\"direction\")\n\n# Calculate depth\ntools.r_mapcalc(expression = \"ponds = terrain - fill\")\n\n# Derive ponds from depressions\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 10 && terrain &lt; 30 && ponds &lt; -0.5, 11, landcover)\")\n\n# Derive wetlands from depressions\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 10 && terrain &lt; 30 && ponds &lt; -0.5  && ponds &gt; -1.0, 95, landcover)\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.show()\nm.save(\"images/landscape-05.webp\")\n\n\n\n\nUplands",
+    "objectID": "ecology/imagery.html#fuzzy-clumping",
+    "href": "ecology/imagery.html#fuzzy-clumping",
+    "title": "Imagery",
+    "section": "Fuzzy clumping",
+    "text": "Fuzzy clumping\n\n# Extract upper range\ntools.r_mapcalc(expression=\"filter = if(ndwi &gt; 0.45, ndwi, null())\")\n\n# Fuzzy clumping\ntools.r_clump(input=\"filter\", output=\"clumps\", threshold=0.1, minsize=2000)\n\n# Sort clumps\ntools.r_report(map=\"clumps\", units=\"cells\", sort=\"des\", format=\"plain\")\n\n# Visualize clumps\nm = gj.Map(width=800)\nm.d_rast(map=\"ndwi\")\nm.d_rast(map=\"clumps\")\nm.show()",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Landscape Modeling"
+      "Imagery"
     ]
   },
   {
-    "objectID": "ecology/landscape-modeling.html#define-landcover-categories",
-    "href": "ecology/landscape-modeling.html#define-landcover-categories",
-    "title": "Landscape Modeling",
-    "section": "Define landcover categories",
-    "text": "Define landcover categories\n\ncategories = \"\"\"\\\n11|Open Water\n12|Perennial Ice/Snow\n21|Developed, Open Space\n22|Developed, Low Intensity\n23|Developed, Medium Intensity\n24|Developed, High Intensity\n31|Barren Land\n41|Deciduous Forest\n42|Evergreen Forest\n43|Mixed Forest\n51|Dwarf Scrub\n52|Shrub/Scrub\n71|Grassland/Herbaceuous\n72|Sedge/Herbaceous\n73|Lichens\n74|Moss\n81|Pasture/Hay\n82|Cultivated Crops\n90|Woody Wetlands\n95|Emergent Herbaceuous Wetlands\n\"\"\"\n\nr.category\n\n# Set landcover categories\ntools.r_category(map=\"landcover\", separator=\"pipe\", rules=io.StringIO(categories))\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.d_legend(raster=\"landcover\", at=(5, 95, 1, 3), use=(11,31,41,42,43,52,71,90,95))\nm.show()\nm.save(\"images/landscape-06.webp\")\n\n\n\n\nUplands",
+    "objectID": "ecology/imagery.html#extract-lake",
+    "href": "ecology/imagery.html#extract-lake",
+    "title": "Imagery",
+    "section": "Extract lake",
+    "text": "Extract lake\n\n# Find largest clump\nreport = tools.r_report(map=\"clumps\", units=\"cells\", sort=\"des\", format=\"json\", flags=\"n\")\ncategories = report[\"categories\"]\ncategory = categories[0][\"category\"]\nprint(category)\n\n# Extract clump\ntools.r_mapcalc(expression=f\"lake = if(clumps == {category}, 1, null())\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"ndwi\")\nm.d_rast(map=\"lake\")\nm.show()\n\n530",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Landscape Modeling"
+      "Imagery"
     ]
   },
   {
-    "objectID": "ecology/landscape-modeling.html#draw-landcover",
-    "href": "ecology/landscape-modeling.html#draw-landcover",
-    "title": "Landscape Modeling",
-    "section": "Draw landcover",
-    "text": "Draw landcover\ng.gui.rdigit\n\n# Generate fractal terrain\n# tools.r_surf_fractal(output=\"fractal\", dimension=2.25, seed=27)\ntools.r_surf_fractal(output=\"fractal\", dimension=2.01, seed=27)\n\n# Model river valleys\ntools.r_mapcalc(expression=\"terrain = abs(fractal) / 10\")\n\n# Derive river from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &lt;= 2, 11, 31)\")\n\n# Derive wetlands from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 2 && terrain &lt;= 6, 95, landcover)\")\n\n# Derive woody wetlands from elevation gradient\ntools.r_mapcalc(expression = \"landcover = if(terrain &gt; 6 && terrain &lt; 10, 90, landcover)\")\n\n# Set landcover colors\ntools.r_colors(map=\"landcover\", color=\"nlcd\")\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.show()\nm.save(\"images/landscape-07.webp\")\n\n\n\n\nUplands\n\n\ng.gui.rdigit\n\n# Digitize\ntools.g_gui_rdigit(edit=\"landcover\", type=\"CELL\")\n\n# Set landcover categories\ntools.r_category(map=\"landcover\", separator=\"pipe\", rules=io.StringIO(categories))\n\n# Visualize\nm = gj.Map(width=800)\nm.d_rast(map=\"landcover\")\nm.d_legend(raster=\"landcover\", at=(5, 95, 1, 3), use=(11,31,41,42,43,52,71,90,95))\nm.show()\nm.save(\"images/landscape-08.webp\")\n\n\n\n\nUplands",
+    "objectID": "ecology/imagery.html#vectorize-lake",
+    "href": "ecology/imagery.html#vectorize-lake",
+    "title": "Imagery",
+    "section": "Vectorize lake",
+    "text": "Vectorize lake\n\n# Vectorize\ntools.r_to_vect(input=\"lake\", output=\"lake\", type=\"area\")\n\n# Clean\ntools.v_clean(input=\"lake\", output=\"cleaned\", type=\"point,line,area\", tool=\"rmarea\", thres=100)\n\n# Generalize\ntools.v_generalize(input=\"cleaned\", output=\"lake\", type=\"area\", method=\"snakes\", threshold=2, alpha=1, beta=1 )\n\n# Remove intermediate map\ntools.g_remove(type=\"vector\", name=\"cleaned\", flags=\"f\")\n\n# Visualize imagery\nm = gj.Map(width=800)\nm.d_rast(map=\"imagery\")\nm.d_vect(map=\"lake\", color=\"white\", fill=\"white\")\nm.show()",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Landscape Modeling"
+      "Imagery"
     ]
   },
   {
-    "objectID": "ecology/species-distribution.html",
-    "href": "ecology/species-distribution.html",
-    "title": "Species Distribution",
+    "objectID": "ecology/index.html",
+    "href": "ecology/index.html",
+    "title": "Computational Ecology",
     "section": "",
-    "text": "Observations of armadillos over time\nLearn how to download, map, and plot observations of species occurrence.",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n \n\n\n\nCategories\n\n\n\n\n\n\n\n\n \n\n\nEcologial Census\n\n\n\n\n\n \n\n\n\n\n\n\n \n\n\nImagery\n\n\n\n\n\n \n\n\n\n\n\n\nAug 30, 2026\n\n\nImporting cadastral data\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nAug 30, 2026\n\n\nImporting the National Elevation Dataset\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nAug 30, 2026\n\n\nInteractive maps\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nSep 6, 2026\n\n\nLandscape Modeling\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\n \n\n\nLidar\n\n\n\n\n\n \n\n\n\n\n\n\n \n\n\nLidar\n\n\n\n\n\n \n\n\n\n\n\n\nSep 22, 2026\n\n\nSpecies Distribution\n\n\n\n\n\ntutorial, ecology, grass, python\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
-      "Computational Ecology",
-      "Species Distribution"
+      "Computational Ecology"
     ]
   },
   {
-    "objectID": "ecology/species-distribution.html#setup",
-    "href": "ecology/species-distribution.html#setup",
-    "title": "Species Distribution",
-    "section": "Setup",
-    "text": "Setup\n\n# Import libraries\nimport io\nimport sys\nimport subprocess\nfrom pathlib import Path\nimport requests\nfrom zipfile import ZipFile\nimport functools\nimport shutil\nimport pandas as pd\nimport seaborn as sns\nsns.set_theme()\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.jupyter as gj\nimport grass.script as gs\nfrom grass.tools import Tools",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#create-project",
-    "href": "ecology/species-distribution.html#create-project",
-    "title": "Species Distribution",
-    "section": "Create project",
-    "text": "Create project\nStart a GRASS session in a project with the Natural Earth II coordinate system.\n\n# Start GRASS in Natural Earth II project\ngs.create_project(\"natural_earth\", epsg=54078, overwrite=True)\nsession = gj.init(\"natural_earth\")\ntools = Tools()\n\n# Print projection information\ntools.g_proj(format=\"shell\", flags=\"p\").text",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#download-species-data",
-    "href": "ecology/species-distribution.html#download-species-data",
-    "title": "Species Distribution",
-    "section": "Download species data",
-    "text": "Download species data\n\n# Set url\nurl = \"https://api.gbif.org/v1/occurrence/download/request/0010338-260806074905277.zip\"\n\n# Set path\ndirectory = Path.cwd() / \"data\"\ndirectory.mkdir(exist_ok=True)\ndata = directory / Path(url).name\n\n# Download dataset\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\ndata.write_bytes(request.content)\nprint(data)\n\n# Unarchive dataset\nwith ZipFile(data, 'r') as archive:\n    archive.printdir()\n    archive.extractall(path=data.parent)\n\n# Set path\nspecies = data.with_suffix(\".csv\")\nprint(species)\n\n# Delete archive\ndata.unlink()",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#download-landmasses",
-    "href": "ecology/species-distribution.html#download-landmasses",
-    "title": "Species Distribution",
-    "section": "Download landmasses",
-    "text": "Download landmasses\n\n# Set url\nurl = \"https://naciscdn.org/naturalearth/50m/physical/ne_50m_land.zip\"\n\n# Set path\ndirectory = Path.cwd() / \"data\"\ndirectory.mkdir(exist_ok=True)\ndata = directory / Path(url).name\n\n# Download dataset\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\ndata.write_bytes(request.content)\nprint(data)\n\n# Unarchive dataset\nwith ZipFile(data, 'r') as archive:\n    archive.printdir()\n    archive.extractall(path=data.parent)\n\n# Set path\nland = data.with_suffix(\".shp\")\nprint(land)\n\n# Delete archive\ndata.unlink()",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#download-countries",
-    "href": "ecology/species-distribution.html#download-countries",
-    "title": "Species Distribution",
-    "section": "Download countries",
-    "text": "Download countries\n\n# Set url\nurl = \"https://naciscdn.org/naturalearth/50m/cultural/ne_50m_admin_0_countries.zip\"\n\n# Set path\ndirectory = Path.cwd() / \"data\"\ndirectory.mkdir(exist_ok=True)\ndata = directory / Path(url).name\n\n# Download dataset\nrequest = requests.get(url, allow_redirects=True)\nif request.status_code != 200:\n    raise ConnectionError(f\"Error downloading file: {request.status_code}\")\ndata.write_bytes(request.content)\nprint(data)\n\n# Unarchive dataset\nwith ZipFile(data, 'r') as archive:\n    archive.printdir()\n    archive.extractall(path=data.parent)\n\n# Set path\ncountries = data.with_suffix(\".shp\")\nprint(countries)\n\n# Delete archive\ndata.unlink()",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#import-reference-data",
-    "href": "ecology/species-distribution.html#import-reference-data",
-    "title": "Species Distribution",
-    "section": "Import reference data",
-    "text": "Import reference data\n\n# Import land\ntools.v_import(input=land, output=\"land\")\n\n# Import countries\ntools.v_import(input=countries, output=\"countries\")",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#visualize-reference-data",
-    "href": "ecology/species-distribution.html#visualize-reference-data",
-    "title": "Species Distribution",
-    "section": "Visualize reference data",
-    "text": "Visualize reference data\n\n# Display landmasses\nm = gj.Map(width=1600)\nm.d_vect(map=\"land\", color=\"black\", fill=\"black\")\nm.d_grid(size=15, color=\"black\", flags=\"gbt\")\nm.show()\n\n\n\n\nReference map",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#install-extension",
-    "href": "ecology/species-distribution.html#install-extension",
-    "title": "Species Distribution",
-    "section": "Install extension",
-    "text": "Install extension\ng.extension\n\n# Install extension\ntools.g_extension(extension=\"v.in.gbif\")",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#import-species-data",
-    "href": "ecology/species-distribution.html#import-species-data",
-    "title": "Species Distribution",
-    "section": "Import species data",
-    "text": "Import species data\nv.in.gbif\n\n# Import species data\ntools.v_in_gbif(input=species, output=\"armadillos\", dir=species.parent, flags=\"r\")",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#map-species-occurrence",
-    "href": "ecology/species-distribution.html#map-species-occurrence",
-    "title": "Species Distribution",
-    "section": "Map species occurrence",
-    "text": "Map species occurrence\n\n# Display species\nm = gj.Map(width=1600)\nm.d_vect(map=\"land\", color=(211,211,211), fill=(211,211,211))\nm.d_grid(size=15, color=(211,211,211), flags=\"gbt\")\nm.d_vect(map=\"armadillos\", color=\"black\", fill=\"black\", size=6, icon=\"basic/point\")\nm.show()\n\n\n\n\nMap of armadillo observations",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#map-species-occurrence-over-time",
-    "href": "ecology/species-distribution.html#map-species-occurrence-over-time",
-    "title": "Species Distribution",
-    "section": "Map species occurrence over time",
-    "text": "Map species occurrence over time\ndb.columns\n\n# Print table header\ntools.db_columns(table=\"armadillos\", format=\"plain\")\n\nv.extract v.colors g.region v.to.rast\n\n# Filter years\ntools.v_extract(input=\"armadillos\", output=\"year\", where=\"g_year != 0\")\n\n# Set color gradient\ntools.v_colors(map=\"year\", use=\"attr\", column=\"g_year\", color=\"viridis\")\n\n# Rasterize\ntools.g_region(vector=\"land\", res=1000)\ntools.v_to_rast(input=\"year\", output=\"year\", use=\"attr\", attribute_column=\"g_year\")\ntools.v_colors(map=\"year\", color=\"viridis\")\n\n# Display species\nm = gj.Map(width=1600)\nm.d_vect(map=\"land\", color=(211,211,211), fill=(211,211,211))\nm.d_grid(size=15, color=(211,211,211), flags=\"gbt\")\nm.d_vect(map=\"year\", color=\"none\", size=6, icon=\"basic/point\")\nm.d_legend(raster=\"year\", at=(5, 95, 1, 2), font=\"FiraSans-Regular\", fontsize=18, flags=\"sf\")\nm.show()\n\n\n\n\nMap of armadillo observations over time",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#map-species-occurrence-by-country",
-    "href": "ecology/species-distribution.html#map-species-occurrence-by-country",
-    "title": "Species Distribution",
-    "section": "Map species occurrence by country",
-    "text": "Map species occurrence by country\nv.vect.stats v.colors\n\n# Sample points\ntools.v_vect_stats(points=\"armadillos\", areas=\"countries\", count_column=\"count\")\n\n# Set color gradient\ntools.v_colors(map=\"countries\", use=\"attr\", column=\"count\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"land\", color=\"white\", fill=(211,211,211))\nm.d_grid(size=15, color=(211,211,211), flags=\"gbt\")\nm.d_vect(map=\"countries\")\ntools.v_colors(map=\"countries\", flags=\"r\")\nm.d_vect(map=\"countries\", color=\"white\", fill=\"none\")\nm.show()\n\n# Save image\nm.save(\"images/species-distribution-04.webp\")\n\n\n\n\nChoropleth map of armadillo observations by country",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#parse-table",
-    "href": "ecology/species-distribution.html#parse-table",
-    "title": "Species Distribution",
-    "section": "Parse table",
-    "text": "Parse table\ndb.columns v.db.select pandas.DataFrame pandas.DataFrame.rename\n\n# Print table header\ntools.db_columns(table=\"armadillos\", format=\"plain\")\n\n\n# Export table with observations by country and year\ndata = tools.v_db_select(map=\"armadillos\", columns=(\"g_countrycode\", \"g_year\"), where=\"g_year != 0\", format=\"json\")\ndata = data[\"records\"]\n\n# Print table\ndf = pd.DataFrame(data)\ndf = df.rename(columns={\"g_year\": \"Year\", \"g_countrycode\": \"Country\"})\nprint(df)",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#plot-histogram",
-    "href": "ecology/species-distribution.html#plot-histogram",
-    "title": "Species Distribution",
-    "section": "Plot histogram",
-    "text": "Plot histogram\nseaborn.histplot\n\n# Plot count by year\nplot = sns.histplot(df, x=\"Year\", bins=100)\n\n\n\n\nHistogram of observations per year",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#plot-bivariate-histogram",
-    "href": "ecology/species-distribution.html#plot-bivariate-histogram",
-    "title": "Species Distribution",
-    "section": "Plot bivariate histogram",
-    "text": "Plot bivariate histogram\nseaborn.histplot\n\n# Bivariate histogram\nplot = sns.histplot(df, x=\"Year\", y=\"Country\", bins=100, cbar=True)\n\n\n\n\nBivariate histogram of observations per country per year",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#plot-bivariate-and-univariate-histograms",
-    "href": "ecology/species-distribution.html#plot-bivariate-and-univariate-histograms",
-    "title": "Species Distribution",
-    "section": "Plot bivariate and univariate histograms",
-    "text": "Plot bivariate and univariate histograms\nseaborn.jointplot\n\n# Bivariate and univariate histograms\nplot = sns.jointplot(df, x=\"Year\", y=\"Country\", bins=100, kind=\"hist\")\n\n\n\n\nBivariate and univariate histograms",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/species-distribution.html#plot-sorted-histogram",
-    "href": "ecology/species-distribution.html#plot-sorted-histogram",
-    "title": "Species Distribution",
-    "section": "Plot sorted histogram",
-    "text": "Plot sorted histogram\nseaborn.histplot\n\n# Filter\nthreshold = 2\ncounts = df[\"Country\"].value_counts()\ncategories = counts[counts &gt;= threshold].index\ndf = df[df[\"Country\"].isin(categories)]\n\n# Sort\ndf = (df.assign(counts=df.groupby(\"Country\")[\"Country\"].transform(\"count\"))\n        .sort_values(by=\"counts\", ascending=False)\n        .drop(columns=\"counts\"))\n\n# Plot count by country\nplot = sns.histplot(df, x=\"Country\")\n\n\n\n\nSorted histogram of observations per country",
-    "crumbs": [
-      "Home",
-      "Computational Ecology",
-      "Species Distribution"
-    ]
-  },
-  {
-    "objectID": "ecology/national-map.html",
-    "href": "ecology/national-map.html",
-    "title": "Importing the National Elevation Dataset",
+    "objectID": "ecology/cadastre.html",
+    "href": "ecology/cadastre.html",
+    "title": "Importing cadastral data",
     "section": "",
-    "text": "Data acquisition\nLearn how to import the National Elevation Dataset into GRASS via the National Map Access API.",
+    "text": "Importing cadastral data\nLearn how to import cadastral data, extract a parcel, and set your computational region.",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing the National Elevation Dataset"
+      "Importing cadastral data"
     ]
   },
   {
-    "objectID": "ecology/national-map.html#setup",
-    "href": "ecology/national-map.html#setup",
-    "title": "Importing the National Elevation Dataset",
+    "objectID": "ecology/cadastre.html#setup",
+    "href": "ecology/cadastre.html#setup",
+    "title": "Importing cadastral data",
     "section": "Setup",
     "text": "Setup\nStart a GRASS session in a new project. Set the coordinate reference system for the project to Louisiana State Plane South using EPSG code 2801.\n\n# Import modules\nimport sys\nimport subprocess\nimport numpy as np\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create GRASS project\ngs.create_project(\"hilltop\", epsg=\"2801\", overwrite=True)\n\n# Initialize GRASS session\ngj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing the National Elevation Dataset"
+      "Importing cadastral data"
     ]
   },
   {
-    "objectID": "ecology/national-map.html#set-computational-region",
-    "href": "ecology/national-map.html#set-computational-region",
-    "title": "Importing the National Elevation Dataset",
+    "objectID": "ecology/cadastre.html#set-computational-region",
+    "href": "ecology/cadastre.html#set-computational-region",
+    "title": "Importing cadastral data",
     "section": "Set computational region",
     "text": "Set computational region\n\n# Set region\ntools.g_region(n=206040, s=205640, e=1023700, w=1022100, res=1)",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing the National Elevation Dataset"
+      "Importing cadastral data"
     ]
   },
   {
-    "objectID": "ecology/national-map.html#install-extension",
-    "href": "ecology/national-map.html#install-extension",
-    "title": "Importing the National Elevation Dataset",
-    "section": "Install extension",
-    "text": "Install extension\n\n# Install extension\ntools.g_extension(extension=\"r.in.usgs\")",
+    "objectID": "ecology/cadastre.html#import-parcels",
+    "href": "ecology/cadastre.html#import-parcels",
+    "title": "Importing cadastral data",
+    "section": "Import parcels",
+    "text": "Import parcels\n\n# Import parcels\ntools.v_import(input=\"Tax_Parcel.geojson\", output=\"parcels\", extent=\"region\")",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing the National Elevation Dataset"
+      "Importing cadastral data"
     ]
   },
   {
-    "objectID": "ecology/national-map.html#download-elevation",
-    "href": "ecology/national-map.html#download-elevation",
-    "title": "Importing the National Elevation Dataset",
-    "section": "Download elevation",
-    "text": "Download elevation\n\n# Download elevation data\ntools.r_in_usgs(product=\"ned\", ned_dataset=\"ned19sec\", output_name=\"ned\")",
+    "objectID": "ecology/cadastre.html#visualize-parcels",
+    "href": "ecology/cadastre.html#visualize-parcels",
+    "title": "Importing cadastral data",
+    "section": "Visualize parcels",
+    "text": "Visualize parcels\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"parcels\", color=\"black\", fill=\"none\", size=10)\nm.show()\n\n\n\n\nParcels",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing the National Elevation Dataset"
+      "Importing cadastral data"
     ]
   },
   {
-    "objectID": "ecology/national-map.html#visualize-elevation",
-    "href": "ecology/national-map.html#visualize-elevation",
-    "title": "Importing the National Elevation Dataset",
-    "section": "Visualize elevation",
-    "text": "Visualize elevation\n\n# Set region resolution\ntools.g_region(res=1)\n\n# Supersample elevation\ntools.r_resamp_interp(input=\"ned\", output=\"elevation\", method=\"bicubic\")\n\n# Compute contours\ntools.r_contour(input=\"elevation\", output=\"contours\", step=0.3)\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"elevation\")\nm.d_vect(map=\"contours\", color=\"white\")\nm.d_legend(raster=\"elevation\", at=(5, 95, 1, 3))\nm.show()\n\n\n\n\nElevation",
+    "objectID": "ecology/cadastre.html#extract-parcel",
+    "href": "ecology/cadastre.html#extract-parcel",
+    "title": "Importing cadastral data",
+    "section": "Extract parcel",
+    "text": "Extract parcel\n\n# Extract parcel by ID\ntools.v_extract(input=\"parcels\", output=\"parcel\", where=\"ID=26020\")\n\n\n# Extract parcel by address\ntools.v_extract(input=\"parcels\", output=\"parcel\", where=\"PHYSICAL_ADDRESS='11855 HIGHLAND RD'\")",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing the National Elevation Dataset"
+      "Importing cadastral data"
     ]
   },
   {
-    "objectID": "ecology/national-map.html#export-elevation",
-    "href": "ecology/national-map.html#export-elevation",
-    "title": "Importing the National Elevation Dataset",
-    "section": "Export elevation",
-    "text": "Export elevation\n\n# Export elevation\ntools.r_out_gdal(input=\"elevation\", output=\"elevation.tif\", format=\"GTiff\")\n\n# Export contours\ntools.v_out_ogr(input=\"contours\", output=\"contours.gpkg\", format=\"GPKG\")\n\n# Export contours for computer aided design\ntools.v_out_dxf(input=\"contours\", output=\"contours.dxf\")",
+    "objectID": "ecology/cadastre.html#visualize-parcel",
+    "href": "ecology/cadastre.html#visualize-parcel",
+    "title": "Importing cadastral data",
+    "section": "Visualize parcel",
+    "text": "Visualize parcel\n\n\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_vect(map=\"parcels\", color=\"grey\", fill=\"none\", size=1)\nm.d_vect(map=\"parcel\", color=\"black\", fill=\"none\", size=10)\nm.show()\n\n\n\n\nParcel",
     "crumbs": [
       "Home",
       "Computational Ecology",
-      "Importing the National Elevation Dataset"
+      "Importing cadastral data"
+    ]
+  },
+  {
+    "objectID": "ecology/cadastre.html#set-computational-region-1",
+    "href": "ecology/cadastre.html#set-computational-region-1",
+    "title": "Importing cadastral data",
+    "section": "Set computational region",
+    "text": "Set computational region\nSet your computational region to the vector map with your parcel.\n\ntools.g_region(vector=\"parcel\")",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Importing cadastral data"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html",
+    "href": "ecology/lidar.html",
+    "title": "Lidar",
+    "section": "",
+    "text": "%conda install gdown",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html#dependencies",
+    "href": "ecology/lidar.html#dependencies",
+    "title": "Lidar",
+    "section": "",
+    "text": "%conda install gdown",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html#setup",
+    "href": "ecology/lidar.html#setup",
+    "title": "Lidar",
+    "section": "Setup",
+    "text": "Setup\n\n# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\nfrom contextlib import suppress\nimport gdown\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create and initialize GRASS project\ntry:\n    gj.init(\"hilltop\")\nexcept ValueError:\n    with suppress(ValueError):\n        gs.create_project(\"hilltop\", epsg=\"2801\")\n        gj.init(\"hilltop\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nNAD83(HARN) / Louisiana South",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html#download-parcel",
+    "href": "ecology/lidar.html#download-parcel",
+    "title": "Lidar",
+    "section": "Download parcel",
+    "text": "Download parcel\n\n# Set url\nurl = \"https://drive.google.com/file/d/1Okkjea42jx4omRXGFFujWadvOjQnDtQO/view?usp=drive_link\"\n\n# Set filename\noutput = \"parcel.gpkg\"\n\n# Download data\ngdown.download(url, output, quiet=False)\n\n# Import parcel\ntools.v_import(input=\"parcel.gpkg\", output=\"parcel\")\n\nDownloading...\nFrom: https://drive.google.com/uc?id=1Okkjea42jx4omRXGFFujWadvOjQnDtQO\nTo: /Users/baharmon/academia/computational-ecology/parcel.gpkg\n100%|███████████████████████████████████████████████████████████████████████████████████| 98.3k/98.3k [00:00&lt;00:00, 41.7MB/s]",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html#download-lidar",
+    "href": "ecology/lidar.html#download-lidar",
+    "title": "Lidar",
+    "section": "Download lidar",
+    "text": "Download lidar\n\n# Set url\nurl = \"https://drive.google.com/file/d/1FQPGd3MNjqB3itYwUBCZqqQjoN2mIz19/view?usp=drive_link\"\n\n# Set filename\noutput = \"hilltop.laz\"\n\n# Download data\ngdown.download(url, output, quiet=False)\n\nDownloading...\nFrom (original): https://drive.google.com/uc?id=1FQPGd3MNjqB3itYwUBCZqqQjoN2mIz19\nFrom (redirected): https://drive.google.com/uc?id=1FQPGd3MNjqB3itYwUBCZqqQjoN2mIz19&confirm=t&uuid=09f3a12f-b061-4e95-8aca-e6d944399d84\nTo: /Users/baharmon/academia/computational-ecology/hilltop.laz\n100%|█████████████████████████████████████████████████████████████████████████████████████| 203M/203M [01:03&lt;00:00, 3.20MB/s]\n\n\n'hilltop.laz'",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html#set-region",
+    "href": "ecology/lidar.html#set-region",
+    "title": "Lidar",
+    "section": "Set region",
+    "text": "Set region\n\n# Set region\ntools.g_region(vector=\"parcel\", res=0.3)",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html#bin-lidar",
+    "href": "ecology/lidar.html#bin-lidar",
+    "title": "Lidar",
+    "section": "Bin lidar",
+    "text": "Bin lidar\n\n%%time\n\n# Bin lidar\ntools.r_in_pdal(\n    input=\"hilltop.laz\",\n    output=\"surface\",\n    method=\"max\",\n    resolution=0.3,\n    flags=\"oe\"\n    )\n\n# Set color gradient\ntools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"surface\")\nm.d_legend(raster=\"surface\", color=\"white\", at=(75, 95, 2, 4))\nm.show()\n\n\n\n\n\n\n\n\nCPU times: user 13 ms, sys: 385 ms, total: 398 ms\nWall time: 5.68 s",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html#set-region-1",
+    "href": "ecology/lidar.html#set-region-1",
+    "title": "Lidar",
+    "section": "Set region",
+    "text": "Set region\n\n# Set region\ntools.g_region(vector=\"parcel\", res=0.3)",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html#process-surface",
+    "href": "ecology/lidar.html#process-surface",
+    "title": "Lidar",
+    "section": "Process surface",
+    "text": "Process surface\n\n%%time\n\n# Set mask\nwith gs.MaskManager():\n\n    # Set mask\n    tools.r_mask(vector=\"parcel\")\n\n    # Clip\n    tools.r_mapcalc(expression=\"clip = surface\")\n    \n    # Fill nulls\n    tools.r_fillnulls(input=\"clip\", output=\"surface\", method=\"rst\", tension=40)\n\n    # Remove temporary map\n    tools.g_remove(type=\"raster\", name=\"clip\", flags=\"f\")\n\n    # Set color gradient\n    tools.r_colors(map=\"surface\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"surface\")\nm.d_legend(raster=\"surface\", color=\"white\", at=(75, 95, 2, 4))\nm.show()\n\n\n\n\n\n\n\n\nCPU times: user 16.1 ms, sys: 593 ms, total: 610 ms\nWall time: 58.2 s",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html#import-lidar",
+    "href": "ecology/lidar.html#import-lidar",
+    "title": "Lidar",
+    "section": "Import lidar",
+    "text": "Import lidar\n\n%%time\n\n# Import lidar\ntools.v_in_pdal(\n    input=\"hilltop.laz\",\n    output=\"lidar\",\n    flags=\"ro\"\n    )\n\n# Print point count\ninfo = tools.v_info(map=\"lidar\", format=\"json\", flags=\"gt\").json\nprint(info[\"points\"])\n\n15130452\nCPU times: user 5.17 ms, sys: 141 ms, total: 146 ms\nWall time: 58.8 s",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html#decimate-lidar",
+    "href": "ecology/lidar.html#decimate-lidar",
+    "title": "Lidar",
+    "section": "Decimate lidar",
+    "text": "Decimate lidar\n\n%%time\n\n# Set region\ntools.g_region(vector=\"lidar\", res=0.3)\n\n# Decimate lidar\ntools.v_decimate(\n    input=\"lidar\",\n    output=\"points\",\n    layer=1,\n    zdiff=1.0,\n    flags=\"gz\"\n    )\n\n# Print point count\ninfo = tools.v_info(map=\"points\", format=\"json\", flags=\"gt\").json\nprint(info[\"points\"])\n\n1813159\nCPU times: user 7.98 ms, sys: 359 ms, total: 367 ms\nWall time: 1min 30s",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html#classify-ground",
+    "href": "ecology/lidar.html#classify-ground",
+    "title": "Lidar",
+    "section": "Classify ground",
+    "text": "Classify ground\n\n# Install addon\ntools.g_extension(extension=\"v.lidar.mcc\")\n\n\n%%time\n\n# Classify lidar\ntools.v_lidar_mcc(\n    input=\"points\",\n    ground=\"ground\",\n    nonground=\"nonground\",\n    nl=3,\n    t=0.2,\n    j=0.1,\n    f=2,\n    s=15\n    )\n\nCPU times: user 4.75 ms, sys: 72.6 ms, total: 77.3 ms\nWall time: 1min 27s",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html#interpolate-ground",
+    "href": "ecology/lidar.html#interpolate-ground",
+    "title": "Lidar",
+    "section": "Interpolate ground",
+    "text": "Interpolate ground\n\n%%time\n\n# Interpolate ground\ntools.v_surf_rst(\n    input=\"ground\",\n    elevation=\"interpolation\",\n    nprocs=12\n    )\n\n# Clip ground\nwith gs.MaskManager():\n\n    # Set mask\n    tools.r_mask(vector=\"parcel\")   \n\n    # Clip to region\n    tools.r_mapcalc(expression=\"elevation = interpolation\")\n    \n\n# Set color gradient\ntools.r_colors(map=\"elevation\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"elevation\")\nm.d_legend(raster=\"elevation\", color=\"white\", at=(75, 95, 2, 4))\nm.show()\n\n\n\n\n\n\n\n\nCPU times: user 20.2 ms, sys: 665 ms, total: 685 ms\nWall time: 2min 3s",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
+    ]
+  },
+  {
+    "objectID": "ecology/lidar.html#calculate-canopy-height",
+    "href": "ecology/lidar.html#calculate-canopy-height",
+    "title": "Lidar",
+    "section": "Calculate canopy height",
+    "text": "Calculate canopy height\n\n# Calculate difference\ntools.r_mapcalc(expression=\"canopy = surface - elevation\")\n\n# Set color gradient\ntools.r_colors(map=\"canopy\", color=\"viridis\")\n\n# Visualize\nm = gj.Map(width=1600)\nm.d_rast(map=\"canopy\")\nm.d_legend(raster=\"canopy\", color=\"white\", at=(75, 95, 2, 4))\nm.show()",
+    "crumbs": [
+      "Home",
+      "Computational Ecology",
+      "Lidar"
     ]
   }
 ]
