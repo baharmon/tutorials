@@ -434,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<div id="e4d5dd58-9c60-4a85-b464-f829d9666d0c" class="cell" data-execution_count="1">
+<div id="e4d5dd58-9c60-4a85-b464-f829d9666d0c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import modules</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
@@ -467,7 +467,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="region" class="level2">
 <h2 class="anchored" data-anchor-id="region">Region</h2>
-<div id="1b28355b-dd24-4e7e-a8cb-5d17dc2cd268" class="cell" data-execution_count="2">
+<div id="1b28355b-dd24-4e7e-a8cb-5d17dc2cd268" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tools.g_region(vector<span class="op">=</span><span class="st">"parcel"</span>, res<span class="op">=</span><span class="fl">0.3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -479,26 +479,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install extension</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tools.g_extension(extension<span class="op">=</span><span class="st">"r.diversity"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="26797db2-4c84-4bee-9825-548dcd298c01" class="cell" data-scrolled="true" data-execution_count="5">
+<div id="26797db2-4c84-4bee-9825-548dcd298c01" class="cell" data-scrolled="true">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate diversity indices</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tools.r_diversity(<span class="bu">input</span><span class="op">=</span><span class="st">"landcover"</span>, prefix<span class="op">=</span><span class="st">"diversity"</span>, method<span class="op">=</span><span class="st">"shannon"</span>, size<span class="op">=</span><span class="st">"3"</span>, flags<span class="op">=</span><span class="st">"t"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># List diversity indices</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>tools.g_list(<span class="bu">type</span><span class="op">=</span><span class="st">"raster"</span>, pattern<span class="op">=</span><span class="st">"diversity*"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">"plain"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>ToolResult(returncode=0, stdout='----------------------------------------------
-raster files available in mapset &lt;PERMANENT&gt;:
-diversity_shannon_size_3
-
-', stderr='')</code></pre>
 </div>
-</div>
-<div id="5a222b60-3a3f-40e8-a663-8cfc8fd3ab6d" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize diversity indices</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"diversity_shannon_size_3"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"diversity_shannon_size_3"</span>, color<span class="op">=</span><span class="st">"white"</span>, at<span class="op">=</span>(<span class="dv">75</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>m.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="5a222b60-3a3f-40e8-a663-8cfc8fd3ab6d" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize diversity indices</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"diversity_shannon_size_3"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"diversity_shannon_size_3"</span>, color<span class="op">=</span><span class="st">"white"</span>, at<span class="op">=</span>(<span class="dv">75</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>m.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -512,20 +505,20 @@ diversity_shannon_size_3
 <h2 class="anchored" data-anchor-id="landscape-indices">Landscape indices</h2>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/r.li.html">r.li</a></p>
 <div id="5dc535e8-d354-4213-affa-7f37f860cb06" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tools.g_gui_rlisetup()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tools.g_gui_rlisetup()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="74c9b6f4-2aa5-47b0-9080-2f9e2b727f3e" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate patch density</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tools.r_li_patchdensity(<span class="bu">input</span><span class="op">=</span><span class="st">"landcover"</span>, config<span class="op">=</span><span class="st">"conf_diversity_3"</span>, output<span class="op">=</span><span class="st">"patch_density"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Trim border</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>tools.r_grow(<span class="bu">input</span><span class="op">=</span><span class="st">"patch_density"</span>, output<span class="op">=</span><span class="st">"patch_density"</span>, radius<span class="op">=-</span><span class="dv">3</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize patch density</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"patch_density"</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"patch_density"</span>, color<span class="op">=</span><span class="st">"white"</span>, at<span class="op">=</span>(<span class="dv">75</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>m.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="74c9b6f4-2aa5-47b0-9080-2f9e2b727f3e" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate patch density</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tools.r_li_patchdensity(<span class="bu">input</span><span class="op">=</span><span class="st">"landcover"</span>, config<span class="op">=</span><span class="st">"conf_diversity_3"</span>, output<span class="op">=</span><span class="st">"patch_density"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Trim border</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>tools.r_grow(<span class="bu">input</span><span class="op">=</span><span class="st">"patch_density"</span>, output<span class="op">=</span><span class="st">"patch_density"</span>, radius<span class="op">=-</span><span class="dv">3</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize patch density</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"patch_density"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"patch_density"</span>, color<span class="op">=</span><span class="st">"white"</span>, at<span class="op">=</span>(<span class="dv">75</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>m.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -539,7 +532,62 @@ diversity_shannon_size_3
 <h2 class="anchored" data-anchor-id="forest-fragmentation">Forest fragmentation</h2>
 <p><a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.forestfrag.html">r.forestfrag</a></p>
 <div id="3ab0408e-5413-41cc-9fdc-17077013c3be" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tools.g_extension(extension<span class="op">=</span><span class="st">"r.forestfrag"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tools.g_extension(extension<span class="op">=</span><span class="st">"r.forestfrag"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="7d46a5e2-a70d-4651-97c7-d5b41a3c3d76" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract forest</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>tools.r_mapcalc(expression<span class="op">=</span><span class="st">"forest = if(landcover == 42, 1, 0)"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate forest fragmentation</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>fragmentation <span class="op">=</span> tools.r_forestfrag(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span><span class="op">=</span><span class="st">"forest"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    output<span class="op">=</span><span class="st">"fragmentation"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    flags<span class="op">=</span><span class="st">"s"</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>m.d_rast(<span class="bu">map</span><span class="op">=</span><span class="st">"fragmentation"</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>m.d_legend(raster<span class="op">=</span><span class="st">"fragmentation"</span>, color<span class="op">=</span><span class="st">"white"</span>, at<span class="op">=</span>(<span class="dv">75</span>, <span class="dv">95</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>m.show()</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Print report</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fragmentation.text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="landscape-metrics_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+------------------------------------------------+
+|           RASTER MAP CATEGORY REPORT           |
+|PROJECT: hilltop        Tue Nov 17 18:08:01 2026|
+|------------------------------------------------|
+|          north: 206019.34802663    east: 102303|
+|REGION    south: 205675.10652713    west:  10227|
+|          res:        0.30012336    res:        |
+|------------------------------------------------|
+|MASK: none                                      |
+|------------------------------------------------|
+|MAP: Forest fragmentation (fragmentation in PERM|
+|------------------------------------------------|
+|    Category Information      |          |   %  |
+|#|description                 |  hectares| cover|
+|------------------------------------------------|
+|0|exterior . . . . . . . . . .|  2.541182| 56.28|
+|1|patch. . . . . . . . . . . .|  0.023835|  0.53|
+|2|transitional . . . . . . . .|  0.081703|  1.81|
+|3|edge . . . . . . . . . . . .|  0.214996|  4.76|
+|4|perforated . . . . . . . . .|  0.354378|  7.85|
+|5|interior . . . . . . . . . .|  1.297066| 28.73|
+|6|undetermined . . . . . . . .|  0.001766|  0.04|
+|------------------------------------------------|
+|TOTAL                         |  4.514927|100.00|
++------------------------------------------------+</code></pre>
+</div>
 </div>
 
 
