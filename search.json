@@ -40,7 +40,7 @@
     "href": "ecology/forest-cutting.html",
     "title": "Forest Cutting Model",
     "section": "",
-    "text": "# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create GRASS project\ngs.create_project(\"forestry\", overwrite=True)\ngj.init(\"forestry\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nxy_location_unprojected",
+    "text": "Franklin, J.F., Forman, R.T.T. Creating landscape patterns by forest cutting: Ecological consequences and principles. Landscape Ecology 1, 5–18 (1987). https://doi.org/10.1007/BF02275261",
     "crumbs": [
       "Home",
       "Computational Ecology",
@@ -51,8 +51,8 @@
     "objectID": "ecology/forest-cutting.html#setup",
     "href": "ecology/forest-cutting.html#setup",
     "title": "Forest Cutting Model",
-    "section": "",
-    "text": "# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create GRASS project\ngs.create_project(\"forestry\", overwrite=True)\ngj.init(\"forestry\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nxy_location_unprojected",
+    "section": "Setup",
+    "text": "Setup\n\n# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create GRASS project\ngs.create_project(\"forestry\", overwrite=True)\ngj.init(\"forestry\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nxy_location_unprojected",
     "crumbs": [
       "Home",
       "Computational Ecology",
