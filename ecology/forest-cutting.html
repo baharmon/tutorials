@@ -412,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#set-region" id="toc-set-region" class="nav-link" data-scroll-target="#set-region">Set region</a></li>
   <li><a href="#create-grid" id="toc-create-grid" class="nav-link" data-scroll-target="#create-grid">Create grid</a></li>
   <li><a href="#model-cuts" id="toc-model-cuts" class="nav-link" data-scroll-target="#model-cuts">Model cuts</a></li>
-  <li><a href="#rasterize" id="toc-rasterize" class="nav-link" data-scroll-target="#rasterize">Rasterize</a></li>
+  <li><a href="#vectorize" id="toc-vectorize" class="nav-link" data-scroll-target="#vectorize">Vectorize</a></li>
   <li><a href="#forest-fragmentation" id="toc-forest-fragmentation" class="nav-link" data-scroll-target="#forest-fragmentation">Forest fragmentation</a></li>
   </ul>
 </nav>
@@ -441,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<div id="75640412-c997-45c5-89ac-c018df1adc0b" class="cell" data-execution_count="12">
+<div id="75640412-c997-45c5-89ac-c018df1adc0b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import modules</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
@@ -463,10 +463,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create GRASS project</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>gs.create_project(<span class="st">"forestry"</span>, overwrite<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>gj.init(<span class="st">"forestry"</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Print projection</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>projection <span class="op">=</span> tools.g_proj(<span class="bu">format</span><span class="op">=</span><span class="st">"shell"</span>, flags<span class="op">=</span><span class="st">"p"</span>).keyval</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(projection.get(<span class="st">"name"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> Tools(overwrite<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Print projection</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>projection <span class="op">=</span> tools.g_proj(<span class="bu">format</span><span class="op">=</span><span class="st">"shell"</span>, flags<span class="op">=</span><span class="st">"p"</span>).keyval</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(projection.get(<span class="st">"name"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>xy_location_unprojected</code></pre>
 </div>
@@ -474,20 +475,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="set-region" class="level2">
 <h2 class="anchored" data-anchor-id="set-region">Set region</h2>
-<div id="72a56ead-135b-4fd4-9ac8-ec62533e696a" class="cell" data-execution_count="57">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tools.g_region(n<span class="op">=</span><span class="dv">100</span>, s<span class="op">=</span><span class="dv">0</span>, e<span class="op">=</span><span class="dv">100</span>, w<span class="op">=</span><span class="dv">0</span>, res<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="72a56ead-135b-4fd4-9ac8-ec62533e696a" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set region</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tools.g_region(n<span class="op">=</span><span class="dv">100</span>, s<span class="op">=</span><span class="dv">0</span>, e<span class="op">=</span><span class="dv">100</span>, w<span class="op">=</span><span class="dv">0</span>, res<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="create-grid" class="level2">
 <h2 class="anchored" data-anchor-id="create-grid">Create grid</h2>
 <p><a href="https://grass.osgeo.org/grass85/manuals/v.mkgrid.html">v.mkgrid</a></p>
-<div id="e96f6110-0940-476d-95d9-984765a7fd0e" class="cell" data-execution_count="66">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tools.v_mkgrid(<span class="bu">map</span><span class="op">=</span><span class="st">"grid"</span>, grid<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>), <span class="bu">type</span><span class="op">=</span><span class="st">"area"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">500</span>, use_region<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>m.d_vect(<span class="bu">map</span><span class="op">=</span><span class="st">"grid"</span>, color<span class="op">=</span><span class="st">"white"</span>, fill<span class="op">=</span><span class="st">"none"</span>, width<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>m.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="e96f6110-0940-476d-95d9-984765a7fd0e" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate grid</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tools.v_mkgrid(<span class="bu">map</span><span class="op">=</span><span class="st">"grid"</span>, grid<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>), <span class="bu">type</span><span class="op">=</span><span class="st">"area"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> gj.Map(width<span class="op">=</span><span class="dv">500</span>, use_region<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>m.d_vect(<span class="bu">map</span><span class="op">=</span><span class="st">"grid"</span>, color<span class="op">=</span><span class="st">"black"</span>, fill<span class="op">=</span><span class="st">"none"</span>, width<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>m.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -517,10 +520,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="rasterize" class="level2">
-<h2 class="anchored" data-anchor-id="rasterize">Rasterize</h2>
+<section id="vectorize" class="level2">
+<h2 class="anchored" data-anchor-id="vectorize">Vectorize</h2>
 <div id="ad4ce8e5-feca-4c4f-b5dc-c6599a8a4881" class="cell" data-execution_count="68">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rasterize</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorize</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tools.v_to_rast(<span class="bu">input</span><span class="op">=</span><span class="st">"grid"</span>, output<span class="op">=</span><span class="st">"landcover"</span>, use<span class="op">=</span><span class="st">"value"</span>, value<span class="op">=</span><span class="dv">42</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model landcover</span></span>

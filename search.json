@@ -40,7 +40,7 @@
     "href": "ecology/forest-cutting.html",
     "title": "Forest Cutting Model",
     "section": "",
-    "text": "# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create GRASS project\ngs.create_project(\"forestry\", overwrite=True)\ngj.init(\"forestry\")\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nxy_location_unprojected",
+    "text": "# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create GRASS project\ngs.create_project(\"forestry\", overwrite=True)\ngj.init(\"forestry\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nxy_location_unprojected",
     "crumbs": [
       "Home",
       "Computational Ecology",
@@ -52,7 +52,7 @@
     "href": "ecology/forest-cutting.html#setup",
     "title": "Forest Cutting Model",
     "section": "",
-    "text": "# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create GRASS project\ngs.create_project(\"forestry\", overwrite=True)\ngj.init(\"forestry\")\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nxy_location_unprojected",
+    "text": "# Import modules\nimport sys\nimport subprocess\nfrom pathlib import Path\n\n# Find GRASS Python packages\nsys.path.append(\n  subprocess.check_output(\n    [\"grass\", \"--config\", \"python_path\"],\n    text=True\n    ).strip()\n  )\n\n# Import GRASS packages\nimport grass.script as gs\nimport grass.jupyter as gj\nfrom grass.tools import Tools\n\n# Create GRASS project\ngs.create_project(\"forestry\", overwrite=True)\ngj.init(\"forestry\")\ntools = Tools(overwrite=True)\n\n# Print projection\nprojection = tools.g_proj(format=\"shell\", flags=\"p\").keyval\nprint(projection.get(\"name\"))\n\nxy_location_unprojected",
     "crumbs": [
       "Home",
       "Computational Ecology",
@@ -64,7 +64,7 @@
     "href": "ecology/forest-cutting.html#set-region",
     "title": "Forest Cutting Model",
     "section": "Set region",
-    "text": "Set region\n\ntools.g_region(n=100, s=0, e=100, w=0, res=1)",
+    "text": "Set region\n\n# Set region\ntools.g_region(n=100, s=0, e=100, w=0, res=1)",
     "crumbs": [
       "Home",
       "Computational Ecology",
@@ -76,7 +76,7 @@
     "href": "ecology/forest-cutting.html#create-grid",
     "title": "Forest Cutting Model",
     "section": "Create grid",
-    "text": "Create grid\nv.mkgrid\n\ntools.v_mkgrid(map=\"grid\", grid=(10,10), type=\"area\")\n\n# Visualize\nm = gj.Map(width=500, use_region=True)\nm.d_vect(map=\"grid\", color=\"white\", fill=\"none\", width=2)\nm.show()",
+    "text": "Create grid\nv.mkgrid\n\n# Generate grid\ntools.v_mkgrid(map=\"grid\", grid=(10,10), type=\"area\")\n\n# Visualize\nm = gj.Map(width=500, use_region=True)\nm.d_vect(map=\"grid\", color=\"black\", fill=\"none\", width=2)\nm.show()",
     "crumbs": [
       "Home",
       "Computational Ecology",
@@ -96,11 +96,11 @@
     ]
   },
   {
-    "objectID": "ecology/forest-cutting.html#rasterize",
-    "href": "ecology/forest-cutting.html#rasterize",
+    "objectID": "ecology/forest-cutting.html#vectorize",
+    "href": "ecology/forest-cutting.html#vectorize",
     "title": "Forest Cutting Model",
-    "section": "Rasterize",
-    "text": "Rasterize\n\n# Rasterize\ntools.v_to_rast(input=\"grid\", output=\"landcover\", use=\"value\", value=42)\n\n# Model landcover\ntools.r_mapcalc(expression=\"landcover = if(isnull(landcover), 31, 42)\")\n\n# Set colors\ntools.r_colors(map=\"landcover\", color=\"nlcd\")\n\n# Visualize\nm = gj.Map(width=500, use_region=True)\nm.d_rast(map=\"landcover\")\nm.show()",
+    "section": "Vectorize",
+    "text": "Vectorize\n\n# Vectorize\ntools.v_to_rast(input=\"grid\", output=\"landcover\", use=\"value\", value=42)\n\n# Model landcover\ntools.r_mapcalc(expression=\"landcover = if(isnull(landcover), 31, 42)\")\n\n# Set colors\ntools.r_colors(map=\"landcover\", color=\"nlcd\")\n\n# Visualize\nm = gj.Map(width=500, use_region=True)\nm.d_rast(map=\"landcover\")\nm.show()",
     "crumbs": [
       "Home",
       "Computational Ecology",
